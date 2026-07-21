@@ -1,0 +1,123 @@
+aid: coin-metrics
+name: Coin Metrics
+review:
+  question: Does Coin Metrics expose a documented, publicly accessible API surface?
+  answer: true
+  date: '2026-07-21'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Coin Metrics has one of the stronger public API postures among institutional
+    market data vendors. The entire product line (network/on-chain data, exchange
+    market data, CMBI indexes, reference rates, Atlas blockchain explorer,
+    security master, taxonomy) is exposed through a single documented API v4,
+    rendered as a public ReDoc reference at https://docs.coinmetrics.io/api/v4
+    backed by a downloadable OpenAPI 3.0.2 definition (203 paths). The paid tier
+    uses simple API-key authentication (an api_key query parameter, per the
+    spec's single securityScheme) at https://api.coinmetrics.io/v4,
+    with WebSocket streaming at wss://api.coinmetrics.io/v4 - keys are obtained
+    through sales contact rather than self-serve signup, so the pro tier is
+    sales-gated even though its documentation is fully public. A free Community
+    API at https://community-api.coinmetrics.io/v4 requires no key at all
+    (CC BY-NC 4.0 license) and was confirmed live during this review. Additional
+    documented delivery channels are flat files, Python and R API clients, and
+    Google Sheets integration. Coin Metrics remains an independent company
+    (founded 2017, Boston); no acquisition/parent to record.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.coinmetrics.io/v4
+      documented: true
+      note: Paid product; API key required. Unauthenticated probe of /catalog/assets returned HTTP 401 (live, auth-gated).
+    - protocol: REST
+      scheme: https
+      baseURL: https://community-api.coinmetrics.io/v4
+      documented: true
+      note: Free community tier, no API key. /catalog/assets and /timeseries/asset-metrics?assets=btc&metrics=PriceUSD both returned HTTP 200.
+    - protocol: WebSocket
+      scheme: wss
+      baseURL: wss://api.coinmetrics.io/v4
+      documented: true
+      note: Paid product. Eleven /timeseries-stream/* channels in the OpenAPI definition (asset metrics, trades, quotes, order books, candles, open interest, liquidations, contract prices, pair/asset quotes, index levels). Not probed (requires API key).
+    - protocol: FlatFiles
+      scheme: https
+      documented: true
+      note: Docs "Access Our Data" page lists flat files alongside the REST and WebSocket APIs; front-end and Google Sheets download paths documented under access-our-data/downloading-our-data.
+  probes:
+    - url: https://coinmetrics.io/
+      status: 200
+    - url: https://docs.coinmetrics.io/
+      status: 200
+    - url: https://docs.coinmetrics.io/api/v4
+      status: 200
+    - url: https://docs.coinmetrics.io/api/static/openapi.json
+      status: 200
+    - url: https://docs.coinmetrics.io/api/static/openapi.yaml
+      status: 200
+    - url: https://docs.coinmetrics.io/access-our-data/api
+      status: 200
+    - url: https://api.coinmetrics.io/v4/catalog/assets
+      status: 401
+    - url: https://community-api.coinmetrics.io/v4/catalog/assets
+      status: 200
+    - url: https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=btc&metrics=PriceUSD&page_size=1
+      status: 200
+    - url: https://coinmetrics.io/pricing/
+      status: 200
+    - url: https://coinmetrics.io/market-data-feed/
+      status: 200
+    - url: https://coinmetrics.io/network-data-pro/
+      status: 200
+    - url: https://coinmetrics.io/indexes/
+      status: 200
+    - url: https://coinmetrics.io/reference-rates/
+      status: 200
+    - url: https://coinmetrics.io/atlas/
+      status: 200
+    - url: https://coinmetrics.io/community-network-data/
+      status: 200
+    - url: https://github.com/coinmetrics
+      status: 200
+    - url: https://www.linkedin.com/company/coinmetrics
+      status: 999
+      note: LinkedIn returns 999 to automated clients; not a 404. Listed as a common property on that basis.
+    - url: https://status.coinmetrics.io/
+      status: 200
+    - url: https://coinmetrics.io/insights/
+      status: 200
+    - url: https://coinmetrics.io/terms-of-service/
+      status: 200
+    - url: https://coinmetrics.io/privacy-policy/
+      status: 200
+    - url: https://coinmetrics.io/contact/
+      status: 200
+  openapiProvenance: |
+    openapi/coin-metrics-api-v4-openapi.json was downloaded verbatim on
+    2026-07-21 from https://docs.coinmetrics.io/api/static/openapi.json (HTTP
+    200, ~1.2 MB), the same document the public ReDoc reference at
+    https://docs.coinmetrics.io/api/v4 links as "openapi.json"/"openapi.yaml".
+    OpenAPI 3.0.2, info.title "Coin Metrics API v4", info.version 4.0.0, 203
+    paths, servers https://api.coinmetrics.io/v4, wss://api.coinmetrics.io/v4,
+    and https://community-api.coinmetrics.io/v4. Nothing was modified.
+  commercialPosture: |
+    Public pricing page exists (coinmetrics.io/pricing) but paid API access is
+    obtained via sales contact/demo rather than self-serve key issuance; the
+    free Community API requires no signup at all. Docs are fully public with
+    no login wall, including the machine-readable spec, an llms.txt index, and
+    per-page Markdown exports.
+sources:
+  - url: https://docs.coinmetrics.io/api/v4
+    type: APIReference
+    note: Public ReDoc reference for API v4; documents API-key auth and both HTTPS and wss roots, plus the keyless community root.
+  - url: https://docs.coinmetrics.io/api/static/openapi.json
+    type: OpenAPI
+    note: Downloadable OpenAPI 3.0.2 definition harvested into openapi/.
+  - url: https://docs.coinmetrics.io/access-our-data
+    type: Documentation
+    note: Lists REST/HTTP API, WebSocket API, Python and R clients, flat files, and Coverage front-end as access methods.
+  - url: https://coinmetrics.io/community-network-data/
+    type: Documentation
+    note: Community data program behind the free CC BY-NC 4.0 community API.
+  - url: https://github.com/coinmetrics
+    type: GitHubOrganization
+    note: Hosts the open-source Python API client (api-client-python) and other tooling.

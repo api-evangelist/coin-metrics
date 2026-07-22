@@ -1,0 +1,338 @@
+openapi: 3.0.2
+info:
+  title: Coin Metrics API v4 Blockchain Explorer Job API
+  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+
+    # Authentication
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    # Response headers
+
+    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+  termsOfService: https://coinmetrics.io/api/terms
+  contact:
+    name: Coin Metrics Support
+    url: https://coinmetrics.io/support/
+    email: support@coinmetrics.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 4.0.0
+servers:
+- url: https://api.coinmetrics.io/v4
+- url: wss://api.coinmetrics.io/v4
+- url: https://community-api.coinmetrics.io/v4
+tags:
+- name: Blockchain Explorer Job
+  description: Endpoints for creating async jobs for blockchain entities.
+paths:
+  /blockchain-job/account-balances:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    put:
+      summary: Account balances
+      description: Creates asynchronous job for retrieving account balances data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobAccountBalance](#schema/BlockchainJobAccountBalance) objects.
+      operationId: putBlockchainJobAccountBalances
+      tags:
+      - Blockchain Explorer Job
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlockchainJobAccountBalancesRequest'
+      x-codeSamples:
+      - label: Shell
+        source: "curl -X PUT --compressed \"https://api.coinmetrics.io/v4/blockchain-job/account-balances?api_key=<your_key>\" \\\n  --header \"Content-Type: application/x-www-form-urlencoded\" \\\n  --data-urlencode \"assets=sol\" \\\n  --data-urlencode \"accounts=account1,account2\" \\\n  --data-urlencode \"at_time=2024-07-04T00:00:00.000000000Z\"\n"
+      - label: Python
+        source: "import requests\ndata = {\n    \"assets\": \"sol\",\n    \"accounts\": \"account1,account2\",\n    \"at_time\": \"2024-07-04T00:00:00.000000000Z\"\n}\nresponse = requests.put('https://api.coinmetrics.io/v4/blockchain-job/account-balances?api_key=<your_key>',data=data).json()\nprint(response)\n"
+      responses:
+        '200':
+          $ref: '#/components/responses/CreatedJobDetails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/BlockchainForbidden'
+      security:
+      - api_key: []
+  /blockchain-job/balance-updates:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    put:
+      summary: Balance updates
+      description: Creates asynchronous job for retrieving balance updates data. Both `start_*` and `end_*` parameters must be specified (time or height).<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobBalanceUpdate](#schema/BlockchainJobBalanceUpdate) objects.
+      operationId: putBlockchainJobBalanceUpdates
+      tags:
+      - Blockchain Explorer Job
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlockchainJobBalanceUpdatesRequest'
+      x-codeSamples:
+      - label: Shell
+        source: "curl -X PUT --compressed \"https://api.coinmetrics.io/v4/blockchain-job/balance-updates?api_key=<your_key>\" \\\n  --header \"Content-Type: application/x-www-form-urlencoded\" \\\n  --data-urlencode \"assets=sol\" \\\n  --data-urlencode \"accounts=account1,account2\" \\\n  --data-urlencode \"start_time=2023-07-04T00:00:00.000000000Z\" \\\n  --data-urlencode \"end_time=2024-07-04T00:00:00.000000000Z\"\n"
+      - label: Python
+        source: "import requests\ndata = {\n    \"assets\": \"sol\",\n    \"accounts\": \"account1,account2\",\n    \"start_time\": \"2023-07-04T00:00:00.000000000Z\",\n    \"end_time\": \"2024-07-04T00:00:00.000000000Z\"\n}\nresponse = requests.put('https://api.coinmetrics.io/v4/blockchain-job/balance-updates?api_key=<your_key>',data=data).json()\nprint(response)\n"
+      responses:
+        '200':
+          $ref: '#/components/responses/CreatedJobDetails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/BlockchainForbidden'
+      security:
+      - api_key: []
+  /blockchain-job/transactions:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    put:
+      summary: Transactions
+      description: Creates asynchronous job for retrieving transactions data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobTransactionInfo](#schema/BlockchainJobTransactionInfo) objects.
+      operationId: putBlockchainJobTransactions
+      tags:
+      - Blockchain Explorer Job
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlockchainJobTransactionsRequest'
+      x-codeSamples:
+      - label: Shell
+        source: "curl -X PUT --compressed \"https://api.coinmetrics.io/v4/blockchain-job/transactions?api_key=<your_key>\" \\\n  --header \"Content-Type: application/x-www-form-urlencoded\" \\\n  --data-urlencode \"assets=sol\" \\\n  --data-urlencode \"txids=txid1,txid2\"\n"
+      - label: Python
+        source: "import requests\ndata = {\n    \"assets\": \"sol\",\n    \"txids\": \"txid1,txid2\"\n}\nresponse = requests.put('https://api.coinmetrics.io/v4/blockchain-job/transactions?api_key=<your_key>',data=data).json()\nprint(response)\n"
+      responses:
+        '200':
+          $ref: '#/components/responses/CreatedJobDetails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/BlockchainForbidden'
+      security:
+      - api_key: []
+components:
+  schemas:
+    BlockchainTransactionId:
+      description: Identifier (txid) of the transaction.
+      type: string
+    BlockchainJobStartSlot:
+      description: The start slot indicates the beginning slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `end_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+      type: integer
+      format: int64
+    BlockchainJobBalanceUpdatesRequest:
+      properties:
+        assets:
+          $ref: '#/components/schemas/BlockchainJobAssets'
+        accounts:
+          $ref: '#/components/schemas/BlockchainJobAccounts'
+        start_time:
+          $ref: '#/components/schemas/BlockchainJobStartTime'
+        end_time:
+          $ref: '#/components/schemas/BlockchainJobEndTime'
+        start_height:
+          $ref: '#/components/schemas/BlockchainJobStartHeight'
+        end_height:
+          $ref: '#/components/schemas/BlockchainJobEndHeight'
+        start_slot:
+          $ref: '#/components/schemas/BlockchainJobStartSlot'
+        end_slot:
+          $ref: '#/components/schemas/BlockchainJobEndSlot'
+      required:
+      - assets
+      - accounts
+    BlockchainJobAccountBalancesRequest:
+      properties:
+        assets:
+          $ref: '#/components/schemas/BlockchainJobAssets'
+        accounts:
+          $ref: '#/components/schemas/BlockchainJobAccounts'
+        at_time:
+          $ref: '#/components/schemas/BlockchainJobAtTime'
+        at_slot:
+          $ref: '#/components/schemas/BlockchainJobAtSlot'
+        at_height:
+          $ref: '#/components/schemas/BlockchainJobAtHeight'
+      required:
+      - assets
+      - accounts
+    BlockchainJobStartTime:
+      description: 'Start of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `end_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.'
+      type: string
+      format: date-time
+    BlockchainJobStartHeight:
+      description: The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `end_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+      type: integer
+      format: int64
+    BlockchainJobEndSlot:
+      description: The end slot indicates the ending slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `start_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+      type: integer
+      format: int64
+    BlockchainJobAccounts:
+      description: Account ids. For ETH_CL, this can either be a validator public key or a validator index.
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainJobAccount'
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    BlockchainJobAtTime:
+      description: 'Indicates the point in time for which the set of account balances will be returned.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> UTC timezone by default. `Z` suffix is optional.<br/> Mutually exclusive with `at_height` and `at_slot`.<br/> Specifying either `at_time` or `at_height` / `at_slot` parameter is mandatory.<br/>'
+      type: string
+      format: date-time
+    BlockchainJobAtSlot:
+      description: Indicates the slot for which the set of account balances will be returned.<br/> Mutually exclusive with `at_height` and `at_time`.<br/> Specifying either `at_slot` or `at_height` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>
+      type: integer
+      format: int64
+    BlockchainTransactionIds:
+      description: Transactions ids.
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainTransactionId'
+    CreatedJobDetailsResponse:
+      properties:
+        job_id:
+          type: string
+          description: Job ID.
+        job_url:
+          type: string
+          description: Job URL.
+      required:
+      - job_id
+      - job_url
+    BlockchainJobAssets:
+      description: Comma separated list of assets, or wildcard (*) for all supported assets.
+      items:
+        $ref: '#/components/schemas/AssetId'
+    BlockchainJobEndHeight:
+      description: The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `start_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+      type: integer
+      format: int64
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    AssetId:
+      description: Unique name of the asset.
+      type: string
+    BlockchainJobAtHeight:
+      description: Indicates the block height for which the set of account balances will be returned.<br/> Mutually exclusive with `at_slot` and `at_time`.<br/> Specifying either `at_height` or `at_slot` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>
+      type: integer
+      format: int64
+    BlockchainJobAccount:
+      description: Account id. For ETH_CL, this can either be a validator public key or a validator index.
+      type: string
+    BlockchainJobTransactionsRequest:
+      properties:
+        assets:
+          $ref: '#/components/schemas/BlockchainJobAssets'
+        txids:
+          $ref: '#/components/schemas/BlockchainTransactionIds'
+      required:
+      - assets
+      - txids
+    BlockchainJobEndTime:
+      description: 'End of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `start_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.'
+      type: string
+      format: date-time
+  responses:
+    BlockchainForbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested resource is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+    CreatedJobDetails:
+      description: Details of just created job.
+      content:
+        application/json:
+          example:
+            job_id: ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg
+            job_url: https://api.coinmetrics.io/v4/jobs?api_key=<your_key>&ids=ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg
+          schema:
+            $ref: '#/components/schemas/CreatedJobDetailsResponse'
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    api_key:
+      description: Coin Metrics API key can be specified as `?api_key=` query parameter.
+      in: query
+      name: api_key
+      type: apiKey
+x-tagGroups:
+- name: General
+  tags:
+  - Rate limits
+- name: Reference Data
+  tags:
+  - Reference Data
+  - Profile
+  - Taxonomy
+  - Taxonomy Metadata
+- name: Catalog
+  tags:
+  - Catalog
+  - Full catalog
+  - Catalog v2
+  - Full catalog v2
+- name: Timeseries
+  tags:
+  - Timeseries
+  - Timeseries stream
+- name: Universal blockchain explorer
+  tags:
+  - List of blockchain entities v2
+  - Full blockchain entities v2
+  - Blockchain Explorer Job
+  - Blockchain Explorer Job Results
+- name: Tools
+  tags:
+  - Chain Monitor tools
+- name: Security Master
+  tags:
+  - Security Master
+- name: Constituents
+  tags:
+  - Constituent Snapshots
+  - Constituent Timeframes
+- name: Blockchain Metadata
+  tags:
+  - Blockchain Metadata
+- name: Jobs
+  tags:
+  - Jobs

@@ -1,0 +1,352 @@
+openapi: 3.0.2
+info:
+  title: Coin Metrics API v4 Blockchain Explorer Job Constituent Snapshots API
+  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+
+    # Authentication
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    # Response headers
+
+    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+  termsOfService: https://coinmetrics.io/api/terms
+  contact:
+    name: Coin Metrics Support
+    url: https://coinmetrics.io/support/
+    email: support@coinmetrics.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 4.0.0
+servers:
+- url: https://api.coinmetrics.io/v4
+- url: wss://api.coinmetrics.io/v4
+- url: https://community-api.coinmetrics.io/v4
+tags:
+- name: Constituent Snapshots
+  description: Endpoints for getting the snapshots of various constituents
+paths:
+  /constituent-snapshots/asset-metrics:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    - url: https://community-api.coinmetrics.io/v4
+    get:
+      summary: Snapshots of asset metric constituents
+      description: "Returns snapshots of asset metric constituents. \\\nResults are sorted by tuple (`time`, `constituent_name`), where `constituent_name` depends on a target metric. \nE.g., the `volume_trusted_spot_usd_1d` metric constituents are exchanges, \ni.e. the output will be sorted by (`time`, `exchange`).\n"
+      operationId: getConstituentSnapshotsAssetMetrics
+      x-codeSamples:
+      - label: Shell
+        source: '# Gets snapshots of asset metric constituents
+
+          curl --compressed "https://api.coinmetrics.io/v4/constituent-snapshots/asset-metrics?metric=volume_trusted_spot_usd_1d&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: '# Gets snapshots of asset metric constituents
+
+          import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/constituent-snapshots/asset-metrics?metric=volume_trusted_spot_usd_1d&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: '# Gets snapshots of asset metric constituents
+
+          from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_snapshots_of_asset_metric_constituents(metric="volume_trusted_spot_usd_1d").to_list()
+
+          print(response)
+
+          '
+      tags:
+      - Constituent Snapshots
+      parameters:
+      - $ref: '#/components/parameters/ConstituentsMetricName'
+      - $ref: '#/components/parameters/ConstituentsAtTime'
+      - $ref: '#/components/parameters/ConstituentsStartTime'
+      - $ref: '#/components/parameters/ConstituentsEndTime'
+      - $ref: '#/components/parameters/NextPageToken'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PagingFrom'
+      - $ref: '#/components/parameters/Format'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '200':
+          $ref: '#/components/responses/AssetMetricsConstituentSnapshots'
+        '400':
+          $ref: '#/components/responses/MetricNotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+components:
+  schemas:
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    ConstituentSnapshotsAssetMetricsResponse:
+      description: Snapshots of asset metric constituents response.
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              time:
+                $ref: '#/components/schemas/Time'
+            required:
+            - time
+            additionalProperties:
+              nullable: true
+              type: string
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+  parameters:
+    ConstituentsStartTime:
+      description: 'Start of the time interval, inclusive. \
+
+        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
+
+        Mutually exclusive with `at_time`.
+
+        '
+      name: start_time
+      in: query
+      schema:
+        type: string
+    PagingFrom:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: end
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    Format:
+      description: Format of the response.
+      in: query
+      name: format
+      schema:
+        enum:
+        - json
+        - csv
+        type: string
+        default: json
+    ConstituentsMetricName:
+      description: Target metric name.
+      name: metric
+      in: query
+      required: true
+      schema:
+        type: string
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    ConstituentsEndTime:
+      description: 'End of the time interval, inclusive. \
+
+        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
+
+        Mutually exclusive with `at_time`.
+
+        '
+      name: end_time
+      in: query
+      schema:
+        type: string
+    ConstituentsAtTime:
+      description: 'Returns constituents at a specified date. \
+
+        Value `now` can be specified to get the current constituents. \
+
+        Mutually exclusive with `start_time` and/or `end_time`.
+
+        '
+      name: at_time
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    AssetMetricsConstituentSnapshots:
+      description: Snapshots of asset metric constituents.
+      content:
+        application/json:
+          example:
+            data:
+            - time: '2023-09-01T00:00:00.000000000Z'
+              exchange: coinbase
+            - time: '2023-09-01T00:00:00.000000000Z'
+              exchange: binance
+            - time: '2023-09-01T00:00:00.000000000Z'
+              exchange: binance.us
+            next_page_token: 0.MjAxNy0wNS0yMlQwMDowMDowMFo
+            next_page_url: https://api.coinmetrics.io/v4/constituent-snapshots/asset-metrics?metric=volume_trusted_spot_usd_1d&at_time=now&pretty=true&page_size=3&api_key=<your_key>
+          schema:
+            $ref: '#/components/schemas/ConstituentSnapshotsAssetMetricsResponse'
+        text/csv:
+          example: 'time,exchange
+
+            2023-09-01T00:00:00.000000000Z,coinbase
+
+            2023-09-01T00:00:00.000000000Z,binance
+
+            2023-09-01T00:00:00.000000000Z,binance.us'
+          schema:
+            $ref: '#/components/schemas/ConstituentSnapshotsAssetMetricsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    MetricNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Metric not found.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+  securitySchemes:
+    api_key:
+      description: Coin Metrics API key can be specified as `?api_key=` query parameter.
+      in: query
+      name: api_key
+      type: apiKey
+x-tagGroups:
+- name: General
+  tags:
+  - Rate limits
+- name: Reference Data
+  tags:
+  - Reference Data
+  - Profile
+  - Taxonomy
+  - Taxonomy Metadata
+- name: Catalog
+  tags:
+  - Catalog
+  - Full catalog
+  - Catalog v2
+  - Full catalog v2
+- name: Timeseries
+  tags:
+  - Timeseries
+  - Timeseries stream
+- name: Universal blockchain explorer
+  tags:
+  - List of blockchain entities v2
+  - Full blockchain entities v2
+  - Blockchain Explorer Job
+  - Blockchain Explorer Job Results
+- name: Tools
+  tags:
+  - Chain Monitor tools
+- name: Security Master
+  tags:
+  - Security Master
+- name: Constituents
+  tags:
+  - Constituent Snapshots
+  - Constituent Timeframes
+- name: Blockchain Metadata
+  tags:
+  - Blockchain Metadata
+- name: Jobs
+  tags:
+  - Jobs

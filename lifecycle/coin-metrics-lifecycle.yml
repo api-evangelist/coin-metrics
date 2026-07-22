@@ -1,0 +1,50 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.coinmetrics.io/access-our-data/api, https://status.coinmetrics.io/
+versioning:
+  scheme: uri-path major versions + semantic versioning (major.minor.patch)
+  current: v4
+  stability: stable
+  docs: https://docs.coinmetrics.io/access-our-data/api
+  notes: >-
+    Major versions run in parallel and may be labeled stable, unstable, or
+    development; backward-incompatible changes land only in new/unstable major
+    versions. Minor and patch releases replace old ones in place.
+deprecation:
+  policy_url: https://docs.coinmetrics.io/access-our-data/api#backward-compatibility
+  sunset_header: false
+  notes: >-
+    Old major API versions are gradually deprecated and removed on a
+    (generally long-term) published deprecation schedule. A documented
+    backward-compatibility policy enumerates which changes are compatible vs
+    breaking; emergency changes are reserved for continuity/security. The
+    catalog v1 endpoint family is currently deprecated in favor of catalog-v2
+    (see https://coinmetrics.io/important-changes-to-coin-metrics-api-catalog-endpoints/).
+status_page: https://status.coinmetrics.io/
+status_page_components:
+  - Market Data Feed
+  - CM Prices
+  - CMBI Indexes
+  - Reference Data
+  - Network Data Pro
+  - ATLAS
+  - FARUM
+  - Pro API V4
+  - Community API V4
+  - Flat Files
+  - Charting Tools
+  - Data Change Notifications (per-product change logs)
+sla:
+  url: null
+  notes: No public SLA page; institutional terms are contract-based.
+deprecated_operations_count: 62
+deprecated_operations_note: >-
+  62 of 203 operations in the OpenAPI are marked deprecated: true - the
+  catalog v1 family (/catalog/* and /catalog-all/*), superseded by
+  /catalog-v2/* and /reference-data/*.
+deprecated_operations_sample:
+  - openapi/coin-metrics-catalog-api-openapi.yml#getCatalogAssets
+  - openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMetrics
+  - openapi/coin-metrics-catalog-api-openapi.yml#getCatalogAssetMetrics
+  - openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllExchanges
+  - openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllAssetPairs

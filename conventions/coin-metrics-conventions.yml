@@ -1,0 +1,74 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.coinmetrics.io/access-our-data/api
+docs: https://docs.coinmetrics.io/access-our-data/api
+description: >-
+  Cross-cutting request/response conventions of the Coin Metrics API v4,
+  captured from the published "API Conventions" page and confirmed against the
+  OpenAPI 3.0.2 definition. A read-only data API - there are no write flows
+  and no idempotency-key contract.
+authentication:
+  style: apiKey
+  parameter: api_key
+  in: query
+  notes: >-
+    Paid (Pro) tier requires an API key passed as ?api_key= query parameter.
+    The free Community tier at community-api.coinmetrics.io requires no key
+    (CC BY-NC 4.0, non-commercial use).
+  artifact: authentication/coin-metrics-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    The API is a read-only data-delivery surface (GET plus a small set of
+    async job-creation endpoints); no Idempotency-Key header or idempotency
+    contract is documented.
+pagination:
+  style: cursor
+  request_params: [page_size, paging_from, next_page_token]
+  default_page_size: 100
+  max_page_size: 10000
+  response_fields: [next_page_url, next_page_token]
+  notes: >-
+    If a response contains next_page_url at the top level, fetch that URL
+    unmodified for the next page. catalog-v2 endpoints also support
+    format=json_stream (line-delimited JSON) to avoid paging entirely.
+filtering:
+  time_window_params: [start_time, end_time, start_inclusive, end_inclusive, timezone]
+  per_entity_limits: "limit_per_<entity> (e.g. limit_per_asset=1) caps entries per entity"
+  null_handling: "null_as_zero=true converts null metric values to zero"
+data_formats:
+  timestamps: ISO 8601, UTC by default, responses in UTC with nanosecond precision
+  numbers: >-
+    All numbers are returned as quoted strings so JavaScript clients can
+    handle values beyond 53 bits; decimal separator is always a dot.
+  monetary_amounts: Strings, in the native pricing unit (e.g. BTC, not satoshis).
+request_tracing:
+  header: CF-RAY
+  notes: >-
+    Every response carries a CF-RAY header (e.g. 88a6ec1d2f930774-IAD) used
+    for diagnostics; include it when raising support requests.
+versioning:
+  scheme: uri-path major version + semantic versioning
+  current: v4 (stable)
+  notes: >-
+    Major versions run in parallel; minor/patch releases replace in place.
+    See lifecycle/coin-metrics-lifecycle.yml for the backward-compatibility
+    policy.
+  artifact: lifecycle/coin-metrics-lifecycle.yml
+error_envelope:
+  shape: '{"error": {"type": "...", "message": "..."}}'
+  notes: >-
+    error.type is the stable machine-readable identifier; error.message is
+    human-friendly and may change without notice.
+  artifact: errors/coin-metrics-problem-types.yml
+rate_limit_signaling:
+  status: 429
+  headers: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-RateLimit-Plan]
+  standard: draft-polli-ratelimit-headers-03
+  artifact: rate-limits/coin-metrics-rate-limits.yml
+transport:
+  http: HTTP/2 for REST; gzip compression recommended (Accept-Encoding gzip)
+  websocket: >-
+    wss://api.coinmetrics.io/v4 timeseries-stream endpoints use standard WS
+    ping/pong; connections pass through Cloudflare and restart occasionally,
+    so clients should auto-reconnect.

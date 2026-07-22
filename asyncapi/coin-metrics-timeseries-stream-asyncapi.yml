@@ -1,0 +1,147 @@
+# generated: 2026-07-22
+# method: derived
+# source: openapi/coin-metrics-timeseries-stream-api-openapi.yml
+# spec_type: AsyncAPI (derived from the provider OpenAPI websocket surface; no provider-published AsyncAPI exists)
+asyncapi: 2.6.0
+info:
+  title: Coin Metrics Timeseries Stream API
+  version: 4.0.0
+  description: 'WebSocket streaming surface of the Coin Metrics API v4, derived from the published OpenAPI 3.0.2
+    definition (timeseries-stream tag). Real-time streams of metrics, market trades, quotes, order books, candles,
+    open interest, liquidations, contract prices and index levels. Standard WS ping/pong; connections traverse Cloudflare
+    and may restart - clients should auto-reconnect. Paid product: api_key query parameter required.'
+servers:
+  production:
+    url: wss://api.coinmetrics.io/v4
+    protocol: wss
+    security:
+    - api_key: []
+channels:
+  /timeseries-stream/asset-metrics:
+    description: Asset metrics
+    subscribe:
+      operationId: getTimeseriesStreamAssetMetrics
+      summary: Asset metrics
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/market-trades:
+    description: Market trades
+    subscribe:
+      operationId: getTimeseriesStreamMarketTrades
+      summary: Market trades
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/market-liquidations:
+    description: Market liquidations
+    subscribe:
+      operationId: getTimeseriesStreamMarketLiquidations
+      summary: Market liquidations
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/market-openinterest:
+    description: Market open interest
+    subscribe:
+      operationId: getTimeseriesStreamMarketOpenInterest
+      summary: Market open interest
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/market-contract-prices:
+    description: Market contract prices
+    subscribe:
+      operationId: getTimeseriesStreamMarketContractPrices
+      summary: Market contract prices
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/market-orderbooks:
+    description: Market orderbooks
+    subscribe:
+      operationId: getTimeseriesStreamMarketOrderbooks
+      summary: Market orderbooks
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/market-quotes:
+    description: Market quotes
+    subscribe:
+      operationId: getTimeseriesStreamMarketQuotes
+      summary: Market quotes
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/asset-quotes:
+    description: Asset quotes
+    subscribe:
+      operationId: getTimeseriesStreamAssetQuotes
+      summary: Asset quotes
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/pair-quotes:
+    description: Pair quotes
+    subscribe:
+      operationId: getTimeseriesStreamPairQuotes
+      summary: Pair quotes
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/market-candles:
+    description: Market candles
+    subscribe:
+      operationId: getTimeseriesStreamMarketCandles
+      summary: Market candles
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+  /timeseries-stream/index-levels:
+    description: Index levels
+    subscribe:
+      operationId: getTimeseriesStreamIndexLevels
+      summary: Index levels
+    bindings:
+      ws:
+        method: GET
+        query:
+          type: object
+          properties: {}
+components:
+  securitySchemes:
+    api_key:
+      type: httpApiKey
+      name: api_key
+      in: query
+      description: Coin Metrics API key as ?api_key= query parameter.

@@ -1,0 +1,785 @@
+openapi: 3.0.2
+info:
+  title: Coin Metrics API v4 Blockchain Explorer Job Full blockchain entities v2 API
+  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+
+    # Authentication
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    # Response headers
+
+    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+  termsOfService: https://coinmetrics.io/api/terms
+  contact:
+    name: Coin Metrics Support
+    url: https://coinmetrics.io/support/
+    email: support@coinmetrics.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 4.0.0
+servers:
+- url: https://api.coinmetrics.io/v4
+- url: wss://api.coinmetrics.io/v4
+- url: https://community-api.coinmetrics.io/v4
+tags:
+- name: Full blockchain entities v2
+  description: Endpoints for fetching full blockchain entities.
+paths:
+  /blockchain-v2/{asset}/blocks/{block_hash}:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    - url: https://community-api.coinmetrics.io/v4
+    get:
+      summary: Full block
+      description: Returns a full blockchain block with all transactions and balance updates.<br/> Results are limited to the last 30 days for Community users.
+      operationId: getBlockchainV2FullBlock
+      tags:
+      - Full blockchain entities v2
+      parameters:
+      - $ref: '#/components/parameters/BlockchainAsset'
+      - $ref: '#/components/parameters/BlockchainBlockHash'
+      - $ref: '#/components/parameters/BlockchainIncludeSubAccountsV2'
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/IgnoreUnsupportedErrors'
+      x-codeSamples:
+      - label: Shell
+        source: '# Gets block data for a specific Litecoin block, specified by the hash of the block
+
+          curl --compressed "https://api.coinmetrics.io/v4/blockchain-v2/ltc/blocks/885f0ba526e9a683f64c8fdb83c5e8cbc0d6e74fb93f2351941ee409a924b7a8?pretty=true&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: '# Gets block data for a specific Litecoin block, specified by the hash of the block
+
+          import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/blockchain-v2/ltc/blocks/885f0ba526e9a683f64c8fdb83c5e8cbc0d6e74fb93f2351941ee409a924b7a8?pretty=true&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: '# Gets block data for a specific Litecoin block, specified by the hash of the block
+
+          from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_list_of_blocks_v2(asset="ltc", block_hash="885f0ba526e9a683f64c8fdb83c5e8cbc0d6e74fb93f2351941ee409a924b7a8").to_list()
+
+          print(response)
+
+          '
+      responses:
+        '200':
+          $ref: '#/components/responses/BlockchainFullBlockV2'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/BlockchainForbidden'
+      security:
+      - api_key: []
+  /blockchain-v2/{asset}/transactions/{txid}:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    - url: https://community-api.coinmetrics.io/v4
+    get:
+      summary: Full transaction
+      description: Returns a full blockchain transaction with all balance updates.<br/> Results are limited to the last 30 days for Community users.
+      operationId: getBlockchainV2FullTransaction
+      tags:
+      - Full blockchain entities v2
+      parameters:
+      - $ref: '#/components/parameters/BlockchainAsset'
+      - $ref: '#/components/parameters/BlockchainTransactionId'
+      - $ref: '#/components/parameters/BlockchainIncludeSubAccountsV2'
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/IgnoreUnsupportedErrors'
+      x-codeSamples:
+      - label: Shell
+        source: '# Gets block data for a specific Litecoin transaction, specified by the hash of the block
+
+          curl --compressed "https://api.coinmetrics.io/v4/blockchain-v2/ltc/transactions/3345cbbcc53b8a0113951b69f98a72a84b5a094af84842b46ed931c242c09597?pretty=true&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: '# Gets block data for a specific Litecoin transaction, specified by the hash of the block
+
+          import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/blockchain-v2/ltc/transactions/3345cbbcc53b8a0113951b69f98a72a84b5a094af84842b46ed931c242c09597?pretty=true&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: '# Gets block data for a specific Litecoin transaction, specified by the hash of the block
+
+          from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_full_transaction_v2(asset="ltc", txid="3345cbbcc53b8a0113951b69f98a72a84b5a094af84842b46ed931c242c09597").to_list()
+
+          print(response)
+
+          '
+      responses:
+        '200':
+          $ref: '#/components/responses/BlockchainFullTransactionV2'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/BlockchainForbidden'
+      security:
+      - api_key: []
+  /blockchain-v2/{asset}/blocks/{block_hash}/transactions/{txid}:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    - url: https://community-api.coinmetrics.io/v4
+    get:
+      summary: Full transaction for block
+      description: Returns a full blockchain transaction with all balance updates for a specific block.<br/> Results are limited to the last 30 days for Community users.
+      operationId: getBlockchainV2FullTransactionForBlock
+      tags:
+      - Full blockchain entities v2
+      parameters:
+      - $ref: '#/components/parameters/BlockchainAsset'
+      - $ref: '#/components/parameters/BlockchainBlockHash'
+      - $ref: '#/components/parameters/BlockchainTransactionId'
+      - $ref: '#/components/parameters/BlockchainIncludeSubAccountsV2'
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/IgnoreUnsupportedErrors'
+      x-codeSamples:
+      - label: Shell
+        source: '# Gets block data and balance updates for a specific Litecoin block, specified by the hash of the block
+
+          curl --compressed "https://api.coinmetrics.io/v4/blockchain-v2/ltc/blocks/885f0ba526e9a683f64c8fdb83c5e8cbc0d6e74fb93f2351941ee409a924b7a8/transactions/3345cbbcc53b8a0113951b69f98a72a84b5a094af84842b46ed931c242c09597?pretty=true&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: '# Gets block data and balance updates for a specific Litecoin block, specified by the hash of the block
+
+          import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/blockchain-v2/ltc/blocks/885f0ba526e9a683f64c8fdb83c5e8cbc0d6e74fb93f2351941ee409a924b7a8/transactions/3345cbbcc53b8a0113951b69f98a72a84b5a094af84842b46ed931c242c09597?pretty=true&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: '# Gets block data and balance updates for a specific Litecoin block, specified by the hash of the block
+
+          from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_full_block_v2(asset="ltc", block_hash="885f0ba526e9a683f64c8fdb83c5e8cbc0d6e74fb93f2351941ee409a924b7a8", txid="3345cbbcc53b8a0113951b69f98a72a84b5a094af84842b46ed931c242c09597").to_list()
+
+          print(response)
+
+          '
+      responses:
+        '200':
+          $ref: '#/components/responses/BlockchainFullTransactionV2'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/BlockchainForbidden'
+      security:
+      - api_key: []
+components:
+  schemas:
+    BlockchainBlockVersion:
+      description: Version of the block.
+      type: string
+    BlockchainBlockDifficulty:
+      description: Difficulty of the block.
+      type: string
+      format: decimal
+    BlockchainTotalReceived:
+      description: Total amount received.
+      type: string
+      format: decimal
+    BlockchainNumberOfDebits:
+      description: Number of debits.
+      type: string
+      format: int64
+    BlockchainDenomination:
+      description: The denomination of the asset transacted. Only set if not the same as the asset being queried.
+      type: string
+    BlockchainBlockNonce:
+      description: Nonce of the block, hex-encoded.
+      type: string
+    BlockchainTransactionBalanceUpdateV2:
+      properties:
+        chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainChainSequenceNumber'
+        account:
+          $ref: '#/components/schemas/BlockchainAccount'
+        account_creation_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        change:
+          $ref: '#/components/schemas/BlockchainBalanceChange'
+        rebasing_numerator:
+          $ref: '#/components/schemas/BlockchainRebasingNumerator'
+        rebasing_denominator:
+          $ref: '#/components/schemas/BlockchainRebasingDenominator'
+        rebasing_rounding_mode:
+          $ref: '#/components/schemas/BlockchainRebasingRoundingMode'
+        previous_balance:
+          $ref: '#/components/schemas/BlockchainAccountBalance'
+        new_balance:
+          $ref: '#/components/schemas/BlockchainAccountBalance'
+        transaction_sequence_number:
+          $ref: '#/components/schemas/BlockchainTransactionSequenceNumber'
+        n_debits:
+          $ref: '#/components/schemas/BlockchainNumberOfDebits'
+        n_credits:
+          $ref: '#/components/schemas/BlockchainNumberOfCredits'
+        previous_debit_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        previous_credit_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        previous_chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainTransactionSequenceNumber'
+        sub_account:
+          $ref: '#/components/schemas/BlockchainBalanceUpdateSubAccount'
+        stale:
+          $ref: '#/components/schemas/BlockchainStaleBlock'
+        denomination:
+          $ref: '#/components/schemas/BlockchainDenomination'
+      required:
+      - chain_sequence_number
+      - account
+      - account_creation_height
+      - change
+      - previous_balance
+      - new_balance
+      - transaction_sequence_number
+      - n_debits
+      - n_credits
+    BlockchainTransactionPosition:
+      description: Transaction position.
+      type: string
+      format: int64
+    BlockchainTransactionId:
+      description: Identifier (txid) of the transaction.
+      type: string
+    BlockchainAccountBalance:
+      description: Balance of the account.
+      type: string
+      format: decimal
+    BlockchainSubAccount:
+      description: Sub-account id.
+      type: string
+    BlockchainFullTransactionsV2:
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainFullTransactionResponseV2'
+    BlockchainBlockInfoV2:
+      properties:
+        block_hash:
+          $ref: '#/components/schemas/BlockchainBlockHash'
+        parent_block_hash:
+          $ref: '#/components/schemas/BlockchainBlockHash'
+        height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        consensus_time:
+          $ref: '#/components/schemas/Time'
+        miner_time:
+          $ref: '#/components/schemas/Time'
+        nonce:
+          $ref: '#/components/schemas/BlockchainBlockNonce'
+        extra_data:
+          $ref: '#/components/schemas/BlockchainBlockExtraData'
+        n_transactions:
+          $ref: '#/components/schemas/BlockchainNumberOfTransactions'
+        n_balance_updates:
+          $ref: '#/components/schemas/BlockchainNumberOfBalanceUpdates'
+        version:
+          $ref: '#/components/schemas/BlockchainBlockVersion'
+        difficulty:
+          $ref: '#/components/schemas/BlockchainBlockDifficulty'
+        physical_size:
+          $ref: '#/components/schemas/BlockchainBlockPhysicalSize'
+        consensus_size:
+          $ref: '#/components/schemas/BlockchainBlockConsensusSize'
+        consensus_size_limit:
+          $ref: '#/components/schemas/BlockchainBlockConsensusSizeLimit'
+        stale:
+          $ref: '#/components/schemas/BlockchainStaleBlock'
+      required:
+      - block_hash
+      - height
+      - consensus_time
+      - export_time
+      - miner_time
+      - n_transactions
+      - n_balance_updates
+    BlockchainFullBlockResponseV2:
+      allOf:
+      - $ref: '#/components/schemas/BlockchainBlockInfoV2'
+      - type: object
+        description: Blockchain full block response.
+        properties:
+          transactions:
+            $ref: '#/components/schemas/BlockchainFullTransactionsV2'
+          balance_updates:
+            $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
+    BlockchainTransactionBalanceUpdatesV2:
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainTransactionBalanceUpdateV2'
+    BlockchainBalanceUpdateSubAccount:
+      properties:
+        sub_account:
+          $ref: '#/components/schemas/BlockchainSubAccount'
+        previous_balance:
+          $ref: '#/components/schemas/BlockchainAccountBalance'
+        new_balance:
+          $ref: '#/components/schemas/BlockchainAccountBalance'
+        n_debits:
+          $ref: '#/components/schemas/BlockchainNumberOfDebits'
+        n_credits:
+          $ref: '#/components/schemas/BlockchainNumberOfCredits'
+        previous_credit_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        previous_debit_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        previous_chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainTransactionSequenceNumber'
+        total_received:
+          $ref: '#/components/schemas/BlockchainTotalReceived'
+        total_sent:
+          $ref: '#/components/schemas/BlockchainTotalSent'
+        creation_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+      required:
+      - chain_sequence_number
+      - account
+      - account_creation_height
+      - change
+      - transaction_sequence_number
+      - previous_n_debits
+      - previous_n_credits
+    BlockchainTransactionPhysicalSize:
+      description: Physical size of the transaction, bytes.
+      type: string
+      format: decimal
+    BlockchainTransactionVersion:
+      description: Version of the transaction.
+      type: string
+    BlockchainFullTransactionResponseV2:
+      allOf:
+      - $ref: '#/components/schemas/BlockchainBlockTransactionInfoV2'
+      - type: object
+        description: Blockchain full transaction response.
+        properties:
+          balance_updates:
+            $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
+    BlockchainBalanceChange:
+      description: Balance change.
+      type: string
+      format: decimal
+    BlockchainBlockHash:
+      description: Hash of the block.
+      type: string
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    BlockchainStaleBlock:
+      description: This field is set to true if the corresponding block is stale. Otherwise omitted.
+      type: string
+    BlockchainNumberOfBalanceUpdates:
+      description: Number of balance updates.
+      type: string
+      format: int64
+    BlockchainRebasingNumerator:
+      description: This field represents the numerator of the rebasing coefficient at the time of the update. This value is omitted from responses if equal to the default value of '1'.
+      type: string
+      format: decimal
+    BlockchainTransactionAmount:
+      description: Sum of all debits in the transaction.
+      type: string
+      format: decimal
+    BlockchainBlockConsensusSizeLimit:
+      description: Consensus size limit of the block.
+      type: string
+      format: int64
+    BlockchainTransactionInfoV2:
+      allOf:
+      - $ref: '#/components/schemas/BlockchainBlockTransactionInfoV2'
+      - type: object
+        properties:
+          block_hash:
+            $ref: '#/components/schemas/BlockchainBlockHash'
+          height:
+            $ref: '#/components/schemas/BlockchainBlockHeight'
+          version:
+            $ref: '#/components/schemas/BlockchainTransactionVersion'
+          physical_size:
+            $ref: '#/components/schemas/BlockchainTransactionPhysicalSize'
+          consensus_size:
+            $ref: '#/components/schemas/BlockchainTransactionConsensusSize'
+          fee:
+            $ref: '#/components/schemas/BlockchainTransactionFee'
+          stale:
+            $ref: '#/components/schemas/BlockchainStaleBlock'
+        required:
+        - block_hash
+        - height
+    BlockchainTotalSent:
+      description: Total amount sent.
+      type: string
+      format: decimal
+    BlockchainTransactionFee:
+      description: Fee of the transaction.
+      type: string
+      format: decimal
+    BlockchainAccount:
+      description: Account id.
+      type: string
+    BlockchainNumberOfTransactions:
+      description: Number of transactions.
+      type: string
+      format: int64
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    BlockchainBlockConsensusSize:
+      description: Consensus size of the block.
+      type: string
+      format: int64
+    BlockchainBlockHeight:
+      description: Height of the block.
+      type: string
+      format: int64
+    BlockchainRebasingRoundingMode:
+      description: 'This field represents the rounding mode used when converting tokens to shares using the rebasing coefficient at the time of the update. The possible values are: `UP`, `DOWN`, `HALF_UP`. This value is omitted from responses if equal to the default value of `DOWN`.'
+      type: string
+    BlockchainBlockTransactionInfoV2:
+      properties:
+        txid:
+          $ref: '#/components/schemas/BlockchainTransactionId'
+        consensus_time:
+          $ref: '#/components/schemas/Time'
+        miner_time:
+          $ref: '#/components/schemas/Time'
+        tx_position:
+          $ref: '#/components/schemas/BlockchainTransactionPosition'
+        min_chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainChainSequenceNumber'
+        max_chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainChainSequenceNumber'
+        n_balance_updates:
+          $ref: '#/components/schemas/BlockchainNumberOfBalanceUpdates'
+        amount:
+          $ref: '#/components/schemas/BlockchainTransactionAmount'
+        stale:
+          $ref: '#/components/schemas/BlockchainStaleBlock'
+      required:
+      - txid
+      - consensus_time
+      - tx_position
+      - n_balance_updates
+      - amount
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    BlockchainChainSequenceNumber:
+      description: Chain sequence number.
+      type: string
+      format: int64
+    BlockchainTransactionConsensusSize:
+      description: Consensus size of the transaction.
+      type: string
+      format: decimal
+    BlockchainFullSingleTransactionResponseV2:
+      allOf:
+      - $ref: '#/components/schemas/BlockchainTransactionInfoV2'
+      - type: object
+        description: Blockchain full transaction response.
+        properties:
+          balance_updates:
+            $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
+    BlockchainNumberOfCredits:
+      description: Number of credits.
+      type: string
+      format: int64
+    BlockchainRebasingDenominator:
+      description: This field represents the denominator of the rebasing coefficient at the time of the update. This value is omitted from responses if equal to the default value of '1'.
+      type: string
+      format: decimal
+    BlockchainBlockPhysicalSize:
+      description: Physical size of the block, bytes.
+      type: string
+      format: int64
+    BlockchainTransactionSequenceNumber:
+      description: It is used to order balance updates inside a single transaction to distinguish between serial and parallel balance updates.
+      type: string
+      format: int64
+    BlockchainBlockExtraData:
+      description: Extra data of the block, hex-encoded.
+      type: string
+  parameters:
+    BlockchainIncludeSubAccountsV2:
+      description: Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.
+      in: query
+      name: include_sub_accounts
+      schema:
+        default: false
+        type: boolean
+    IgnoreUnsupportedErrors:
+      description: Ignore "unsupported" errors for not currently supported by Coin Metrics items.
+      in: query
+      name: ignore_unsupported_errors
+      schema:
+        type: boolean
+        default: false
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    BlockchainAsset:
+      description: Asset name.
+      in: path
+      name: asset
+      required: true
+      schema:
+        type: string
+    BlockchainBlockHash:
+      description: Block hash.
+      in: path
+      name: block_hash
+      required: true
+      schema:
+        type: string
+    BlockchainTransactionId:
+      description: Transaction identifier (txid).
+      in: path
+      name: txid
+      required: true
+      schema:
+        type: string
+  responses:
+    BlockchainFullBlockV2:
+      description: Blockchain full block.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BlockchainFullBlockResponseV2'
+          example:
+            block_hash: 0000000000000000000079fca9c54dd7532d139ed258f02e3d1368e7006157d9
+            height: '758506'
+            consensus_time: '2022-10-13T18:27:09.000000000Z'
+            miner_time: '2022-10-13T18:57:56.000000000Z'
+            n_transactions: '469'
+            n_balance_updates: '7425'
+            transactions:
+            - txid: 232687100669217c7335d2b2b6f5e7ae61cc6d4c79b8b1b1c7a1fa21938422b9
+              consensus_time: '2022-10-13T18:27:09.000000000Z'
+              tx_position: '3257758463819776'
+              n_balance_updates: '4'
+              amount: '6.34186444'
+              balance_updates:
+              - chain_sequence_number: '3257758463819776'
+                account: FEES
+                account_creation_height: '0'
+                change: '-0.09186444'
+                rebasing_numerator: '1'
+                rebasing_denominator: '1'
+                rebasing_rounding_mode: DOWN
+                previous_balance: '0'
+                new_balance: '-0.09186444'
+                transaction_sequence_number: '0'
+                n_debits: '758507'
+                n_credits: '771183299'
+                previous_debit_height: '758505'
+                previous_credit_height: '758505'
+                previous_chain_sequence_number: '3257754168874991'
+              - chain_sequence_number: '3257758463819777'
+                account: ISSUANCE
+                account_creation_height: '0'
+                change: '-6.25'
+                rebasing_numerator: '1'
+                rebasing_denominator: '1'
+                rebasing_rounding_mode: DOWN
+                previous_balance: '-19178133.54497096'
+                new_balance: '-19178139.79497096'
+                transaction_sequence_number: '0'
+                n_debits: '758507'
+                n_credits: '0'
+                previous_debit_height: '758505'
+                previous_chain_sequence_number: '3257754168852481'
+              min_chain_sequence_number: '3257758463819776'
+              max_chain_sequence_number: '3257758463819779'
+            balance_updates: []
+            parent_block_hash: 000000000000000000079a2d36f1308ea00fd26fda92fe12c5dd4e1a5b0c15e7
+            difficulty: '35610794164371.65'
+            physical_size: '1075674'
+            consensus_size: '3993099'
+            consensus_size_limit: '4000000'
+    BlockchainForbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested resource is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BlockchainFullTransactionV2:
+      description: Blockchain full transaction.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BlockchainFullSingleTransactionResponseV2'
+          example:
+            txid: 16262dacdac04f41b50dd4174d3bd0d133916a325e5244b3febcb760a8d3975f
+            consensus_time: '2022-10-14T04:17:24.000000000Z'
+            miner_time: '2022-10-14T04:17:24.000000000Z'
+            tx_position: '10095861795127296'
+            n_balance_updates: '4'
+            amount: '12.5480776'
+            block_hash: b5f4f41003c656a8cf7deaa8555e3240bfd24244672397b3c544bd8bd9bed036
+            height: '2350626'
+            min_chain_sequence_number: '10095861795127296'
+            max_chain_sequence_number: '10095861795127299'
+            balance_updates:
+            - chain_sequence_number: '10095861795127296'
+              account: FEES
+              account_creation_height: '0'
+              change: '-0.0480776'
+              rebasing_numerator: '1'
+              rebasing_denominator: '1'
+              rebasing_rounding_mode: DOWN
+              previous_balance: '0'
+              new_balance: '-0.0480776'
+              transaction_sequence_number: '0'
+              n_debits: '2350627'
+              n_credits: '128653555'
+              previous_debit_height: '2350625'
+              previous_credit_height: '2350625'
+              previous_chain_sequence_number: '10095857500165790'
+            - chain_sequence_number: '10095861795127297'
+              account: ISSUANCE
+              account_creation_height: '0'
+              change: '-12.5'
+              rebasing_numerator: '1'
+              rebasing_denominator: '1'
+              rebasing_rounding_mode: DOWN
+              previous_balance: '-71380870.73347135'
+              new_balance: '-71380883.23347135'
+              transaction_sequence_number: '0'
+              n_debits: '2350627'
+              n_credits: '0'
+              previous_debit_height: '2350625'
+              previous_chain_sequence_number: '10095857500160001'
+            - chain_sequence_number: '10095861795127299'
+              account: LaYPLuQEanVCYM9TztR9FuT3ZbTJM6wHEZ
+              account_creation_height: '1785846'
+              change: '12.5480776'
+              rebasing_numerator: '1'
+              rebasing_denominator: '1'
+              rebasing_rounding_mode: DOWN
+              previous_balance: '588.96230971'
+              new_balance: '601.51038731'
+              transaction_sequence_number: '0'
+              n_debits: '10123'
+              n_credits: '10171'
+              previous_debit_height: '2348134'
+              previous_credit_height: '2350581'
+              previous_chain_sequence_number: '10095668521598979'
+  securitySchemes:
+    api_key:
+      description: Coin Metrics API key can be specified as `?api_key=` query parameter.
+      in: query
+      name: api_key
+      type: apiKey
+x-tagGroups:
+- name: General
+  tags:
+  - Rate limits
+- name: Reference Data
+  tags:
+  - Reference Data
+  - Profile
+  - Taxonomy
+  - Taxonomy Metadata
+- name: Catalog
+  tags:
+  - Catalog
+  - Full catalog
+  - Catalog v2
+  - Full catalog v2
+- name: Timeseries
+  tags:
+  - Timeseries
+  - Timeseries stream
+- name: Universal blockchain explorer
+  tags:
+  - List of blockchain entities v2
+  - Full blockchain entities v2
+  - Blockchain Explorer Job
+  - Blockchain Explorer Job Results
+- name: Tools
+  tags:
+  - Chain Monitor tools
+- name: Security Master
+  tags:
+  - Security Master
+- name: Constituents
+  tags:
+  - Constituent Snapshots
+  - Constituent Timeframes
+- name: Blockchain Metadata
+  tags:
+  - Blockchain Metadata
+- name: Jobs
+  tags:
+  - Jobs

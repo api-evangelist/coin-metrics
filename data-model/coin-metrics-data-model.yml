@@ -1,0 +1,59 @@
+generated: '2026-07-22'
+method: derived
+source: openapi/coin-metrics-reference-data-api-openapi.yml, openapi/coin-metrics-timeseries-api-openapi.yml, openapi/coin-metrics-catalog-v2-api-openapi.yml
+description: >-
+  Entity-relationship view of the Coin Metrics data universe, derived from the
+  reference-data, catalog-v2 and timeseries surfaces of the API v4 OpenAPI.
+  Reference-data endpoints are the entity handbook; catalog-v2 describes
+  per-entity time-range availability; timeseries endpoints deliver the data
+  keyed by entity identifier.
+entities:
+- name: asset
+  id_field: asset
+  id_example: btc
+  reference_endpoint: /reference-data/assets
+  notes: Cryptoassets; the anchor entity for network data, reference rates and metrics.
+- name: exchange
+  id_field: exchange
+  id_example: binance
+  reference_endpoint: /reference-data/exchanges
+- name: market
+  id_field: market
+  id_example: binance-1000FLOKIUSDT-future
+  reference_endpoint: /reference-data/markets
+  notes: Composite identifier <exchange>-<pair/instrument>-<type> (spot, future, option).
+- name: pair
+  id_field: pair
+  id_example: btc-usd
+  reference_endpoint: /reference-data/pairs
+- name: index
+  id_field: index
+  id_example: CMBIBTC
+  reference_endpoint: /reference-data/indexes
+  notes: CMBI indexes with levels, candles and constituents timeseries.
+- name: institution
+  id_field: institution
+  reference_endpoint: /reference-data/institution-metrics
+- name: protocol
+  id_field: protocol
+  reference_endpoint: /reference-data/protocols
+  notes: DeFi protocols (balance sheets etc.).
+- name: metric
+  id_field: metric
+  id_example: ReferenceRateUSD
+  reference_endpoint: /reference-data/asset-metrics
+  notes: >-
+    Metric definitions (full_name, description, product, category, unit,
+    data_type) exist per scope - asset, exchange, exchange-asset, pair,
+    exchange-pair, market, institution metrics.
+relationships:
+- {from: market, to: exchange, type: belongs_to, via: market identifier prefix (exchange name)}
+- {from: market, to: pair, type: belongs_to, via: market identifier base/quote segment}
+- {from: pair, to: asset, type: belongs_to, via: base and quote asset codes}
+- {from: index, to: asset, type: has_many, via: /timeseries/index-constituents}
+- {from: asset, to: metric, type: has_many, via: '/timeseries/asset-metrics?assets=&metrics='}
+- {from: exchange, to: metric, type: has_many, via: /timeseries/exchange-metrics}
+- {from: market, to: metric, type: has_many, via: /timeseries/market-metrics}
+- {from: market, to: observation, type: has_many, via: /timeseries/market-trades, market-quotes, market-orderbooks, market-candles}
+- {from: asset, to: chain, type: has_many, via: /timeseries/asset-chains}
+- {from: entity, to: availability, type: has_many, via: /catalog-v2/* min_time-max_time frequencies}

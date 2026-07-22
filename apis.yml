@@ -2,16 +2,27 @@ aid: coin-metrics
 url: https://raw.githubusercontent.com/api-evangelist/coin-metrics/refs/heads/main/apis.yml
 name: Coin Metrics
 kind: company
-description: Coin Metrics is a Boston-based crypto financial intelligence provider
-  founded in 2017, selling institutional-grade cryptoasset network (on-chain) data,
-  exchange market data (trades, quotes, order books, candles, derivatives), CMBI indexes,
-  reference rates, and reference/security-master data. Everything is delivered through
-  a single documented API v4 - REST at api.coinmetrics.io/v4 and WebSocket streaming
-  at wss://api.coinmetrics.io/v4 as paid, API-key products - plus a free, keyless
-  Community API at community-api.coinmetrics.io/v4 under a CC BY-NC 4.0 license, with
-  flat files, Python and R clients, and Google Sheets as additional delivery channels.
-  A complete OpenAPI 3.0.2 definition is published on the docs site.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+description: 'Coin Metrics is a Boston-based crypto financial intelligence provider founded in 2017, selling
+  institutional-grade cryptoasset network (on-chain) data, exchange market data (trades, quotes, order
+  books, candles, derivatives), CMBI indexes, reference rates, and reference/security-master data. Everything
+  is delivered through a single documented API v4 - REST at api.coinmetrics.io/v4 and WebSocket streaming
+  at wss://api.coinmetrics.io/v4 as paid, API-key products - plus a free, keyless Community API at community-api.coinmetrics.io/v4
+  under a CC BY-NC 4.0 license, with flat files, Python and R clients, and Google Sheets as additional
+  delivery channels. A complete OpenAPI 3.0.2 definition is published on the docs site. Coin Metrics is
+  now part of Talos: coinmetrics.io 301-redirects to talos.com/our-solutions/data/overview, while docs.coinmetrics.io
+  and the api/community-api hosts remain live under the Coin Metrics brand.'
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/coin-metrics.png
 tags:
 - Financial
 - Market Data
@@ -23,150 +34,557 @@ tags:
 - Order Book
 - Real-Time
 created: '2026-07-21'
-modified: '2026-07-21'
+modified: '2026-07-22'
 specificationVersion: '0.19'
 apis:
-- aid: coin-metrics:coin-metrics-market-data-api
-  name: Coin Metrics Market Data API
-  tags:
-  - Market Data
-  - Trades
-  - Quotes
-  - Order Book
-  - Derivatives
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: coin-metrics:coin-metrics-blockchain-explorer-job-api
+  name: Coin Metrics Blockchain Explorer Job API
+  description: Endpoints for creating async jobs for blockchain entities.
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
-  properties:
-  - url: https://coinmetrics.io/market-data-feed/
-    type: Documentation
-  - url: https://docs.coinmetrics.io/api/v4
-    type: APIReference
-  - url: openapi/coin-metrics-api-v4-openapi.json
-    type: OpenAPI
-  description: Timeseries endpoints for exchange market data - trades, quotes, order
-    book snapshots and depth, candles, open interest, liquidations, funding rates,
-    and contract prices - across spot and derivatives markets, served from the API
-    v4 REST root with API-key authentication.
-- aid: coin-metrics:coin-metrics-network-data-api
-  name: Coin Metrics Network Data API
   tags:
-  - On-Chain Data
-  - Asset Metrics
-  - Blockchain
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Blockchain Explorer Job
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-blockchain-explorer-job-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-blockchain-explorer-job-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-blockchain-metadata-api
+  name: Coin Metrics Blockchain Metadata API
+  description: Blockchain metadata endpoints
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
-  properties:
-  - url: https://coinmetrics.io/network-data-pro/
-    type: Documentation
-  - url: https://docs.coinmetrics.io/api/v4
-    type: APIReference
-  - url: openapi/coin-metrics-api-v4-openapi.json
-    type: OpenAPI
-  description: Network Data Pro on-chain asset metrics - supply, addresses, fees,
-    transactions, miner flows, exchange flows, and hundreds of other per-asset timeseries
-    metrics - via the timeseries/asset-metrics family of API v4 endpoints.
-- aid: coin-metrics:coin-metrics-index-reference-rates-api
-  name: Coin Metrics Index and Reference Rates API
   tags:
-  - Indexes
-  - Reference Rates
-  - Benchmarks
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Blockchain Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-blockchain-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-blockchain-metadata-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-catalog-api
+  name: Coin Metrics Catalog API
+  description: 'Catalog of available for your `api_key` data.<br/> Use the [Full catalog](#tag/Full-catalog)
+    endpoints for the full list of supported by Coin Metrics data. <br/>DEPRECATED: See https://coinmetrics.io/important-changes-to-coin-metrics-api-catalog-endpoints/.'
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
-  properties:
-  - url: https://coinmetrics.io/indexes/
-    type: Documentation
-  - url: https://coinmetrics.io/reference-rates/
-    type: Documentation
-  - url: https://docs.coinmetrics.io/api/v4
-    type: APIReference
-  - url: openapi/coin-metrics-api-v4-openapi.json
-    type: OpenAPI
-  description: CMBI index levels and candles, index constituent snapshots and timeframes,
-    and CM Prices reference rates delivered as API v4 timeseries endpoints for benchmark
-    and valuation use cases.
-- aid: coin-metrics:coin-metrics-timeseries-stream-websocket-api
-  name: Coin Metrics Timeseries Stream WebSocket API
   tags:
-  - WebSocket
-  - Streaming
-  - Real-Time
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.coinmetrics.io/api/v4
-  baseURL: wss://api.coinmetrics.io/v4
+  - Catalog
   properties:
-  - url: https://docs.coinmetrics.io/access-our-data/api
-    type: Documentation
-  - url: https://docs.coinmetrics.io/api/v4
-    type: APIReference
-  - url: openapi/coin-metrics-api-v4-openapi.json
-    type: OpenAPI
-  description: Real-time WebSocket streaming under /timeseries-stream for asset metrics,
-    market trades, quotes, order books, candles, open interest, liquidations, contract
-    prices, pair and asset quotes, and index levels. Documented as a paid product
-    in the same OpenAPI definition as the REST API.
-- aid: coin-metrics:coin-metrics-community-api
-  name: Coin Metrics Community API
-  tags:
-  - Community
-  - Free Tier
-  - Market Data
-  - On-Chain Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.coinmetrics.io/api/v4
-  baseURL: https://community-api.coinmetrics.io/v4
-  properties:
-  - url: https://coinmetrics.io/community-network-data/
-    type: Documentation
-  - url: https://docs.coinmetrics.io/api/v4
-    type: APIReference
-  - url: openapi/coin-metrics-api-v4-openapi.json
-    type: OpenAPI
-  description: Free, keyless subset of API v4 at community-api.coinmetrics.io/v4
-    offering community network data and market data under a Creative Commons BY-NC
-    4.0 license. Confirmed live with HTTP 200 responses to catalog and timeseries
-    requests without authentication.
-- aid: coin-metrics:coin-metrics-atlas-blockchain-explorer-api
-  name: Coin Metrics Atlas Blockchain Explorer API
-  tags:
-  - Blockchain Explorer
-  - Transactions
-  - Balances
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - type: OpenAPI
+    url: openapi/coin-metrics-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-catalog-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-catalog-v2-api
+  name: Coin Metrics Catalog v2 API
+  description: Catalog of available for your `api_key` data.<br/> Use the [Full catalog V2](#tag/Full-catalog-v2)
+    endpoints for the full list of supported by Coin Metrics data.
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Catalog v2
   properties:
-  - url: https://coinmetrics.io/atlas/
-    type: Documentation
-  - url: https://docs.coinmetrics.io/api/v4
-    type: APIReference
-  - url: openapi/coin-metrics-api-v4-openapi.json
-    type: OpenAPI
-  description: Atlas blockchain search - blockchain entities (accounts, transactions,
-    blocks, balance updates), asynchronous blockchain explorer jobs and job results,
-    and blockchain metadata endpoints within API v4.
-- aid: coin-metrics:coin-metrics-reference-data-catalog-api
-  name: Coin Metrics Reference Data and Catalog API
+  - type: OpenAPI
+    url: openapi/coin-metrics-catalog-v2-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-catalog-v2-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-chain-monitor-tools-api
+  name: Coin Metrics Chain Monitor tools API
+  description: Endpoints for working with chain monitor data.
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Chain Monitor tools
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-chain-monitor-tools-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-chain-monitor-tools-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-constituent-snapshots-api
+  name: Coin Metrics Constituent Snapshots API
+  description: Endpoints for getting the snapshots of various constituents
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Constituent Snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-constituent-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-constituent-snapshots-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-constituent-timeframes-api
+  name: Coin Metrics Constituent Timeframes API
+  description: Endpoints for getting the timeframes of various constituents
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Constituent Timeframes
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-constituent-timeframes-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-constituent-timeframes-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-full-blockchain-entities-v2-api
+  name: Coin Metrics Full blockchain entities v2 API
+  description: Endpoints for fetching full blockchain entities.
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Full blockchain entities v2
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-full-blockchain-entities-v2-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-full-blockchain-entities-v2-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-full-catalog-api
+  name: Coin Metrics Full catalog API
+  description: 'The Full catalog returns the full range of data that is supported by Coin Metrics across
+    all our products.<br/> If you are a client looking to understand the data that is available for your
+    API key and data license, please use the [Catalog](#tag/Catalog) endpoint. <br/>DEPRECATED: See https://coinmetrics.io/important-changes-to-coin-metrics-api-catalog-endpoints/.'
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Full catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-full-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-full-catalog-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-full-catalog-v2-api
+  name: Coin Metrics Full catalog v2 API
+  description: The Full catalog returns the full range of data that is supported by Coin Metrics across
+    all our products.<br/> If you are a client looking to understand the data that is available for your
+    API key and data license, please use the [Catalog](#tag/Catalog-v2) endpoint.
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Full catalog v2
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-full-catalog-v2-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-full-catalog-v2-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-jobs-api
+  name: Coin Metrics Jobs API
+  description: Jobs API endpoints
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-jobs-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-list-of-blockchain-entities-v2-api
+  name: Coin Metrics List of blockchain entities v2 API
+  description: Endpoints for fetching lists of blockchain entities.
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - List of blockchain entities v2
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-list-of-blockchain-entities-v2-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-profile-api
+  name: Coin Metrics Profile API
+  description: Profile endpoints
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-profile-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-profile-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-reference-data-api
+  name: Coin Metrics Reference Data API
+  description: Metadata information of entities supported by Coin Metrics.
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
   tags:
   - Reference Data
-  - Catalog
-  - Security Master
-  - Taxonomy
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-reference-data-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-reference-data-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-security-master-api
+  name: Coin Metrics Security Master API
+  description: Security Master endpoints
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Security Master
   properties:
-  - url: https://docs.coinmetrics.io/api/v4
-    type: APIReference
-  - url: openapi/coin-metrics-api-v4-openapi.json
-    type: OpenAPI
-  description: Reference data endpoints for assets, markets, exchanges, indexes,
-    and metrics, catalog and catalog-v2 coverage discovery, security master, profiles,
-    and the datonomy taxonomy - the metadata layer for the rest of API v4.
+  - type: OpenAPI
+    url: openapi/coin-metrics-security-master-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-security-master-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-taxonomy-api
+  name: Coin Metrics Taxonomy API
+  description: Taxonomy endpoints
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-taxonomy-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-taxonomy-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-taxonomy-metadata-api
+  name: Coin Metrics Taxonomy Metadata API
+  description: Taxonomy Metadata endpoints
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Taxonomy Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-taxonomy-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-taxonomy-metadata-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-timeseries-api
+  name: Coin Metrics Timeseries API
+  description: Endpoints for fetching metrics, market data, indexes and other time series data.
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Timeseries
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-timeseries-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-timeseries-api-overlay.yaml
+- aid: coin-metrics:coin-metrics-timeseries-stream-api
+  name: Coin Metrics Timeseries stream API
+  description: WebSocket endpoints for getting a real-time stream of metrics, market data, indexes and
+    other time series data.
+  humanURL: https://docs.coinmetrics.io/api/v4
+  baseURL: https://api.coinmetrics.io/v4
+  tags:
+  - Timeseries stream
+  properties:
+  - type: OpenAPI
+    url: openapi/coin-metrics-timeseries-stream-api-openapi.yml
+  - type: Documentation
+    url: https://coinmetrics.io/market-data-feed/
+  - type: APIReference
+    url: https://docs.coinmetrics.io/api/v4
+  - type: Documentation
+    url: https://coinmetrics.io/network-data-pro/
+  - type: Documentation
+    url: https://coinmetrics.io/indexes/
+  - type: Documentation
+    url: https://coinmetrics.io/reference-rates/
+  - type: Documentation
+    url: https://docs.coinmetrics.io/access-our-data/api
+  - type: Documentation
+    url: https://coinmetrics.io/community-network-data/
+  - type: Documentation
+    url: https://coinmetrics.io/atlas/
+  - type: Overlay
+    url: overlays/coin-metrics-timeseries-stream-api-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/coin-metrics-timeseries-stream-asyncapi.yml
 common:
+- type: DomainSecurity
+  url: security/coin-metrics-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/coin-metrics-agentic-access.yml
+- type: Authentication
+  url: authentication/coin-metrics-authentication.yml
 - type: Website
   url: https://coinmetrics.io/
 - type: Portal
@@ -189,6 +607,42 @@ common:
   url: https://coinmetrics.io/contact/
 - type: StatusPage
   url: https://status.coinmetrics.io/
+- type: APIReference
+  url: https://docs.coinmetrics.io/api/v4
+- type: GettingStarted
+  url: https://docs.coinmetrics.io/getting-started
+- type: OpenAPI
+  url: openapi/_original/coin-metrics-api-v4-openapi.json
+- type: Packages
+  url: packages/coin-metrics-packages.yml
+- type: SDKs
+  url: packages/coin-metrics-packages.yml
+- type: Python SDK
+  url: https://pypi.org/project/coinmetrics-api-client/
+- type: LLMsTxt
+  url: llms/coin-metrics-llms.txt
+- type: MCPServer
+  url: mcp/coin-metrics-mcp.yml
+- type: Conformance
+  url: conformance/coin-metrics-conformance.yml
+- type: ErrorCatalog
+  url: errors/coin-metrics-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/coin-metrics-lifecycle.yml
+- type: Deprecation
+  url: https://docs.coinmetrics.io/access-our-data/api#backward-compatibility
+- type: RateLimits
+  url: rate-limits/coin-metrics-rate-limits.yml
+- type: Sandbox
+  url: sandbox/coin-metrics-sandbox.yml
+- type: Conventions
+  url: conventions/coin-metrics-conventions.yml
+- type: DataModel
+  url: data-model/coin-metrics-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AsyncAPI
+  url: asyncapi/coin-metrics-timeseries-stream-asyncapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

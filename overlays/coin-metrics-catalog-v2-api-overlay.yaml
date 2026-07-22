@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Coin Metrics API v4 Blockchain Explorer Job Catalog v2 API
+  version: 1.0.0
+extends: openapi/coin-metrics-catalog-v2-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist:
+      provider: coin-metrics
+      reviewed: '2026-07-22'
+      access:
+        paid: https://api.coinmetrics.io/v4 (api_key query parameter)
+        community: https://community-api.coinmetrics.io/v4 (no key, CC BY-NC 4.0)
+      rateLimits: rate-limits/coin-metrics-rate-limits.yml
+      conventions: conventions/coin-metrics-conventions.yml
+      errors: errors/coin-metrics-problem-types.yml
+      lifecycle: lifecycle/coin-metrics-lifecycle.yml
+- target: $.externalDocs
+  update:
+    url: https://docs.coinmetrics.io/api/v4
+    description: Coin Metrics API v4 reference

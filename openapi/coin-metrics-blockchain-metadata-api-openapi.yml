@@ -1,0 +1,589 @@
+openapi: 3.0.2
+info:
+  title: Coin Metrics API v4 Blockchain Explorer Job Blockchain Metadata API
+  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+
+    # Authentication
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    # Response headers
+
+    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+  termsOfService: https://coinmetrics.io/api/terms
+  contact:
+    name: Coin Metrics Support
+    url: https://coinmetrics.io/support/
+    email: support@coinmetrics.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 4.0.0
+servers:
+- url: https://api.coinmetrics.io/v4
+- url: wss://api.coinmetrics.io/v4
+- url: https://community-api.coinmetrics.io/v4
+tags:
+- name: Blockchain Metadata
+  description: Blockchain metadata endpoints
+paths:
+  /blockchain-metadata/locations:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    get:
+      summary: List of all available locations
+      description: Returns a list of all supported locations ordered lexicographically.
+      operationId: getBlockchainMetadataLocations
+      x-codeSamples:
+      - label: Shell
+        source: 'curl --compressed "https://api.coinmetrics.io/v4/blockchain-metadata/locations?pretty=true&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: 'import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/blockchain-metadata/locations?pretty=true&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: 'from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_blockchain_metadata_locations().to_list()
+
+          print(response)
+
+          '
+      tags:
+      - Blockchain Metadata
+      parameters:
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/NextPageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/BlockchainMetadataLocations'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+  /blockchain-metadata/owners:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    get:
+      summary: List of all available owners
+      description: Returns a list of all supported owners lexicographically ordered by the `owner_name` field.
+      operationId: getBlockchainMetadataOwners
+      x-codeSamples:
+      - label: Shell
+        source: 'curl --compressed "https://api.coinmetrics.io/v4/blockchain-metadata/owners?pretty=true&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: 'import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/blockchain-metadata/owners?pretty=true&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: 'from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_blockchain_metadata_owners().to_list()
+
+          print(response)
+
+          '
+      tags:
+      - Blockchain Metadata
+      parameters:
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/NextPageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/BlockchainMetadataOwners'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+  /blockchain-metadata/tags:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    get:
+      summary: List of all available tags
+      description: Returns a list of all available tags along with their descriptions, lexicographically ordered by the `tag` field.
+      operationId: getBlockchainMetadataTags
+      x-codeSamples:
+      - label: Shell
+        source: 'curl --compressed "https://api.coinmetrics.io/v4/blockchain-metadata/tags?pretty=true&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: 'import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/blockchain-metadata/tags?pretty=true&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: 'from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_blockchain_metadata_tags().to_list()
+
+          print(response)
+
+          '
+      tags:
+      - Blockchain Metadata
+      parameters:
+      - $ref: '#/components/parameters/TagType'
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/NextPageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/BlockchainMetadataTags'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+  /blockchain-metadata/tagged-entities:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    get:
+      summary: The list of entities associated with provided tags
+      description: Returns a list of all entities associated with provided tags. Ordered by tuple `(entity, tag, location, start_time)` if requested by providing `entities` parameter. Ordered by tuple `(tag, location, entity, started_time)` if requested by providing `tags` parameter. Ordered by tuple `(owner_name, location, entity, tag, timestamp_start)` if requested by providing `owner_name` parameter.
+      operationId: getBlockchainMetadataEntities
+      x-codeSamples:
+      - label: Shell
+        source: 'curl --compressed "https://api.coinmetrics.io/v4/blockchain-metadata/tagged-entities?tags=ADDRESS_IS_CONTRACT,ADDRESS_IS_SWAPPER&pretty=true&api_key=<your_key>"
+
+          '
+      - label: Python
+        source: 'import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/blockchain-metadata/tagged-entities?tags=ADDRESS_IS_CONTRACT,ADDRESS_IS_SWAPPER&pretty=true&api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: 'from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.get_blockchain_metadata_tagged_entities(tags="ADDRESS_IS_CONTRACT,ADDRESS_IS_SWAPPER").to_list()
+
+          print(response)
+
+          '
+      tags:
+      - Blockchain Metadata
+      parameters:
+      - $ref: '#/components/parameters/Tags'
+      - $ref: '#/components/parameters/Entities'
+      - $ref: '#/components/parameters/EntityLocations'
+      - $ref: '#/components/parameters/OwnerNames'
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/NextPageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/BlockchainMetadataTaggedEntities'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+components:
+  schemas:
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    BlockchainMetadataOwnersResponse:
+      description: Blockchain metadata owners response.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockchainMetadataOwner'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    BlockchainMetadataTaggedEntitiesResponse:
+      description: Blockchain metadata tagged entities response
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockchainMetadataTaggedEntity'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    BlockchainMetadataLocationsResponse:
+      description: Blockchain metadata locations response.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockchainMetadataLocation'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    BlockchainMetadataTagInfo:
+      type: object
+      properties:
+        tag:
+          type: string
+          description: Name of the tag.
+        type:
+          type: string
+          description: Type of the tag. Currently, the available tags are of type `ENTITY`.
+        description:
+          type: string
+          description: Brief description of the tag.
+      required:
+      - tag
+      - type
+    BlockchainMetadataTagsResponse:
+      description: Blockchain metadata tags response.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockchainMetadataTagInfo'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    BlockchainMetadataLocation:
+      type: object
+      properties:
+        location:
+          type: string
+          description: Asset representation where the entity has been tagged.
+      required:
+      - location
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    BlockchainMetadataOwner:
+      type: object
+      properties:
+        owner_name:
+          type: string
+          description: Name of the owner.
+        type:
+          type: string
+          description: Type of the owner's entity.
+      required:
+      - owner_name
+      - type
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    BlockchainMetadataTaggedEntity:
+      type: object
+      properties:
+        entity:
+          type: string
+          description: The entity tagged.
+        owner_name:
+          type: string
+          description: Name of the owner of the entity.
+        tag:
+          type: string
+          description: Name of the tag.
+        location:
+          type: string
+          description: Asset representation where the entity has been tagged.
+        type:
+          type: string
+          description: Type of the tag. Currently, the available tags are of type `ENTITY`.
+        tagger_type:
+          type: string
+          description: The information about the tagged entity was derived from in-house data `COINMETRICS` or collected using 3rd party sources - `THIRDY_PARTY`.
+        tagger_method:
+          type: string
+          description: The information about the tagged entity was based on factual data `DETERMINISTIC` or based on heuristics `NON_DETERMINISTIC`.
+        start_time:
+          type: string
+          description: The date-time in ISO 8601 format of when the entity was tagged.
+        end_time:
+          type: string
+          description: The date-time in ISO 8601 format of when the entity had its tag removed, or the entity no longer exists after this time.
+        start_block_height:
+          type: string
+          description: The block height when the entity was tagged.
+        end_block_height:
+          type: string
+          description: The block height when the entity had its tag removed, or the entity no longer exists.
+        start_block_hash:
+          type: string
+          description: The hash of the block when the entity was tagged.
+        end_block_hash:
+          type: string
+          description: The hash of block the block when the entity had its tag removed, or the entity no longer exists.
+      required:
+      - entity
+      - tag
+      - location
+      - type
+      - tagger_type
+      - tagger_method
+  responses:
+    BlockchainMetadataTags:
+      description: List of tags.
+      content:
+        application/json:
+          example:
+            data:
+            - tag: ADDRESS_IS_COLD_WALLET
+              type: ENTITY
+              description: Tag the ADDRESS as COLD wallet.
+            - tag: ADDRESS_IS_EXCHANGE
+              type: ENTITY
+              description: Tag the ADDRESS as EXCHANGE.
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataTagsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BlockchainMetadataOwners:
+      description: List of owners.
+      content:
+        application/json:
+          example:
+            data:
+            - owner_name: Coinbase
+              type: EXCHANGE
+            - owner_name: 1Hash
+              type: MINING
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataOwnersResponse'
+    BlockchainMetadataLocations:
+      description: List of locations.
+      content:
+        application/json:
+          example:
+            data:
+            - location: btc
+            - location: eth
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataLocationsResponse'
+    BlockchainMetadataTaggedEntities:
+      description: List of tagged entities. Ordered by tuple `(entity, tag, location, start_time)` if requested by providing `entities` parameter. Ordered by tuple `(tag, location, entity, started_time)` if requested by providing `tags` parameter. Ordered by tuple `(owner_name, location, entity, tag, timestamp_start)` if requested by providing `owner_name` parameter.
+      content:
+        application/json:
+          example:
+            data:
+            - entity: 00000000000003441d59dde9a90bffb1cd3fabf1
+              tag: ADDRESS_IS_CONTRACT
+              location: eth
+              owner_name: Coinbase
+              type: ADDRESS
+              tagger_type: COINMETRICS
+              tagger_method: DETERMINISTIC
+              start_time: '2021-04-24T09:23:53.000000000Z'
+              start_block_height: '12302098'
+              start_block_hash: 3f18d476b03fca40a128b3a715f2f6da1056cf4dcc9ec24500f7a53acee4733b
+            - entity: 00000000000006b2ab6decbc6fc7ec6bd2fbc720
+              tag: ADDRESS_IS_CONTRACT
+              location: eth
+              type: ADDRESS
+              tagger_type: COINMETRICS
+              tagger_method: DETERMINISTIC
+              start_time: '2023-10-12T21:50:47.000000000Z'
+              start_block_height: '18337128'
+              start_block_hash: 5184d01e7ba0c8769553342bdf66b4a5aabb096ad4f5c754429733613a155ae5
+            next_page_token: 0.MjAyMC0wNi0wOFQyMTowM
+            next_page_url: https://api.coinmetrics.io/v4/blockchain-metadata/tagged-entities?api_key=<your_key>&tags=ADDRESS_IS_CONTRACT&next_page_token=0.MjAyMC0wNi0wOFQyMTowM
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataTaggedEntitiesResponse'
+  parameters:
+    TagType:
+      description: The type of a tag.
+      in: query
+      name: type
+      required: false
+      schema:
+        type: string
+    Entities:
+      description: Comma separated list of entities. Mutually exclusive with `tags` and `owner_names` parameter.
+      in: query
+      name: entities
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    Tags:
+      description: Comma separated list of tags. Mutually exclusive with `entities` and `owner_names` parameter. Currently a single tag is allowed in a request.
+      in: query
+      name: tags
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    EntityLocations:
+      description: Comma separated list of entity locations (asset representation where the entity has been tagged). Currently a single entity location is allowed per each request.
+      in: query
+      name: locations
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    OwnerNames:
+      description: Comma separated list of owner names. Mutually exclusive with `tags` and `entities` parameters. Currently a single owner name is allowed in a request.
+      in: query
+      name: owner_names
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+  securitySchemes:
+    api_key:
+      description: Coin Metrics API key can be specified as `?api_key=` query parameter.
+      in: query
+      name: api_key
+      type: apiKey
+x-tagGroups:
+- name: General
+  tags:
+  - Rate limits
+- name: Reference Data
+  tags:
+  - Reference Data
+  - Profile
+  - Taxonomy
+  - Taxonomy Metadata
+- name: Catalog
+  tags:
+  - Catalog
+  - Full catalog
+  - Catalog v2
+  - Full catalog v2
+- name: Timeseries
+  tags:
+  - Timeseries
+  - Timeseries stream
+- name: Universal blockchain explorer
+  tags:
+  - List of blockchain entities v2
+  - Full blockchain entities v2
+  - Blockchain Explorer Job
+  - Blockchain Explorer Job Results
+- name: Tools
+  tags:
+  - Chain Monitor tools
+- name: Security Master
+  tags:
+  - Security Master
+- name: Constituents
+  tags:
+  - Constituent Snapshots
+  - Constituent Timeframes
+- name: Blockchain Metadata
+  tags:
+  - Blockchain Metadata
+- name: Jobs
+  tags:
+  - Jobs

@@ -1,0 +1,51 @@
+generated: '2026-07-22'
+method: derived
+source: openapi/_original/coin-metrics-api-v4-openapi.json, https://docs.coinmetrics.io/access-our-data/api
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: Published OpenAPI 3.0.2 definition backing the docs.coinmetrics.io/api/v4 reference (203 paths).
+- id: api-key-auth
+  conforms: true
+  evidence: Single apiKey securityScheme (api_key query parameter) declared in the spec.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; no OAuth documented.
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect scheme; /.well-known/openid-configuration absent on all hosts.
+- id: ratelimit-headers-draft-polli-03
+  conforms: true
+  evidence: >-
+    Docs state X-RateLimit-* response headers are formatted per
+    draft-polli-ratelimit-headers-03, plus X-RateLimit-Plan.
+- id: iso-8601-timestamps
+  conforms: true
+  evidence: Docs commit to ISO 8601 for all time parameters; responses UTC with nanosecond precision.
+- id: semver
+  conforms: true
+  evidence: Documented semantic-versioning policy (major.minor.patch) with parallel major versions.
+- id: pagination
+  conforms: true
+  evidence: Cursor pagination via page_size (default 100, max 10000), next_page_token and next_page_url.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'Custom error envelope {"error": {"type", "message"}}; no application/problem+json.'
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: Deprecation handled via documented policy and deprecated:true spec flags, not Sunset headers.
+- id: json-api
+  conforms: false
+  evidence: 'Plain JSON data envelope ({"data": [...]}), not JSON:API media type.'
+- id: idempotency
+  conforms: false
+  evidence: Read-only data API; no idempotency-key contract documented.
+- id: http2
+  conforms: true
+  evidence: Docs state API v4 uses the HTTP/2 protocol.
+- id: websocket
+  conforms: true
+  evidence: wss://api.coinmetrics.io/v4 timeseries-stream endpoints with standard ping/pong.
+- id: cc-by-nc-4.0
+  conforms: true
+  evidence: Community API data licensed under Creative Commons BY-NC 4.0.

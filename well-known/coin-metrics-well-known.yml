@@ -1,0 +1,46 @@
+generated: '2026-07-22'
+method: searched
+source: live HTTP probes of /.well-known/ on all apis.yml + OpenAPI servers hosts
+description: >-
+  Probe of the /.well-known/ discovery surface across every Coin Metrics host.
+  No real well-known documents are published. Note that coinmetrics.io now
+  301-redirects every path (including /.well-known/*) to
+  https://www.talos.com/our-solutions/data/overview following the Talos
+  acquisition, so raw probes of coinmetrics.io return a 200 HTML marketing
+  page, not the requested document - recorded here as catch-all, not as a hit.
+hosts:
+- host: https://coinmetrics.io
+  note: 301 catch-all redirect to https://www.talos.com/our-solutions/data/overview (HTML shell for every path)
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content: text/html catch-all, real: false}
+  - {path: /.well-known/openid-configuration, status: 200, content: text/html catch-all, real: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content: text/html catch-all, real: false}
+  - {path: /.well-known/api-catalog, status: 200, content: text/html catch-all, real: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, content: text/html catch-all, real: false}
+- host: https://docs.coinmetrics.io
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://api.coinmetrics.io
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://community-api.coinmetrics.io
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://www.talos.com
+  note: corporate parent domain after acquisition
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}

@@ -1,0 +1,373 @@
+openapi: 3.0.2
+info:
+  title: Coin Metrics API v4 Blockchain Explorer Job Taxonomy Metadata API
+  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+
+    # Authentication
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    # Response headers
+
+    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+  termsOfService: https://coinmetrics.io/api/terms
+  contact:
+    name: Coin Metrics Support
+    url: https://coinmetrics.io/support/
+    email: support@coinmetrics.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 4.0.0
+servers:
+- url: https://api.coinmetrics.io/v4
+- url: wss://api.coinmetrics.io/v4
+- url: https://community-api.coinmetrics.io/v4
+tags:
+- name: Taxonomy Metadata
+  description: Taxonomy Metadata endpoints
+paths:
+  /taxonomy-metadata/assets:
+    servers:
+    - url: https://api.coinmetrics.io/v4
+    get:
+      summary: Taxonomy metadata for assets
+      description: Returns Taxonomy metadata for assets.<br/> Results are ordered by tuple `version`.<br/> To fetch the next page of results use `next_page_url` JSON response field.
+      operationId: getTaxonomyMetadataAssets
+      x-codeSamples:
+      - label: Shell
+        source: 'curl --compressed "https://api.coinmetrics.io/v4/taxonomy-metadata/assets?api_key=<your_key>"
+
+          '
+      - label: Python
+        source: 'import requests
+
+          response = requests.get(''https://api.coinmetrics.io/v4/taxonomy-metadata/assets?api_key=<your_key>'').json()
+
+          print(response)
+
+          '
+      - label: Python Client
+        source: 'from coinmetrics.api_client import CoinMetricsClient
+
+          client = CoinMetricsClient(<your_key>)
+
+
+          response = client.taxonomy_metadata_assets().to_list()
+
+          print(response)
+
+          '
+      tags:
+      - Taxonomy Metadata
+      parameters:
+      - $ref: '#/components/parameters/TaxonomyVersion'
+      - $ref: '#/components/parameters/TaxonomyVersionStartTime'
+      - $ref: '#/components/parameters/TaxonomyVersionEndTime'
+      - $ref: '#/components/parameters/StartInclusive'
+      - $ref: '#/components/parameters/EndInclusive'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PagingFromWithStartByDefault'
+      - $ref: '#/components/parameters/NextPageToken'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '200':
+          $ref: '#/components/responses/TaxonomyMetadataAssets'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+components:
+  schemas:
+    TaxonomyVersionStartTime:
+      description: Taxonomy version's start time.
+      type: string
+      format: date-time
+    TaxonomyMetadataSubsectors:
+      description: Taxonomy metadata subsectors.
+      items:
+        $ref: '#/components/schemas/TaxonomyMetadataSubsector'
+      type: array
+    TaxonomyMetadataSubsectorClass:
+      description: Taxonomy metadata subsector class name.
+      type: string
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    TaxonomyMetadataSubsector:
+      description: Taxonomy metadata subsector.
+      properties:
+        class_id:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorClassId'
+        class:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorClass'
+        sector_id:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSectorId'
+        sector:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSector'
+        subsector_id:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSubsectorId'
+        subsector:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSubsector'
+      type: object
+    TaxonomyMetadataAssetsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/TaxonomyMetadataAsset'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    TaxonomyVersion:
+      description: This field is obsolete and will be removed in future releases in favor to `updated_at_taxonomy_version` field.
+      type: string
+    TaxonomyMetadataSubsectorClassId:
+      description: Taxonomy metadata subsector class identifier.
+      type: string
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    TaxonomyMetadataSubsectorSectorId:
+      description: Taxonomy metadata sector identifier.
+      type: string
+    TaxonomyMetadataSubsectorSubsector:
+      description: Taxonomy metadata subsector name.
+      type: string
+    TaxonomyMetadataSubsectorSector:
+      description: Taxonomy metadata sector name.
+      type: string
+    TaxonomyMetadataSubsectorSubsectorId:
+      description: Taxonomy metadata subsector identifier.
+      type: string
+    TaxonomyVersionEndTime:
+      description: Taxonomy version's end time.
+      type: string
+      format: date-time
+    TaxonomyMetadataAsset:
+      description: Information about taxonomy metadata of the assets.
+      properties:
+        taxonomy_version:
+          $ref: '#/components/schemas/TaxonomyVersion'
+        taxonomy_start_time:
+          $ref: '#/components/schemas/TaxonomyVersionStartTime'
+        taxonomy_end_time:
+          $ref: '#/components/schemas/TaxonomyVersionEndTime'
+        subsectors:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectors'
+      type: object
+      required:
+      - taxonomy_version
+      - taxonomy_start_time
+      - subsectors
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+  parameters:
+    StartInclusive:
+      description: Inclusive or exclusive corresponding `start_*` parameters.
+      in: query
+      name: start_inclusive
+      schema:
+        default: true
+        type: boolean
+    EndInclusive:
+      description: Inclusive or exclusive corresponding `end_*` parameters.
+      in: query
+      name: end_inclusive
+      schema:
+        default: true
+        type: boolean
+    TaxonomyVersionEndTime:
+      description: 'End time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
+      in: query
+      name: end_time
+      required: false
+      schema:
+        type: string
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    TaxonomyVersion:
+      description: Taxonomy version. Defaults to `latest` when no `*_time` parameters specified. Specify asterisk `*` in order to get all versions.
+      in: query
+      name: version
+      required: false
+      schema:
+        type: string
+    PagingFromWithStartByDefault:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: start
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    TaxonomyVersionStartTime:
+      description: 'Start time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
+      in: query
+      name: start_time
+      required: false
+      schema:
+        type: string
+  responses:
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TaxonomyMetadataAssets:
+      description: Assets' taxonomy metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - taxonomy_version: '1.1'
+              taxonomy_start_time: '2021-06-13'
+              subsectors:
+              - class_id: '10'
+                class: Transaction
+                sector_id: '1010'
+                sector: Digital Currency (DC)
+                subsector_id: '101010'
+                subsector: Remittance Coins
+              - class_id: '10'
+                class: Transaction
+                sector_id: '1010'
+                sector: Digital Currency (DC)
+                subsector_id: '101020'
+                subsector: Meme Coins
+              - class_id: '10'
+                class: Transaction
+                sector_id: '1010'
+                sector: Digital Currency (DC)
+                subsector_id: '101040'
+                subsector: Remittance Coins
+              taxonomy_end_time: '2022-06-12'
+            next_page_token: Mi4w
+            next_page_url: https://api.coinmetrics.io/v4/taxonomy-metadata/assets?paging_from=end&page_size=2&version=*&api_key=<your_key>&next_page_token=Mi4w
+          schema:
+            $ref: '#/components/schemas/TaxonomyMetadataAssetsResponse'
+    Forbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+  securitySchemes:
+    api_key:
+      description: Coin Metrics API key can be specified as `?api_key=` query parameter.
+      in: query
+      name: api_key
+      type: apiKey
+x-tagGroups:
+- name: General
+  tags:
+  - Rate limits
+- name: Reference Data
+  tags:
+  - Reference Data
+  - Profile
+  - Taxonomy
+  - Taxonomy Metadata
+- name: Catalog
+  tags:
+  - Catalog
+  - Full catalog
+  - Catalog v2
+  - Full catalog v2
+- name: Timeseries
+  tags:
+  - Timeseries
+  - Timeseries stream
+- name: Universal blockchain explorer
+  tags:
+  - List of blockchain entities v2
+  - Full blockchain entities v2
+  - Blockchain Explorer Job
+  - Blockchain Explorer Job Results
+- name: Tools
+  tags:
+  - Chain Monitor tools
+- name: Security Master
+  tags:
+  - Security Master
+- name: Constituents
+  tags:
+  - Constituent Snapshots
+  - Constituent Timeframes
+- name: Blockchain Metadata
+  tags:
+  - Blockchain Metadata
+- name: Jobs
+  tags:
+  - Jobs

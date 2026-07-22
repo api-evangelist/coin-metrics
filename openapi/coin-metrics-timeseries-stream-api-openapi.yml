@@ -1,0 +1,1495 @@
+openapi: 3.0.2
+info:
+  title: Coin Metrics API v4 Blockchain Explorer Job Timeseries stream API
+  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+
+    # Authentication
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    # Response headers
+
+    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+  termsOfService: https://coinmetrics.io/api/terms
+  contact:
+    name: Coin Metrics Support
+    url: https://coinmetrics.io/support/
+    email: support@coinmetrics.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 4.0.0
+servers:
+- url: https://api.coinmetrics.io/v4
+- url: wss://api.coinmetrics.io/v4
+- url: https://community-api.coinmetrics.io/v4
+tags:
+- name: Timeseries stream
+  description: WebSocket endpoints for getting a real-time stream of metrics, market data, indexes and other time series data.
+paths:
+  /timeseries-stream/asset-metrics:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Asset metrics
+      description: Returns a WebSocket stream of metrics for specified assets.<br/> Endpoint supports only block by block (`1b` frequency), per second (`1s` frequency), and sub-second (`200ms` frequency) metrics.<br/> Different sets of metrics may come in different messages.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamAssetMetrics
+      x-codeSamples:
+      - label: JavaScript
+        source: '// This is getting Reference Rates for Bitcoin and Ethereum at a frequency of 1 second
+
+          ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/asset-metrics?assets=btc,eth&metrics=ReferenceRate&frequency=1s&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "# This is getting Reference Rates for Bitcoin and Ethereum at a frequency of 1 second\nimport asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/asset-metrics?assets=btc,eth&metrics=ReferenceRate&frequency=1s&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/AssetId'
+      - $ref: '#/components/parameters/AssetMetrics'
+      - $ref: '#/components/parameters/StreamAssetMetricsFrequency'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/IgnoreUnsupportedErrors'
+      - $ref: '#/components/parameters/IgnoreForbiddenErrors'
+      responses:
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingAssetMetrics'
+      security:
+      - api_key: []
+  /timeseries-stream/market-trades:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Market trades
+      description: Returns a WebSocket stream of trades for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamMarketTrades
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/market-trades?markets=coinbase-btc-usd-spot&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/market-trades?markets=coinbase-btc-usd-spot&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingMarketTrades'
+      security:
+      - api_key: []
+  /timeseries-stream/market-liquidations:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Market liquidations
+      description: Returns a WebSocket stream of liquidations for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamMarketLiquidations
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/market-liquidations?markets=coinbase-BTCUSDT-future&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/market-liquidations?markets=coinbase-BTCUSDT-future&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingMarketLiquidations'
+      security:
+      - api_key: []
+  /timeseries-stream/market-openinterest:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Market open interest
+      description: Returns a WebSocket stream of open interests for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.<br/><br/> <b>Note:</b> The `value_usd` field in this endpoint was previously calculated using hardcoded logic that no longer reflects current contract specifications across all exchanges.<br/><br/> To address this, we have deprecated the `value_usd` field and introduced new, more accurate metrics available via the `/timeseries/market-metrics` endpoint.<br/><br/> These two metrics should be used as a replacement for the `value_usd` field going forward:<br/> - `open_interest_reported_future_usd` to represent the notional value of open interest in U.S. dollars for futures markets<br/> - `open_interest_reported_option_notional_usd` to represent the notional value of open interest in U.S. dollars for options markets<br/><br/> We also introduced `open_interest_reported_option_market_value_usd` to represent the market value of open interest in U.S. dollars for options markets.
+      operationId: getTimeseriesStreamMarketOpenInterest
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/market-openinterest?markets=binance-BTCUSDT-future&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/market-openinterest?markets=binance-BTCUSDT-future&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingMarketOpenInterests'
+      security:
+      - api_key: []
+  /timeseries-stream/market-contract-prices:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Market contract prices
+      description: Returns a WebSocket stream of contract prices for specified markets.<br/> This includes index price and mark price that are used by the exchange for settlement and risk management purposes.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamMarketContractPrices
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/market-contract-prices?markets=deribit-BTC-*-option&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/market-contract-prices?markets=deribit-BTC-*-option&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingMarketContractPrices'
+      security:
+      - api_key: []
+  /timeseries-stream/market-orderbooks:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Market orderbooks
+      description: Returns a WebSocket stream of orderbooks for specified markets.<br/> Orderbooks are delivered using a sequence of `snapshot` and `update` messages.<br/> Zero value of the `size` response field for `asks` or `bids` means negative `update`.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamMarketOrderbooks
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/market-orderbooks?markets=coinbase-btc-usd-spot&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/market-orderbooks?markets=coinbase-btc-usd-spot&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      - $ref: '#/components/parameters/StreamingBookDepth'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        default:
+          $ref: '#/components/responses/StreamingMarketOrderbooks'
+      security:
+      - api_key: []
+  /timeseries-stream/market-quotes:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Market quotes
+      description: Returns a stream of quotes for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamMarketQuotes
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/market-quotes?markets=coinbase-btc-usd-spot&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/market-quotes?markets=coinbase-btc-usd-spot&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      - $ref: '#/components/parameters/IncludeOneSided'
+      responses:
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingMarketQuotes'
+      security:
+      - api_key: []
+  /timeseries-stream/asset-quotes:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Asset quotes
+      description: Returns a stream of quotes for specified assets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamAssetQuotes
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/asset-quotes?assets=btc&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/asset-quotes?assets=btc&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/AssetId'
+      - $ref: '#/components/parameters/AggregationMethod'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingAggregatedSpreadQuotes'
+      security:
+      - api_key: []
+  /timeseries-stream/pair-quotes:
+    get:
+      servers:
+      - url: wss://api.coinmetrics.io/v4
+      summary: Pair quotes
+      description: Returns a stream of quotes for specified pairs.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamPairQuotes
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/pair-quotes?pairs=btc-usd&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/pair-quotes?pairs=btc-usd&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/StreamingPair'
+      - $ref: '#/components/parameters/AggregationMethod'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+        default:
+          $ref: '#/components/responses/StreamingAggregatedSpreadQuotes'
+      security:
+      - api_key: []
+  /timeseries-stream/market-candles:
+    servers:
+    - url: wss://api.coinmetrics.io/v4
+    get:
+      summary: Market candles
+      description: Returns a stream of candles for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.
+      operationId: getTimeseriesStreamMarketCandles
+      x-codeSamples:
+      - label: JavaScript
+        source: 'ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/market-candles?markets=bitstamp-btc-usd-spot&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "import asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/market-candles?markets=bitstamp-btc-usd-spot&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      - $ref: '#/components/parameters/StreamingCandleFrequency'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '200':
+          $ref: '#/components/responses/StreamingMarketCandles'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+  /timeseries-stream/index-levels:
+    servers:
+    - url: wss://api.coinmetrics.io/v4
+    get:
+      summary: Index levels
+      description: Returns a stream of levels for specified indexes.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnect will happen.
+      operationId: getTimeseriesStreamIndexLevels
+      x-codeSamples:
+      - label: JavaScript
+        source: '// Streams the levels for CMBIBTC index
+
+          ws = new WebSocket("wss://api.coinmetrics.io/v4/timeseries-stream/index-levels?indexes=CMBIBTC&pretty=true&api_key=<your_key>")
+
+          ws.onmessage = m => console.log(m.data); ws.onclose = () => console.log("closed")
+
+          '
+      - label: Python
+        source: "# Streams the levels for CMBIBTC index\nimport asyncio\nimport websockets\n\nasync def handle(uri):\n    async with websockets.connect(uri) as websocket:\n        while True:\n            print(await websocket.recv())\n\nasyncio.get_event_loop().run_until_complete(handle('wss://api.coinmetrics.io/v4/timeseries-stream/index-levels?indexes=CMBIBTC&pretty=true&api_key=<your_key>'))\n"
+      tags:
+      - Timeseries stream
+      parameters:
+      - $ref: '#/components/parameters/StreamingIndexId'
+      - $ref: '#/components/parameters/IncludeVerification'
+      - $ref: '#/components/parameters/Backfill'
+      - $ref: '#/components/parameters/Pretty'
+      responses:
+        '200':
+          $ref: '#/components/responses/StreamingIndexLevels'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '414':
+          $ref: '#/components/responses/UriTooLong'
+      security:
+      - api_key: []
+components:
+  schemas:
+    TradeIndexPrice:
+      description: The price index is an aggregate price derived from the major exchanges to be representative of the underlying asset's market consensus price.
+      type: string
+      format: decimal
+    TradeAmount:
+      description: The amount of the base asset traded.
+      type: string
+      format: decimal
+    TradeInitiator:
+      description: Swap transaction initiator. Available for DeFi markets only.
+      type: string
+    OrderBookAndQuoteCoinMetricsId:
+      description: ID of an order book or quote. It can be generated by Coin Metrics or provided by an exchange. If it is generated by Coin Metrics it is unique. If it is generated by exchange we can't guarantee its uniqueness.
+      type: string
+    TradeTransactionId:
+      description: Swap transaction ID. Available for DeFi markets only.
+      type: string
+    QuoteBidPrice:
+      description: The limit price of the top bid on the order book. If no bids in the order book, the bid price is skipped.
+      type: string
+      format: decimal
+    LiquidationType:
+      description: The liquidation type. "trade" means that liquidation was executed, "order" means that the order was placed for the liquidation at the timestamp of the data entry but it wasn't necessarily executed yet.
+      type: string
+    OpenInterestExchangeTime:
+      description: Time corresponding to open interest data point, according to the exchange. Can be NULL, if exchange doesn't support it.
+      type: string
+      format: date-time
+    TradePrice:
+      description: The price of the base asset quoted in the quote asset that the trade was executed at.
+      type: string
+      format: decimal
+    QuoteAskSize:
+      description: The size of the top ask on the order book. If no asks in the order book, the ask size is skipped.
+      type: string
+      format: decimal
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    StreamingMarketCandle:
+      allOf:
+      - $ref: '#/components/schemas/MarketCandle'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    StreamingAssetMetric:
+      description: Metric values.
+      properties:
+        asset:
+          $ref: '#/components/schemas/Asset'
+        time:
+          $ref: '#/components/schemas/Time'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - asset
+      - time
+      - cm_sequence_id
+      additionalProperties:
+        nullable: true
+        description: Metric value.
+        type: string
+      type: object
+    CandlePriceClose:
+      description: The closing price of the candle.
+      type: string
+      format: decimal
+    CandlePriceOpen:
+      description: The opening price of the candle.
+      type: string
+      format: decimal
+    LiquidationSide:
+      description: The market order side. "buy" means that an ask was removed from the book by an incoming buy order, "sell" means that a bid was removed from the book by an incoming sell order.
+      type: string
+    TradeBlockHash:
+      description: Swap block hash. Available for DeFi markets only.
+      type: string
+    BookEntry:
+      properties:
+        price:
+          $ref: '#/components/schemas/OrderBookPrice'
+        size:
+          $ref: '#/components/schemas/OrderBookSize'
+      required:
+      - price
+      - size
+      type: object
+    MarketId:
+      description: Unique name of the market.
+      type: string
+    QuoteMidPrice:
+      description: The average of the bid price and ask price.
+      type: string
+      format: decimal
+    Asset:
+      description: Name of the asset.
+      type: string
+    MarkPrice:
+      description: The price representing the futures' or option's price calculated by the exchange for risk management purposes.
+      type: string
+      format: decimal
+    ContractValueUSD:
+      deprecated: true
+      description: 'Deprecated. Contract value in USD. This field was previously calculated using hardcoded logic that no longer reflects current contract specifications across all exchanges. Please use the new metrics available via `/timeseries/market-metrics` endpoint: `open_interest_reported_future_usd` for futures markets and `open_interest_reported_option_notional_usd` for options markets.'
+      type: string
+      format: decimal
+    OrderBookBids:
+      description: The bids orders on the order book.
+      items:
+        $ref: '#/components/schemas/BookEntry'
+      type: array
+    cmSequenceId:
+      description: The monotonically increasing message number, resets on disconnection.
+      type: string
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    StreamingMarketOpenInterest:
+      description: Market open interest WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        contract_count:
+          $ref: '#/components/schemas/ContractCount'
+        value_usd:
+          deprecated: true
+          $ref: '#/components/schemas/ContractValueUSD'
+        exchange_time:
+          $ref: '#/components/schemas/OpenInterestExchangeTime'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - market
+      - time
+      - contract_count
+      - value_usd
+      - cm_sequence_id
+      type: object
+    LiquidationAmount:
+      description: The amount of the base asset liquidated.
+      type: string
+      format: decimal
+    TradeSide:
+      description: The market order side. "buy" means that an ask was removed from the book by an incoming buy order, "sell" means that a bid was removed from the book by an incoming sell order.
+      type: string
+    CandlePriceLow:
+      description: The low price of the candle.
+      type: string
+      format: decimal
+    TradeLiquidation:
+      description: Indicates whether the maker side, taker side, or both sides of the trade is under liquidation.
+      type: string
+    Verification:
+      description: Information about verification.
+      properties:
+        timestamp:
+          $ref: '#/components/schemas/VerificationTime'
+        level:
+          $ref: '#/components/schemas/VerificationIndexLevelValue'
+        signature:
+          $ref: '#/components/schemas/Signature'
+      type: object
+      required:
+      - signature
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    QuoteSpread:
+      description: The difference between the bid price and ask price as a percentage of the mid price.
+      type: string
+      format: decimal
+    OrderBookSize:
+      description: The size of the limit order on the order book in units of the base asset.
+      type: string
+      format: decimal
+    CandleVwap:
+      description: The volume-weighted average price of the candle.
+      type: string
+      format: decimal
+    AggregatedSpreadQuote:
+      description: Information about aggregated spread quote.
+      properties:
+        pair:
+          $ref: '#/components/schemas/Pair'
+        time:
+          $ref: '#/components/schemas/Time'
+        ask_price:
+          $ref: '#/components/schemas/QuoteAskPrice'
+        ask_size:
+          $ref: '#/components/schemas/QuoteAskSize'
+        bid_price:
+          $ref: '#/components/schemas/QuoteBidPrice'
+        bid_size:
+          $ref: '#/components/schemas/QuoteBidSize'
+        mid_price:
+          $ref: '#/components/schemas/QuoteMidPrice'
+        spread:
+          $ref: '#/components/schemas/QuoteSpread'
+      type: object
+      required:
+      - pair
+      - time
+    TradeMarkPrice:
+      description: The price representing the futures' or option's price calculated by the exchange for risk management purposes.
+      type: string
+      format: decimal
+    StreamingMarketQuote:
+      allOf:
+      - $ref: '#/components/schemas/MarketQuote'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    QuoteBidSize:
+      description: The size of the top bid on the order book. If no bids in the order book, the bid size is skipped.
+      type: string
+      format: decimal
+    StreamingMarketTrade:
+      description: Market trade WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        coin_metrics_id:
+          $ref: '#/components/schemas/TradesCoinMetricsId'
+        amount:
+          $ref: '#/components/schemas/TradeAmount'
+        price:
+          $ref: '#/components/schemas/TradePrice'
+        side:
+          $ref: '#/components/schemas/TradeSide'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+        collect_time:
+          $ref: '#/components/schemas/TradeCollectTime'
+        block_hash:
+          $ref: '#/components/schemas/TradeBlockHash'
+        block_height:
+          $ref: '#/components/schemas/TradeBlockHeight'
+        txid:
+          $ref: '#/components/schemas/TradeTransactionId'
+        initiator:
+          $ref: '#/components/schemas/TradeInitiator'
+        sender:
+          $ref: '#/components/schemas/TradeSender'
+        beneficiary:
+          $ref: '#/components/schemas/TradeBeneficiary'
+        mark_price:
+          $ref: '#/components/schemas/TradeMarkPrice'
+        index_price:
+          $ref: '#/components/schemas/TradeIndexPrice'
+        iv_trade:
+          $ref: '#/components/schemas/TradeImpliedVolatility'
+        liquidation:
+          $ref: '#/components/schemas/TradeLiquidation'
+      required:
+      - market
+      - time
+      - coin_metrics_id
+      - amount
+      - price
+      - collect_time
+      - cm_sequence_id
+      type: object
+    TradesCoinMetricsId:
+      description: ID of a trade (unique per exchange market). We are using exchange reported value if exchange reports a unique numeric trade id. If exchange reports trade id as a string we convert to numeric using Bijective mapping from exchange reported trade id's string. If exchange doesn't report unique ID we transform it using exchange reported data to form a unique value per market.
+      type: string
+    OrderBookAsks:
+      description: The ask orders on the order book.
+      items:
+        $ref: '#/components/schemas/BookEntry'
+      type: array
+    Pair:
+      description: Pair string representation as `<base>-<quote>`.
+      type: string
+    ContractCount:
+      description: Number of contracts.
+      type: string
+      format: int64
+    IndexLevel:
+      description: Information about index level.
+      properties:
+        index:
+          $ref: '#/components/schemas/Index'
+        time:
+          $ref: '#/components/schemas/Time'
+        level:
+          $ref: '#/components/schemas/IndexLevelValue'
+        verification:
+          $ref: '#/components/schemas/Verification'
+      type: object
+      required:
+      - index
+      - time
+      - level
+    OptionTickerExchangeTime:
+      description: Time corresponding to option ticker data point, according to the exchange. Can be NULL, if exchange doesn't support it.
+      type: string
+      format: date-time
+    OrderBookCollectTime:
+      description: Time of when the order book was received from the exchange.
+      type: string
+      format: date-time
+    LiquidationsCoinMetricsId:
+      description: ID of a liquidation (unique per exchange market). We are using exchange reported value if exchange reports a unique numeric liquidation id. If exchange reports liquidation id as a string we convert to numeric using Bijective mapping from exchange reported liquidation id's string. If exchange doesn't report unique ID we transform it using exchange reported data to form a unique value per market.
+      type: string
+    TradeBlockHeight:
+      description: Swap block height. Available for DeFi markets only.
+      type: string
+      format: int64
+    VerificationTime:
+      description: The verification time of the index.
+      type: string
+      format: date-time
+    TradeImpliedVolatility:
+      description: Implied volatility calculated from the trade price.
+      type: string
+      format: decimal
+    OrderBookPrice:
+      description: The limit price of the order on the order book.
+      type: string
+      format: decimal
+    StreamingMarketOrderbook:
+      allOf:
+      - type: object
+        properties:
+          market:
+            $ref: '#/components/schemas/MarketId'
+          time:
+            $ref: '#/components/schemas/Time'
+          coin_metrics_id:
+            $ref: '#/components/schemas/OrderBookAndQuoteCoinMetricsId'
+          asks:
+            $ref: '#/components/schemas/OrderBookAsks'
+          bids:
+            $ref: '#/components/schemas/OrderBookBids'
+          type:
+            $ref: '#/components/schemas/OrderBookType'
+          collect_time:
+            $ref: '#/components/schemas/OrderBookCollectTime'
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - market
+        - time
+        - coin_metrics_id
+        - asks
+        - bids
+        - type
+        - collect_time
+        - cm_sequence_id
+    StreamingIndexLevel:
+      allOf:
+      - $ref: '#/components/schemas/IndexLevel'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    QuoteAskPrice:
+      description: The limit price of the top ask on the order book. If no asks in the order book, the ask price is skipped.
+      type: string
+      format: decimal
+    IndexPrice:
+      description: The price index is an aggregate price derived from the major exchanges to be representative of the underlying asset's market consensus price.
+      type: string
+      format: decimal
+    Index:
+      description: Name of the index.
+      type: string
+    CandlePriceHigh:
+      description: The high price of the candle.
+      type: string
+      format: decimal
+    StreamingAggregatedSpreadQuote:
+      allOf:
+      - $ref: '#/components/schemas/AggregatedSpreadQuote'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    SettlementPriceEstimated:
+      description: The estimated price of the underlying asset.
+      type: string
+      format: decimal
+    CandleTradesCount:
+      description: The number of trades used for candle calculation.
+      type: string
+      format: int64
+    StreamingMarketContractPrice:
+      description: Market contract price WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        mark_price:
+          $ref: '#/components/schemas/MarkPrice'
+        index_price:
+          $ref: '#/components/schemas/IndexPrice'
+        settlement_price_estimated:
+          $ref: '#/components/schemas/SettlementPriceEstimated'
+        exchange_time:
+          $ref: '#/components/schemas/OptionTickerExchangeTime'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - market
+      - time
+      - cm_sequence_id
+      type: object
+    TradeCollectTime:
+      description: Time of when the trade was received from the exchange.
+      type: string
+      format: date-time
+    TradeBeneficiary:
+      description: Swap output receiver. Available for DeFi markets only.
+      type: string
+    OrderBookType:
+      description: Type of the order book.
+      enum:
+      - snapshot
+      - update
+      type: string
+    CandleVolume:
+      description: The volume of the candle in units of the base asset.
+      type: string
+      format: decimal
+    StreamingMarketLiquidation:
+      description: Market liquidation WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        coin_metrics_id:
+          $ref: '#/components/schemas/LiquidationsCoinMetricsId'
+        amount:
+          $ref: '#/components/schemas/LiquidationAmount'
+        price:
+          $ref: '#/components/schemas/LiquidationPrice'
+        side:
+          $ref: '#/components/schemas/LiquidationSide'
+        type:
+          $ref: '#/components/schemas/LiquidationType'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - market
+      - time
+      - coin_metrics_id
+      - amount
+      - price
+      - type
+      - cm_sequence_id
+      type: object
+    MarketCandle:
+      description: Information about market candle.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        price_open:
+          $ref: '#/components/schemas/CandlePriceOpen'
+        price_close:
+          $ref: '#/components/schemas/CandlePriceClose'
+        price_high:
+          $ref: '#/components/schemas/CandlePriceHigh'
+        price_low:
+          $ref: '#/components/schemas/CandlePriceLow'
+        vwap:
+          $ref: '#/components/schemas/CandleVwap'
+        volume:
+          $ref: '#/components/schemas/CandleVolume'
+        candle_usd_volume:
+          $ref: '#/components/schemas/CandleUsdVolume'
+        candle_trades_count:
+          $ref: '#/components/schemas/CandleTradesCount'
+      type: object
+      required:
+      - market
+      - time
+      - price_open
+      - price_close
+      - price_high
+      - price_low
+      - vwap
+      - volume
+      - candle_usd_volume
+      - candle_trades_count
+    CandleUsdVolume:
+      description: The volume of the candle in USD.
+      type: string
+      format: decimal
+    IndexLevelValue:
+      description: The value of the index.
+      type: string
+      format: decimal
+    VerificationIndexLevelValue:
+      description: The verification value of the index.
+      type: string
+      format: decimal
+    MarketQuote:
+      description: Information about market quote.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        coin_metrics_id:
+          $ref: '#/components/schemas/OrderBookAndQuoteCoinMetricsId'
+        ask_price:
+          $ref: '#/components/schemas/QuoteAskPrice'
+        ask_size:
+          $ref: '#/components/schemas/QuoteAskSize'
+        bid_price:
+          $ref: '#/components/schemas/QuoteBidPrice'
+        bid_size:
+          $ref: '#/components/schemas/QuoteBidSize'
+      type: object
+      required:
+      - market
+      - time
+      - coin_metrics_id
+    Signature:
+      description: The signature information.
+      type: string
+    LiquidationPrice:
+      description: The price of the base asset quoted in the quote asset that the liquidation was executed at.
+      type: string
+      format: decimal
+    TradeSender:
+      description: Swap caller. Available for DeFi markets only.
+      type: string
+  responses:
+    StreamingMarketTrades:
+      description: Trade WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_trade:
+              summary: Example of a trade message.
+              value:
+                time: '2020-06-08T21:00:06.138932000Z'
+                market: coinbase-btc-usd-spot
+                coin_metrics_id: '94233007'
+                amount: '0.0197263'
+                price: '9702'
+                collect_time: '2020-06-08T21:00:06.203893000Z'
+                side: buy
+                cm_sequence_id: '0'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketTrade'
+    StreamingMarketOrderbooks:
+      description: Orderbook WebSocket message.
+      content:
+        application/json:
+          examples:
+            snapshot_message:
+              summary: Example of an order book snapshot message.
+              value:
+                time: '2020-06-08T21:07:27.015507000Z'
+                market: coinbase-btc-usd-spot
+                coin_metrics_id: 1591540219445728-16126985
+                asks:
+                - price: '9695.09'
+                  size: '1.58265903'
+                - price: '9695.1'
+                  size: '0.01056118'
+                - price: '9695.14'
+                  size: '0.0257'
+                bids:
+                - price: '9695.07'
+                  size: '0.97684462'
+                - price: '9694.38'
+                  size: '0.14852787'
+                - price: '9694.37'
+                  size: '0.90808736'
+                - price: '9693.24'
+                  size: '0.46738235'
+                - price: '9693'
+                  size: '0.0023'
+                type: snapshot
+                collect_time: '2020-06-08T21:07:27.082612000Z'
+                cm_sequence_id: '0'
+            update_message:
+              summary: Example of an order book update message.
+              value:
+                time: '2020-06-09T11:19:48.028405000Z'
+                market: coinbase-btc-usd-spot
+                coin_metrics_id: 1591673013698762-3620038
+                asks:
+                - price: '9716.86'
+                  size: '0.01732866'
+                - price: '9695.09'
+                  size: '0'
+                bids: []
+                type: update
+                collect_time: '2020-06-09T11:19:48.095655000Z'
+                cm_sequence_id: '1'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketOrderbook'
+    StreamingMarketLiquidations:
+      description: Liquidation WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_liquidation:
+              summary: Example of a liquidation message.
+              value:
+                market: binance-LEVERUSDT-future
+                time: '2023-10-12T12:44:33.663000000Z'
+                coin_metrics_id: '1697114673663000000'
+                amount: '377748'
+                price: '0.001381'
+                type: trade
+                side: sell
+                cm_sequence_id: '45'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketLiquidation'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    StreamingMarketQuotes:
+      description: Market quote WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_quote:
+              summary: Example of a quote message.
+              value:
+                time: '2020-06-08T21:15:45.771742000Z'
+                market: coinbase-btc-usd-spot
+                coin_metrics_id: 1591540219445728-16162629
+                ask_price: '9685.01'
+                ask_size: '2.42779345'
+                bid_price: '9685'
+                bid_size: '0.43939159'
+                cm_sequence_id: '1'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketQuote'
+    StreamingMarketOpenInterests:
+      description: Open Interest WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_openinterest:
+              summary: Example of an open interest message.
+              value:
+                market: okex-EOS-USDT-231027-future
+                time: '2023-10-26T06:06:00.000000000Z'
+                contract_count: '5122'
+                value_usd: '31121.272'
+                exchange_time: '2023-10-26T06:06:00.000000000Z'
+                cm_sequence_id: '126'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketOpenInterest'
+    StreamingAggregatedSpreadQuotes:
+      description: Aggregated spread quote WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_quote:
+              summary: Example of a quote message.
+              value:
+                time: '2020-06-08T21:15:45.771742000Z'
+                pair: btc-usd
+                ask_price: '24343.725954328216'
+                ask_size: '2.96375165'
+                bid_price: '24342.036360171896'
+                bid_size: '12.00588437'
+                mid_price: '24342.881157250056'
+                spread: '0.0000694081421754166'
+                cm_sequence_id: '0'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingAggregatedSpreadQuote'
+    StreamingAssetMetrics:
+      description: Asset metrics WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_block:
+              summary: Example of a new block message.
+              value:
+                time: '2020-06-08T20:54:04.000000000Z'
+                asset: eth
+                height: '10227376'
+                hash: 54c517db6ae6e9e0466db43fccccac137b9a75cfdab70cac0272654348ad76aa
+                parent_hash: 64f4c0126d63335a552dca030129e2f48a2c636cc88530ba168c2902d65dbcf2
+                type: new_block
+                AdrActCnt: '255'
+                FlowInBFXUSD: '0'
+                PriceUSD: '242.28'
+                cm_sequence_id: '0'
+            reorg:
+              summary: Example of a reorg message.
+              value:
+                time: '2020-06-09T06:39:42.000000000Z'
+                asset: eth
+                height: '10229978'
+                hash: 9d706cd4480b1097f87039705032181df327fcf91fad9a3ca7a293faab9a1582
+                parent_hash: 4e42633d8dc79b9680c14cac6a4c6eac11dbf9b40586a5a4398f93c319d7e683
+                type: reorg
+                cm_sequence_id: '50'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingAssetMetric'
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    StreamingMarketContractPrices:
+      description: Contract prices WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_contract_price:
+              summary: Example of a contract price message.
+              value:
+                market: deribit-BTC-29DEC23-40000-C-option
+                time: '2023-12-01T12:00:00.000000000Z'
+                mark_price: '0.0521'
+                index_price: '37205.91'
+                settlement_price_estimated: '37205.91'
+                exchange_time: '2023-12-01T12:00:00.500000000Z'
+                cm_sequence_id: '0'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketContractPrice'
+    StreamingMarketCandles:
+      description: Candle WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_candle:
+              summary: Example of a candle message.
+              value:
+                market: bitstamp-btc-usd-spot
+                time: '2022-05-17T09:00:00.000000000Z'
+                price_open: '30547.68'
+                price_close: '30558.65'
+                price_high: '30563.59'
+                price_low: '30547.68'
+                vwap: '30553.973252816509'
+                volume: '1.908'
+                candle_usd_volume: '58296.980966373899172'
+                candle_trades_count: '10'
+                cm_sequence_id: '0'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketCandle'
+    StreamingIndexLevels:
+      description: Index levels WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_index_level:
+              summary: Example of an index level message.
+              value:
+                index: CMBIWORK
+                level: '389473805.713838875'
+                time: '2017-05-22T00:00:00.000000000Z'
+                cm_sequence_id: '0'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingIndexLevel'
+    Forbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+  parameters:
+    StreamingBookDepth:
+      description: Book depth limit.
+      in: query
+      name: depth_limit
+      schema:
+        default: '100'
+        enum:
+        - '100'
+        - full_book
+        type: string
+    StreamingPair:
+      description: Comma separated list of asset pairs or patterns like `btc-*`, or `*-btc`.
+      in: query
+      name: pairs
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    IgnoreUnsupportedErrors:
+      description: Ignore "unsupported" errors for not currently supported by Coin Metrics items.
+      in: query
+      name: ignore_unsupported_errors
+      schema:
+        type: boolean
+        default: false
+    StreamingCandleFrequency:
+      description: Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`.
+      in: query
+      name: frequency
+      schema:
+        default: 1m
+        example: 1m
+        type: string
+    StreamingIndexId:
+      description: Comma separated list of indexes.<br/> Use the [/catalog-all-v2/index-levels](#operation/getCatalogAllV2IndexLevels) endpoint for the full list of supported indexes.
+      in: query
+      name: indexes
+      required: true
+      schema:
+        example: CMBIBE
+        type: array
+        items:
+          type: string
+      explode: false
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    Backfill:
+      description: What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data.
+      in: query
+      name: backfill
+      schema:
+        type: string
+        default: latest
+        enum:
+        - latest
+        - none
+    AggregationMethod:
+      description: The method to use for aggregation.
+      in: query
+      name: aggregation_method
+      required: false
+      schema:
+        type: string
+        default: aggregated_spread
+    IgnoreForbiddenErrors:
+      description: Ignore "forbidden" errors for the items you currently don't have access to.
+      in: query
+      name: ignore_forbidden_errors
+      schema:
+        type: boolean
+        default: false
+    StreamAssetMetricsFrequency:
+      description: Frequency of the metrics. Supported values are `1b` (block by block), `1s`, `200ms`.
+      in: query
+      name: frequency
+      schema:
+        default: 1b
+        example: 1s
+        type: string
+    AssetMetrics:
+      description: Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/asset-metrics-v2.<br/> Use the [/catalog-all-v2/asset-metrics](#operation/getCatalogAllV2AssetMetrics) endpoint for the full list of supported metrics per asset.
+      in: query
+      name: metrics
+      required: true
+      schema:
+        example:
+        - AdrActCnt
+        - BlkHgt
+        type: array
+        items:
+          type: string
+      explode: false
+    IncludeVerification:
+      description: If set to true, includes information about verification.
+      in: query
+      name: include_verification
+      required: false
+      schema:
+        type: boolean
+        default: false
+    IncludeOneSided:
+      description: Include one-side and empty books in quotes response.
+      in: query
+      name: include_one_sided
+      schema:
+        type: boolean
+        default: false
+    AssetId:
+      description: Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type.
+      in: query
+      name: assets
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketId:
+      description: Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type.
+      in: query
+      name: markets
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+  securitySchemes:
+    api_key:
+      description: Coin Metrics API key can be specified as `?api_key=` query parameter.
+      in: query
+      name: api_key
+      type: apiKey
+x-tagGroups:
+- name: General
+  tags:
+  - Rate limits
+- name: Reference Data
+  tags:
+  - Reference Data
+  - Profile
+  - Taxonomy
+  - Taxonomy Metadata
+- name: Catalog
+  tags:
+  - Catalog
+  - Full catalog
+  - Catalog v2
+  - Full catalog v2
+- name: Timeseries
+  tags:
+  - Timeseries
+  - Timeseries stream
+- name: Universal blockchain explorer
+  tags:
+  - List of blockchain entities v2
+  - Full blockchain entities v2
+  - Blockchain Explorer Job
+  - Blockchain Explorer Job Results
+- name: Tools
+  tags:
+  - Chain Monitor tools
+- name: Security Master
+  tags:
+  - Security Master
+- name: Constituents
+  tags:
+  - Constituent Snapshots
+  - Constituent Timeframes
+- name: Blockchain Metadata
+  tags:
+  - Blockchain Metadata
+- name: Jobs
+  tags:
+  - Jobs

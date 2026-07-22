@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Coin Metrics
+providerId: coin-metrics
+generated: '2026-07-22'
+method: searched
+created: '2026-07-22'
+modified: '2026-07-22'
+tags:
+  - Rate Limiting
+  - Crypto
+  - Market Data
+description: >-
+  Published Coin Metrics API v4 rate limits. Four rate-limit plans (Community,
+  Trial, Default/PRO, Download/PRO) with sliding-window request limits, a cap
+  of 10 parallel REST requests, and 200 parallel WebSocket connections for
+  paid keys. 429 on violation with X-RateLimit-* headers per
+  draft-polli-ratelimit-headers-03 plus an X-RateLimit-Plan header
+  (default | trial | download | community).
+sources:
+  - https://docs.coinmetrics.io/cm-api-spec/rate-limits
+  - https://docs.coinmetrics.io/access-our-data/api
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: X-RateLimit-Reset
+  plan: X-RateLimit-Plan
+responseCodes:
+  throttled: 429
+limits:
+  - name: Community REST requests
+    scope: ip_address
+    metric: requests_per_window
+    limit: 10
+    timeFrame: 6 seconds sliding window
+    notes: About 1.6 requests/second; reduced download speed; 10 parallel requests max.
+  - name: Trial REST requests
+    scope: api_key
+    metric: requests_per_window
+    limit: 10
+    timeFrame: 6 seconds sliding window
+    notes: Max download speed; 10 parallel requests; 200 parallel WebSocket connections.
+  - name: Default (PRO) REST requests
+    scope: api_key
+    metric: requests_per_window
+    limit: 6000
+    timeFrame: 20 seconds sliding window
+    notes: About 300 requests/second; standard download speed; 10 parallel requests; 200 parallel WebSocket connections.
+  - name: Download (PRO) REST requests
+    scope: api_key
+    metric: requests_per_window
+    limit: 6000
+    timeFrame: 20 seconds sliding window
+    notes: Same request limit as Default but max download speed for bulk historical pulls; switch plans via Coin Metrics.
+  - name: Parallel REST requests
+    scope: api_key
+    metric: concurrent_requests
+    limit: 10
+    timeFrame: concurrent
+    notes: Applies to both paid and community tiers; excess requests are queued.
+  - name: Parallel WebSocket connections
+    scope: api_key
+    metric: concurrent_connections
+    limit: 200
+    timeFrame: concurrent
+    notes: Paid (Trial/PRO) keys only; Community has no WebSocket access.
+limit_count: 6

@@ -1,0 +1,2073 @@
+generated: '2026-07-22'
+method: generated
+source: openapi/coin-metrics-blockchain-explorer-job-api-openapi.yml, openapi/coin-metrics-blockchain-metadata-api-openapi.yml,
+  openapi/coin-metrics-catalog-api-openapi.yml, openapi/coin-metrics-catalog-v2-api-openapi.yml,
+  openapi/coin-metrics-chain-monitor-tools-api-openapi.yml, openapi/coin-metrics-constituent-snapshots-api-openapi.yml,
+  openapi/coin-metrics-constituent-timeframes-api-openapi.yml, openapi/coin-metrics-full-blockchain-entities-v2-api-openapi.yml,
+  openapi/coin-metrics-full-catalog-api-openapi.yml, openapi/coin-metrics-full-catalog-v2-api-openapi.yml,
+  openapi/coin-metrics-jobs-api-openapi.yml, openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml,
+  openapi/coin-metrics-profile-api-openapi.yml, openapi/coin-metrics-reference-data-api-openapi.yml,
+  openapi/coin-metrics-security-master-api-openapi.yml, openapi/coin-metrics-taxonomy-api-openapi.yml,
+  openapi/coin-metrics-taxonomy-metadata-api-openapi.yml, openapi/coin-metrics-timeseries-api-openapi.yml,
+  openapi/coin-metrics-timeseries-stream-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 203
+  by_action_class:
+    acting: 3
+    connected: 200
+  by_consequence:
+    write: 3
+    read: 200
+  human_in_the_loop_required: 0
+operations:
+- path: /blockchain-job/account-balances
+  method: put
+  operationId: putBlockchainJobAccountBalances
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /blockchain-job/balance-updates
+  method: put
+  operationId: putBlockchainJobBalanceUpdates
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /blockchain-job/transactions
+  method: put
+  operationId: putBlockchainJobTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /blockchain-metadata/locations
+  method: get
+  operationId: getBlockchainMetadataLocations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-metadata/owners
+  method: get
+  operationId: getBlockchainMetadataOwners
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-metadata/tags
+  method: get
+  operationId: getBlockchainMetadataTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-metadata/tagged-entities
+  method: get
+  operationId: getBlockchainMetadataEntities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/assets
+  method: get
+  operationId: getCatalogAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/metrics
+  method: get
+  operationId: getCatalogMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/asset-metrics
+  method: get
+  operationId: getCatalogAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/exchange-metrics
+  method: get
+  operationId: getCatalogExchangeMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/exchange-asset-metrics
+  method: get
+  operationId: getCatalogExchangeAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/pair-metrics
+  method: get
+  operationId: getCatalogPairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/institution-metrics
+  method: get
+  operationId: getCatalogInstitutionMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/exchanges
+  method: get
+  operationId: getCatalogExchanges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/exchange-assets
+  method: get
+  operationId: getCatalogExchangeAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/pairs
+  method: get
+  operationId: getCatalogAssetPairs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/pair-candles
+  method: get
+  operationId: getCatalogPairCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/institutions
+  method: get
+  operationId: getCatalogInstitutions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/markets
+  method: get
+  operationId: getCatalogMarkets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-trades
+  method: get
+  operationId: getCatalogMarketTrades
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-candles
+  method: get
+  operationId: getCatalogMarketCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-orderbooks
+  method: get
+  operationId: getCatalogMarketOrderbooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-quotes
+  method: get
+  operationId: getCatalogMarketQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-funding-rates
+  method: get
+  operationId: getCatalogMarketFundingRates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-contract-prices
+  method: get
+  operationId: getCatalogMarketContractPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-implied-volatility
+  method: get
+  operationId: getCatalogMarketImpliedVolatility
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-greeks
+  method: get
+  operationId: getCatalogMarketGreeks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-openinterest
+  method: get
+  operationId: getCatalogMarketOpeninterest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-liquidations
+  method: get
+  operationId: getCatalogMarketLiquidations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/market-metrics
+  method: get
+  operationId: getCatalogMarketMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/indexes
+  method: get
+  operationId: getCatalogIndexes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/index-candles
+  method: get
+  operationId: getCatalogIndexCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/asset-alerts
+  method: get
+  operationId: getCatalogAssetAlertRules
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/asset-chains
+  method: get
+  operationId: getCatalogAssetChains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/mempool-feerates
+  method: get
+  operationId: getCatalogMempoolFeerates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/mining-pool-tips-summary
+  method: get
+  operationId: getCatalogMiningPoolTipsSummary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog/transaction-tracker
+  method: get
+  operationId: getCatalogTransactionTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/asset-metrics
+  method: get
+  operationId: getCatalogV2AssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/exchange-metrics
+  method: get
+  operationId: getCatalogV2ExchangeMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/exchange-asset-metrics
+  method: get
+  operationId: getCatalogV2ExchangeAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/exchange-pair-metrics
+  method: get
+  operationId: getCatalogV2ExchangePairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/pair-metrics
+  method: get
+  operationId: getCatalogV2PairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/institution-metrics
+  method: get
+  operationId: getCatalogV2InstitutionMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-trades
+  method: get
+  operationId: getCatalogV2MarketTrades
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-candles
+  method: get
+  operationId: getCatalogV2MarketCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-orderbooks
+  method: get
+  operationId: getCatalogV2MarketOrderbooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-quotes
+  method: get
+  operationId: getCatalogV2MarketQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-funding-rates
+  method: get
+  operationId: getCatalogV2MarketFundingRates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-funding-rates-predicted
+  method: get
+  operationId: getCatalogV2MarketFundingRatesPredicted
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-contract-prices
+  method: get
+  operationId: getCatalogV2MarketContractPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-implied-volatility
+  method: get
+  operationId: getCatalogV2MarketImpliedVolatility
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-greeks
+  method: get
+  operationId: getCatalogV2MarketGreeks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-openinterest
+  method: get
+  operationId: getCatalogV2MarketOpeninterest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-liquidations
+  method: get
+  operationId: getCatalogV2MarketLiquidations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/market-metrics
+  method: get
+  operationId: getCatalogV2MarketMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/pair-candles
+  method: get
+  operationId: getCatalogV2PairCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/index-levels
+  method: get
+  operationId: getCatalogV2IndexLevels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/index-candles
+  method: get
+  operationId: getCatalogV2IndexCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/asset-chains
+  method: get
+  operationId: getCatalogV2AssetChains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/mempool-feerates
+  method: get
+  operationId: getCatalogV2MempoolFeerates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/mining-pool-tips-summary
+  method: get
+  operationId: getCatalogV2MiningPoolTipsSummary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/transaction-tracker
+  method: get
+  operationId: getCatalogV2TransactionTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/blockchain-v2/accounts
+  method: get
+  operationId: getCatalogV2BlockchainAccounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/blockchain-v2/balance-updates
+  method: get
+  operationId: getCatalogV2BlockchainBalanceUpdates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/blockchain-v2/rebasing-changes
+  method: get
+  operationId: getCatalogV2BlockchainRebasingChanges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/blockchain-v2/blocks
+  method: get
+  operationId: getCatalogV2BlockchainBlocks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/blockchain-v2/transactions
+  method: get
+  operationId: getCatalogV2BlockchainTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-v2/protocol-metrics
+  method: get
+  operationId: getCatalogV2ProtocolMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain/{asset}/transaction-tracker
+  method: get
+  operationId: getTxTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /constituent-snapshots/asset-metrics
+  method: get
+  operationId: getConstituentSnapshotsAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /constituent-timeframes/asset-metrics
+  method: get
+  operationId: getConstituentTimeframesAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/blocks/{block_hash}
+  method: get
+  operationId: getBlockchainV2FullBlock
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/transactions/{txid}
+  method: get
+  operationId: getBlockchainV2FullTransaction
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/blocks/{block_hash}/transactions/{txid}
+  method: get
+  operationId: getBlockchainV2FullTransactionForBlock
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/assets
+  method: get
+  operationId: getCatalogAllAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/metrics
+  method: get
+  operationId: getCatalogAllMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/asset-metrics
+  method: get
+  operationId: getCatalogAllAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/exchange-metrics
+  method: get
+  operationId: getCatalogAllExchangeMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/exchange-asset-metrics
+  method: get
+  operationId: getCatalogAllExchangeAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/pair-metrics
+  method: get
+  operationId: getCatalogAllPairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/institution-metrics
+  method: get
+  operationId: getCatalogAllInstitutionMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/exchanges
+  method: get
+  operationId: getCatalogAllExchanges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/exchange-assets
+  method: get
+  operationId: getCatalogAllExchangeAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/pairs
+  method: get
+  operationId: getCatalogAllAssetPairs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/pair-candles
+  method: get
+  operationId: getCatalogAllPairCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/institutions
+  method: get
+  operationId: getCatalogAllInstitutions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/markets
+  method: get
+  operationId: getCatalogAllMarkets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-trades
+  method: get
+  operationId: getCatalogAllMarketTrades
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-candles
+  method: get
+  operationId: getCatalogAllMarketCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-orderbooks
+  method: get
+  operationId: getCatalogAllMarketOrderbooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-quotes
+  method: get
+  operationId: getCatalogAllMarketQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-funding-rates
+  method: get
+  operationId: getCatalogAllMarketFundingRates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-contract-prices
+  method: get
+  operationId: getCatalogAllMarketContractPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-implied-volatility
+  method: get
+  operationId: getCatalogAllMarketImpliedVolatility
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-greeks
+  method: get
+  operationId: getCatalogAllMarketGreeks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-openinterest
+  method: get
+  operationId: getCatalogAllMarketOpeninterest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-liquidations
+  method: get
+  operationId: getCatalogAllMarketLiquidations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/market-metrics
+  method: get
+  operationId: getCatalogAllMarketMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/indexes
+  method: get
+  operationId: getCatalogAllIndexes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/index-candles
+  method: get
+  operationId: getCatalogAllIndexCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/asset-alerts
+  method: get
+  operationId: getCatalogAllAssetAlertRules
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/asset-chains
+  method: get
+  operationId: getCatalogAllAssetChains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/mempool-feerates
+  method: get
+  operationId: getCatalogAllMempoolFeerates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/mining-pool-tips-summary
+  method: get
+  operationId: getCatalogAllMiningPoolTipsSummary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all/transaction-tracker
+  method: get
+  operationId: getCatalogAllTransactionTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/blockchain-v2/accounts
+  method: get
+  operationId: getCatalogAllV2BlockchainAccounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/blockchain-v2/balance-updates
+  method: get
+  operationId: getCatalogAllV2BlockchainBalanceUpdates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/blockchain-v2/rebasing-changes
+  method: get
+  operationId: getCatalogAllV2BlockchainRebasingChanges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/blockchain-v2/blocks
+  method: get
+  operationId: getCatalogAllV2BlockchainBlocks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/protocol-metrics
+  method: get
+  operationId: getCatalogAllV2ProtocolMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/blockchain-v2/transactions
+  method: get
+  operationId: getCatalogAllV2BlockchainTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/asset-metrics
+  method: get
+  operationId: getCatalogAllV2AssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/exchange-metrics
+  method: get
+  operationId: getCatalogAllV2ExchangeMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/exchange-asset-metrics
+  method: get
+  operationId: getCatalogAllV2ExchangeAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/exchange-pair-metrics
+  method: get
+  operationId: getCatalogAllV2ExchangePairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/pair-metrics
+  method: get
+  operationId: getCatalogAllV2PairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/institution-metrics
+  method: get
+  operationId: getCatalogAllV2InstitutionMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-trades
+  method: get
+  operationId: getCatalogAllV2MarketTrades
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-candles
+  method: get
+  operationId: getCatalogAllV2MarketCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-orderbooks
+  method: get
+  operationId: getCatalogAllV2MarketOrderbooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-quotes
+  method: get
+  operationId: getCatalogAllV2MarketQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-funding-rates
+  method: get
+  operationId: getCatalogAllV2MarketFundingRates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-funding-rates-predicted
+  method: get
+  operationId: getCatalogAllV2MarketFundingRatesPredicted
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-contract-prices
+  method: get
+  operationId: getCatalogAllV2MarketContractPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-implied-volatility
+  method: get
+  operationId: getCatalogAllV2MarketImpliedVolatility
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-greeks
+  method: get
+  operationId: getCatalogAllV2MarketGreeks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-openinterest
+  method: get
+  operationId: getCatalogAllV2MarketOpeninterest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-liquidations
+  method: get
+  operationId: getCatalogAllV2MarketLiquidations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/market-metrics
+  method: get
+  operationId: getCatalogAllV2MarketMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/pair-candles
+  method: get
+  operationId: getCatalogAllV2PairCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/index-levels
+  method: get
+  operationId: getCatalogAllV2IndexLevels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/index-candles
+  method: get
+  operationId: getCatalogAllV2IndexCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/asset-chains
+  method: get
+  operationId: getCatalogAllV2AssetChains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/mempool-feerates
+  method: get
+  operationId: getCatalogAllV2MempoolFeerates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/mining-pool-tips-summary
+  method: get
+  operationId: getCatalogAllV2MiningPoolTipsSummary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /catalog-all-v2/transaction-tracker
+  method: get
+  operationId: getCatalogAllV2TransactionTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /jobs
+  method: get
+  operationId: getJobById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/blocks
+  method: get
+  operationId: getBlockchainV2ListOfBlocks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/accounts
+  method: get
+  operationId: getBlockchainV2ListOfAccounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/sub-accounts
+  method: get
+  operationId: getBlockchainV2ListOfSubAccounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/transactions
+  method: get
+  operationId: getBlockchainV2ListOfTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/balance-updates
+  method: get
+  operationId: getBlockchainV2ListOfBalanceUpdates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/rebasing-changes
+  method: get
+  operationId: getBlockchainV2ListOfRebasingChanges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /blockchain-v2/{asset}/accounts/{account}/balance-updates
+  method: get
+  operationId: getBlockchainV2ListOfBalanceUpdatesForAccount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /profile/assets
+  method: get
+  operationId: getAssetProfiles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /profile/networks
+  method: get
+  operationId: getNetworkProfiles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/assets
+  method: get
+  operationId: getReferenceDataAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/exchanges
+  method: get
+  operationId: getReferenceDataExchanges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/markets
+  method: get
+  operationId: getReferenceDataMarkets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/indexes
+  method: get
+  operationId: getReferenceDataIndexes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/protocols
+  method: get
+  operationId: getReferenceDataProtocols
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/pairs
+  method: get
+  operationId: getReferenceDataPairs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/asset-metrics
+  method: get
+  operationId: getReferenceDataAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/exchange-metrics
+  method: get
+  operationId: getReferenceDataExchangeMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/exchange-asset-metrics
+  method: get
+  operationId: getReferenceDataExchangeAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/exchange-pair-metrics
+  method: get
+  operationId: getReferenceDataExchangePairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/pair-metrics
+  method: get
+  operationId: getReferenceDataPairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/institution-metrics
+  method: get
+  operationId: getReferenceDataInstitutionMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reference-data/market-metrics
+  method: get
+  operationId: getReferenceDataMarketMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /security-master/assets
+  method: get
+  operationId: getSecurityMasterAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /security-master/markets
+  method: get
+  operationId: getSecurityMasterMarkets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /taxonomy/assets
+  method: get
+  operationId: getTaxonomyAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /taxonomy-metadata/assets
+  method: get
+  operationId: getTaxonomyMetadataAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/asset-metrics
+  method: get
+  operationId: getTimeseriesAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/exchange-metrics
+  method: get
+  operationId: getTimeseriesExchangeMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/exchange-asset-metrics
+  method: get
+  operationId: getTimeseriesExchangeAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/exchange-pair-metrics
+  method: get
+  operationId: getTimeseriesExchangePairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-metrics
+  method: get
+  operationId: getTimeseriesMarketMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/pair-metrics
+  method: get
+  operationId: getTimeseriesPairMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/pair-candles
+  method: get
+  operationId: getTimeseriesPairCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/protocol-metrics
+  method: get
+  operationId: getTimeseriesProtocolMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/institution-metrics
+  method: get
+  operationId: getTimeseriesInstitutionMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-trades
+  method: get
+  operationId: getTimeseriesMarketTrades
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-openinterest
+  method: get
+  operationId: getTimeseriesMarketOpenIntereset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-liquidations
+  method: get
+  operationId: getTimeseriesMarketLiquidations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-funding-rates
+  method: get
+  operationId: getTimeseriesMarketFundingRates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-funding-rates-predicted
+  method: get
+  operationId: getTimeseriesMarketFundingRatesPredicted
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-orderbooks
+  method: get
+  operationId: getTimeseriesMarketOrderbooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-quotes
+  method: get
+  operationId: getTimeseriesMarketQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-candles
+  method: get
+  operationId: getTimeseriesMarketCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-contract-prices
+  method: get
+  operationId: getTimeseriesMarketContractPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-implied-volatility
+  method: get
+  operationId: getTimeseriesMarketImpliedVolatility
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/market-greeks
+  method: get
+  operationId: getTimeseriesMarketGreeks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/index-candles
+  method: get
+  operationId: getTimeseriesIndexCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/index-levels
+  method: get
+  operationId: getTimeseriesIndexLevels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/index-constituents
+  method: get
+  operationId: getTimeseriesIndexConstituents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/mining-pool-tips-summary
+  method: get
+  operationId: getTimeseriesMiningPoolTipsSummary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/asset-chains
+  method: get
+  operationId: getAssetChains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/mempool-feerates
+  method: get
+  operationId: getMempoolFeerates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/asset-alerts
+  method: get
+  operationId: getAssetAlerts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/defi-balance-sheets
+  method: get
+  operationId: getDefiBalanceSheets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/asset-metrics
+  method: get
+  operationId: getTimeseriesStreamAssetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/market-trades
+  method: get
+  operationId: getTimeseriesStreamMarketTrades
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/market-liquidations
+  method: get
+  operationId: getTimeseriesStreamMarketLiquidations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/market-openinterest
+  method: get
+  operationId: getTimeseriesStreamMarketOpenInterest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/market-contract-prices
+  method: get
+  operationId: getTimeseriesStreamMarketContractPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/market-orderbooks
+  method: get
+  operationId: getTimeseriesStreamMarketOrderbooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/market-quotes
+  method: get
+  operationId: getTimeseriesStreamMarketQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/asset-quotes
+  method: get
+  operationId: getTimeseriesStreamAssetQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/pair-quotes
+  method: get
+  operationId: getTimeseriesStreamPairQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/market-candles
+  method: get
+  operationId: getTimeseriesStreamMarketCandles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries-stream/index-levels
+  method: get
+  operationId: getTimeseriesStreamIndexLevels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

@@ -1,0 +1,682 @@
+generated: '2026-07-22'
+method: derived
+status: candidate
+source: openapi/_original/coin-metrics-api-v4-openapi.json
+description: No official Coin Metrics MCP server was found (official MCP registry, npm, and docs searched 2026-07-22).
+  This is a candidate tool list derived one-per-operationId from the published OpenAPI 3.0.2 definition; each tool
+  inherits its real input schema from the referenced operation.
+server:
+  name: coin-metrics
+  transport: http
+tools:
+- name: get_reference_data_assets
+  description: Assets
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataAssets
+- name: get_reference_data_exchanges
+  description: Exchanges
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataExchanges
+- name: get_reference_data_markets
+  description: Markets
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataMarkets
+- name: get_reference_data_indexes
+  description: Indexes
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataIndexes
+- name: get_reference_data_protocols
+  description: Protocols
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataProtocols
+- name: get_reference_data_pairs
+  description: Pairs
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataPairs
+- name: get_reference_data_asset_metrics
+  description: Asset metrics
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataAssetMetrics
+- name: get_reference_data_exchange_metrics
+  description: Exchange metrics
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataExchangeMetrics
+- name: get_reference_data_exchange_asset_metrics
+  description: Exchange asset metrics
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataExchangeAssetMetrics
+- name: get_reference_data_exchange_pair_metrics
+  description: Exchange pair metrics
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataExchangePairMetrics
+- name: get_reference_data_pair_metrics
+  description: Pair metrics
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataPairMetrics
+- name: get_reference_data_institution_metrics
+  description: Institution metrics
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataInstitutionMetrics
+- name: get_reference_data_market_metrics
+  description: Market metrics
+  source_operation: openapi/coin-metrics-reference-data-api-openapi.yml#getReferenceDataMarketMetrics
+- name: get_constituent_snapshots_asset_metrics
+  description: Snapshots of asset metric constituents
+  source_operation: openapi/coin-metrics-constituent-snapshots-api-openapi.yml#getConstituentSnapshotsAssetMetrics
+- name: get_constituent_timeframes_asset_metrics
+  description: Timeframes of asset metric constituents
+  source_operation: openapi/coin-metrics-constituent-timeframes-api-openapi.yml#getConstituentTimeframesAssetMetrics
+- name: get_catalog_assets
+  description: Available assets
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogAssets
+  deprecated: true
+- name: get_catalog_metrics
+  description: Available metrics
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMetrics
+  deprecated: true
+- name: get_catalog_asset_metrics
+  description: Available asset metrics
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogAssetMetrics
+  deprecated: true
+- name: get_catalog_exchange_metrics
+  description: Available exchange metrics
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogExchangeMetrics
+  deprecated: true
+- name: get_catalog_exchange_asset_metrics
+  description: Available exchange-asset metrics
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogExchangeAssetMetrics
+  deprecated: true
+- name: get_catalog_pair_metrics
+  description: Available pair metrics
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogPairMetrics
+  deprecated: true
+- name: get_catalog_institution_metrics
+  description: Available institution metrics
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogInstitutionMetrics
+  deprecated: true
+- name: get_catalog_exchanges
+  description: Available exchanges
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogExchanges
+  deprecated: true
+- name: get_catalog_exchange_assets
+  description: Available exchange-asset pairs
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogExchangeAssets
+  deprecated: true
+- name: get_catalog_asset_pairs
+  description: Available asset pairs
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogAssetPairs
+  deprecated: true
+- name: get_catalog_pair_candles
+  description: Available asset pair candles
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogPairCandles
+  deprecated: true
+- name: get_catalog_institutions
+  description: Available institutions
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogInstitutions
+  deprecated: true
+- name: get_catalog_markets
+  description: Available markets
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarkets
+  deprecated: true
+- name: get_catalog_market_trades
+  description: Available market trades
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketTrades
+  deprecated: true
+- name: get_catalog_market_candles
+  description: Available market candles
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketCandles
+  deprecated: true
+- name: get_catalog_market_orderbooks
+  description: Available market orderbooks
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketOrderbooks
+  deprecated: true
+- name: get_catalog_market_quotes
+  description: Available market quotes
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketQuotes
+  deprecated: true
+- name: get_catalog_market_funding_rates
+  description: Available market funding rates
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketFundingRates
+  deprecated: true
+- name: get_catalog_market_contract_prices
+  description: Available market contract prices
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketContractPrices
+  deprecated: true
+- name: get_catalog_market_implied_volatility
+  description: Available market implied volatility
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketImpliedVolatility
+  deprecated: true
+- name: get_catalog_market_greeks
+  description: Available market greeks
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketGreeks
+  deprecated: true
+- name: get_catalog_market_openinterest
+  description: Available market open interest
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketOpeninterest
+  deprecated: true
+- name: get_catalog_market_liquidations
+  description: Available market liquidations
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketLiquidations
+  deprecated: true
+- name: get_catalog_market_metrics
+  description: Available market metrics
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMarketMetrics
+  deprecated: true
+- name: get_catalog_indexes
+  description: Available indexes
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogIndexes
+  deprecated: true
+- name: get_catalog_index_candles
+  description: Available index candles
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogIndexCandles
+  deprecated: true
+- name: get_catalog_asset_alert_rules
+  description: Available asset alerts
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogAssetAlertRules
+  deprecated: true
+- name: get_catalog_asset_chains
+  description: Available asset chains
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogAssetChains
+  deprecated: true
+- name: get_catalog_mempool_feerates
+  description: Available mempool feerates
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMempoolFeerates
+  deprecated: true
+- name: get_catalog_mining_pool_tips_summary
+  description: Available mining pool tips summaries
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogMiningPoolTipsSummary
+  deprecated: true
+- name: get_catalog_transaction_tracker
+  description: Available transaction tracker assets
+  source_operation: openapi/coin-metrics-catalog-api-openapi.yml#getCatalogTransactionTracker
+  deprecated: true
+- name: get_catalog_all_assets
+  description: Supported assets
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllAssets
+  deprecated: true
+- name: get_catalog_all_metrics
+  description: Supported metrics
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMetrics
+  deprecated: true
+- name: get_catalog_all_asset_metrics
+  description: Supported asset metrics
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllAssetMetrics
+  deprecated: true
+- name: get_catalog_all_exchange_metrics
+  description: Supported exchange metrics
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllExchangeMetrics
+  deprecated: true
+- name: get_catalog_all_exchange_asset_metrics
+  description: Supported exchange-asset metrics
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllExchangeAssetMetrics
+  deprecated: true
+- name: get_catalog_all_pair_metrics
+  description: Supported pair metrics
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllPairMetrics
+  deprecated: true
+- name: get_catalog_all_institution_metrics
+  description: Supported institution metrics
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllInstitutionMetrics
+  deprecated: true
+- name: get_catalog_all_exchanges
+  description: Supported exchanges
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllExchanges
+  deprecated: true
+- name: get_catalog_all_exchange_assets
+  description: Supported exchange-asset pairs
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllExchangeAssets
+  deprecated: true
+- name: get_catalog_all_asset_pairs
+  description: Supported asset pairs
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllAssetPairs
+  deprecated: true
+- name: get_catalog_all_pair_candles
+  description: Supported asset pair candles
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllPairCandles
+  deprecated: true
+- name: get_catalog_all_institutions
+  description: Supported institutions
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllInstitutions
+  deprecated: true
+- name: get_catalog_all_markets
+  description: Supported markets
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarkets
+  deprecated: true
+- name: get_catalog_all_market_trades
+  description: Supported market trades
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketTrades
+  deprecated: true
+- name: get_catalog_all_market_candles
+  description: Supported market candles
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketCandles
+  deprecated: true
+- name: get_catalog_all_market_orderbooks
+  description: Supported market orderbooks
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketOrderbooks
+  deprecated: true
+- name: get_catalog_all_market_quotes
+  description: Supported market quotes
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketQuotes
+  deprecated: true
+- name: get_catalog_all_market_funding_rates
+  description: Supported market funding rates
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketFundingRates
+  deprecated: true
+- name: get_catalog_all_market_contract_prices
+  description: Supported market contract prices
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketContractPrices
+  deprecated: true
+- name: get_catalog_all_market_implied_volatility
+  description: Supported market implied volatility
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketImpliedVolatility
+  deprecated: true
+- name: get_catalog_all_market_greeks
+  description: Supported market greeks
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketGreeks
+  deprecated: true
+- name: get_catalog_all_market_openinterest
+  description: Supported market open interest
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketOpeninterest
+  deprecated: true
+- name: get_catalog_all_market_liquidations
+  description: Supported market liquidations
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketLiquidations
+  deprecated: true
+- name: get_catalog_all_market_metrics
+  description: Supported market metrics
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMarketMetrics
+  deprecated: true
+- name: get_catalog_all_indexes
+  description: Supported indexes
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllIndexes
+  deprecated: true
+- name: get_catalog_all_index_candles
+  description: Supported index candles
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllIndexCandles
+  deprecated: true
+- name: get_catalog_all_asset_alert_rules
+  description: Supported asset alerts
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllAssetAlertRules
+  deprecated: true
+- name: get_catalog_all_asset_chains
+  description: Supported asset chains
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllAssetChains
+  deprecated: true
+- name: get_catalog_all_mempool_feerates
+  description: Supported mempool feerates
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMempoolFeerates
+  deprecated: true
+- name: get_catalog_all_mining_pool_tips_summary
+  description: Supported mining pool tips summaries
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllMiningPoolTipsSummary
+  deprecated: true
+- name: get_catalog_all_transaction_tracker
+  description: Supported transaction tracker assets
+  source_operation: openapi/coin-metrics-full-catalog-api-openapi.yml#getCatalogAllTransactionTracker
+  deprecated: true
+- name: get_catalog_v2_asset_metrics
+  description: Available asset metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2AssetMetrics
+- name: get_catalog_v2_exchange_metrics
+  description: Available exchange metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2ExchangeMetrics
+- name: get_catalog_v2_exchange_asset_metrics
+  description: Available exchange-asset metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2ExchangeAssetMetrics
+- name: get_catalog_v2_exchange_pair_metrics
+  description: Available exchange-pair metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2ExchangePairMetrics
+- name: get_catalog_v2_pair_metrics
+  description: Available pair metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2PairMetrics
+- name: get_catalog_v2_institution_metrics
+  description: Available institution metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2InstitutionMetrics
+- name: get_catalog_v2_market_trades
+  description: Available market trades
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketTrades
+- name: get_catalog_v2_market_candles
+  description: Available market candles
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketCandles
+- name: get_catalog_v2_market_orderbooks
+  description: Available market orderbooks
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketOrderbooks
+- name: get_catalog_v2_market_quotes
+  description: Available market quotes
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketQuotes
+- name: get_catalog_v2_market_funding_rates
+  description: Available market funding rates
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketFundingRates
+- name: get_catalog_v2_market_funding_rates_predicted
+  description: Available predicted market funding rates
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketFundingRatesPredicted
+- name: get_catalog_v2_market_contract_prices
+  description: Available market contract prices
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketContractPrices
+- name: get_catalog_v2_market_implied_volatility
+  description: Available market implied volatility
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketImpliedVolatility
+- name: get_catalog_v2_market_greeks
+  description: Available market greeks
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketGreeks
+- name: get_catalog_v2_market_openinterest
+  description: Available market open interest
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketOpeninterest
+- name: get_catalog_v2_market_liquidations
+  description: Available market liquidations
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketLiquidations
+- name: get_catalog_v2_market_metrics
+  description: Available market metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MarketMetrics
+- name: get_catalog_v2_pair_candles
+  description: Available pair candles
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2PairCandles
+- name: get_catalog_v2_index_levels
+  description: Available index levels
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2IndexLevels
+- name: get_catalog_v2_index_candles
+  description: Available index candles
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2IndexCandles
+- name: get_catalog_v2_asset_chains
+  description: Available asset chains
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2AssetChains
+- name: get_catalog_v2_mempool_feerates
+  description: Available mempool feerates
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MempoolFeerates
+- name: get_catalog_v2_mining_pool_tips_summary
+  description: Available mining pool tips summaries
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2MiningPoolTipsSummary
+- name: get_catalog_v2_transaction_tracker
+  description: Available transaction tracker assets
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2TransactionTracker
+- name: get_catalog_v2_blockchain_accounts
+  description: Available blockchain accounts assets
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2BlockchainAccounts
+- name: get_catalog_all_v2_blockchain_accounts
+  description: Supported blockchain accounts assets
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2BlockchainAccounts
+- name: get_catalog_v2_blockchain_balance_updates
+  description: Available blockchain balance updates assets
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2BlockchainBalanceUpdates
+- name: get_catalog_all_v2_blockchain_balance_updates
+  description: Supported blockchain balance updates assets
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2BlockchainBalanceUpdates
+- name: get_catalog_v2_blockchain_rebasing_changes
+  description: Available blockchain rebasing changes assets
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2BlockchainRebasingChanges
+- name: get_catalog_all_v2_blockchain_rebasing_changes
+  description: Supported blockchain rebasing changes assets
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2BlockchainRebasingChanges
+- name: get_catalog_v2_blockchain_blocks
+  description: Available blockchain block assets
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2BlockchainBlocks
+- name: get_catalog_all_v2_blockchain_blocks
+  description: Supported blockchain block assets
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2BlockchainBlocks
+- name: get_catalog_v2_blockchain_transactions
+  description: Available blockchain transactions assets
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2BlockchainTransactions
+- name: get_catalog_v2_protocol_metrics
+  description: Available protocol metrics
+  source_operation: openapi/coin-metrics-catalog-v2-api-openapi.yml#getCatalogV2ProtocolMetrics
+- name: get_catalog_all_v2_protocol_metrics
+  description: Available protocol metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2ProtocolMetrics
+- name: get_catalog_all_v2_blockchain_transactions
+  description: Supported blockchain transactions assets
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2BlockchainTransactions
+- name: get_catalog_all_v2_asset_metrics
+  description: Supported asset metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2AssetMetrics
+- name: get_catalog_all_v2_exchange_metrics
+  description: Supported exchange metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2ExchangeMetrics
+- name: get_catalog_all_v2_exchange_asset_metrics
+  description: Supported exchange-asset metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2ExchangeAssetMetrics
+- name: get_catalog_all_v2_exchange_pair_metrics
+  description: Supported exchange-pair metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2ExchangePairMetrics
+- name: get_catalog_all_v2_pair_metrics
+  description: Supported pair metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2PairMetrics
+- name: get_catalog_all_v2_institution_metrics
+  description: Supported institution metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2InstitutionMetrics
+- name: get_catalog_all_v2_market_trades
+  description: Supported market trades
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketTrades
+- name: get_catalog_all_v2_market_candles
+  description: Supported market candles
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketCandles
+- name: get_catalog_all_v2_market_orderbooks
+  description: Supported market orderbooks
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketOrderbooks
+- name: get_catalog_all_v2_market_quotes
+  description: Supported market quotes
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketQuotes
+- name: get_catalog_all_v2_market_funding_rates
+  description: Supported market funding rates
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketFundingRates
+- name: get_catalog_all_v2_market_funding_rates_predicted
+  description: Supported predicted market funding rates
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketFundingRatesPredicted
+- name: get_catalog_all_v2_market_contract_prices
+  description: Supported market contract prices
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketContractPrices
+- name: get_catalog_all_v2_market_implied_volatility
+  description: Supported market implied volatility
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketImpliedVolatility
+- name: get_catalog_all_v2_market_greeks
+  description: Supported market greeks
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketGreeks
+- name: get_catalog_all_v2_market_openinterest
+  description: Supported market open interest
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketOpeninterest
+- name: get_catalog_all_v2_market_liquidations
+  description: Supported market liquidations
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketLiquidations
+- name: get_catalog_all_v2_market_metrics
+  description: Supported market metrics
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MarketMetrics
+- name: get_catalog_all_v2_pair_candles
+  description: Supported pair candles
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2PairCandles
+- name: get_catalog_all_v2_index_levels
+  description: Supported index levels
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2IndexLevels
+- name: get_catalog_all_v2_index_candles
+  description: Supported index candles
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2IndexCandles
+- name: get_catalog_all_v2_asset_chains
+  description: Supported asset chains
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2AssetChains
+- name: get_catalog_all_v2_mempool_feerates
+  description: Supported mempool feerates
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MempoolFeerates
+- name: get_catalog_all_v2_mining_pool_tips_summary
+  description: Supported mining pool tips summaries
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2MiningPoolTipsSummary
+- name: get_catalog_all_v2_transaction_tracker
+  description: Supported transaction tracker assets
+  source_operation: openapi/coin-metrics-full-catalog-v2-api-openapi.yml#getCatalogAllV2TransactionTracker
+- name: get_timeseries_asset_metrics
+  description: Asset metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesAssetMetrics
+- name: get_timeseries_exchange_metrics
+  description: Exchange metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesExchangeMetrics
+- name: get_timeseries_exchange_asset_metrics
+  description: Exchange-asset metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesExchangeAssetMetrics
+- name: get_timeseries_exchange_pair_metrics
+  description: Exchange-pair metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesExchangePairMetrics
+- name: get_timeseries_market_metrics
+  description: Market metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketMetrics
+- name: get_timeseries_pair_metrics
+  description: Pair metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesPairMetrics
+- name: get_timeseries_pair_candles
+  description: Pair candles
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesPairCandles
+- name: get_timeseries_protocol_metrics
+  description: Protocol metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesProtocolMetrics
+- name: get_timeseries_institution_metrics
+  description: Institution metrics
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesInstitutionMetrics
+- name: get_timeseries_market_trades
+  description: Market trades
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketTrades
+- name: get_timeseries_market_open_intereset
+  description: Market open interest
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketOpenIntereset
+- name: get_timeseries_market_liquidations
+  description: Market liquidations
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketLiquidations
+- name: get_timeseries_market_funding_rates
+  description: Market funding rates
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketFundingRates
+- name: get_timeseries_market_funding_rates_predicted
+  description: Predicted Market funding rates
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketFundingRatesPredicted
+- name: get_timeseries_market_orderbooks
+  description: Market orderbooks
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketOrderbooks
+- name: get_timeseries_market_quotes
+  description: Market quotes
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketQuotes
+- name: get_timeseries_market_candles
+  description: Market candles
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketCandles
+- name: get_timeseries_market_contract_prices
+  description: Market contract prices
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketContractPrices
+- name: get_timeseries_market_implied_volatility
+  description: Market implied volatility
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketImpliedVolatility
+- name: get_timeseries_market_greeks
+  description: Market greeks
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMarketGreeks
+- name: get_timeseries_index_candles
+  description: Index candles
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesIndexCandles
+- name: get_timeseries_index_levels
+  description: Index levels
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesIndexLevels
+- name: get_timeseries_index_constituents
+  description: Index constituents
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesIndexConstituents
+- name: get_timeseries_mining_pool_tips_summary
+  description: Mining pool tips summary (experimental)
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getTimeseriesMiningPoolTipsSummary
+- name: get_asset_chains
+  description: Asset chains (experimental)
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getAssetChains
+- name: get_mempool_feerates
+  description: Mempool feerates (deprecated)
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getMempoolFeerates
+- name: get_asset_alerts
+  description: Asset alerts (deprecated)
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getAssetAlerts
+- name: get_defi_balance_sheets
+  description: DeFi balance sheets (experimental)
+  source_operation: openapi/coin-metrics-timeseries-api-openapi.yml#getDefiBalanceSheets
+- name: get_timeseries_stream_asset_metrics
+  description: Asset metrics
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamAssetMetrics
+- name: get_timeseries_stream_market_trades
+  description: Market trades
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamMarketTrades
+- name: get_timeseries_stream_market_liquidations
+  description: Market liquidations
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamMarketLiquidations
+- name: get_timeseries_stream_market_open_interest
+  description: Market open interest
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamMarketOpenInterest
+- name: get_timeseries_stream_market_contract_prices
+  description: Market contract prices
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamMarketContractPrices
+- name: get_timeseries_stream_market_orderbooks
+  description: Market orderbooks
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamMarketOrderbooks
+- name: get_timeseries_stream_market_quotes
+  description: Market quotes
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamMarketQuotes
+- name: get_timeseries_stream_asset_quotes
+  description: Asset quotes
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamAssetQuotes
+- name: get_timeseries_stream_pair_quotes
+  description: Pair quotes
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamPairQuotes
+- name: get_timeseries_stream_market_candles
+  description: Market candles
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamMarketCandles
+- name: get_timeseries_stream_index_levels
+  description: Index levels
+  source_operation: openapi/coin-metrics-timeseries-stream-api-openapi.yml#getTimeseriesStreamIndexLevels
+- name: get_taxonomy_assets
+  description: Taxonomy for assets
+  source_operation: openapi/coin-metrics-taxonomy-api-openapi.yml#getTaxonomyAssets
+- name: get_taxonomy_metadata_assets
+  description: Taxonomy metadata for assets
+  source_operation: openapi/coin-metrics-taxonomy-metadata-api-openapi.yml#getTaxonomyMetadataAssets
+- name: get_asset_profiles
+  description: Asset profiles data (experimental)
+  source_operation: openapi/coin-metrics-profile-api-openapi.yml#getAssetProfiles
+- name: get_network_profiles
+  description: Network profiles data (experimental)
+  source_operation: openapi/coin-metrics-profile-api-openapi.yml#getNetworkProfiles
+- name: get_tx_tracker
+  description: Transaction tracker
+  source_operation: openapi/coin-metrics-chain-monitor-tools-api-openapi.yml#getTxTracker
+- name: get_blockchain_metadata_locations
+  description: List of all available locations
+  source_operation: openapi/coin-metrics-blockchain-metadata-api-openapi.yml#getBlockchainMetadataLocations
+- name: get_blockchain_metadata_owners
+  description: List of all available owners
+  source_operation: openapi/coin-metrics-blockchain-metadata-api-openapi.yml#getBlockchainMetadataOwners
+- name: get_blockchain_metadata_tags
+  description: List of all available tags
+  source_operation: openapi/coin-metrics-blockchain-metadata-api-openapi.yml#getBlockchainMetadataTags
+- name: get_blockchain_metadata_entities
+  description: The list of entities associated with provided tags
+  source_operation: openapi/coin-metrics-blockchain-metadata-api-openapi.yml#getBlockchainMetadataEntities
+- name: get_blockchain_v2_list_of_blocks
+  description: List of blocks
+  source_operation: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml#getBlockchainV2ListOfBlocks
+- name: get_blockchain_v2_list_of_accounts
+  description: List of accounts
+  source_operation: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml#getBlockchainV2ListOfAccounts
+- name: get_blockchain_v2_list_of_sub_accounts
+  description: List of sub-accounts
+  source_operation: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml#getBlockchainV2ListOfSubAccounts
+- name: get_blockchain_v2_list_of_transactions
+  description: List of transactions
+  source_operation: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml#getBlockchainV2ListOfTransactions
+- name: get_blockchain_v2_list_of_balance_updates
+  description: List of balance updates
+  source_operation: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml#getBlockchainV2ListOfBalanceUpdates
+- name: get_blockchain_v2_list_of_rebasing_changes
+  description: List of rebasing changes
+  source_operation: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml#getBlockchainV2ListOfRebasingChanges
+- name: get_blockchain_v2_list_of_balance_updates_for_account
+  description: List of balance updates for account
+  source_operation: openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml#getBlockchainV2ListOfBalanceUpdatesForAccount
+- name: get_blockchain_v2_full_block
+  description: Full block
+  source_operation: openapi/coin-metrics-full-blockchain-entities-v2-api-openapi.yml#getBlockchainV2FullBlock
+- name: get_blockchain_v2_full_transaction
+  description: Full transaction
+  source_operation: openapi/coin-metrics-full-blockchain-entities-v2-api-openapi.yml#getBlockchainV2FullTransaction
+- name: get_blockchain_v2_full_transaction_for_block
+  description: Full transaction for block
+  source_operation: openapi/coin-metrics-full-blockchain-entities-v2-api-openapi.yml#getBlockchainV2FullTransactionForBlock
+- name: put_blockchain_job_account_balances
+  description: Account balances
+  source_operation: openapi/coin-metrics-blockchain-explorer-job-api-openapi.yml#putBlockchainJobAccountBalances
+- name: put_blockchain_job_balance_updates
+  description: Balance updates
+  source_operation: openapi/coin-metrics-blockchain-explorer-job-api-openapi.yml#putBlockchainJobBalanceUpdates
+- name: put_blockchain_job_transactions
+  description: Transactions
+  source_operation: openapi/coin-metrics-blockchain-explorer-job-api-openapi.yml#putBlockchainJobTransactions
+- name: get_security_master_assets
+  description: Security Master Assets
+  source_operation: openapi/coin-metrics-security-master-api-openapi.yml#getSecurityMasterAssets
+- name: get_security_master_markets
+  description: Security Master Markets
+  source_operation: openapi/coin-metrics-security-master-api-openapi.yml#getSecurityMasterMarkets
+- name: get_job_by_id
+  description: Get job by ID
+  source_operation: openapi/coin-metrics-jobs-api-openapi.yml#getJobById

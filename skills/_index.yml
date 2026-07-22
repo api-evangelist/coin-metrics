@@ -1,0 +1,15 @@
+generated: '2026-07-22'
+method: generated
+skills:
+- file: coin-metrics-discover-available-data.md
+  name: Discover available Coin Metrics data
+  api: openapi/coin-metrics-reference-data-api-openapi.yml
+  operations: [getReferenceDataAssets, getReferenceDataAssetMetrics, getReferenceDataMarkets, getCatalogV2AssetMetrics]
+- file: coin-metrics-fetch-asset-metrics.md
+  name: Fetch asset metric timeseries
+  api: openapi/coin-metrics-timeseries-api-openapi.yml
+  operations: [getTimeseriesAssetMetrics, getTimeseriesMarketCandles]
+- file: coin-metrics-stream-market-data.md
+  name: Stream real-time market data over WebSocket
+  api: openapi/coin-metrics-timeseries-stream-api-openapi.yml
+  operations: [getTimeseriesStreamAssetMetrics, getTimeseriesStreamMarketTrades, getTimeseriesStreamMarketOrderbooks]

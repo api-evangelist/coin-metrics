@@ -1,0 +1,43 @@
+generated: '2026-07-22'
+method: searched
+source: openapi/coin-metrics-blockchain-explorer-job-api-openapi.yml, openapi/coin-metrics-blockchain-metadata-api-openapi.yml,
+  openapi/coin-metrics-catalog-api-openapi.yml, openapi/coin-metrics-catalog-v2-api-openapi.yml, openapi/coin-metrics-chain-monitor-tools-api-openapi.yml,
+  openapi/coin-metrics-constituent-snapshots-api-openapi.yml, openapi/coin-metrics-constituent-timeframes-api-openapi.yml,
+  openapi/coin-metrics-full-blockchain-entities-v2-api-openapi.yml, openapi/coin-metrics-full-catalog-api-openapi.yml,
+  openapi/coin-metrics-full-catalog-v2-api-openapi.yml, openapi/coin-metrics-jobs-api-openapi.yml, openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml
+  ...
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: api_key
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: Coin Metrics API key can be specified as `?api_key=` query parameter.
+  sources:
+  - openapi/coin-metrics-blockchain-explorer-job-api-openapi.yml
+  - openapi/coin-metrics-blockchain-metadata-api-openapi.yml
+  - openapi/coin-metrics-catalog-api-openapi.yml
+  - openapi/coin-metrics-catalog-v2-api-openapi.yml
+  - openapi/coin-metrics-chain-monitor-tools-api-openapi.yml
+  - openapi/coin-metrics-constituent-snapshots-api-openapi.yml
+  - openapi/coin-metrics-constituent-timeframes-api-openapi.yml
+  - openapi/coin-metrics-full-blockchain-entities-v2-api-openapi.yml
+  - openapi/coin-metrics-full-catalog-api-openapi.yml
+  - openapi/coin-metrics-full-catalog-v2-api-openapi.yml
+  - openapi/coin-metrics-jobs-api-openapi.yml
+  - openapi/coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml
+  - openapi/coin-metrics-profile-api-openapi.yml
+  - openapi/coin-metrics-reference-data-api-openapi.yml
+  - openapi/coin-metrics-security-master-api-openapi.yml
+  - openapi/coin-metrics-taxonomy-api-openapi.yml
+  - openapi/coin-metrics-taxonomy-metadata-api-openapi.yml
+  - openapi/coin-metrics-timeseries-api-openapi.yml
+  - openapi/coin-metrics-timeseries-stream-api-openapi.yml
+docs: https://docs.coinmetrics.io/access-our-data/api
+notes: Paid (Pro) tier authenticates with an API key passed as the api_key query parameter (keys issued via sales
+  contact, no self-serve signup). The free Community API at community-api.coinmetrics.io/v4 requires no authentication
+  at all (CC BY-NC 4.0, non-commercial). Rate-limit plan is signaled per key via the X-RateLimit-Plan response header.

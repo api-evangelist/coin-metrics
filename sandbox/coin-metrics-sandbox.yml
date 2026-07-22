@@ -1,0 +1,39 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.coinmetrics.io/access-our-data/api, https://gitbook-docs.coinmetrics.io/tutorials-and-examples/tutorials/walkthrough_community.md
+description: >-
+  Coin Metrics' no-cost try-it surface. There is no separate synthetic-data
+  sandbox; instead a full free Community API tier serves real (rate-limited,
+  reduced-coverage) data with no API key at all, so any developer or agent can
+  exercise the production contract before buying a Pro key. Documented test
+  walkthroughs use the Community tier via the official Python client.
+modes:
+  - name: community
+    base_url: https://community-api.coinmetrics.io/v4
+    api_key_required: false
+    license: CC BY-NC 4.0 (non-commercial use)
+    rate_limit: 10 requests per 6 seconds per IP address
+    notes: >-
+      Same API v4 contract and paths as the Pro tier; community-available
+      assets/metrics only. No WebSocket streaming.
+  - name: pro
+    base_url: https://api.coinmetrics.io/v4
+    api_key_required: true
+    key_delivery: api_key query parameter (sales-contact onboarding, no self-serve signup)
+    rate_limit: 6000 requests per 20 seconds per API key
+    websocket: wss://api.coinmetrics.io/v4
+try_it_examples:
+  - name: Catalog of community assets
+    request: https://community-api.coinmetrics.io/v4/catalog-v2/asset-metrics
+  - name: BTC reference rate timeseries
+    request: https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=btc&metrics=ReferenceRateUSD
+    note: Confirmed HTTP 200 without a key during the 2026-07-21 review.
+tooling:
+  - name: Python API Client community walkthrough
+    url: https://docs.coinmetrics.io/tutorials-and-examples/tutorials/walkthrough_community
+    notes: End-to-end notebook using CoinMetricsClient with no API key.
+  - name: Coverage tool
+    url: https://coverage.coinmetrics.io/
+    notes: Browse which assets/metrics/markets are available per product and per API key.
+  - name: Demo notebooks
+    url: https://github.com/coinmetrics/demo

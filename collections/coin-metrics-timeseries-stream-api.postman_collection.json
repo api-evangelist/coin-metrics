@@ -1,0 +1,2572 @@
+{
+  "item": [
+    {
+      "id": "c2e07ba2-6a56-4dc0-9eef-10c5d6f6dc64",
+      "name": "Timeseries stream",
+      "description": {
+        "content": "WebSocket endpoints for getting a real-time stream of metrics, market data, indexes and other time series data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36444993-2e10-4fba-a920-07c7080a0b82",
+          "name": "Asset metrics",
+          "request": {
+            "name": "Asset metrics",
+            "description": {
+              "content": "Returns a WebSocket stream of metrics for specified assets.<br/> Endpoint supports only block by block (`1b` frequency), per second (`1s` frequency), and sub-second (`200ms` frequency) metrics.<br/> Different sets of metrics may come in different messages.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "asset-metrics"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/asset-metrics-v2.<br/> Use the [/catalog-all-v2/asset-metrics](#operation/getCatalogAllV2AssetMetrics) endpoint for the full list of supported metrics per asset."
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "1b",
+                  "description": "Frequency of the metrics. Supported values are `1b` (block by block), `1s`, `200ms`."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_unsupported_errors",
+                  "value": "false",
+                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_forbidden_errors",
+                  "value": "false",
+                  "description": "Ignore \"forbidden\" errors for the items you currently don't have access to."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e852885c-5dff-48b3-b84b-d4f41fe43b0b",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "AdrActCnt,BlkHgt"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "1s"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_errors",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_forbidden_errors",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab317be9-6c5e-429c-86bc-a9e22e39df74",
+              "name": "Asset metrics WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "AdrActCnt,BlkHgt"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "1s"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_errors",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_forbidden_errors",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": \"2020-06-08T20:54:04.000000000Z\",\n  \"asset\": \"eth\",\n  \"height\": \"10227376\",\n  \"hash\": \"54c517db6ae6e9e0466db43fccccac137b9a75cfdab70cac0272654348ad76aa\",\n  \"parent_hash\": \"64f4c0126d63335a552dca030129e2f48a2c636cc88530ba168c2902d65dbcf2\",\n  \"type\": \"new_block\",\n  \"AdrActCnt\": \"255\",\n  \"FlowInBFXUSD\": \"0\",\n  \"PriceUSD\": \"242.28\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26eacf8e-eddf-4a66-bf61-1b4bb396c7c2",
+          "name": "Market trades",
+          "request": {
+            "name": "Market trades",
+            "description": {
+              "content": "Returns a WebSocket stream of trades for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "market-trades"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f3056d40-cb10-4194-a30a-1dee20a25f74",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-trades"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55e0b0a1-28be-4e7c-a51e-31785707a386",
+              "name": "Trade WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-trades"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": \"2020-06-08T21:00:06.138932000Z\",\n  \"market\": \"coinbase-btc-usd-spot\",\n  \"coin_metrics_id\": \"94233007\",\n  \"amount\": \"0.0197263\",\n  \"price\": \"9702\",\n  \"collect_time\": \"2020-06-08T21:00:06.203893000Z\",\n  \"side\": \"buy\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f20528d-31e5-4313-900e-9e4236d6d7e1",
+          "name": "Market liquidations",
+          "request": {
+            "name": "Market liquidations",
+            "description": {
+              "content": "Returns a WebSocket stream of liquidations for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "market-liquidations"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ca4083c-276b-4120-832b-a894dd76c5d5",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-liquidations"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "df9fa9f3-640a-4e0c-b8e4-0cc0b7794963",
+              "name": "Liquidation WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-liquidations"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"market\": \"binance-LEVERUSDT-future\",\n  \"time\": \"2023-10-12T12:44:33.663000000Z\",\n  \"coin_metrics_id\": \"1697114673663000000\",\n  \"amount\": \"377748\",\n  \"price\": \"0.001381\",\n  \"type\": \"trade\",\n  \"side\": \"sell\",\n  \"cm_sequence_id\": \"45\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62714f2e-0046-4198-875a-dd8e500186c7",
+          "name": "Market open interest",
+          "request": {
+            "name": "Market open interest",
+            "description": {
+              "content": "Returns a WebSocket stream of open interests for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.<br/><br/> <b>Note:</b> The `value_usd` field in this endpoint was previously calculated using hardcoded logic that no longer reflects current contract specifications across all exchanges.<br/><br/> To address this, we have deprecated the `value_usd` field and introduced new, more accurate metrics available via the `/timeseries/market-metrics` endpoint.<br/><br/> These two metrics should be used as a replacement for the `value_usd` field going forward:<br/> - `open_interest_reported_future_usd` to represent the notional value of open interest in U.S. dollars for futures markets<br/> - `open_interest_reported_option_notional_usd` to represent the notional value of open interest in U.S. dollars for options markets<br/><br/> We also introduced `open_interest_reported_option_market_value_usd` to represent the market value of open interest in U.S. dollars for options markets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "market-openinterest"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "97dab70b-8a15-4bc7-8f33-a5c01aa38868",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-openinterest"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90ffd94b-1bda-45e5-a9c8-6faa85f3a042",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-openinterest"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d681c0b-d1ce-4297-83a2-5443c41a815d",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-openinterest"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "178cda16-797a-454e-9716-3f3c913927f6",
+              "name": "Open Interest WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-openinterest"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"market\": \"okex-EOS-USDT-231027-future\",\n  \"time\": \"2023-10-26T06:06:00.000000000Z\",\n  \"contract_count\": \"5122\",\n  \"value_usd\": \"31121.272\",\n  \"exchange_time\": \"2023-10-26T06:06:00.000000000Z\",\n  \"cm_sequence_id\": \"126\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba820b50-2ffc-46bb-b5c1-131c6eec0235",
+          "name": "Market contract prices",
+          "request": {
+            "name": "Market contract prices",
+            "description": {
+              "content": "Returns a WebSocket stream of contract prices for specified markets.<br/> This includes index price and mark price that are used by the exchange for settlement and risk management purposes.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "market-contract-prices"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ae5caf4b-e5f2-4402-b716-bbed89019de7",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-contract-prices"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d28ab09-290c-40aa-b9de-f3edf4a387be",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-contract-prices"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e342881c-c6e3-44ac-ac74-e4ca2317f194",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-contract-prices"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "455aa103-31ac-436d-916c-b2fe7915c71f",
+              "name": "Contract prices WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-contract-prices"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"market\": \"deribit-BTC-29DEC23-40000-C-option\",\n  \"time\": \"2023-12-01T12:00:00.000000000Z\",\n  \"mark_price\": \"0.0521\",\n  \"index_price\": \"37205.91\",\n  \"settlement_price_estimated\": \"37205.91\",\n  \"exchange_time\": \"2023-12-01T12:00:00.500000000Z\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a59a834f-77d2-4554-bf66-c42e3e4d906b",
+          "name": "Market orderbooks",
+          "request": {
+            "name": "Market orderbooks",
+            "description": {
+              "content": "Returns a WebSocket stream of orderbooks for specified markets.<br/> Orderbooks are delivered using a sequence of `snapshot` and `update` messages.<br/> Zero value of the `size` response field for `asks` or `bids` means negative `update`.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "market-orderbooks"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "depth_limit",
+                  "value": "100",
+                  "description": "Book depth limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f3cfa66b-b494-4804-bbb5-6c6274566900",
+              "name": "Orderbook WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-orderbooks"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "depth_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": \"2020-06-08T21:07:27.015507000Z\",\n  \"market\": \"coinbase-btc-usd-spot\",\n  \"coin_metrics_id\": \"1591540219445728-16126985\",\n  \"asks\": [\n    {\n      \"price\": \"9695.09\",\n      \"size\": \"1.58265903\"\n    },\n    {\n      \"price\": \"9695.1\",\n      \"size\": \"0.01056118\"\n    },\n    {\n      \"price\": \"9695.14\",\n      \"size\": \"0.0257\"\n    }\n  ],\n  \"bids\": [\n    {\n      \"price\": \"9695.07\",\n      \"size\": \"0.97684462\"\n    },\n    {\n      \"price\": \"9694.38\",\n      \"size\": \"0.14852787\"\n    },\n    {\n      \"price\": \"9694.37\",\n      \"size\": \"0.90808736\"\n    },\n    {\n      \"price\": \"9693.24\",\n      \"size\": \"0.46738235\"\n    },\n    {\n      \"price\": \"9693\",\n      \"size\": \"0.0023\"\n    }\n  ],\n  \"type\": \"snapshot\",\n  \"collect_time\": \"2020-06-08T21:07:27.082612000Z\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e92ecbbf-8911-47e6-8dcf-cb28b6e78689",
+          "name": "Market quotes",
+          "request": {
+            "name": "Market quotes",
+            "description": {
+              "content": "Returns a stream of quotes for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "market-quotes"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_one_sided",
+                  "value": "false",
+                  "description": "Include one-side and empty books in quotes response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "10ff740a-27aa-4a7f-a549-b31ef715a750",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-quotes"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_one_sided",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cce08b95-d22d-4ad3-9d25-1af7a19d719e",
+              "name": "Market quote WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "market-quotes"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_one_sided",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": \"2020-06-08T21:15:45.771742000Z\",\n  \"market\": \"coinbase-btc-usd-spot\",\n  \"coin_metrics_id\": \"1591540219445728-16162629\",\n  \"ask_price\": \"9685.01\",\n  \"ask_size\": \"2.42779345\",\n  \"bid_price\": \"9685\",\n  \"bid_size\": \"0.43939159\",\n  \"cm_sequence_id\": \"1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bd6b30a-8bd9-4798-87f0-fd589eb9b7b5",
+          "name": "Asset quotes",
+          "request": {
+            "name": "Asset quotes",
+            "description": {
+              "content": "Returns a stream of quotes for specified assets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "asset-quotes"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation_method",
+                  "value": "aggregated_spread",
+                  "description": "The method to use for aggregation."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "79f85bde-b82a-42c7-8732-a3a64437dad8",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "asset-quotes"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "aggregation_method",
+                      "value": "aggregated_spread"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "93f5fe62-11e3-463b-bb65-ec2f5388510a",
+              "name": "Aggregated spread quote WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "asset-quotes"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "aggregation_method",
+                      "value": "aggregated_spread"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": \"2020-06-08T21:15:45.771742000Z\",\n  \"pair\": \"btc-usd\",\n  \"ask_price\": \"24343.725954328216\",\n  \"ask_size\": \"2.96375165\",\n  \"bid_price\": \"24342.036360171896\",\n  \"bid_size\": \"12.00588437\",\n  \"mid_price\": \"24342.881157250056\",\n  \"spread\": \"0.0000694081421754166\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f65cabb9-5aa8-45f0-a029-8c4f836683dc",
+          "name": "Pair quotes",
+          "request": {
+            "name": "Pair quotes",
+            "description": {
+              "content": "Returns a stream of quotes for specified pairs.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "wss",
+              "path": [
+                "v4",
+                "timeseries-stream",
+                "pair-quotes"
+              ],
+              "host": [
+                "api",
+                "coinmetrics",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pairs",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of asset pairs or patterns like `btc-*`, or `*-btc`."
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation_method",
+                  "value": "aggregated_spread",
+                  "description": "The method to use for aggregation."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fc33bc62-e595-4c8f-a486-72cc035f24c0",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "pair-quotes"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "pairs",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "aggregation_method",
+                      "value": "aggregated_spread"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "79fe6a9e-24d4-44e1-afd0-62bcbece9e41",
+              "name": "Aggregated spread quote WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "wss",
+                  "path": [
+                    "v4",
+                    "timeseries-stream",
+                    "pair-quotes"
+                  ],
+                  "host": [
+                    "api",
+                    "coinmetrics",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "pairs",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "aggregation_method",
+                      "value": "aggregated_spread"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": \"2020-06-08T21:15:45.771742000Z\",\n  \"pair\": \"btc-usd\",\n  \"ask_price\": \"24343.725954328216\",\n  \"ask_size\": \"2.96375165\",\n  \"bid_price\": \"24342.036360171896\",\n  \"bid_size\": \"12.00588437\",\n  \"mid_price\": \"24342.881157250056\",\n  \"spread\": \"0.0000694081421754166\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71a2a96f-b715-48b2-b95f-01e6478ac4a2",
+          "name": "Market candles",
+          "request": {
+            "name": "Market candles",
+            "description": {
+              "content": "Returns a stream of candles for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timeseries-stream",
+                "market-candles"
+              ],
+              "host": [
+                "{{timeseries-stream-market-candles-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "1m",
+                  "description": "Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44c3d3f4-c25f-4232-b086-1ba8d892dcba",
+              "name": "Candle WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "market-candles"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-market-candles-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "1m"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"market\": \"bitstamp-btc-usd-spot\",\n  \"time\": \"2022-05-17T09:00:00.000000000Z\",\n  \"price_open\": \"30547.68\",\n  \"price_close\": \"30558.65\",\n  \"price_high\": \"30563.59\",\n  \"price_low\": \"30547.68\",\n  \"vwap\": \"30553.973252816509\",\n  \"volume\": \"1.908\",\n  \"candle_usd_volume\": \"58296.980966373899172\",\n  \"candle_trades_count\": \"10\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba7390f6-48fc-4acf-bbc3-01c1164e661a",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "market-candles"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-market-candles-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "1m"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43d469c6-1a06-4659-9e67-1ebbc2de9ee5",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "market-candles"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-market-candles-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "1m"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b699d398-7d81-463f-9bef-1e933805dc98",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "market-candles"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-market-candles-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "1m"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be084d7c-cb19-44c1-8c95-51329b2a4ac7",
+          "name": "Index levels",
+          "request": {
+            "name": "Index levels",
+            "description": {
+              "content": "Returns a stream of levels for specified indexes.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnect will happen.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timeseries-stream",
+                "index-levels"
+              ],
+              "host": [
+                "{{timeseries-stream-index-levels-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "indexes",
+                  "value": "<string>,<string>",
+                  "description": "(Required) Comma separated list of indexes.<br/> Use the [/catalog-all-v2/index-levels](#operation/getCatalogAllV2IndexLevels) endpoint for the full list of supported indexes."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_verification",
+                  "value": "false",
+                  "description": "If set to true, includes information about verification."
+                },
+                {
+                  "disabled": false,
+                  "key": "backfill",
+                  "value": "latest",
+                  "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2345f56-1e68-4bce-9567-898f0f243ce7",
+              "name": "Index levels WebSocket message.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "index-levels"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-index-levels-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include_verification",
+                      "value": "false"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"index\": \"CMBIWORK\",\n  \"level\": \"389473805.713838875\",\n  \"time\": \"2017-05-22T00:00:00.000000000Z\",\n  \"cm_sequence_id\": \"0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f6f6c01-201d-4b94-96db-67eed5b3ecc2",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "index-levels"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-index-levels-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include_verification",
+                      "value": "false"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "602ebe00-1c22-46c4-b8d5-8ec3ce8600bf",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "index-levels"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-index-levels-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include_verification",
+                      "value": "false"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b2bec1d-193a-44b5-8437-7561638d6ebb",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries-stream",
+                    "index-levels"
+                  ],
+                  "host": [
+                    "{{timeseries-stream-index-levels-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include_verification",
+                      "value": "false"
+                    },
+                    {
+                      "key": "backfill",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "wss://api.coinmetrics.io/v4",
+      "key": "timeseries-stream-market-candles-Url"
+    },
+    {
+      "type": "string",
+      "value": "wss://api.coinmetrics.io/v4",
+      "key": "timeseries-stream-index-levels-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "cc69a53a-f314-455f-8593-41ca87fd964a",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Timeseries stream API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Blockchain Metadata API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blockchain Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of all available locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-metadata/locations",
+            "params": [
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported locations ordered lexicographically."
+        },
+        {
+          "info": {
+            "name": "List of all available owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-metadata/owners",
+            "params": [
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported owners lexicographically ordered by the `owner_name` field."
+        },
+        {
+          "info": {
+            "name": "List of all available tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-metadata/tags",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of a tag."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all available tags along with their descriptions, lexicographically ordered by the `tag` field."
+        },
+        {
+          "info": {
+            "name": "The list of entities associated with provided tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-metadata/tagged-entities",
+            "params": [
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of tags. Mutually exclusive with `entities` and `owner_names` parameter. Currently a single tag is allowed in a request."
+              },
+              {
+                "name": "entities",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of entities. Mutually exclusive with `tags` and `owner_names` parameter."
+              },
+              {
+                "name": "locations",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of entity locations (asset representation where the entity has been tagged). Currently a single entity location is allowed per each request."
+              },
+              {
+                "name": "owner_names",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of owner names. Mutually exclusive with `tags` and `entities` parameters. Currently a single owner name is allowed in a request."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all entities associated with provided tags. Ordered by tuple `(entity, tag, location, start_time)` if requested by providing `entities` parameter. Ordered by tuple `(tag, location, entity, started_time)` if requested by providing `tags` parameter. Ordered by tuple `(owner_name, location, entity, tag, timestamp_start)` if requested by providing `owner_name` parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

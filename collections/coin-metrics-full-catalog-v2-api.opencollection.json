@@ -1,0 +1,2551 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Full catalog v2 API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Full catalog v2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Supported blockchain accounts assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/blockchain-v2/accounts",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the blockchain accounts endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported blockchain balance updates assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/blockchain-v2/balance-updates",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the blockchain balance updates endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported blockchain rebasing changes assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/blockchain-v2/rebasing-changes",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the blockchain rebasing changes endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported blockchain block assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/blockchain-v2/blocks",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the blockchain blocks endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Available protocol metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/protocol-metrics",
+            "params": [
+              {
+                "name": "protocols",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocols like `aave_v3` or `morpho_blue`."
+              },
+              {
+                "name": "chains",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocol chains like `ethereum` or `base`."
+              },
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocol markets like `core-weth` or `steakusdc`."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocol metrics like `supply_apy`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all available protocol markets along with the chains and metrics available for each."
+        },
+        {
+          "info": {
+            "name": "Supported blockchain transactions assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/blockchain-v2/transactions",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the blockchain transactions endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported asset metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/asset-metrics",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "reviewable",
+                "value": "",
+                "type": "query",
+                "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported asset metrics along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported exchange metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/exchange-metrics",
+            "params": [
+              {
+                "name": "exchanges",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchanges. By default all exchanges are returned. Supports the following formats: `<exchange>` - Coin Metrics exchange name (e.g., `binance`), `<namespace>:<name>` - External provider market name (e.g., `talos:binance`), `<namespace>:by-id:<id>` - External provider numeric market ID (e.g., `talos:by-id:1003`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by numeric ID rather than name."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported exchange metrics along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported exchange-asset metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/exchange-asset-metrics",
+            "params": [
+              {
+                "name": "exchange_assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchange-assets. By default, all exchange-assets pairs are returned."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported exchange-asset metrics along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported exchange-pair metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/exchange-pair-metrics",
+            "params": [
+              {
+                "name": "exchange_pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchange-pairs. By default, all exchange-pairs are returned."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported exchange-pair metrics along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported pair metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/pair-metrics",
+            "params": [
+              {
+                "name": "pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset pairs. By default, all asset pairs are returned."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported pair metrics along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported institution metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/institution-metrics",
+            "params": [
+              {
+                "name": "institutions",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of institutions. By default, all institutions are returned."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported institution metrics along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-trades",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with trades support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-candles",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with candles support along with time ranges of available data per candle duration."
+        },
+        {
+          "info": {
+            "name": "Supported market orderbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-orderbooks",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with orderbooks support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-quotes",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with quotes support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market funding rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-funding-rates",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with funding rates support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported predicted market funding rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-funding-rates-predicted",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with predicted funding rates support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market contract prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-contract-prices",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all market contract prices for option market."
+        },
+        {
+          "info": {
+            "name": "Supported market implied volatility",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-implied-volatility",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all market implied volatility for option market."
+        },
+        {
+          "info": {
+            "name": "Supported market greeks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-greeks",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all market greeks for option market."
+        },
+        {
+          "info": {
+            "name": "Supported market open interest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-openinterest",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with open interest support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market liquidations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-liquidations",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with liquidations support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/market-metrics",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with market metrics support along with time ranges of available data per metric."
+        },
+        {
+          "info": {
+            "name": "Supported pair candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/pair-candles",
+            "params": [
+              {
+                "name": "pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset pairs. By default, all asset pairs are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported asset pair candles along with the time ranges of available data per candle duration."
+        },
+        {
+          "info": {
+            "name": "Supported index levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/index-levels",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes. By default all indexes are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported index levels along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported index candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/index-candles",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes. By default all indexes are returned."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported index candles along with the time ranges of available data per candle duration."
+        },
+        {
+          "info": {
+            "name": "Supported asset chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/asset-chains",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the asset-chains endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported mempool feerates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/mempool-feerates",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the mempool-feerates endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported mining pool tips summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/mining-pool-tips-summary",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the mining-pool-tips-summary endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported transaction tracker assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all-v2/transaction-tracker",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets for the transaction-tracker endpoint along with time ranges of available data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

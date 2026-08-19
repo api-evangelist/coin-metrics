@@ -1,0 +1,1013 @@
+{
+  "item": [
+    {
+      "id": "13f5f6de-997e-4d12-a4ca-5f3cae840adc",
+      "name": "Blockchain Explorer Job",
+      "description": {
+        "content": "Endpoints for creating async jobs for blockchain entities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "273b4412-120d-4122-b56e-26e795dcb29c",
+          "name": "Account balances",
+          "request": {
+            "name": "Account balances",
+            "description": {
+              "content": "Creates asynchronous job for retrieving account balances data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobAccountBalance](#schema/BlockchainJobAccountBalance) objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain-job",
+                "account-balances"
+              ],
+              "host": [
+                "{{blockchain-job-account-balances-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "at_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "at_slot",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "at_height",
+                  "value": "<long>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "61df438e-4ae8-477b-ad96-94285160e118",
+              "name": "Details of just created job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "account-balances"
+                  ],
+                  "host": [
+                    "{{blockchain-job-account-balances-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_slot",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_height",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\",\n  \"job_url\": \"https://api.coinmetrics.io/v4/jobs?api_key=<your_key>&ids=ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5999380e-40cb-4a2b-bb49-3e2527aa0ca4",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "account-balances"
+                  ],
+                  "host": [
+                    "{{blockchain-job-account-balances-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_slot",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_height",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a85a0454-d2bf-4768-a9cc-876208091e97",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "account-balances"
+                  ],
+                  "host": [
+                    "{{blockchain-job-account-balances-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_slot",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "at_height",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcacbe8b-1d1a-4390-8d2a-62d439a7d2dd",
+          "name": "Balance updates",
+          "request": {
+            "name": "Balance updates",
+            "description": {
+              "content": "Creates asynchronous job for retrieving balance updates data. Both `start_*` and `end_*` parameters must be specified (time or height).<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobBalanceUpdate](#schema/BlockchainJobBalanceUpdate) objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain-job",
+                "balance-updates"
+              ],
+              "host": [
+                "{{blockchain-job-balance-updates-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_height",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_height",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_slot",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_slot",
+                  "value": "<long>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8dd6c062-6fc0-4125-a259-86f49649f2e3",
+              "name": "Details of just created job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "balance-updates"
+                  ],
+                  "host": [
+                    "{{blockchain-job-balance-updates-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_height",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_height",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_slot",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_slot",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\",\n  \"job_url\": \"https://api.coinmetrics.io/v4/jobs?api_key=<your_key>&ids=ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbcbaa30-574f-4fec-97ad-06da1e7eafb5",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "balance-updates"
+                  ],
+                  "host": [
+                    "{{blockchain-job-balance-updates-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_height",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_height",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_slot",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_slot",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ba8a2c4-b690-4c02-ab1b-7547c33df6c1",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "balance-updates"
+                  ],
+                  "host": [
+                    "{{blockchain-job-balance-updates-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_height",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_height",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_slot",
+                      "value": "<long>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "end_slot",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4de56769-2208-4669-bef2-ffca34ab868c",
+          "name": "Transactions",
+          "request": {
+            "name": "Transactions",
+            "description": {
+              "content": "Creates asynchronous job for retrieving transactions data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobTransactionInfo](#schema/BlockchainJobTransactionInfo) objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain-job",
+                "transactions"
+              ],
+              "host": [
+                "{{blockchain-job-transactions-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "txids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "txids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9283a51a-ab69-4ed5-a755-a6c2bd56ed7d",
+              "name": "Details of just created job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{blockchain-job-transactions-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "txids",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "txids",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\",\n  \"job_url\": \"https://api.coinmetrics.io/v4/jobs?api_key=<your_key>&ids=ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec4e6878-ee2f-44f3-aa22-83c085b31e62",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{blockchain-job-transactions-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "txids",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "txids",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b855a3a-eae3-424c-8a5f-476e5418838e",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-job",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{blockchain-job-transactions-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "txids",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "txids",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-job-account-balances-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-job-balance-updates-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-job-transactions-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "06e3ae5e-ea60-427b-99de-93a2c4adc6f7",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Chain Monitor tools API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chain Monitor tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transaction tracker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain/:asset/transaction-tracker",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "txids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of transaction identifiers (txid) to track."
+              },
+              {
+                "name": "replacements_for_txids",
+                "value": "",
+                "type": "query",
+                "description": "<b>BTC asset only.</b><br/> Comma separated list of transaction identifiers (txid) to get the corresponding replacement transactions for.<br/> Mutually exclusive with `txids`.<br/>"
+              },
+              {
+                "name": "replacements_only",
+                "value": "",
+                "type": "query",
+                "description": "<b>BTC asset only.</b><br/> Boolean indicating if the response should contain only the replacement transactions."
+              },
+              {
+                "name": "addresses",
+                "value": "",
+                "type": "query",
+                "description": "<b>BTC asset only.</b><br/> Comma separated list of bitcoin addresses to track transactions for. Transactions in which at least one of the addresses is either a sender or recipient will be returned.<br/> By default only transactions currently in mempool are returned. To return all associated transactions use `unconfirmed_only=false` parameter.<br/> Mutually exclusive with `txids`, `replacements_for_txids`, `replacements_for_txids` parameters."
+              },
+              {
+                "name": "unconfirmed_only",
+                "value": "",
+                "type": "query",
+                "description": "<b>BTC asset only.</b><br/> Can be used only in conjunction with `addresses` parameter. Controls whether all or only unconfirmed transactions (currently in mempool) are returned."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns status updates for the specified or all transactions.<br/> This endpoint can be helpful to track transaction settlement.<br/> The transaction tracker keeps the history of the transaction updates for one month since the last update."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

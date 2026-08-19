@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Profile API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Asset profiles data (experimental)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/profile/assets",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset ids.<br/> By default profile data for all assets is returned. Mutually exclusive with `full_names` parameter."
+              },
+              {
+                "name": "full_names",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset full names.<br/> By default profile data for all assets is returned. Mutually exclusive with `assets` parameter."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns profile data for assets.<br/> Results are ordered by `asset`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> If `supply_cap` is not present then the theoretical maximum supply is infinite for that asset."
+        },
+        {
+          "info": {
+            "name": "Network profiles data (experimental)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/profile/networks",
+            "params": [
+              {
+                "name": "networks",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of networks.<br/> By default profile data for all networks is returned. Mutually exclusive with `full_names` parameter."
+              },
+              {
+                "name": "full_names",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of network full names.<br/> By default profile data for all networks is returned. Mutually exclusive with `networks` parameter."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns profile data for networks.<br/> Results are ordered by `network`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

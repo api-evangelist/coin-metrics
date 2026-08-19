@@ -1,0 +1,2878 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Timeseries API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timeseries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Asset metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/asset-metrics",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets.<br/> Use the [/catalog-all-v2/asset-metrics](#operation/getCatalogAllV2AssetMetrics) endpoint for the full list of supported assets or specify asterisk (*) in order to get metrics for all supported assets."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/asset-metrics-v2.<br/> Use the [/catalog-all-v2/asset-metrics](#operation/getCatalogAllV2AssetMetrics) endpoint for the full list of supported metrics per asset."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the metrics. Supported values are `1b` (block by block), `1s` (one second), `1m` (one minute), `5m` (five minutes), `10m` (ten minutes), `1h` (one hour), `1d` (one day), `1d-ny-close` (one day at New York close time). Please refer to the `/catalog-v2/asset-metrics` endpoint for the full list.<br/> Use the [/catalog-all-v2/asset-metrics](#operation/getCatalogAllV2AssetMetrics) endpoint for the full list of supported frequencies per asset-metric pair."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Which metric values do you want to see. Applicable only for \"reviewable\" metrics. You can find them in the `/catalog-v2/asset-metrics` endpoint."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height` and `start_hash`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height` and `end_hash`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time` and `start_hash`."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time` and `end_hash`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_hash",
+                "value": "",
+                "type": "query",
+                "description": "The start hash indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time` and `start_height`."
+              },
+              {
+                "name": "end_hash",
+                "value": "",
+                "type": "query",
+                "description": "The end hash indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time` and `end_height`."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "min_confirmations",
+                "value": "",
+                "type": "query",
+                "description": "Specifies how many blocks behind the chain tip block by block metrics (`1b` frequency) are based on. Default for `btc` is `2` and `99` for `eth`. For example, a `min_confirmations` of `0` means metrics are being calculated for the block at the tip of the chain (the latest block received by our node) whereas a `min_confirmations` of `6` means that metrics are being applied to the block that is `6` blocks behind the chain tip (i.e., the 7th block if the chain tip is block 1)."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "How results will be sorted. Metrics with `1b` frequency are sorted by `(asset, height, block_hash)` tuples by default. Metrics with other frequencies are sorted by `(asset, time)` by default. If you want to sort `1d` metrics by `(time, asset)` you should choose `time` as value for the `sort` parameter.<br/> Sorting by `time` is useful if you request metrics for a set of assets."
+              },
+              {
+                "name": "limit_per_asset",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per asset result should contain. For example, this combination of parameters `assets=btc,eth&metrics=ReferenceRate&limit_per_asset=1` returns the latest `ReferenceRate` values for `btc` and `eth`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "null_as_zero",
+                "value": "",
+                "type": "query",
+                "description": "Nulls are represented as zeros in the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              },
+              {
+                "name": "ignore_forbidden_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"forbidden\" errors for the items you currently don't have access to."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns requested metrics for specified assets.<br/><br/> Results for block by block metrics (`1b` frequency) are ordered by tuple `(asset, height, block_hash)`, all other metrics are ordered by tuple `(asset, time)`. You can change the sorting using `sort` query parameter.<br/><br/> Supported output formats are `json` (default), `json_stream` and `csv`. Use the `format` query parameter to override it.<br/> To fetch the next page of results use `next_page_url` JSON response field or `x-next-page"
+        },
+        {
+          "info": {
+            "name": "Exchange metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/exchange-metrics",
+            "params": [
+              {
+                "name": "exchanges",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchange names or asterisk (*) for all supported exchanges."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/exchange-metrics-v2.<br/> Use the [/catalog-all-v2/exchange-metrics](#operation/getCatalogAllV2ExchangeMetrics) endpoint for the full list of supported metrics per exchange."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the exchange metrics. Supported values are `1h`, `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "How results will be sorted. Metrics are sorted by `(exchange, time)` by default. If you want to sort `1d` metrics by `(time, exchange)` you should choose `time` as value for the `sort` parameter.<br/> Sorting by `time` is useful if you request metrics for a set of exchanges."
+              },
+              {
+                "name": "limit_per_exchange",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per institution result should contain. For example, this combination of parameters `exchanges=binance,coinbase&metrics=volume_trusted_spot_usd_1h&limit_per_exchange=1` returns the latest `volume_trusted_spot_usd_1h` values for `binance` and `coinbase`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metrics for specified exchanges.<br/> Results are ordered by tuple `(exchange, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Exchange-asset metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/exchange-asset-metrics",
+            "params": [
+              {
+                "name": "exchange_assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchange-asset pairs or patterns like `exchange-*` or `*-asset`."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/exchange-asset-metrics-v2.<br/> Use the [/catalog-all-v2/exchange-asset-metrics](#operation/getCatalogAllV2ExchangeAssetMetrics) endpoint for the full list of supported metrics per exchange-asset combination."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the exchange-asset metrics. Supported values are `5m`, `1h`, `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "How results will be sorted. Metrics are sorted by `(exchange_asset, time)` by default. If you want to sort `1d` metrics by `(time, exchange_asset)` you should choose `time` as value for the `sort` parameter.<br/> Sorting by `time` is useful if you request metrics for a set of exchange-assets."
+              },
+              {
+                "name": "limit_per_exchange_asset",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per exchange_asset result should contain. For example, this combination of parameters `exchange_assets=binance-btc,coinbase-eth&metrics=volume_trusted_spot_usd_1h&limit_per_exchange_asset=1` returns the latest `volume_trusted_spot_usd_1h` values for `binance-btc` and `coinbase-eth`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metrics for specified exchange-asset.<br/> Results are ordered by tuple `(exchange_asset, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Exchange-pair metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/exchange-pair-metrics",
+            "params": [
+              {
+                "name": "exchange_pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchange-pairs or patterns like `exchange-*` or `*-pair`."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/exchange-pair-metrics.<br/> Use the [/catalog-all-v2/exchange-pair-metrics](#operation/getCatalogAllV2ExchangePairMetrics) endpoint for the full list of supported metrics per exchange-pair combination."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the exchange-pair metrics. Supported values are `1h`, `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_exchange_pair",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per exchange_pair result should contain. For example, this combination of parameters `exchange_pairs=binance-btc-usdt,coinbase-eth-usd&metrics=volatility_implied_skew_delta_05_1d_expiration&limit_per_exchange_pair=1` returns the latest `volatility_implied_skew_delta_05_1d_expiration` values for `binance-btc-usdt` and `coinbase-eth-usd`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metrics for specified exchange-pair.<br/> Results are ordered by tuple `(exchange_pair, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Market metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-metrics",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Use the [/catalog-all-v2/market-metrics](#operation/getCatalogAllV2MarketMetrics) endpoint for the full list of supported metrics per exchange-asset combination."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the market metrics. Supported values are `1m`, `5m`, `1h`, `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "How results will be sorted. Metrics are sorted by `(market, time)` by default. If you want to sort `1d` metrics by `(time, market)` you should choose `time` as value for the `sort` parameter.<br/> Sorting by `time` is useful if you request metrics for a set of markets."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              },
+              {
+                "name": "ignore_forbidden_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"forbidden\" errors for the items you currently don't have access to."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metrics for specified markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Pair metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/pair-metrics",
+            "params": [
+              {
+                "name": "pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset pairs or patterns like `btc-*`, or `*-btc`.<br/> Use a corresponding `/catalog-all-v2/pair-{dataType}` endpoint for the full list of supported pairs for a given data type."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/pair-metrics-v2.<br/> Use the [/catalog-all-v2/pair-metrics](#operation/getCatalogAllV2PairMetrics) endpoint for the full list of supported metrics per pair."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the pair metrics. Supported values are `1h`, `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "How results will be sorted. Metrics are sorted by `(pair, time)` by default. If you want to sort `1d` metrics by `(time, pair)` you should choose `time` as value for the `sort` parameter.<br/> Sorting by `time` is useful if you request metrics for a set of asset pairs."
+              },
+              {
+                "name": "limit_per_pair",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per pair result should contain. For example, this combination of parameters `pair=btc-usd,eth-usd&metrics=volume_trusted_spot_usd_1h&limit_per_pair=1` returns the latest `volume_trusted_spot_usd_1h` values for `btc-usd` and `eth-usd`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metrics for specified asset pairs.<br/> Results are ordered by tuple `(pair, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Pair candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/pair-candles",
+            "params": [
+              {
+                "name": "pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset pairs or patterns like `btc-*`, or `*-btc`.<br/> Use the [/catalog-all-v2/pair-candles](#operation/getCatalogAllV2PairCandles) endpoint for the full list of supported asset pairs."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`, and `1d-HH:00`. \\\nNote: The `timezone` parameter value will be taken into account when the `1d` or `1d-HH:00` frequency is specified.\n"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_pair",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per pair result should contain."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns candles for specified asset pairs.<br/> Results are ordered by tuple `(pair, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Protocol metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/protocol-metrics",
+            "params": [
+              {
+                "name": "protocols",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocols like `aave_v3` or `morpho_blue`."
+              },
+              {
+                "name": "chains",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocol chains like `ethereum` or `base`."
+              },
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocol markets like `core-weth` or `steakusdc`."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the protocol metrics. Supported values are `1d`, `1m`."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of protocol metrics like `supply_apy`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metrics for specified protocols.<br/> Results are ordered by tuple `(protocol, market)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Institution metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/institution-metrics",
+            "params": [
+              {
+                "name": "institutions",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of institutions, or wildcard (*) for all supported institutions.<br/> Note: the wildcards are not supported when `sort` parameter is set to `time`.<br/> Use the [/catalog-all-v2/institution-metrics](#operation/getCatalogAllV2InstitutionMetrics) endpoint for the full list of supported institutions."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://docs.coinmetrics.io/market-data/market-data-overview/institution-metrics-overview.<br/> Use the [/catalog-all-v2/institution-metrics](#operation/getCatalogAllV2InstitutionMetrics) endpoint for the full list of supported metrics per institution."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the institution metrics. Supported values are `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "How results will be sorted. Metrics are sorted by `(institution, time)` by default. If you want to sort `1d` metrics by `(time, institution)` you should choose `time` as value for the `sort` parameter.<br/> Sorting by `time` is useful if you request metrics for a set of institutions.<br/> Note: sorting by `time` is not supported when wildcards are used."
+              },
+              {
+                "name": "limit_per_institution",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per institution result should contain. For example, this combination of parameters `institutions=institution1,institution2&metrics=total_assets&limit_per_institution=1` returns the latest `total_assets` values for `institution1` and `institution2`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metrics for specified institutions.<br/> Results are ordered by tuple `(institution, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Market trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-trades",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "min_confirmations",
+                "value": "",
+                "type": "query",
+                "description": "Specifies how many blocks behind the chain tip trades are based on. Default is `2`. For example, a `min_confirmations` of `0` means trades are being collected for all blocks up to the block at the tip of the chain (the latest block received by our node) whereas a `min_confirmations` of `6` means that trades are being collected for all blocks up to the block that is `6` blocks behind the chain tip (i.e., the 7th block if the chain tip is block 1). Currently available only for DeFi markets."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns trades for specified markets.<br/> Results are ordered by tuple `(market, time, coin_metrics_id)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "Market open interest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-openinterest",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Downsampling granularity of market open interest. Supported values are `raw`, `1m`, `1h`, and `1d`."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns open interest for specified futures markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field. Keep in mind that spot markets are not supported by this endpoint.<br/><br/> <b>Note:</b> The `value_usd` field in this endpoint was previously calculated using hardcoded logic that no longer reflects current contract specifications across all exchanges.<br/><br/> To address this, we have deprecated the `value_usd"
+        },
+        {
+          "info": {
+            "name": "Market liquidations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-liquidations",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns liquidations for specified futures markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field. Keep in mind that spot markets are not supported by this endpoint."
+        },
+        {
+          "info": {
+            "name": "Market funding rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-funding-rates",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns funding rates for specified futures markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field. Keep in mind that spot markets are not supported by this endpoint."
+        },
+        {
+          "info": {
+            "name": "Predicted Market funding rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-funding-rates-predicted",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns predicted funding rates for specified futures markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field. Keep in mind that spot markets are not supported by this endpoint."
+        },
+        {
+          "info": {
+            "name": "Market orderbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-orderbooks",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Downsampling granularity of market order books and quotes. Supported values are `raw`, `1m`, `1h`, and `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results. Maximum value for unlimited order books is 100.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "depth_limit",
+                "value": "",
+                "type": "query",
+                "description": "Book depth limit. Supported values are between 1 and 30000, `10pct_mid_price` or `full_book`."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Logical order book dataset to return.<br/><br/> `snapshots` (default) returns snapshot rows only.<br/><br/> `updates` returns Book Streams snapshot/update rows for migrated exchanges.<br/><br/> Caveats:<br/> <ul>\n    <li>`dataset=updates` is currently supported for `full_book` and `30000` depths, `raw` granularity, `json_stream` format, `paging_from=start`, and migrated exchanges only.</li>\n    <li>When the `updates` dataset is requested, there are no guarantees on how snapshots are placed inside the data. Snapshots can appear at arbitrary timestamps and at irregular intervals.</li>\n    <li>Clients should reset their order book state on every snapshot row, not only on the first one. Snapshots may be emitted mid-stream, for example when the upstream feed is switched, and can carry book state that differs from prior updates. Treating every snapshot as a full state replacement is always safe while skipping snapshots is not.</li>\n    <li>When the `updates` dataset is requested, the response may contain redundant snapshots that do not change order book state and are there for state synchronization. Such redundant snapshots have the same timestamp and `coin_metrics_id` as the previous row. Clients may use this to detect redundant snapshots, but the safe default is still to reset state on every snapshot.</li>\n</ul>"
+              },
+              {
+                "name": "start_with_snapshot",
+                "value": "",
+                "type": "query",
+                "description": "Applies only when `dataset=updates`.<br/><br/> When `false` (default), rows are returned from the exact readable range. This is useful when the order book state is already initialized so the timestamp of the last row received can be used to resume downloading order book data.<br/><br/> When `true`, the response starts with a snapshot row when one is available at or before the effective dataset start. This is useful for order book state initialization. The API may include a snapshot from before `start_time` so client state can be initialized before the first update row is applied.<br/><br/> This parameter is ignored when `dataset=snapshots`."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns orderbooks for specified markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "Market quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-quotes",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Downsampling granularity of market order books and quotes. Supported values are `raw`, `1m`, `1h`, and `1d`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "include_one_sided",
+                "value": "",
+                "type": "query",
+                "description": "Include one-side and empty books in quotes response."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns quotes for specified markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "Market candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-candles",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`, and `1d-HH:00`. \\\nNote: The `timezone` parameter value will be taken into account when the `1d` or `1d-HH:00` frequency is specified.\n"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              },
+              {
+                "name": "ignore_forbidden_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"forbidden\" errors for the items you currently don't have access to."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns candles for specified markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> Coin Metrics derives candles directly from trades. Candles are only generated if there are trades in the underlying interval. Therefore, gaps in candles data through time are normal and to be expected. To construct gapless candles, the client should fill forward candles through time, setting the open, high, low, and close "
+        },
+        {
+          "info": {
+            "name": "Market contract prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-contract-prices",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Downsampling granularity of market contract prices. Supported values are `raw`, `1m`, `1h`, and `1d`."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns contract prices for specified markets. This includes index price and mark price that are used by the exchange for settlement and risk management purposes.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Market implied volatility",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-implied-volatility",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Downsampling granularity of market implied volatility. Supported values are `raw`, `1m`, `1h`, and `1d`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns implied volatility for specified markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> Implied volatility is calculated using an options pricing model. It represents the market's expectation of future volatility and is the value, when input to an options pricing model, that makes the actual options price equal to its theoretical price."
+        },
+        {
+          "info": {
+            "name": "Market greeks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/market-greeks",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_market",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per market result should contain. It is useful when multiple markets are requested."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Downsampling granularity of market greeks. Supported values are `raw`, `1m`, `1h`, and `1d`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns greeks for option markets.<br/> Results are ordered by tuple `(market, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> Option greeks represent the sensitivity of the price of an options contract with respect to changes in its underlying parameters. Greeks are used in risk management and hedging so that market participants can achieve their desired exposure."
+        },
+        {
+          "info": {
+            "name": "Index candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/index-candles",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes, or patterns like `CMBI*`, or `*BTC`.<br/> Use the [/catalog-all-v2/index-candles](#operation/getCatalogAllV2IndexCandles) endpoint for the full list of supported indexes."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`, and `1d-HH:00`. \\\nNote: The `timezone` parameter value will be taken into account when the `1d` or `1d-HH:00` frequency is specified.\n"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_index",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per index result should contain. It is useful when multiple indexes are requested."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns candles for specified indexes.<br/> Results are ordered by tuple `(index, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/>"
+        },
+        {
+          "info": {
+            "name": "Index levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/index-levels",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes, or patterns like `CMBI*`, or `*BTC`.<br/> Use the [/catalog-all-v2/index-levels](#operation/getCatalogAllV2IndexLevels) endpoint for the full list of supported indexes."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the index. Supported values are `1s`, `15s`, `1h`, `1d-ny-close`, `1d-sg-close`, `1d`, `1d-HH:00`.<br/> Use the [/catalog-all-v2/index-levels](#operation/getCatalogAllV2IndexLevels) endpoint for the full list of supported frequencies per index."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Downsampling granularity for the data of a given native frequency. Granularity applied to external indexes only. Ignored for the indexes calculated by Coin Metrics. Possible values are `raw`, `1d-ny-close`, `1d-ny-close-last-second`, `1d-ldn-close`, `1d-ldn-close-last-second`, `1d-sg-close`, `1d-sg-close-last-second`, or custom offsets (e.g., `1d-16:00`)."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "limit_per_index",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per index result should contain. It is useful when multiple indexes are requested."
+              },
+              {
+                "name": "include_verification",
+                "value": "",
+                "type": "query",
+                "description": "If set to true, includes information about verification."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`, `csv`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns levels for specified indexes.<br/> Results are ordered by tuple `(index, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "Index constituents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/index-constituents",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes, or patterns like `CMBI*`, or `*BTC`.<br/> Use the [/catalog-all-v2/index-levels](#operation/getCatalogAllV2IndexLevels) endpoint for the full list of supported indexes."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of index constituents. Supported values are `1h`, `1d`, `1d-ny-close`, `1d-ny-midday`, `1d-sg-close`.<br/> If omitted, only changed constituents are returned."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns constituents and weights for specified indexes.<br/> Results are ordered by tuple `(index, time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "Mining pool tips summary (experimental)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/mining-pool-tips-summary",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns mining pool tips summaries for the specified assets.<br/> Lists last tips that we saw in all mining pools that were active during the past hour.<br/> A new summary is created when we detect any change in current tips across all mining pools.<br/> This endpoint is useful for those who want to track forks and reorgs by visualizing the distribution of currently active tips between mining pools.<br/> Results are ordered by tuple `(asset, time)`.<br/> To fetch the next page of results use `ne"
+        },
+        {
+          "info": {
+            "name": "Asset chains (experimental)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/asset-chains",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns the chains of blocks for the specified assets.<br/> Lists all the chains that were active in the blockchain during the time that's enough to produce the number of blocks considered as an industry-standard number of confirmations.<br/> A new entry is created when we detect any new block anywhere in the chain.<br/> This endpoint is useful for those who want to quickly detect reorganizations or visualize currently active chains.<br/> If there are two or more active chains, then the response"
+        },
+        {
+          "info": {
+            "name": "Mempool feerates (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/mempool-feerates",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of mempool feerate snapshots per single page of results."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns mempool feerates for the specified assets.<br/> This endpoint is useful for those who want to explore the history of the feerate distribution and potentially select the time period with the lowest commissions.<br/> Results are ordered by `(asset, time)`.<br/> To fetch the next page of results use the `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "Asset alerts (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/asset-alerts",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+              },
+              {
+                "name": "alerts",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset alert names.<br/> Use the [/catalog-all/asset-alerts](#operation/getCatalogAllAssetAlerts) endpoint for the full list of supported asset alerts."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "include_heartbeats",
+                "value": "",
+                "type": "query",
+                "description": "If set to true, includes information about most recent time asset was successfully evaluated."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns asset alerts for the specified assets.<br/> This endpoint is useful for those who wants to track the breaches in the particular asset's Key Risk Indicator thresholds.<br/> An asset alert is issued once an alerting metric value either breaches it's Key Risk Indicator threshold or returns back to normal for a predefined period of time.<br/> Results are ordered by `(asset, time, alert)`.<br/> To fetch the next page of results use the `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "DeFi balance sheets (experimental)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries/defi-balance-sheets",
+            "params": [
+              {
+                "name": "defi_protocols",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of DeFi protocols like `aave_v2_eth` or protocol patterns like `aave_v2_*` or `aave_*_eth` or `*_eth`."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns Defi Balance Sheet records for specified DeFi protocols.</br> The data is being updated on an end-of-day frequency.</br> Results are ordered by tuple (`defi_protocol`, `block_height`).</br> To fetch the next page of results use the `next_page_url` JSON response field."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

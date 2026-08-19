@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blockchain Explorer Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Account balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.coinmetrics.io/v4/blockchain-job/account-balances",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Creates asynchronous job for retrieving account balances data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobAccountBalance](#schema/BlockchainJobAccountBalance) objects."
+        },
+        {
+          "info": {
+            "name": "Balance updates",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.coinmetrics.io/v4/blockchain-job/balance-updates",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Creates asynchronous job for retrieving balance updates data. Both `start_*` and `end_*` parameters must be specified (time or height).<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobBalanceUpdate](#schema/BlockchainJobBalanceUpdate) objects."
+        },
+        {
+          "info": {
+            "name": "Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.coinmetrics.io/v4/blockchain-job/transactions",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Creates asynchronous job for retrieving transactions data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobTransactionInfo](#schema/BlockchainJobTransactionInfo) objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

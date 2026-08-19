@@ -1,0 +1,1038 @@
+{
+  "item": [
+    {
+      "id": "31a7ca7a-b754-45c4-a2b9-0ab41ff241e0",
+      "name": "Blockchain Metadata",
+      "description": {
+        "content": "Blockchain metadata endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "011f3ce9-d1f4-4d37-bb85-9b08100be040",
+          "name": "List of all available locations",
+          "request": {
+            "name": "List of all available locations",
+            "description": {
+              "content": "Returns a list of all supported locations ordered lexicographically.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain-metadata",
+                "locations"
+              ],
+              "host": [
+                "{{blockchain-metadata-locations-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d42040b3-dcf9-495f-ba40-44719475fa1c",
+              "name": "List of locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-locations-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"location\": \"btc\"\n    },\n    {\n      \"location\": \"eth\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd04e730-cddf-4846-926f-dea259ea22f9",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-locations-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c097f3c-4911-4173-a14b-c715c86c3c5f",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-locations-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db7374d4-3bac-496b-9faa-dece6d628ab8",
+          "name": "List of all available owners",
+          "request": {
+            "name": "List of all available owners",
+            "description": {
+              "content": "Returns a list of all supported owners lexicographically ordered by the `owner_name` field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain-metadata",
+                "owners"
+              ],
+              "host": [
+                "{{blockchain-metadata-owners-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "43cecf36-f16f-453c-9804-23a0ca152d3e",
+              "name": "List of owners.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-owners-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"owner_name\": \"Coinbase\",\n      \"type\": \"EXCHANGE\"\n    },\n    {\n      \"owner_name\": \"1Hash\",\n      \"type\": \"MINING\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "131a0a66-1010-41cc-bd91-9f7143996c63",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-owners-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ed70ae0-e5b9-4db6-b827-5ef1660b0e7d",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-owners-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "712ef5fc-008b-4f71-bc88-97160f567b8b",
+          "name": "List of all available tags",
+          "request": {
+            "name": "List of all available tags",
+            "description": {
+              "content": "Returns a list of all available tags along with their descriptions, lexicographically ordered by the `tag` field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain-metadata",
+                "tags"
+              ],
+              "host": [
+                "{{blockchain-metadata-tags-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The type of a tag."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b41031c6-c22a-47db-8538-799826bf8ff4",
+              "name": "List of tags.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-tags-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"tag\": \"ADDRESS_IS_COLD_WALLET\",\n      \"type\": \"ENTITY\",\n      \"description\": \"Tag the ADDRESS as COLD wallet.\"\n    },\n    {\n      \"tag\": \"ADDRESS_IS_EXCHANGE\",\n      \"type\": \"ENTITY\",\n      \"description\": \"Tag the ADDRESS as EXCHANGE.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47fd5c4b-8504-4937-9c5f-17c36cc75cf8",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-tags-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df5ef7af-648b-4790-9632-4ab8ecb8f534",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-tags-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c10707b6-5f56-4136-b6cc-468eed5c776d",
+          "name": "The list of entities associated with provided tags",
+          "request": {
+            "name": "The list of entities associated with provided tags",
+            "description": {
+              "content": "Returns a list of all entities associated with provided tags. Ordered by tuple `(entity, tag, location, start_time)` if requested by providing `entities` parameter. Ordered by tuple `(tag, location, entity, started_time)` if requested by providing `tags` parameter. Ordered by tuple `(owner_name, location, entity, tag, timestamp_start)` if requested by providing `owner_name` parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain-metadata",
+                "tagged-entities"
+              ],
+              "host": [
+                "{{blockchain-metadata-tagged-entities-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of tags. Mutually exclusive with `entities` and `owner_names` parameter. Currently a single tag is allowed in a request."
+                },
+                {
+                  "disabled": false,
+                  "key": "entities",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of entities. Mutually exclusive with `tags` and `owner_names` parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "locations",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of entity locations (asset representation where the entity has been tagged). Currently a single entity location is allowed per each request."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_names",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of owner names. Mutually exclusive with `tags` and `entities` parameters. Currently a single owner name is allowed in a request."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ae50b046-57d8-45d7-b8dc-98c423354c0a",
+              "name": "List of tagged entities. Ordered by tuple `(entity, tag, location, start_time)` if requested by providing `entities` parameter. Ordered by tuple `(tag, location, entity, started_time)` if requested by providing `tags` parameter. Ordered by tuple `(owner_name, location, entity, tag, timestamp_start)` if requested by providing `owner_name` parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "tagged-entities"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-tagged-entities-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tags",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "entities",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "locations",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "owner_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"entity\": \"00000000000003441d59dde9a90bffb1cd3fabf1\",\n      \"tag\": \"ADDRESS_IS_CONTRACT\",\n      \"location\": \"eth\",\n      \"owner_name\": \"Coinbase\",\n      \"type\": \"ADDRESS\",\n      \"tagger_type\": \"COINMETRICS\",\n      \"tagger_method\": \"DETERMINISTIC\",\n      \"start_time\": \"2021-04-24T09:23:53.000000000Z\",\n      \"start_block_height\": \"12302098\",\n      \"start_block_hash\": \"3f18d476b03fca40a128b3a715f2f6da1056cf4dcc9ec24500f7a53acee4733b\"\n    },\n    {\n      \"entity\": \"00000000000006b2ab6decbc6fc7ec6bd2fbc720\",\n      \"tag\": \"ADDRESS_IS_CONTRACT\",\n      \"location\": \"eth\",\n      \"type\": \"ADDRESS\",\n      \"tagger_type\": \"COINMETRICS\",\n      \"tagger_method\": \"DETERMINISTIC\",\n      \"start_time\": \"2023-10-12T21:50:47.000000000Z\",\n      \"start_block_height\": \"18337128\",\n      \"start_block_hash\": \"5184d01e7ba0c8769553342bdf66b4a5aabb096ad4f5c754429733613a155ae5\"\n    }\n  ],\n  \"next_page_token\": \"0.MjAyMC0wNi0wOFQyMTowM\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/blockchain-metadata/tagged-entities?api_key=<your_key>&tags=ADDRESS_IS_CONTRACT&next_page_token=0.MjAyMC0wNi0wOFQyMTowM\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11be06cf-32ca-49f0-a4ed-9c88bd484e0f",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "tagged-entities"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-tagged-entities-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tags",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "entities",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "locations",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "owner_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a232450-f695-4ee0-bf6a-a8e56154ce0c",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain-metadata",
+                    "tagged-entities"
+                  ],
+                  "host": [
+                    "{{blockchain-metadata-tagged-entities-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tags",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "entities",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "locations",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "owner_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-metadata-locations-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-metadata-owners-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-metadata-tags-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-metadata-tagged-entities-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "e0b11b86-e368-4376-b715-91f8ac5d6540",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Blockchain Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,523 @@
+{
+  "item": [
+    {
+      "id": "5b8992a6-8855-48be-9f5c-75b1d1456872",
+      "name": "Constituent Timeframes",
+      "description": {
+        "content": "Endpoints for getting the timeframes of various constituents",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93580d81-338a-4260-817c-dc34e56e1257",
+          "name": "Timeframes of asset metric constituents",
+          "request": {
+            "name": "Timeframes of asset metric constituents",
+            "description": {
+              "content": "Returns timeframes of asset metric constituents. \\\nResults are sorted by tuple (`start_time`, `constituent_name`), where constituent depends on a target metric. \nE.g., the `volume_trusted_spot_usd_1d` metric constituents are exchanges, \ni.e. the output will be sorted by (`start_time`, `exchange`).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "constituent-timeframes",
+                "asset-metrics"
+              ],
+              "host": [
+                "{{constituent-timeframes-asset-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metric",
+                  "value": "<string>",
+                  "description": "(Required) Target metric name."
+                },
+                {
+                  "disabled": false,
+                  "key": "constituents",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>",
+                  "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>",
+                  "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "end",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bb4a5baa-dd53-43e9-8419-dd10e3fec52d",
+              "name": "List of timeframes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "constituent-timeframes",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{constituent-timeframes-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "constituents",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"exchange\": \"gemini\",\n      \"start_time\": \"2023-10-12T00:00:00.000000000Z\",\n      \"end_time\": null\n    },\n    {\n      \"exchange\": \"kraken\",\n      \"start_time\": \"2023-10-12T00:00:00.000000000Z\",\n      \"end_time\": null\n    },\n    {\n      \"exchange\": \"binance\",\n      \"start_time\": \"2023-04-01T00:00:00.000000000Z\",\n      \"end_time\": \"2023-10-12T00:00:00.000000000Z\"\n    },\n    {\n      \"exchange\": \"binance.us\",\n      \"start_time\": \"2023-04-01T00:00:00.000000000Z\",\n      \"end_time\": \"2023-10-12T00:00:00.000000000Z\"\n    },\n    {\n      \"exchange\": \"bitstamp\",\n      \"start_time\": \"2023-04-01T00:00:00.000000000Z\",\n      \"end_time\": \"2023-10-12T00:00:00.000000000Z\"\n    }\n  ],\n  \"next_page_token\": \"0.MjAxNy0wNS0yMlQwMDowMDowMFo\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/constituent-timeframes/asset-metrics?metric=volume_trusted_spot_usd_1d&pretty=true&page_size=5&api_key=<your_key>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68e8cbe0-875a-4495-b466-9dbc0fb9e26d",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "constituent-timeframes",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{constituent-timeframes-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "constituents",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc11fe89-cbb6-4942-bb02-d084ca5b9e92",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "constituent-timeframes",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{constituent-timeframes-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "constituents",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fead7e01-f97d-444b-8bc9-cece91c0bc98",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "constituent-timeframes",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{constituent-timeframes-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "constituents",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f15a7ba-0b74-4388-be0b-0e1e24696235",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "constituent-timeframes",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{constituent-timeframes-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metric",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "constituents",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "constituent-timeframes-asset-metrics-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "103a54c9-620a-49da-a2a0-b0aed2b4618b",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Constituent Timeframes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+      "type": "text/plain"
+    }
+  }
+}

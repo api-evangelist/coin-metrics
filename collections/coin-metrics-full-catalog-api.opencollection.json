@@ -1,0 +1,1621 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Full catalog API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Full catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Supported assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/assets",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to include in response. Supported values are `metrics`, `markets`, `exchanges`. Included by default if omitted."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to exclude from response. Supported values are `metrics`, `markets`, `exchanges`. Included by default if omitted."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported assets along with information for them like metrics, markets, exchanges and time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "reviewable",
+                "value": "",
+                "type": "query",
+                "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported metrics along with information for them like description, category and assets for which a metric is available.</br>This endpoint is deprecated, please use [/catalog-all/asset-metrics](#operation/getCatalogAllAssetMetrics) instead."
+        },
+        {
+          "info": {
+            "name": "Supported asset metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/asset-metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "reviewable",
+                "value": "",
+                "type": "query",
+                "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported asset metrics along with information for them like description, category and assets for which a metric is available."
+        },
+        {
+          "info": {
+            "name": "Supported exchange metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/exchange-metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "reviewable",
+                "value": "",
+                "type": "query",
+                "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported exchange metrics along with information for them like description, category and exchanges for which a metric is available."
+        },
+        {
+          "info": {
+            "name": "Supported exchange-asset metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/exchange-asset-metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "reviewable",
+                "value": "",
+                "type": "query",
+                "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported exchange-asset metrics along with information for them like description, category and exchange-asset pairs for which a metric is available."
+        },
+        {
+          "info": {
+            "name": "Supported pair metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/pair-metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "reviewable",
+                "value": "",
+                "type": "query",
+                "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported pair metrics along with information for them like description, category and pairs for which a metric is available."
+        },
+        {
+          "info": {
+            "name": "Supported institution metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/institution-metrics",
+            "params": [
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of metrics. By default all metrics are returned."
+              },
+              {
+                "name": "reviewable",
+                "value": "",
+                "type": "query",
+                "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported institution metrics along with information for them like description, category and institutions for which a metric is available."
+        },
+        {
+          "info": {
+            "name": "Supported exchanges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/exchanges",
+            "params": [
+              {
+                "name": "exchanges",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchanges. By default all exchanges are returned. Supports the following formats: `<exchange>` - Coin Metrics exchange name (e.g., `binance`), `<namespace>:<name>` - External provider market name (e.g., `talos:binance`), `<namespace>:by-id:<id>` - External provider numeric market ID (e.g., `talos:by-id:1003`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by numeric ID rather than name."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported exchanges along with available markets for them."
+        },
+        {
+          "info": {
+            "name": "Supported exchange-asset pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/exchange-assets",
+            "params": [
+              {
+                "name": "exchange_assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of exchange-assets. By default, all exchange-assets pairs are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported exchange-asset pairs along with information for them like metrics and time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported asset pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/pairs",
+            "params": [
+              {
+                "name": "pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset pairs. By default, all asset pairs are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported asset pairs along with information for them like metrics and time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported asset pair candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/pair-candles",
+            "params": [
+              {
+                "name": "pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset pairs. By default, all asset pairs are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported asset pair candles along with the time ranges of available data per candle duration."
+        },
+        {
+          "info": {
+            "name": "Supported institutions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/institutions",
+            "params": [
+              {
+                "name": "institutions",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of institutions. By default, all institutions are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all support institutions along with information for them like metrics and time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported markets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/markets",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to include in response. Supported values are `trades`, `orderbooks`, `quotes`, `funding_rates`, `openinterest`, `liquidations`. Included by default if omitted."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to exclude from response. Supported values are `trades`, `orderbooks`, `quotes`, `funding_rates`, `openinterest`, `liquidations`. Included by default if omitted."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported markets along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-trades",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with trades support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-candles",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with candles support along with time ranges of available data per candle duration."
+        },
+        {
+          "info": {
+            "name": "Supported market orderbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-orderbooks",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with orderbooks support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-quotes",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with quotes support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market funding rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-funding-rates",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with funding rates support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market contract prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-contract-prices",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all market contract prices for option market."
+        },
+        {
+          "info": {
+            "name": "Supported market implied volatility",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-implied-volatility",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all market implied volatility for option market."
+        },
+        {
+          "info": {
+            "name": "Supported market greeks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-greeks",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all market greeks for option market."
+        },
+        {
+          "info": {
+            "name": "Supported market open interest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-openinterest",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with open interest support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market liquidations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-liquidations",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with liquidations support along with the time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported market metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/market-metrics",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets. By default all markets are returned."
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Unique name of an exchange."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of markets."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base asset of markets."
+              },
+              {
+                "name": "quote",
+                "value": "",
+                "type": "query",
+                "description": "Quote asset of markets."
+              },
+              {
+                "name": "asset",
+                "value": "",
+                "type": "query",
+                "description": "Any asset of markets."
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Symbol of derivative markets, full instrument name."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the response. Supported values are `json`, `json_stream`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of response items. `none` means no limit. Maximum value is 100."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all markets with market metrics support along with time ranges of available data per metric."
+        },
+        {
+          "info": {
+            "name": "Supported indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/indexes",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes. By default all indexes are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported indexes along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported index candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/index-candles",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes. By default all indexes are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported index candles along with the time ranges of available data per candle duration."
+        },
+        {
+          "info": {
+            "name": "Supported asset alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/asset-alerts",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "alerts",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset alert names. By default all asset alerts are returned."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of all supported asset alerts along with their descriptions, thresholds and constituents."
+        },
+        {
+          "info": {
+            "name": "Supported asset chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/asset-chains",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of supported assets for the asset-chains endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported mempool feerates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/mempool-feerates",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of supported assets for the mempool-feerates endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported mining pool tips summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/mining-pool-tips-summary",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of supported assets for the mining-pool-tips-summary endpoint along with time ranges of available data."
+        },
+        {
+          "info": {
+            "name": "Supported transaction tracker assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/catalog-all/transaction-tracker",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of supported assets for the transaction-tracker endpoint along with time ranges of available data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

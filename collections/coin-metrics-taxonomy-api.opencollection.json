@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Taxonomy API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Taxonomy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Taxonomy for assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/taxonomy/assets",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets."
+              },
+              {
+                "name": "class_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of class identifiers."
+              },
+              {
+                "name": "sector_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of sector identifiers."
+              },
+              {
+                "name": "subsector_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of subsector identifiers."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Taxonomy version. Defaults to `latest` when no `*_time` parameters specified. Specify asterisk `*` in order to get all versions."
+              },
+              {
+                "name": "classification_start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start time of taxonomy asset classification.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>"
+              },
+              {
+                "name": "classification_end_time",
+                "value": "",
+                "type": "query",
+                "description": "End time of taxonomy asset classification.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>"
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns Taxonomy for assets.<br/> Results are ordered by tuple `(asset, classification_start_time)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

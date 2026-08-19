@@ -1,0 +1,4930 @@
+{
+  "item": [
+    {
+      "id": "31eb3f7d-77b6-4b08-85ac-ff75761a8bf8",
+      "name": "Reference Data",
+      "description": {
+        "content": "Metadata information of entities supported by Coin Metrics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68fd1ec5-4418-4c6d-a3e1-3ead5593b693",
+          "name": "Assets",
+          "request": {
+            "name": "Assets",
+            "description": {
+              "content": "Returns a list of assets metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "assets"
+              ],
+              "host": [
+                "{{reference-data-assets-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assets",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list of namespaces to include in response. Currently, the only supported value is `talos`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5fbf47f9-bf09-419b-8b47-de4c5b1b0b6c",
+              "name": "List of assets metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{reference-data-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"asset\": \"btc\",\n      \"full_name\": \"Bitcoin\",\n      \"talos\": [\n        {\n          \"cm_ext_asset\": \"talos:BTC\",\n          \"cm_ext_asset_by_id\": \"talos:by-id:24\",\n          \"symbol\": \"BTC\",\n          \"currency_id\": \"24\",\n          \"description\": \"Bitcoin\"\n        }\n      ]\n    },\n    {\n      \"asset\": \"eth\",\n      \"full_name\": \"Ethereum\",\n      \"talos\": [\n        {\n          \"cm_ext_asset\": \"talos:ETH\",\n          \"cm_ext_asset_by_id\": \"talos:by-id:17\",\n          \"symbol\": \"ETH\",\n          \"currency_id\": \"17\",\n          \"description\": \"Ethereum\"\n        }\n      ]\n    },\n    {\n      \"asset\": \"sol\",\n      \"full_name\": \"Solana\",\n      \"talos\": [\n        {\n          \"cm_ext_asset\": \"talos:SOL\",\n          \"cm_ext_asset_by_id\": \"talos:by-id:653\",\n          \"symbol\": \"SOL\",\n          \"currency_id\": \"653\",\n          \"description\": \"Solana\"\n        }\n      ]\n    }\n  ],\n  \"next_page_token\": \"ZXRo\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/assets?api_key=<your_key>&page_size=2&next_page_token=ZXRo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb734415-16a1-43fa-8942-37c518f7d428",
+              "name": "Asset not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{reference-data-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'assets'. Value 'sdvwbtc' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97c5861f-9111-4d84-b3ee-22803c4e458f",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{reference-data-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "910f3180-3db7-4a9d-850a-c7e3d4858d3a",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{reference-data-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b37a4aad-99d3-480b-9ed1-b9787d0fbb1c",
+          "name": "Exchanges",
+          "request": {
+            "name": "Exchanges",
+            "description": {
+              "content": "Returns a list of exchanges metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "exchanges"
+              ],
+              "host": [
+                "{{reference-data-exchanges-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exchanges",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of exchanges. By default all exchanges are returned. Supports the following formats: `<exchange>` - Coin Metrics exchange name (e.g., `binance`), `<namespace>:<name>` - External provider market name (e.g., `talos:binance`), `<namespace>:by-id:<id>` - External provider numeric market ID (e.g., `talos:by-id:1003`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by numeric ID rather than name."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list of namespaces to include in response. Currently, the only supported value is `talos`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "01cd7742-76c0-485b-87b8-04a14c1ee990",
+              "name": "List of exchanges metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchanges"
+                  ],
+                  "host": [
+                    "{{reference-data-exchanges-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exchanges",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"exchange\": \"binance\",\n      \"full_name\": \"Binance\"\n    },\n    {\n      \"exchange\": \"bittrex\",\n      \"full_name\": \"Bittrex\"\n    }\n  ],\n  \"next_page_token\": \"YnliaXQ\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/exchanges?api_key=<your_key>&page_size=2&next_page_token=YnliaXQ\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de4cba57-437f-4069-86b7-0e7a5c7c88e6",
+              "name": "Exchange not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchanges"
+                  ],
+                  "host": [
+                    "{{reference-data-exchanges-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exchanges",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'id'. Exchange 'sdvwbtc' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba0edcda-d9c1-4f19-bd9d-84cc8af7694e",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchanges"
+                  ],
+                  "host": [
+                    "{{reference-data-exchanges-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exchanges",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35d5572e-808b-4d79-b03b-acac0b01d0f1",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchanges"
+                  ],
+                  "host": [
+                    "{{reference-data-exchanges-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exchanges",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95236ef1-8fd4-45c2-a355-07224e0033dd",
+          "name": "Markets",
+          "request": {
+            "name": "Markets",
+            "description": {
+              "content": "Returns a list of markets metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "markets"
+              ],
+              "host": [
+                "{{reference-data-markets-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of markets. By default all markets are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "exchange",
+                  "value": "<string>",
+                  "description": "Unique name of an exchange."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Type of markets."
+                },
+                {
+                  "disabled": false,
+                  "key": "base",
+                  "value": "<string>",
+                  "description": "Base asset of markets."
+                },
+                {
+                  "disabled": false,
+                  "key": "quote",
+                  "value": "<string>",
+                  "description": "Quote asset of markets."
+                },
+                {
+                  "disabled": false,
+                  "key": "asset",
+                  "value": "<string>",
+                  "description": "Any asset of markets."
+                },
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "Symbol of derivative markets, full instrument name."
+                },
+                {
+                  "disabled": false,
+                  "key": "asset_class",
+                  "value": "<string>",
+                  "description": "Asset class of markets."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_type",
+                  "value": "<string>",
+                  "description": "Source type of exchange."
+                },
+                {
+                  "disabled": false,
+                  "key": "cusip",
+                  "value": "<string>",
+                  "description": "CUSIP identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time."
+                },
+                {
+                  "disabled": false,
+                  "key": "figi",
+                  "value": "<string>",
+                  "description": "FIGI identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time."
+                },
+                {
+                  "disabled": false,
+                  "key": "isin",
+                  "value": "<string>",
+                  "description": "ISIN identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list of namespaces to include in response. Currently, the only supported value is `talos`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "70e03ffe-a6a8-4e70-b68c-285f51b7a21e",
+              "name": "List of markets metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "markets"
+                  ],
+                  "host": [
+                    "{{reference-data-markets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exchange",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quote",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cusip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "figi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"market\": \"binance-btc-usdt-spot\",\n      \"exchange\": \"binance\",\n      \"type\": \"spot\",\n      \"base\": \"btc\",\n      \"quote\": \"usdt\",\n      \"pair\": \"btc-usdt\",\n      \"symbol\": \"BTCUSDT\"\n    },\n    {\n      \"market\": \"binance-1000FLOKIUSDT-future\",\n      \"exchange\": \"binance\",\n      \"type\": \"future\",\n      \"base\": \"floki\",\n      \"quote\": \"usdt\",\n      \"pair\": \"floki-usdt\",\n      \"symbol\": \"1000FLOKIUSDT\",\n      \"size_asset\": \"floki\",\n      \"margin_asset\": \"usdt\",\n      \"contract_size\": \"1000\",\n      \"tick_size\": \"0.00001\",\n      \"listing\": \"2023-05-06T00:00:00.000000000Z\",\n      \"order_amount_increment\": \"1\",\n      \"order_amount_min\": \"1\",\n      \"order_amount_max\": \"10000000\",\n      \"order_price_increment\": \"0.0000100\",\n      \"order_price_min\": \"0.0000100\",\n      \"order_price_max\": \"200\",\n      \"order_size_min\": \"5.0\"\n    },\n    {\n      \"market\": \"deribit-BTC-10DEC22-17500-C-option\",\n      \"exchange\": \"deribit\",\n      \"type\": \"option\",\n      \"base\": \"btc\",\n      \"quote\": \"usd\",\n      \"pair\": \"btc-usd\",\n      \"symbol\": \"BTC-10DEC22-17500-C\",\n      \"size_asset\": \"btc\",\n      \"strike\": \"17500\",\n      \"option_contract_type\": \"call\",\n      \"is_european\": true,\n      \"contract_size\": \"1\",\n      \"listing\": \"2022-12-08T08:01:00.000000000Z\",\n      \"expiration\": \"2022-12-10T08:00:00.000000000Z\",\n      \"settlement_price\": \"17160.85\",\n      \"status\": \"offline\",\n      \"order_amount_min\": \"0.1\",\n      \"order_price_increment\": \"0.0005\",\n      \"order_taker_fee\": \"0.0003\",\n      \"order_maker_fee\": \"0.0003\"\n    }\n  ],\n  \"next_page_token\": \"ZGVyaWJpdC1CVEMtMTBERUMyMi0xNzUwMC1QLW9wdGlvbg\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/markets?api_key=<your_key>&page_size=3&next_page_token=ZGVyaWJpdC1CVEMtMTBERUMyMi0xNzUwMC1QLW9wdGlvbg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9969f14d-ff0b-4c24-a830-162f56851f91",
+              "name": "Market not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "markets"
+                  ],
+                  "host": [
+                    "{{reference-data-markets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exchange",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quote",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cusip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "figi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'markets'. Market 'sdvwbtc-as-asd-spot' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9c4974d-c098-471f-9c5b-8c0b784a1639",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "markets"
+                  ],
+                  "host": [
+                    "{{reference-data-markets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exchange",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quote",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cusip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "figi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66d2d532-f85f-4348-851c-b34a237262fb",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "markets"
+                  ],
+                  "host": [
+                    "{{reference-data-markets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exchange",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "quote",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cusip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "figi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d44aadb3-018f-4a09-a3ad-c6a8e2c1680d",
+          "name": "Indexes",
+          "request": {
+            "name": "Indexes",
+            "description": {
+              "content": "Returns a list of indexes metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "indexes"
+              ],
+              "host": [
+                "{{reference-data-indexes-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "indexes",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of indexes. By default all indexes are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d6bc4797-992d-4926-86f1-59c34011e103",
+              "name": "List of indexes metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{reference-data-indexes-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"index\": \"CMBIBTCT\",\n      \"full_name\": \"CMBI Bitcoin Total Return Index\",\n      \"description\": \"A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin as well as liquidating legitimate forked assets.\",\n      \"type\": \"single_asset\"\n    },\n    {\n      \"index\": \"CMBIBTCV\",\n      \"full_name\": \"CMBI Bitcoin Index\",\n      \"description\": \"A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin.\"\n    }\n  ],\n  \"next_page_token\": \"Q01CSURFWEU\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/indexes?api_key=<your_key>&page_size=2&next_page_token=Q01CSURFWEU\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91c63c51-c810-42f7-8d58-5894afc62256",
+              "name": "Index not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{reference-data-indexes-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'indexes'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "479dc0cd-02a8-4143-b679-cb218ac278e7",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{reference-data-indexes-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e14ed51-68a9-402f-b7b7-5fe1cc2fab16",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{reference-data-indexes-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "indexes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "932010ff-064c-4297-8315-4c120385af42",
+          "name": "Protocols",
+          "request": {
+            "name": "Protocols",
+            "description": {
+              "content": "Returns a list of blockchain protocol metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "protocols"
+              ],
+              "host": [
+                "{{reference-data-protocols-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "protocols",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of protocols like `aave_v3` or `morpho_blue`."
+                },
+                {
+                  "disabled": false,
+                  "key": "chains",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of protocol chains like `ethereum` or `base`."
+                },
+                {
+                  "disabled": false,
+                  "key": "markets",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of protocol markets like `core-weth` or `steakusdc`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b41c941-5906-414b-a444-0be28a4d3a18",
+              "name": "Protocol metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "protocols"
+                  ],
+                  "host": [
+                    "{{reference-data-protocols-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocols",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "chains",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"market\": \"core-weth\",\n      \"full_name\": \"Core Aave Market Wrapped Ether\",\n      \"protocol\": \"aave_v3\",\n      \"type\": \"aave_pool\",\n      \"chains\": [\n        {\n          \"chain\": \"ethereum\",\n          \"address\": \"0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2\",\n          \"asset\": \"weth\",\n          \"asset_address\": \"0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\",\n          \"asset_decimals\": \"18\",\n          \"configurator_address\": \"0x64b761d848206f447fe2dd461b0c635ec39ebb27\",\n          \"atoken_address\": \"0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8\",\n          \"atoken_asset\": \"aethweth_v3_eth\",\n          \"variable_debt_token_address\": \"0xea51d7853eefb32b6ee06b1c12e6dcca88be0ffe\",\n          \"variable_debt_asset\": \"vethweth_v3_eth\",\n          \"stable_debt_token_address\": \"0x102633152313c81cd80419b6ecf66d14ad68949a\"\n        }\n      ]\n    },\n    {\n      \"market\": \"steakusdc\",\n      \"full_name\": \"Steakhouse USDC\",\n      \"protocol\": \"morpho_blue\",\n      \"type\": \"morpho_vault\",\n      \"chains\": [\n        {\n          \"chain\": \"ethereum\",\n          \"address\": \"0xbeef01735c132ada46aa9aa4c54623caa92a64cb\",\n          \"asset\": \"usdc\",\n          \"asset_address\": \"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\n          \"asset_decimals\": \"6\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7ee6394-43d5-4447-a257-806434ff49b4",
+              "name": "Protocol not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "protocols"
+                  ],
+                  "host": [
+                    "{{reference-data-protocols-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocols",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "chains",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'protocols'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8068d11d-c715-4298-b23c-a786a8670496",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "protocols"
+                  ],
+                  "host": [
+                    "{{reference-data-protocols-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocols",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "chains",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "267b0e06-4b24-44cb-ac55-05a82f3a3f43",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "protocols"
+                  ],
+                  "host": [
+                    "{{reference-data-protocols-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "protocols",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "chains",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "markets",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b34b991-5ee6-495b-961d-2c65b89ee445",
+          "name": "Pairs",
+          "request": {
+            "name": "Pairs",
+            "description": {
+              "content": "Returns a list of pairs metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "pairs"
+              ],
+              "host": [
+                "{{reference-data-pairs-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pairs",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of asset pairs. By default, all asset pairs are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b5117641-829f-4a44-8ce8-63fba2d244ac",
+              "name": "List of pairs metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pairs"
+                  ],
+                  "host": [
+                    "{{reference-data-pairs-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pairs",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"pair\": \"btc-eur\",\n      \"full_name\": \"Bitcoin - Euro\"\n    },\n    {\n      \"pair\": \"btc-usdt\",\n      \"full_name\": \"Bitcoin - Tether\"\n    }\n  ],\n  \"next_page_token\": \"ZXRoLXVzZHQ\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/pairs?api_key=<your_key>&page_size=2&next_page_token=ZXRoLXVzZHQ\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a28bb1d0-609f-41fe-a740-acaaf1d1fef4",
+              "name": "Pair not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pairs"
+                  ],
+                  "host": [
+                    "{{reference-data-pairs-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pairs",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'pairs'. Value 'sdvwbtc' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7a14e7c-4ffc-4d61-8d03-f74318ce80ad",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pairs"
+                  ],
+                  "host": [
+                    "{{reference-data-pairs-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pairs",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acbbe4a6-4a91-4fe6-8dea-02f0c9454ea3",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pairs"
+                  ],
+                  "host": [
+                    "{{reference-data-pairs-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pairs",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40063f84-5d94-403a-b983-7b4b90326534",
+          "name": "Asset metrics",
+          "request": {
+            "name": "Asset metrics",
+            "description": {
+              "content": "Returns a list of asset metrics metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "asset-metrics"
+              ],
+              "host": [
+                "{{reference-data-asset-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "reviewable",
+                  "value": "<boolean>",
+                  "description": "Limit to human-reviewable metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "38eebf28-422c-4d66-ba27-bbc8b3c369c4",
+              "name": "List of asset metrics metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "reviewable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"AdrAct30dCnt\",\n      \"full_name\": \"Addresses, active, monthly, count\",\n      \"description\": \"The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) in the trailing 30 days up to the end of that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.\",\n      \"product\": \"Network Data\",\n      \"category\": \"Addresses\",\n      \"subcategory\": \"Active\",\n      \"unit\": \"Addresses\",\n      \"data_type\": \"bigint\",\n      \"type\": \"Sum\",\n      \"display_name\": \"Active Monthly Addr Cnt\",\n      \"docs_url\": \"https://docs.coinmetrics.io/network-data/network-data-overview/addresses/active-addresses\"\n    },\n    {\n      \"metric\": \"AdrAct7dCnt\",\n      \"full_name\": \"Addresses, active, weekly, count\",\n      \"description\": \"The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) in the trailing 7 days up to the end of that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if active several times in the considered interval.\",\n      \"product\": \"Network Data\",\n      \"category\": \"Addresses\",\n      \"subcategory\": \"Active\",\n      \"unit\": \"Addresses\",\n      \"data_type\": \"bigint\",\n      \"type\": \"Sum\",\n      \"display_name\": \"Active Weekly Addr Cnt\",\n      \"docs_url\": \"https://docs.coinmetrics.io/network-data/network-data-overview/addresses/active-addresses\"\n    }\n  ],\n  \"next_page_token\": \"QWRyQWN0Q250\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/asset-metrics?api_key=<your_key>&page_size=2&next_page_token=QWRyQWN0Q250\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2366a200-a1be-47f1-a120-c401c5149b62",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "reviewable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5de8d26e-8aad-44f1-88d3-b1950b084ee3",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "reviewable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0992faa7-d9ed-4b6d-9f52-0e10b9d29e75",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "reviewable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5edfd3ee-26ac-4f65-92d5-d1c55f8906bc",
+          "name": "Exchange metrics",
+          "request": {
+            "name": "Exchange metrics",
+            "description": {
+              "content": "Returns a list of exchange metrics metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "exchange-metrics"
+              ],
+              "host": [
+                "{{reference-data-exchange-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a95e0e8e-b760-4a64-a979-114aaab9476b",
+              "name": "List of exchange metrics metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"liquidations_reported_future_buy_units_1d\",\n      \"full_name\": \"Liquidations, reported, future, buys, native units, one day\",\n      \"description\": \"The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Liquidations\",\n      \"subcategory\": \"Futures\",\n      \"unit\": \"Native Units\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Sum\",\n      \"display_name\": \"Reported Futures Buy Liquidations, native units\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/\"\n    },\n    {\n      \"metric\": \"liquidations_reported_future_buy_units_1h\",\n      \"full_name\": \"Liquidations, reported, future, buys, native units, one hour\",\n      \"description\": \"The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Liquidations\",\n      \"subcategory\": \"Futures\",\n      \"unit\": \"Native Units\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Sum\",\n      \"display_name\": \"Reported Futures Buy Liquidations, native units\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/\"\n    }\n  ],\n  \"next_page_token\": \"bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/exchange-metrics?api_key=<your_key>&page_size=2&next_page_token=bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad68e9f3-7d70-421d-aa35-09606e5d8342",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "462fdc50-ce03-4b77-81e1-74b2951dc146",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2508fbf8-343b-4f3a-b1dd-2b523e2bfbba",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bad738cc-364b-472b-8cda-dd6a34658e17",
+          "name": "Exchange asset metrics",
+          "request": {
+            "name": "Exchange asset metrics",
+            "description": {
+              "content": "Returns a list of exchange asset metrics metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "exchange-asset-metrics"
+              ],
+              "host": [
+                "{{reference-data-exchange-asset-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54a9930c-8294-40d2-a43c-303810f69e08",
+              "name": "List of exchange asset metrics metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"basis_annualized_120d_exp\",\n      \"full_name\": \"Basis, annualized, 120 day expiration \",\n      \"description\": \"The relative difference between the price of a futures contract that expires in 120 days and the price of its underlying spot market.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Basis\",\n      \"subcategory\": \"Future\",\n      \"unit\": \"Dimensionless\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Percentage\",\n      \"display_name\": \"Annualized Futures Basis, 120 day expiration\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/basis/\"\n    },\n    {\n      \"metric\": \"basis_annualized_30d_exp\",\n      \"full_name\": \"Basis, annualized, 30 day expiration \",\n      \"description\": \"The relative difference between the price of a futures contract that expires in 30 days and the price of its underlying spot market.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Basis\",\n      \"subcategory\": \"Future\",\n      \"unit\": \"Dimensionless\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Percentage\",\n      \"display_name\": \"Annualized Futures Basis, 30 day expiration\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/basis/\"\n    }\n  ],\n  \"next_page_token\": \"YmFzaXNfYW5udWFsaXplZF82MGRfZXhw\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/exchange-asset-metrics?api_key=<your_key>&page_size=2&next_page_token=YmFzaXNfYW5udWFsaXplZF82MGRfZXhw\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "026f958b-c163-4f5c-b4d5-a32007934f5f",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee60db99-ca4c-4497-bdc4-5e228808f7d2",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5fe1f2c-54d3-4e4f-980b-bfd853587d76",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-asset-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-asset-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "868c621f-d137-4c90-aa97-d582f1cb820c",
+          "name": "Exchange pair metrics",
+          "request": {
+            "name": "Exchange pair metrics",
+            "description": {
+              "content": "Returns a list of exchange pair metrics metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "exchange-pair-metrics"
+              ],
+              "host": [
+                "{{reference-data-exchange-pair-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f2be73a9-2dfd-48f8-91ad-7d48b0be03ad",
+              "name": "List of exchange pair metrics metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"basis_annualized_120d_exp\",\n      \"full_name\": \"Basis, annualized, 120 day expiration \",\n      \"description\": \"The relative difference between the price of a futures contract that expires in 120 days and the price of its underlying spot market.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Basis\",\n      \"subcategory\": \"Future\",\n      \"unit\": \"Dimensionless\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Percentage\",\n      \"display_name\": \"Annualized Futures Basis, 120 day expiration\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/basis/\"\n    },\n    {\n      \"metric\": \"basis_annualized_30d_exp\",\n      \"full_name\": \"Basis, annualized, 30 day expiration \",\n      \"description\": \"The relative difference between the price of a futures contract that expires in 30 days and the price of its underlying spot market.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Basis\",\n      \"subcategory\": \"Future\",\n      \"unit\": \"Dimensionless\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Percentage\",\n      \"display_name\": \"Annualized Futures Basis, 30 day expiration\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/basis/\"\n    }\n  ],\n  \"next_page_token\": \"YmFzaXNfYW5udWFsaXplZF82MGRfZXhw\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/exchange-asset-metrics?api_key=<your_key>&page_size=2&next_page_token=YmFzaXNfYW5udWFsaXplZF82MGRfZXhw\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e3502d8-a408-4f2b-9c82-bdf9a82bbb3b",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82d533bd-556e-4730-9ad6-77ce5a1b10c8",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29f2a232-7ef3-455b-902e-803017b213e3",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "exchange-pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-exchange-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93532b65-2f40-4fb6-a87c-649b8e6e01ca",
+          "name": "Pair metrics",
+          "request": {
+            "name": "Pair metrics",
+            "description": {
+              "content": "Returns a list of pair metrics metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "pair-metrics"
+              ],
+              "host": [
+                "{{reference-data-pair-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab7afb9c-886e-4323-a52e-ac2cb1f687fc",
+              "name": "List of pair metrics metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"volatility_implied_call_delta_05_120d_expiration\",\n      \"full_name\": \"Volatility, implied, call, 5 delta, 120 day expiration\",\n      \"description\": \"The annualized interpolated implied volatility of a call option with 5 delta expiring 120 days in the future.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Volatility\",\n      \"subcategory\": \"Implied\",\n      \"unit\": \"Dimensionless\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Percentage\",\n      \"display_name\": \"Implied Volatility, Call Option, 5 Delta, 120 Day Expiration\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/volatility/implied-volatility\"\n    },\n    {\n      \"metric\": \"volatility_implied_call_delta_05_14d_expiration\",\n      \"full_name\": \"Volatility, implied, call, 5 delta, 14 day expiration\",\n      \"description\": \"The annualized interpolated implied volatility of a call option with 5 delta expiring 14 days in the future.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Volatility\",\n      \"subcategory\": \"Implied\",\n      \"unit\": \"Dimensionless\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Percentage\",\n      \"display_name\": \"Implied Volatility, Call Option, 5 Delta, 14 Day Expiration\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/volatility/implied-volatility\"\n    }\n  ],\n  \"next_page_token\": \"dm9sYXRpbGl0eV9pbXBsaWVkX2NhbGxfZGVsdGFfMDVfMTgwZF9leHBpcmF0aW9u\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/exchange-pair-metrics?page_size=2&pretty=true&api_key=<your_key>&next_page_token=dm9sYXRpbGl0eV9pbXBsaWVkX2NhbGxfZGVsdGFfMDVfMTgwZF9leHBpcmF0aW9u\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77b61a11-64e0-471a-ad3a-d1bc1c630b61",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5d43931-19bd-4456-aedb-fc1058323dfb",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f58fbf4c-cb85-4552-ad47-ade5a90fde5c",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "pair-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-pair-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7ecf04e-a9b4-448b-bef7-60117d4b6a3c",
+          "name": "Institution metrics",
+          "request": {
+            "name": "Institution metrics",
+            "description": {
+              "content": "Returns a list of institution metrics metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "institution-metrics"
+              ],
+              "host": [
+                "{{reference-data-institution-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dee7363f-f94c-4dcb-9488-8cedfb3c1413",
+              "name": "List of institution metrics metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "institution-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-institution-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"bat_coin_per_share\",\n      \"full_name\": \"Grayscale Basic Attention Token Trust, Native Units of Coin Per Share\",\n      \"description\": \"The number of native units of the coin per share of the Grayscale Basic Attention Token Trust.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Institutions\",\n      \"subcategory\": \"Investment Products\",\n      \"unit\": \"Native Units\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Ratio\",\n      \"display_name\": \"Grayscale Basic Attention Token Trust, Native Units of Coin Per Share\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/institution-metrics-overview/grayscale/coin-per-share\"\n    },\n    {\n      \"metric\": \"bat_market_price\",\n      \"full_name\": \"Grayscale Basic Attention Token Trust, Market Price per Share, USD\",\n      \"description\": \"The market price per share in U.S. dollars of the Grayscale Basic Attention Token Trust.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Institutions\",\n      \"subcategory\": \"Investment Products\",\n      \"unit\": \"USD\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Ratio\",\n      \"display_name\": \"Grayscale Basic Attention Token Trust, Market Price per Share, USD\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/institution-metrics-overview/grayscale/market-price\"\n    }\n  ],\n  \"next_page_token\": \"YmF0X25ldF9hc3NldF92YWx1ZQ\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/institution-metrics?api_key=<your_key>&page_size=2&next_page_token=YmF0X25ldF9hc3NldF92YWx1ZQ\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ac524cf-d916-4c48-82fb-b7f882fc9ce7",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "institution-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-institution-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a79e9db-3e38-4735-b0b6-212daff64065",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "institution-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-institution-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97663446-e45e-47e9-9633-f5eb92cdef7b",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "institution-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-institution-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a48b50a-f725-47b6-8ebc-c74dcd9a3103",
+          "name": "Market metrics",
+          "request": {
+            "name": "Market metrics",
+            "description": {
+              "content": "Returns a list of market metrics metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "market-metrics"
+              ],
+              "host": [
+                "{{reference-data-market-metrics-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of metrics. By default all metrics are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response. Supported values are `json`, `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "89e13e7d-04a1-4011-b2b1-1bb40b4c98bf",
+              "name": "List of market metrics metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "market-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-market-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"metric\": \"liquidations_reported_future_buy_units_1d\",\n      \"full_name\": \"Liquidations, reported, future, buys, native units, one day\",\n      \"description\": \"The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Liquidations\",\n      \"subcategory\": \"Futures\",\n      \"unit\": \"Native Units\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Sum\",\n      \"display_name\": \"Reported Futures Buy Liquidations, native units\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/\"\n    },\n    {\n      \"metric\": \"liquidations_reported_future_buy_units_1h\",\n      \"full_name\": \"Liquidations, reported, future, buys, native units, one hour\",\n      \"description\": \"The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.\",\n      \"product\": \"Market Data\",\n      \"category\": \"Liquidations\",\n      \"subcategory\": \"Futures\",\n      \"unit\": \"Native Units\",\n      \"data_type\": \"decimal\",\n      \"type\": \"Sum\",\n      \"display_name\": \"Reported Futures Buy Liquidations, native units\",\n      \"docs_url\": \"https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/\"\n    }\n  ],\n  \"next_page_token\": \"bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/reference-data/market-metrics?api_key=<your_key>&page_size=2&next_page_token=bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1c66aac-37a6-48cd-89db-6367618477a7",
+              "name": "Metric not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "market-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-market-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4b5146b-fd5a-4713-9723-52c052c231b4",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "market-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-market-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "054bb25b-a15d-47e0-8c71-c9f96d305fec",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "market-metrics"
+                  ],
+                  "host": [
+                    "{{reference-data-market-metrics-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-assets-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-exchanges-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-markets-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-indexes-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-protocols-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-pairs-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-asset-metrics-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-exchange-metrics-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-exchange-asset-metrics-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-exchange-pair-metrics-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-pair-metrics-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-institution-metrics-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "reference-data-market-metrics-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "c2e93aa3-165b-4e08-870f-871b5b9aafcd",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Reference Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+      "type": "text/plain"
+    }
+  }
+}

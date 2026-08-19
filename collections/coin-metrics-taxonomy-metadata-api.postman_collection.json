@@ -1,0 +1,446 @@
+{
+  "item": [
+    {
+      "id": "4fd50a30-384d-4d7d-b7eb-c7aedca02bd1",
+      "name": "Taxonomy Metadata",
+      "description": {
+        "content": "Taxonomy Metadata endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9846588-404e-4caa-a5ed-1bd941e23227",
+          "name": "Taxonomy metadata for assets",
+          "request": {
+            "name": "Taxonomy metadata for assets",
+            "description": {
+              "content": "Returns Taxonomy metadata for assets.<br/> Results are ordered by tuple `version`.<br/> To fetch the next page of results use `next_page_url` JSON response field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taxonomy-metadata",
+                "assets"
+              ],
+              "host": [
+                "{{taxonomy-metadata-assets-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Taxonomy version. Defaults to `latest` when no `*_time` parameters specified. Specify asterisk `*` in order to get all versions."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>",
+                  "description": "Start time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>",
+                  "description": "End time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_inclusive",
+                  "value": "true",
+                  "description": "Inclusive or exclusive corresponding `start_*` parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_inclusive",
+                  "value": "true",
+                  "description": "Inclusive or exclusive corresponding `end_*` parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "start",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0a03e303-4cb3-47ef-a320-d8960ef02366",
+              "name": "Assets' taxonomy metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxonomy-metadata",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{taxonomy-metadata-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "end_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"taxonomy_version\": \"1.1\",\n      \"taxonomy_start_time\": \"2021-06-13\",\n      \"subsectors\": [\n        {\n          \"class_id\": \"10\",\n          \"class\": \"Transaction\",\n          \"sector_id\": \"1010\",\n          \"sector\": \"Digital Currency (DC)\",\n          \"subsector_id\": \"101010\",\n          \"subsector\": \"Remittance Coins\"\n        },\n        {\n          \"class_id\": \"10\",\n          \"class\": \"Transaction\",\n          \"sector_id\": \"1010\",\n          \"sector\": \"Digital Currency (DC)\",\n          \"subsector_id\": \"101020\",\n          \"subsector\": \"Meme Coins\"\n        },\n        {\n          \"class_id\": \"10\",\n          \"class\": \"Transaction\",\n          \"sector_id\": \"1010\",\n          \"sector\": \"Digital Currency (DC)\",\n          \"subsector_id\": \"101040\",\n          \"subsector\": \"Remittance Coins\"\n        }\n      ],\n      \"taxonomy_end_time\": \"2022-06-12\"\n    }\n  ],\n  \"next_page_token\": \"Mi4w\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/taxonomy-metadata/assets?paging_from=end&page_size=2&version=*&api_key=<your_key>&next_page_token=Mi4w\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd9e4c20-7d68-4b59-b013-fecc5fd23aee",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxonomy-metadata",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{taxonomy-metadata-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "end_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f65eb691-2cca-4ffe-bb46-890e1f6d634d",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxonomy-metadata",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{taxonomy-metadata-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "end_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0b7db13-c00a-446b-bac0-067d482ca174",
+              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxonomy-metadata",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{taxonomy-metadata-assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "end_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "start"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request-URI Too Long",
+              "code": 414,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "taxonomy-metadata-assets-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "f6f2884c-3f37-492d-8d3f-160948303ef0",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Taxonomy Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+      "type": "text/plain"
+    }
+  }
+}

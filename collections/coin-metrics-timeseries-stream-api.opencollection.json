@@ -1,0 +1,485 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Timeseries stream API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timeseries stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Asset metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/asset-metrics",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/asset-metrics-v2.<br/> Use the [/catalog-all-v2/asset-metrics](#operation/getCatalogAllV2AssetMetrics) endpoint for the full list of supported metrics per asset."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of the metrics. Supported values are `1b` (block by block), `1s`, `200ms`."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              },
+              {
+                "name": "ignore_forbidden_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"forbidden\" errors for the items you currently don't have access to."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a WebSocket stream of metrics for specified assets.<br/> Endpoint supports only block by block (`1b` frequency), per second (`1s` frequency), and sub-second (`200ms` frequency) metrics.<br/> Different sets of metrics may come in different messages.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Market trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/market-trades",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a WebSocket stream of trades for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Market liquidations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/market-liquidations",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a WebSocket stream of liquidations for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Market open interest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/market-openinterest",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a WebSocket stream of open interests for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen.<br/><br/> <b>Note:</b> The `value_usd` field in this endpoint was previously calculated using hardcoded logic that no longer reflects current contract specifications across all exchanges.<br/><br/> To address this, we have deprecated the `value_usd` field and introduced new, more accurate metrics"
+        },
+        {
+          "info": {
+            "name": "Market contract prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/market-contract-prices",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a WebSocket stream of contract prices for specified markets.<br/> This includes index price and mark price that are used by the exchange for settlement and risk management purposes.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Market orderbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/market-orderbooks",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "depth_limit",
+                "value": "",
+                "type": "query",
+                "description": "Book depth limit."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a WebSocket stream of orderbooks for specified markets.<br/> Orderbooks are delivered using a sequence of `snapshot` and `update` messages.<br/> Zero value of the `size` response field for `asks` or `bids` means negative `update`.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Market quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/market-quotes",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "include_one_sided",
+                "value": "",
+                "type": "query",
+                "description": "Include one-side and empty books in quotes response."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a stream of quotes for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Asset quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/asset-quotes",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type."
+              },
+              {
+                "name": "aggregation_method",
+                "value": "",
+                "type": "query",
+                "description": "The method to use for aggregation."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a stream of quotes for specified assets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Pair quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/pair-quotes",
+            "params": [
+              {
+                "name": "pairs",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of asset pairs or patterns like `btc-*`, or `*-btc`."
+              },
+              {
+                "name": "aggregation_method",
+                "value": "",
+                "type": "query",
+                "description": "The method to use for aggregation."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a stream of quotes for specified pairs.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Market candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/market-candles",
+            "params": [
+              {
+                "name": "markets",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type."
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a stream of candles for specified markets.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnection will happen."
+        },
+        {
+          "info": {
+            "name": "Index levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/timeseries-stream/index-levels",
+            "params": [
+              {
+                "name": "indexes",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of indexes.<br/> Use the [/catalog-all-v2/index-levels](#operation/getCatalogAllV2IndexLevels) endpoint for the full list of supported indexes."
+              },
+              {
+                "name": "include_verification",
+                "value": "",
+                "type": "query",
+                "description": "If set to true, includes information about verification."
+              },
+              {
+                "name": "backfill",
+                "value": "",
+                "type": "query",
+                "description": "What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a stream of levels for specified indexes.<br/> If you are falling behind (slow client) you will get `warning` message first, then `error` message and disconnect will happen."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

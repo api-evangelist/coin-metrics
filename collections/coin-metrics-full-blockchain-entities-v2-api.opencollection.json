@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Full blockchain entities v2 API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Full blockchain entities v2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Full block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/blocks/:block_hash",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "block_hash",
+                "value": "",
+                "type": "path",
+                "description": "Block hash."
+              },
+              {
+                "name": "include_sub_accounts",
+                "value": "",
+                "type": "query",
+                "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a full blockchain block with all transactions and balance updates.<br/> Results are limited to the last 30 days for Community users."
+        },
+        {
+          "info": {
+            "name": "Full transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/transactions/:txid",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path",
+                "description": "Transaction identifier (txid)."
+              },
+              {
+                "name": "include_sub_accounts",
+                "value": "",
+                "type": "query",
+                "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a full blockchain transaction with all balance updates.<br/> Results are limited to the last 30 days for Community users."
+        },
+        {
+          "info": {
+            "name": "Full transaction for block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/blocks/:block_hash/transactions/:txid",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "block_hash",
+                "value": "",
+                "type": "path",
+                "description": "Block hash."
+              },
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path",
+                "description": "Transaction identifier (txid)."
+              },
+              {
+                "name": "include_sub_accounts",
+                "value": "",
+                "type": "query",
+                "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a full blockchain transaction with all balance updates for a specific block.<br/> Results are limited to the last 30 days for Community users."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

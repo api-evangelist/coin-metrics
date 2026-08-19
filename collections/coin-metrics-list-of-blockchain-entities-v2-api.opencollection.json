@@ -1,0 +1,913 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coin Metrics API v4 Blockchain Explorer Job List of blockchain entities v2 API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List of blockchain entities v2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of blocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/blocks",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "block_hashes",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of block hashes to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "heights",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of block heights to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Chain type. Supported values are `main` and `all` (includes both main and stale).<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of blockchain blocks metadata.<br/> Results are ordered by tuple `(height, block_hash)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> Results are limited to the last 30 days for Community users."
+        },
+        {
+          "info": {
+            "name": "List of accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/accounts",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "accounts",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of accounts to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "Start of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "End of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of blockchain accounts with their current balance.<br/> For rebasing assets, the balances returned are adjusted according to the current rebasing conditions.<br/> Results are ordered by tuple `(creation_chain_sequence_number, account)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "List of sub-accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/sub-accounts",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "accounts",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of accounts to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "Start of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "End of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of blockchain sub-accounts with their current balance.<br/> For rebasing assets, the balances returned are adjusted according to the current rebasing conditions.<br/> Results are ordered by tuple `(creation_chain_sequence_number, account)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        },
+        {
+          "info": {
+            "name": "List of transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/transactions",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "txids",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of transaction identifiers (txid) to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "block_hashes",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of block hashes to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Chain type. Supported values are `main` and `all` (includes both main and stale).<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of blockchain transactions metadata.<br/> Results are ordered by tuple `(tx_position, txid)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> Results are limited to the last 30 days for Community users."
+        },
+        {
+          "info": {
+            "name": "List of balance updates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/balance-updates",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "accounts",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of accounts to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "limit_per_account",
+                "value": "",
+                "type": "query",
+                "description": "How many entries per account the result should contain. It is applicable when multiple accounts are requested.<br/> For Community users, this parameter is disabled and the limit is fixed to 100."
+              },
+              {
+                "name": "sub_accounts",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of sub-accounts to filter a response.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "txids",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of transaction identifiers (txid) to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "block_hashes",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of block hashes to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "denominations",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of denominations to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "Start of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "End of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "include_sub_accounts",
+                "value": "",
+                "type": "query",
+                "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Chain type. Supported values are `main` and `all` (includes both main and stale).<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of blockchain accounts balance updates.<br/> Results are ordered by tuple `(chain_sequence_number, block_hash)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> Results are limited to the last 30 days for Community users."
+        },
+        {
+          "info": {
+            "name": "List of rebasing changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/rebasing-changes",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "txids",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of transaction identifiers (txid) to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "block_hashes",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of block hashes to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "Start of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "End of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Chain type. Supported values are `main` and `all` (includes both main and stale).<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of blockchain rebasing changes.<br/> Results are ordered by tuple `(chain_sequence_number, block_hash)`.<br/> To fetch the next page of results use `next_page_url` JSON response field.<br/> Results are limited to the last 30 days for Community users."
+        },
+        {
+          "info": {
+            "name": "List of balance updates for account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coinmetrics.io/v4/blockchain-v2/:asset/accounts/:account/balance-updates",
+            "params": [
+              {
+                "name": "asset",
+                "value": "",
+                "type": "path",
+                "description": "Asset name."
+              },
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "Account id."
+              },
+              {
+                "name": "txids",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of transaction identifiers (txid) to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "block_hashes",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of block hashes to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "denominations",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma separated list of denominations to filter a response.<br/> The list must contain a single element for Community users."
+              },
+              {
+                "name": "include_counterparties",
+                "value": "",
+                "type": "query",
+                "description": "Include information about the counterparties balance updates."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `end_height`.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_height",
+                "value": "",
+                "type": "query",
+                "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_height",
+                "value": "",
+                "type": "query",
+                "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `end_time`.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "Start of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_chain_sequence_number",
+                "value": "",
+                "type": "query",
+                "description": "End of the `chain_sequence_number` interval.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "include_sub_accounts",
+                "value": "",
+                "type": "query",
+                "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Chain type. Supported values are `main` and `all` (includes both main and stale).<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "start_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `start_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "end_inclusive",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive or exclusive corresponding `end_*` parameters.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per single page of results.<br/> This parameter is disabled for Community users."
+              },
+              {
+                "name": "paging_from",
+                "value": "",
+                "type": "query",
+                "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable formatting of JSON responses."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+              },
+              {
+                "name": "ignore_unsupported_errors",
+                "value": "",
+                "type": "query",
+                "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api_key",
+              "value": "{{api_key}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns a list of blockchain balance updates for a specific account.<br/> Results are ordered by tuple `(chain_sequence_number, block_hash)`.<br/> To fetch the next page of results use `next_page_url` JSON response field."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

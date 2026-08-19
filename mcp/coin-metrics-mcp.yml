@@ -2,9 +2,9 @@ generated: '2026-07-22'
 method: derived
 status: candidate
 source: openapi/_original/coin-metrics-api-v4-openapi.json
-description: No official Coin Metrics MCP server was found (official MCP registry, npm, and docs searched 2026-07-22).
-  This is a candidate tool list derived one-per-operationId from the published OpenAPI 3.0.2 definition; each tool
-  inherits its real input schema from the referenced operation.
+description: No official Coin Metrics MCP server was found (official MCP registry, npm, and docs searched
+  2026-07-22). This is a candidate tool list derived one-per-operationId from the published OpenAPI 3.0.2
+  definition; each tool inherits its real input schema from the referenced operation.
 server:
   name: coin-metrics
   transport: http
@@ -680,3 +680,9 @@ tools:
 - name: get_job_by_id
   description: Get job by ID
   source_operation: openapi/coin-metrics-jobs-api-openapi.yml#getJobById
+deployment:
+  mode: none
+  verified: derived
+  tools: 203
+  checked: '2026-08-12'
+  source: catalog MCP census

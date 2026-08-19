@@ -1,0 +1,519 @@
+{
+  "item": [
+    {
+      "id": "821022b0-0ab0-443b-958a-c5455fa32a68",
+      "name": "Chain Monitor tools",
+      "description": {
+        "content": "Endpoints for working with chain monitor data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63f43f86-c407-46f6-b27f-6776371477d6",
+          "name": "Transaction tracker",
+          "request": {
+            "name": "Transaction tracker",
+            "description": {
+              "content": "Returns status updates for the specified or all transactions.<br/> This endpoint can be helpful to track transaction settlement.<br/> The transaction tracker keeps the history of the transaction updates for one month since the last update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockchain",
+                ":asset",
+                "transaction-tracker"
+              ],
+              "host": [
+                "{{blockchain-asset-transaction-tracker-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "txids",
+                  "value": "<string>,<string>",
+                  "description": "Comma separated list of transaction identifiers (txid) to track."
+                },
+                {
+                  "disabled": false,
+                  "key": "replacements_for_txids",
+                  "value": "<string>,<string>",
+                  "description": "<b>BTC asset only.</b><br/> Comma separated list of transaction identifiers (txid) to get the corresponding replacement transactions for.<br/> Mutually exclusive with `txids`.<br/>"
+                },
+                {
+                  "disabled": false,
+                  "key": "replacements_only",
+                  "value": "<boolean>",
+                  "description": "<b>BTC asset only.</b><br/> Boolean indicating if the response should contain only the replacement transactions."
+                },
+                {
+                  "disabled": false,
+                  "key": "addresses",
+                  "value": "<string>,<string>",
+                  "description": "<b>BTC asset only.</b><br/> Comma separated list of bitcoin addresses to track transactions for. Transactions in which at least one of the addresses is either a sender or recipient will be returned.<br/> By default only transactions currently in mempool are returned. To return all associated transactions use `unconfirmed_only=false` parameter.<br/> Mutually exclusive with `txids`, `replacements_for_txids`, `replacements_for_txids` parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "unconfirmed_only",
+                  "value": "<boolean>",
+                  "description": "<b>BTC asset only.</b><br/> Can be used only in conjunction with `addresses` parameter. Controls whether all or only unconfirmed transactions (currently in mempool) are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>",
+                  "description": "Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>",
+                  "description": "End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_inclusive",
+                  "value": "true",
+                  "description": "Inclusive or exclusive corresponding `start_*` parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_inclusive",
+                  "value": "true",
+                  "description": "Inclusive or exclusive corresponding `end_*` parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "UTC",
+                  "description": "Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "paging_from",
+                  "value": "end",
+                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Human-readable formatting of JSON responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format of the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>",
+                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "asset",
+                  "description": "(Required) Asset name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api_key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b7d3cf3-6be8-43ba-9b36-15e27653471b",
+              "name": "Current status and its updates for the requested transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain",
+                    ":asset",
+                    "transaction-tracker"
+                  ],
+                  "host": [
+                    "{{blockchain-asset-transaction-tracker-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "txids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "replacements_for_txids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "replacements_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "addresses",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "unconfirmed_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "end_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "America/New_York"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset",
+                      "description": "(Required) Asset name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"txid\": \"04b743bc2451c2a8c9fb3bb946de4eb1305a4c0c51fd7a02ee5975fb4cecf4da\",\n      \"time\": \"2021-06-08T11:48:21.000000000Z\",\n      \"first_seen_time\": \"2021-06-08T10:41:55.396000000Z\",\n      \"status\": \"CONFIRMED\",\n      \"status_update_time\": \"2021-06-08T10:44:38.224000000Z\",\n      \"status_updates\": [\n        {\n          \"time\": \"2021-06-08T10:41:57.421000000Z\",\n          \"status\": \"UNCONFIRMED\"\n        },\n        {\n          \"time\": \"2021-06-08T10:44:38.224000000Z\",\n          \"status\": \"CONFIRMED\",\n          \"block_hash\": \"000000000000000000003eee54fd5f1ae769400e66b3cd9475b5fd6255de1834\",\n          \"height\": \"686786\"\n        }\n      ],\n      \"details\": {\n        \"version\": \"1\",\n        \"amount\": \"0.10302613\",\n        \"replace_by_fee_supported\": false,\n        \"fee\": \"0.0009\",\n        \"feerate\": \"473.6842\",\n        \"mempool_feerate_mean_at_first_seen_time\": \"25.5569\",\n        \"mempool_feerate_min_at_first_seen_time\": \"1\",\n        \"consensus_size\": \"760\",\n        \"physical_size\": \"380\"\n      },\n      \"block_hash\": \"000000000000000000003eee54fd5f1ae769400e66b3cd9475b5fd6255de1834\",\n      \"height\": \"686786\",\n      \"n_confirmations\": \"1\"\n    }\n  ],\n  \"inputs\": [\n    {\n      \"address\": \"112dvb4DogEpcp3yUR59HQuN1LFJbPErAT\"\n    },\n    {\n      \"address\": \"112duuEvfsJDVsuVn7Xe27bpxtq5mnuvtX\"\n    }\n  ],\n  \"outputs\": [\n    {\n      \"address\": \"112jmDkNGHSbhhY17JGpxU3sMA9ZExG7b2\"\n    },\n    {\n      \"address\": \"112dtXeVfH3QgRJJwCiQe1FuRAKBqWfY3U\"\n    }\n  ],\n  \"next_page_token\": \"MjAyMS0wNi0wOFQxMDo0MTo1NS4zOTZafEJMZER2Q1JSd3FqSi16dTVSdDVPc1RCYVRBeFJfWG9DN2xsMS0wenM5Tm8\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/blockchain/btc/transaction-tracker?api_key=<your_key>&pretty=true&txids=04b743bc2451c2a8c9fb3bb946de4eb1305a4c0c51fd7a02ee5975fb4cecf4da,edb7e7b0dc1914d29ef978b332a45b89c225c555f18d6d4cfbcec0963d432544&page_size=1&paging_from=start&next_page_token=MjAyMS0wNi0wOFQxMDo0MTo1NS4zOTZafEJMZER2Q1JSd3FqSi16dTVSdDVPc1RCYVRBeFJfWG9DN2xsMS0wenM5Tm8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc490ee9-dcdf-4544-a5cf-afafa70a26ed",
+              "name": "Requested resource requires authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain",
+                    ":asset",
+                    "transaction-tracker"
+                  ],
+                  "host": [
+                    "{{blockchain-asset-transaction-tracker-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "txids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "replacements_for_txids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "replacements_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "addresses",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "unconfirmed_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "end_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "America/New_York"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset",
+                      "description": "(Required) Asset name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a88c1256-8656-4c5e-a04f-38a896014ae4",
+              "name": "Requested resource is not available with supplied credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockchain",
+                    ":asset",
+                    "transaction-tracker"
+                  ],
+                  "host": [
+                    "{{blockchain-asset-transaction-tracker-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "txids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "replacements_for_txids",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "replacements_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "addresses",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "unconfirmed_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "end_inclusive",
+                      "value": "true"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "America/New_York"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "paging_from",
+                      "value": "end"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset",
+                      "description": "(Required) Asset name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.coinmetrics.io/v4",
+      "key": "blockchain-asset-transaction-tracker-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "2b3d87a5-0193-4e48-801d-3e74ed3293d1",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job Chain Monitor tools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+      "type": "text/plain"
+    }
+  }
+}

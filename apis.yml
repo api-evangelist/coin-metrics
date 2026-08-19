@@ -35,7 +35,7 @@ tags:
 - Real-Time
 created: '2026-07-21'
 modified: '2026-07-22'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: coin-metrics:coin-metrics-blockchain-explorer-job-api
   name: Coin Metrics Blockchain Explorer Job API

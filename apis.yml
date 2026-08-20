@@ -329,6 +329,8 @@ apis:
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -525,6 +527,8 @@ apis:
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
   tags:
+  - Time Series
+  tags_raw:
   - Timeseries
   properties:
   - type: OpenAPI

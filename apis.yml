@@ -11,6 +11,18 @@ description: 'Coin Metrics is a Boston-based crypto financial intelligence provi
   delivery channels. A complete OpenAPI 3.0.2 definition is published on the docs site. Coin Metrics is
   now part of Talos: coinmetrics.io 301-redirects to talos.com/our-solutions/data/overview, while docs.coinmetrics.io
   and the api/community-api hosts remain live under the Coin Metrics brand.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown

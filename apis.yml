@@ -539,7 +539,7 @@ apis:
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
   tags:
-  - Timeseries
+  - Time Series
   tags_raw:
   - Timeseries
   properties:

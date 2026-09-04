@@ -34,6 +34,8 @@ accessModel:
   source: []
   generated: '2026-07-22'
   method: derived
+  source:
+  - {url: 'https://coinmetrics.io/', status: 301, note: 'declared website redirects to https://www.talos.com/our-solutions/data/overview — a different registrable domain (coinmetrics.io -> talos.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/coin-metrics.png
 tags:
 - Financial
@@ -637,8 +639,9 @@ common:
   url: https://pypi.org/project/coinmetrics-api-client/
 - type: LLMsTxt
   url: llms/coin-metrics-llms.txt
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/coin-metrics-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: Conformance
   url: conformance/coin-metrics-conformance.yml
 - type: ErrorCatalog

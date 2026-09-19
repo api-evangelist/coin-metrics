@@ -43,6 +43,16 @@ tags:
 - Crypto
 - Blockchain
 - On-Chain Data
+- Index
+- Reference Rates
+- Order Book
+- Real-Time
+tags_raw:
+- Financial
+- Market Data
+- Crypto
+- Blockchain
+- On-Chain Data
 - Indexes
 - Reference Rates
 - Order Book
@@ -405,6 +415,8 @@ apis:
   humanURL: https://docs.coinmetrics.io/api/v4
   baseURL: https://api.coinmetrics.io/v4
   tags:
+  - Profiles
+  tags_raw:
   - Profile
   properties:
   - type: OpenAPI
@@ -598,6 +610,11 @@ apis:
   - type: Documentation
     url: https://coinmetrics.io/atlas/
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/talos/
+  name: Talos
+  x-relationship: acquired
+  x-evidence: "description names Talos and https://coinmetrics.io/ now redirects to talos.com (roadmap#390, corroborate-dead.py)"
 - type: Overlay
   url: overlays/coin-metrics-timeseries-api-overlay.yaml
 - type: DomainSecurity

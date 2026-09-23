@@ -1,17 +1,14 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Coin Metrics API v4 Blockchain Explorer Job Constituent Timeframes API
-  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+  title: Coin Metrics API v4 Constituent Timeframes API
+  description: 'Coin Metrics Homepage
 
-    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+    API Backward Compatibility Policy
 
-    # Authentication
+    Python API Client
 
-    <!-- ReDoc-Inject: <security-definitions> -->
 
-    # Response headers
-
-    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.'
   termsOfService: https://coinmetrics.io/api/terms
   contact:
     name: Coin Metrics Support
@@ -35,7 +32,13 @@ paths:
     - url: https://community-api.coinmetrics.io/v4
     get:
       summary: Timeframes of asset metric constituents
-      description: "Returns timeframes of asset metric constituents. \\\nResults are sorted by tuple (`start_time`, `constituent_name`), where constituent depends on a target metric. \nE.g., the `volume_trusted_spot_usd_1d` metric constituents are exchanges, \ni.e. the output will be sorted by (`start_time`, `exchange`).\n"
+      description: 'Returns timeframes of asset metric constituents. \
+
+        Results are sorted by tuple (`start_time`, `constituent_name`), where constituent depends on a target metric.
+
+        E.g., the `volume_trusted_spot_usd_1d` metric constituents are exchanges,
+
+        i.e. the output will be sorted by (`start_time`, `exchange`).'
       operationId: getConstituentTimeframesAssetMetrics
       x-codeSamples:
       - label: Shell
@@ -93,73 +96,17 @@ paths:
       security:
       - api_key: []
 components:
-  schemas:
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    Time:
-      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
-      type: string
-      format: date-time
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
-    NextPageUrl:
-      description: URL of the next page results for a given request.
-      type: string
-    ConstituentTimeframesAssetMetricsResponse:
-      description: Timeframes of asset metric constituents response.
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              start_time:
-                $ref: '#/components/schemas/Time'
-              end_time:
-                $ref: '#/components/schemas/Time'
-            required:
-            - start_time
-            additionalProperties:
-              nullable: true
-              type: string
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
   parameters:
-    ConstituentsStartTime:
-      description: 'Start of the time interval, inclusive. \
-
-        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
-
-        Mutually exclusive with `at_time`.
-
-        '
-      name: start_time
+    Format:
+      description: Format of the response.
       in: query
+      name: format
       schema:
+        enum:
+        - json
+        - csv
         type: string
+        default: json
     ConstituentId:
       description: 'Comma separated list of constituents. By default all constituents are returned.
 
@@ -177,6 +124,18 @@ components:
         items:
           type: string
       explode: false
+    ConstituentsStartTime:
+      description: 'Start of the time interval, inclusive. \
+
+        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
+
+        Mutually exclusive with `at_time`.
+
+        '
+      name: start_time
+      in: query
+      schema:
+        type: string
     PagingFrom:
       description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
       in: query
@@ -188,46 +147,6 @@ components:
         - end
         type: string
         format: PagingFrom
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
-    Format:
-      description: Format of the response.
-      in: query
-      name: format
-      schema:
-        enum:
-        - json
-        - csv
-        type: string
-        default: json
-    ConstituentsMetricName:
-      description: Target metric name.
-      name: metric
-      in: query
-      required: true
-      schema:
-        type: string
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
     ConstituentsEndTime:
       description: 'End of the time interval, inclusive. \
 
@@ -240,19 +159,37 @@ components:
       in: query
       schema:
         type: string
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    ConstituentsMetricName:
+      description: Target metric name.
+      name: metric
+      in: query
+      required: true
+      schema:
+        type: string
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
   responses:
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    MetricNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Metric not found.
     Unauthorized:
       description: Requested resource requires authorization.
       content:
@@ -272,6 +209,16 @@ components:
                   message: Supplied credentials are not valid.
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    MetricNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Metric not found.
     AssetMetricsConstituentTimeframes:
       description: List of timeframes.
       content:
@@ -321,6 +268,63 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
       description: Requested resource is not available with supplied credentials.
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+  schemas:
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    ConstituentTimeframesAssetMetricsResponse:
+      description: Timeframes of asset metric constituents response.
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              start_time:
+                $ref: '#/components/schemas/Time'
+              end_time:
+                $ref: '#/components/schemas/Time'
+            required:
+            - start_time
+            additionalProperties:
+              type:
+              - string
+              - 'null'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

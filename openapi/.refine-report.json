@@ -1,25 +1,7 @@
 {
   "provider": "coin-metrics",
   "sources": [
-    "coin-metrics-blockchain-explorer-job-api-openapi.yml",
-    "coin-metrics-blockchain-metadata-api-openapi.yml",
-    "coin-metrics-catalog-api-openapi.yml",
-    "coin-metrics-catalog-v2-api-openapi.yml",
-    "coin-metrics-chain-monitor-tools-api-openapi.yml",
-    "coin-metrics-constituent-snapshots-api-openapi.yml",
-    "coin-metrics-constituent-timeframes-api-openapi.yml",
-    "coin-metrics-full-blockchain-entities-v2-api-openapi.yml",
-    "coin-metrics-full-catalog-api-openapi.yml",
-    "coin-metrics-full-catalog-v2-api-openapi.yml",
-    "coin-metrics-jobs-api-openapi.yml",
-    "coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml",
-    "coin-metrics-profile-api-openapi.yml",
-    "coin-metrics-reference-data-api-openapi.yml",
-    "coin-metrics-security-master-api-openapi.yml",
-    "coin-metrics-taxonomy-api-openapi.yml",
-    "coin-metrics-taxonomy-metadata-api-openapi.yml",
-    "coin-metrics-timeseries-api-openapi.yml",
-    "coin-metrics-timeseries-stream-api-openapi.yml"
+    "_original/coin-metrics-api-v4-openapi.json"
   ],
   "outputs": [
     "coin-metrics-blockchain-explorer-job-api-openapi.yml",
@@ -42,9 +24,36 @@
     "coin-metrics-timeseries-api-openapi.yml",
     "coin-metrics-timeseries-stream-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "coin-metrics-api-v4-openapi.json: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "superseded outputs removed: coin-metrics-time-series-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 19 total)"
+  ],
+  "skipped": [
+    "coin-metrics-blockchain-explorer-job-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-blockchain-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-catalog-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-chain-monitor-tools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-constituent-snapshots-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-constituent-timeframes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-full-blockchain-entities-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-full-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-full-catalog-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-list-of-blockchain-entities-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-reference-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-security-master-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-taxonomy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-taxonomy-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-time-series-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coin-metrics-timeseries-stream-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

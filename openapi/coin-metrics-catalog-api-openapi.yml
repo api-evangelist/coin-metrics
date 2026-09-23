@@ -1,17 +1,14 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Coin Metrics API v4 Blockchain Explorer Job Catalog API
-  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+  title: Coin Metrics API v4 Catalog API
+  description: 'Coin Metrics Homepage
 
-    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+    API Backward Compatibility Policy
 
-    # Authentication
+    Python API Client
 
-    <!-- ReDoc-Inject: <security-definitions> -->
 
-    # Response headers
-
-    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.'
   termsOfService: https://coinmetrics.io/api/terms
   contact:
     name: Coin Metrics Support
@@ -28,7 +25,11 @@ servers:
 tags:
 - name: Catalog
   x-displayName: Catalog (deprecated)
-  description: 'Catalog of available for your `api_key` data.<br/> Use the [Full catalog](#tag/Full-catalog) endpoints for the full list of supported by Coin Metrics data. <br/>DEPRECATED: See https://coinmetrics.io/important-changes-to-coin-metrics-api-catalog-endpoints/. '
+  description: 'Catalog of available for your `api_key` data.
+
+    Use the Full catalog endpoints for the full list of supported by Coin Metrics data.
+
+    DEPRECATED: See https://coinmetrics.io/important-changes-to-coin-metrics-api-catalog-endpoints/.'
 paths:
   /catalog/assets:
     servers:
@@ -77,7 +78,9 @@ paths:
     get:
       deprecated: true
       summary: Available metrics
-      description: Returns a list of available metrics along with information for them like description, category and assets for which a metric is available.</br>This endpoint is deprecated, please use [/catalog/asset-metrics](#operation/getCatalogAssetMetrics) instead.
+      description: 'Returns a list of available metrics along with information for them like description, category and assets for which a metric is available.
+
+        This endpoint is deprecated, please use /catalog/asset-metrics instead.'
       operationId: getCatalogMetrics
       x-codeSamples:
       - label: Shell
@@ -1286,73 +1289,6 @@ paths:
       - api_key: []
 components:
   schemas:
-    AssetAlertSubRuleConstituent:
-      description: Name of the alerting metric.
-      type: string
-    Pairs:
-      description: List of pair names.
-      items:
-        $ref: '#/components/schemas/PairId'
-      type: array
-    CatalogMarketGreeksInfo:
-      description: Information about market and time range of its available greeks data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    Reviewable:
-      description: Reviewable by human flag.
-      type: boolean
-    AssetMetricInfo:
-      description: Information about availability of metric for an asset.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/AssetMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    CatalogMarketOpeninterestInfo:
-      description: Information about market and time range of its available open interest data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    CatalogMarketOrderbooksResponse:
-      description: List of market orderbooks statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketOrderbooksInfo'
-          type: array
-      required:
-      - data
-      type: object
-    PairMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/PairMetricFrequency'
-      type: array
-    AssetAtlas:
-      description: If set to true, Atlas data is available for this asset.
-      type: boolean
     ExchangesResponse:
       properties:
         data:
@@ -1362,62 +1298,52 @@ components:
       required:
       - data
       type: object
-    Institutions:
-      description: List of institutions.
-      items:
-        $ref: '#/components/schemas/InstitutionId'
-      type: array
-    PairMetricInfo:
-      description: Information about availability of metric for an pair.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/PairMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    MinHeight:
-      description: Minimal available block height for time series.
-      type: string
-      format: int64
-    MarketMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogMarketQuotesInfo:
-      description: Information about market and time range of its available quotes data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    CatalogExchangeMetricsResponse:
+    CatalogMarketContractPricesResponse:
+      description: List of contract prices statistics.
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogExchangeMetricInfo'
+            $ref: '#/components/schemas/CatalogMarketContractPricesInfo'
           type: array
       required:
       - data
       type: object
+    MarketSymbol:
+      description: Unique name of the derivative market symbol.
+      type: string
+    AssetId:
+      description: Unique name of the asset.
+      type: string
+    OrderAmountMax:
+      description: Maximum amount size.
+      type: string
+      format: decimal
+    ExchangeMetricInfo:
+      description: Information about availability of metric for an exchange.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/ExchangeMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogIndexCandlesInfo:
+      description: Information about index and its supported candle durations.
+      properties:
+        index:
+          $ref: '#/components/schemas/IndexId'
+        frequencies:
+          $ref: '#/components/schemas/CatalogCandleFrequencies'
+      type: object
+      required:
+      - index
+    MarketType:
+      description: Type of the market (spot, future).
+      type: string
+    AssetAlertSubRuleThreshold:
+      description: Asset alert's Key Risk Indicator triggering value. Omitted if asset alert condition depends on the variable metric threshold (this fact will be reflected in the condition description).
+      type: string
     CatalogExchangeMetricFrequency:
       properties:
         frequency:
@@ -1429,34 +1355,9 @@ components:
       required:
       - frequency
       - exchanges
-    CatalogMiningPoolTipsSummaryInfo:
-      description: Information about mining pool tips summary.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - asset
-      - min_time
-      - max_time
-      type: object
-    CatalogAssetChainsInfo:
-      description: Information about asset chains.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - asset
-      - min_time
-      - max_time
-      type: object
+    OrderTakerFee:
+      type: string
+      format: decimal
     CatalogMarketTradesInfo:
       description: Information about market and time range of its available trades data.
       properties:
@@ -1471,50 +1372,49 @@ components:
       - market
       - min_time
       - max_time
-    ExchangeMetricInfo:
-      description: Information about availability of metric for an exchange.
+    CatalogTransactionTrackerResponse:
       properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/ExchangeMetricFrequencies'
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogTransactionTrackerInfo'
+          type: array
       required:
-      - metric
-      - frequencies
-    SettlementPrice:
-      description: Price of underlying asset at contract expiration.
+      - data
+      type: object
+    InstitutionId:
+      description: Unique name of the institution.
       type: string
-      format: decimal
-    CatalogExchangeAssetMetricFrequencies:
-      description: List of exchange-asset metric frequencies.
-      items:
-        $ref: '#/components/schemas/CatalogExchangeAssetMetricFrequency'
-      type: array
-    CatalogInstitutionMetricFrequency:
+    DefiQuoteAddress:
+      description: DeFi quote address.
+      type: string
+    CatalogAssetChainsResponse:
       properties:
-        frequency:
-          type: string
-          description: Frequency of the institution metric.
-        institutions:
-          $ref: '#/components/schemas/Institutions'
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogAssetChainsInfo'
+          type: array
+      required:
+      - data
+      type: object
+    ExchangeAsset:
+      description: Unique combination of the exchange and asset.
+      type: string
+    CatalogMarketMetricsInfo:
+      description: Information about market and its supported metrics.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        metrics:
+          $ref: '#/components/schemas/MarketMetricsIds'
       type: object
       required:
-      - frequency
-      - institutions
-    MarketMetricInfo:
-      description: Information about availability of metric for a market.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/MarketMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    OptionStrike:
-      description: Strike price for option trade.
-      type: string
-      format: decimal
+      - market
+      - metrics
+    ExchangeMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/ExchangeMetricInfo'
+      type: array
     InstitutionsResponse:
       properties:
         data:
@@ -1524,6 +1424,437 @@ components:
       required:
       - data
       type: object
+    IsEuropean:
+      description: shows if the options contract is european or not.
+      type: boolean
+    IndexFrequencies:
+      description: Frequencies of the index.
+      items:
+        $ref: '#/components/schemas/CatalogIndexFrequency'
+      type: array
+    CatalogMarketTradesResponse:
+      description: List of market trades statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketTradesInfo'
+          type: array
+      required:
+      - data
+      type: object
+    MinTime:
+      description: Minimal available time for time series.
+      type: string
+      format: date-time
+    FutureTickSize:
+      description: Futures tick size.
+      type: string
+      format: decimal
+    CatalogMarketCandlesResponse:
+      description: List of market candles statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketCandlesInfo'
+          type: array
+      required:
+      - data
+      type: object
+    CatalogPairMetricInfo:
+      description: Information about pair metric.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+        description:
+          $ref: '#/components/schemas/Description'
+        product:
+          $ref: '#/components/schemas/Product'
+        category:
+          $ref: '#/components/schemas/Category'
+        subcategory:
+          $ref: '#/components/schemas/Subcategory'
+        unit:
+          $ref: '#/components/schemas/Unit'
+        data_type:
+          $ref: '#/components/schemas/MetricDataType'
+        type:
+          $ref: '#/components/schemas/MetricType'
+        reviewable:
+          $ref: '#/components/schemas/Reviewable'
+        frequencies:
+          $ref: '#/components/schemas/CatalogPairMetricFrequencies'
+        display_name:
+          $ref: '#/components/schemas/DisplayName'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalMetric'
+      required:
+      - metric
+      - full_name
+      - description
+      - product
+      - category
+      - subcategory
+      - unit
+      - data_type
+      - type
+      - frequencies
+      type: object
+    CatalogMempoolFeeratesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMempoolFeeratesInfo'
+          type: array
+      required:
+      - data
+      type: object
+    MarginTradingEnabled:
+      type: boolean
+    CatalogAssetMetricInfo:
+      description: Information about asset metric.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+        description:
+          $ref: '#/components/schemas/Description'
+        product:
+          $ref: '#/components/schemas/Product'
+        category:
+          $ref: '#/components/schemas/Category'
+        subcategory:
+          $ref: '#/components/schemas/Subcategory'
+        unit:
+          $ref: '#/components/schemas/Unit'
+        data_type:
+          $ref: '#/components/schemas/MetricDataType'
+        type:
+          $ref: '#/components/schemas/MetricType'
+        reviewable:
+          $ref: '#/components/schemas/Reviewable'
+        frequencies:
+          $ref: '#/components/schemas/CatalogAssetMetricFrequencies'
+        display_name:
+          $ref: '#/components/schemas/DisplayName'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalMetric'
+      required:
+      - metric
+      - full_name
+      - description
+      - product
+      - category
+      - subcategory
+      - unit
+      - data_type
+      - type
+      - frequencies
+      type: object
+    CatalogMempoolFeeratesInfo:
+      description: Information about mempool feerates.
+      properties:
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - asset
+      - min_time
+      - max_time
+      type: object
+    InstitutionInfo:
+      description: Information about Institution.
+      properties:
+        institution:
+          $ref: '#/components/schemas/InstitutionId'
+        metrics:
+          $ref: '#/components/schemas/InstitutionMetricsIds'
+      type: object
+      required:
+      - institution
+    DerivativeContractListing:
+      description: Derivative contract listing date.
+      type: string
+      format: date-time
+    OrderPriceIncrement:
+      description: Price precision.
+      type: string
+      format: decimal
+    AssetsIds:
+      description: List of asset names.
+      items:
+        $ref: '#/components/schemas/AssetId'
+      type: array
+    CatalogMarketFundingRatesResponse:
+      description: List of market funding rates statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketFundingRatesInfo'
+          type: array
+      required:
+      - data
+      type: object
+    DefiContractAddress:
+      description: DeFi contract address.
+      type: string
+    AssetAlertRuleName:
+      description: Name of the asset alert.
+      type: string
+    DefiBaseAddress:
+      description: DeFi base address.
+      type: string
+    OrderSizeMin:
+      description: Minimum order size, where order size is amount * price.
+      type: string
+      format: decimal
+    Community:
+      description: Indicates an availability of the metric in the community version of the API.
+      type: boolean
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    ExchangeId:
+      description: Unique name of the exchange.
+      type: string
+    ExchangeAssetMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - frequency
+      - min_time
+      - max_time
+    OrderMakerFee:
+      type: string
+      format: decimal
+    ExchangeInfo:
+      description: Information about an exchange.
+      properties:
+        exchange:
+          $ref: '#/components/schemas/ExchangeId'
+        markets:
+          $ref: '#/components/schemas/MarketsIds'
+        metrics:
+          $ref: '#/components/schemas/ExchangeMetricsIds'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - exchange
+      - markets
+      - min_time
+      - max_time
+      type: object
+    CatalogMarketImpliedVolatilityInfo:
+      description: Information about market and time range of its available implied volatility data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    CatalogIndexCandlesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogIndexCandlesInfo'
+          type: array
+      required:
+      - data
+      type: object
+    AssetInfo:
+      description: Information about asset.
+      properties:
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalAsset'
+        metrics:
+          $ref: '#/components/schemas/MetricsIds'
+        exchanges:
+          $ref: '#/components/schemas/ExchangesIds'
+        markets:
+          $ref: '#/components/schemas/MarketsIds'
+        atlas:
+          $ref: '#/components/schemas/AssetAtlas'
+      type: object
+      required:
+      - asset
+      - full_name
+    MaxHash:
+      description: Maximal available block hash for time series.
+      type: string
+    CatalogMarketFundingRatesInfo:
+      description: Information about market and time range of its available funding rates data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    CatalogMetricInfo:
+      description: Information about asset metric.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+        description:
+          $ref: '#/components/schemas/Description'
+        category:
+          $ref: '#/components/schemas/Category'
+        subcategory:
+          $ref: '#/components/schemas/Subcategory'
+        unit:
+          $ref: '#/components/schemas/Unit'
+        data_type:
+          $ref: '#/components/schemas/MetricDataType'
+        type:
+          $ref: '#/components/schemas/MetricType'
+        reviewable:
+          $ref: '#/components/schemas/Reviewable'
+        frequencies:
+          $ref: '#/components/schemas/CatalogAssetMetricFrequencies'
+        display_name:
+          $ref: '#/components/schemas/DisplayName'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalMetric'
+      required:
+      - metric
+      - full_name
+      - description
+      - category
+      - subcategory
+      - unit
+      - data_type
+      - type
+      - frequencies
+      type: object
+    CatalogInstitutionMetricInfo:
+      description: Information about institution metric.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+        description:
+          $ref: '#/components/schemas/Description'
+        product:
+          $ref: '#/components/schemas/Product'
+        category:
+          $ref: '#/components/schemas/Category'
+        subcategory:
+          $ref: '#/components/schemas/Subcategory'
+        unit:
+          $ref: '#/components/schemas/Unit'
+        data_type:
+          $ref: '#/components/schemas/MetricDataType'
+        type:
+          $ref: '#/components/schemas/MetricType'
+        reviewable:
+          $ref: '#/components/schemas/Reviewable'
+        frequencies:
+          $ref: '#/components/schemas/CatalogInstitutionMetricFrequencies'
+        display_name:
+          $ref: '#/components/schemas/DisplayName'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalMetric'
+      required:
+      - metric
+      - full_name
+      - description
+      - product
+      - category
+      - subcategory
+      - unit
+      - data_type
+      - type
+      - frequencies
+      type: object
+    PairInfo:
+      description: Information about pair.
+      properties:
+        pair:
+          $ref: '#/components/schemas/PairId'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+        metrics:
+          $ref: '#/components/schemas/PairMetricsIds'
+      type: object
+      required:
+      - pair
+    CatalogMiningPoolTipsSummaryResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMiningPoolTipsSummaryInfo'
+          type: array
+      required:
+      - data
+      type: object
+    DerivativeContractMarginAsset:
+      description: Name of the derivative margin asset.
+      type: string
+    AssetMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/AssetMetricFrequency'
+      type: array
+    Product:
+      description: Associated Product of the metric.
+      type: string
+    ExperimentalMetric:
+      description: If set to true, indicates that metrics collection is under active development - there is a chance of temporary discrepancies in the served dataset.
+      type: boolean
+    CatalogMarketOrderbookDataset:
+      properties:
+        dataset:
+          type: string
+          description: Order book dataset name.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - dataset
+      - min_time
+      - max_time
     MarketInfo:
       description: Information about a market.
       properties:
@@ -1616,166 +1947,96 @@ components:
       - max_time
       - exchange
       - type
-    IndexType:
-      description: Type of the index.
+    DefiPoolConfigId:
+      description: DeFi pooling config ID.
       type: string
-    OrderTakerFee:
-      type: string
-      format: decimal
-    DerivativeContractMarginAsset:
-      description: Name of the derivative margin asset.
-      type: string
-    OrderPriceMin:
-      description: Minimum price.
-      type: string
-      format: decimal
-    CatalogPairCandlesInfo:
-      description: Information about pair and its supported candle durations.
-      properties:
-        pair:
-          $ref: '#/components/schemas/PairId'
-        frequencies:
-          $ref: '#/components/schemas/CatalogCandleFrequencies'
-      type: object
-      required:
-      - pair
-    CatalogMarketContractPricesResponse:
-      description: List of contract prices statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketContractPricesInfo'
-          type: array
-      required:
-      - data
-      type: object
-    InstitutionInfo:
-      description: Information about Institution.
-      properties:
-        institution:
-          $ref: '#/components/schemas/InstitutionId'
-        metrics:
-          $ref: '#/components/schemas/InstitutionMetricsIds'
-      type: object
-      required:
-      - institution
-    CatalogMempoolFeeratesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMempoolFeeratesInfo'
-          type: array
-      required:
-      - data
-      type: object
-    AssetAlertRuleInfo:
-      description: Information about the asset alert.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        name:
-          $ref: '#/components/schemas/AssetAlertRuleName'
-        conditions:
-          $ref: '#/components/schemas/AssetAlertSubRules'
-      type: object
-      required:
-      - asset
-      - name
-      - conditions
-    IsEuropean:
-      description: shows if the options contract is european or not.
+    CatalogMarketOrderbookDepths:
+      description: Depths of the book.
+      items:
+        $ref: '#/components/schemas/CatalogMarketOrderbookDepth'
+      type: array
+    ExperimentalMarket:
+      description: If set to true, indicates that market collection is under active development - there is a chance of temporary discrepancies in the served dataset.
       type: boolean
-    MaxTime:
-      description: Maximal available time for time series.
-      type: string
-      format: date-time
-    ExchangeIds:
-      description: List of exchange names.
-      items:
-        $ref: '#/components/schemas/ExchangeId'
-      type: array
-    CatalogMarketFundingRatesResponse:
-      description: List of market funding rates statistics.
+    CatalogMarketImpliedVolatilityResponse:
+      description: List of implied volatility statistics.
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogMarketFundingRatesInfo'
+            $ref: '#/components/schemas/CatalogMarketImpliedVolatilityInfo'
           type: array
       required:
       - data
       type: object
-    InstitutionId:
-      description: Unique name of the institution.
+    PairId:
+      description: Unique name of the pair.
       type: string
-    DerivativeContractListing:
-      description: Derivative contract listing date.
-      type: string
-      format: date-time
-    IndexId:
-      description: Name of the index.
-      type: string
-    MarketId:
-      description: Unique name of the market.
-      type: string
-    AssetAlertRulesResponse:
+    CatalogExchangeMetricsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/AssetAlertRuleInfo'
+            $ref: '#/components/schemas/CatalogExchangeMetricInfo'
           type: array
       required:
       - data
       type: object
-    CatalogAssetMetricFrequencies:
-      description: List of asset metric frequencies.
-      items:
-        $ref: '#/components/schemas/CatalogAssetMetricFrequency'
-      type: array
-    Status:
-      description: Market status (online/offline).
-      type: string
-    CatalogAssetMetricInfo:
-      description: Information about asset metric.
+    PairsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PairInfo'
+          type: array
+      required:
+      - data
+      type: object
+    MarketMetricInfo:
+      description: Information about availability of metric for a market.
       properties:
         metric:
           $ref: '#/components/schemas/MetricId'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        description:
-          $ref: '#/components/schemas/Description'
-        product:
-          $ref: '#/components/schemas/Product'
-        category:
-          $ref: '#/components/schemas/Category'
-        subcategory:
-          $ref: '#/components/schemas/Subcategory'
-        unit:
-          $ref: '#/components/schemas/Unit'
-        data_type:
-          $ref: '#/components/schemas/MetricDataType'
-        type:
-          $ref: '#/components/schemas/MetricType'
-        reviewable:
-          $ref: '#/components/schemas/Reviewable'
         frequencies:
-          $ref: '#/components/schemas/CatalogAssetMetricFrequencies'
-        display_name:
-          $ref: '#/components/schemas/DisplayName'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalMetric'
+          $ref: '#/components/schemas/MarketMetricFrequencies'
       required:
       - metric
-      - full_name
-      - description
-      - product
-      - category
-      - subcategory
-      - unit
-      - data_type
-      - type
       - frequencies
+    AssetAtlas:
+      description: If set to true, Atlas data is available for this asset.
+      type: boolean
+    DerivativeContractSizeAsset:
+      description: Name of the derivative contract size asset.
+      type: string
+    FullName:
+      description: Human-friendly name.
+      type: string
+    ExchangeAssetInfo:
+      description: Information about Exchange-asset combination.
+      properties:
+        exchange_asset:
+          $ref: '#/components/schemas/ExchangeAsset'
+        metrics:
+          $ref: '#/components/schemas/ExchangeAssetMetricsIds'
       type: object
-    ExchangeAssetMetricFrequency:
+      required:
+      - pair
+    MaxHeight:
+      description: Maximal available block height for time series.
+      type: string
+      format: int64
+    CatalogPairMetricFrequencies:
+      description: List of pair metric frequencies.
+      items:
+        $ref: '#/components/schemas/CatalogPairMetricFrequency'
+      type: array
+    IndexesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/IndexInfo'
+          type: array
+      required:
+      - data
+      type: object
+    InstitutionMetricFrequency:
       properties:
         frequency:
           type: string
@@ -1789,153 +2050,20 @@ components:
       - frequency
       - min_time
       - max_time
-    MarginTradingEnabled:
-      type: boolean
-    ExchangeAssetMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/ExchangeAssetMetricInfo'
-      type: array
-    ExchangeAsset:
-      description: Unique combination of the exchange and asset.
-      type: string
-    Exchange:
-      description: Name of the exchange.
-      type: string
-    CatalogMarketMetricsResponse:
-      description: List of market metrics statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketMetricsInfo'
-          type: array
-      required:
-      - data
-      type: object
-    ExchangeAssets:
-      description: List of exchange-asset pairs.
-      items:
-        $ref: '#/components/schemas/ExchangeAsset'
-      type: array
-    CatalogMempoolFeeratesInfo:
-      description: Information about mempool feerates.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - asset
-      - min_time
-      - max_time
-      type: object
-    CatalogMarketOrderbookDepth:
-      description: 'Order book availability for a depth. The depth-level min_time and max_time are backward-compatible summary fields. When the snapshots dataset is present, they match the snapshots dataset min_time and max_time. If snapshots is absent and updates is present, they fall back to the updates dataset range. They do not represent a union of dataset ranges.
-
-        '
-      properties:
-        depth:
-          type: string
-          description: Depth of the book
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-        datasets:
-          $ref: '#/components/schemas/CatalogMarketOrderbookDatasets'
-      required:
-      - depth
-      - min_time
-      - max_time
-    Unit:
-      description: Unit of the metric.
-      type: string
-    AssetsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/AssetInfo'
-          type: array
-      required:
-      - data
-      type: object
-    ExchangesIds:
-      description: List of exchange names.
-      items:
-        $ref: '#/components/schemas/ExchangeId'
-      type: array
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    CatalogInstitutionMetricFrequencies:
-      description: List of institution metric frequencies.
-      items:
-        $ref: '#/components/schemas/CatalogInstitutionMetricFrequency'
-      type: array
-    CatalogMarketLiquidationsInfo:
-      description: Information about market and time range of its available liquidations data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    ExchangeAssetsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ExchangeAssetInfo'
-          type: array
-      required:
-      - data
-      type: object
-    PairMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/PairMetricInfo'
-      type: array
-    AssetAlertSubRules:
-      description: Conditions that should be met in order for the corresponding asset alert to be produced.
-      items:
-        $ref: '#/components/schemas/AssetAlertSubRule'
-      type: array
-    CatalogExchangeMetricFrequencies:
-      description: List of exchange metric frequencies.
-      items:
-        $ref: '#/components/schemas/CatalogExchangeMetricFrequency'
-      type: array
-    MetricDataType:
-      description: 'Data Type of the metric. Can be bigint or decimal.<br/>
-
-        "bigint" means that you should expect an integer number in a range from -9223372036854775808 to 9223372036854775807.<br/>
-
-        "decimal" means that a number can have up to 131072 digits before the decimal point and up to 16383 digits after the decimal point.
-
-        '
-      type: string
-    CatalogPairMetricFrequency:
+    ExchangeMetricFrequency:
       properties:
         frequency:
           type: string
-          description: Frequency of the pair metric.
-        pairs:
-          $ref: '#/components/schemas/Pairs'
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
       type: object
       required:
       - frequency
-      - pairs
+      - min_time
+      - max_time
     AssetAlertSubRule:
       description: Information about the asset alert condition.
       properties:
@@ -1949,137 +2077,144 @@ components:
       required:
       - description
       - constituents
-    AssetAlertSubRuleConstituents:
-      description: Names of the alerting metrics that form an alerting value to be compared against the Key Risk Indicator threshold.
+    Unit:
+      description: Unit of the metric.
+      type: string
+    AssetAlertSubRuleConstituent:
+      description: Name of the alerting metric.
+      type: string
+    CatalogExchangeAssetMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the exchange-asset metric.
+        exchange_assets:
+          $ref: '#/components/schemas/ExchangeAssets'
+      type: object
+      required:
+      - frequency
+      - exchange_assets
+    AssetAlertSubRules:
+      description: Conditions that should be met in order for the corresponding asset alert to be produced.
       items:
-        $ref: '#/components/schemas/AssetAlertSubRuleConstituent'
+        $ref: '#/components/schemas/AssetAlertSubRule'
       type: array
-    Community:
-      description: Indicates an availability of the metric in the community version of the API.
+    MetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/AssetMetricInfo'
+      type: array
+    AssetMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+        min_height:
+          $ref: '#/components/schemas/MinHeight'
+        max_height:
+          $ref: '#/components/schemas/MaxHeight'
+        min_hash:
+          $ref: '#/components/schemas/MinHash'
+        max_hash:
+          $ref: '#/components/schemas/MaxHash'
+        community:
+          $ref: '#/components/schemas/Community'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalAssetMetric'
+      type: object
+      required:
+      - frequency
+      - min_time
+      - max_time
+    ExchangeAssetMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/ExchangeAssetMetricFrequency'
+      type: array
+    ExperimentalAsset:
+      description: If set to true, discrepancies might be present in the dataset for this asset, and that's expected.
       type: boolean
+    Reviewable:
+      description: Reviewable by human flag.
+      type: boolean
+    CatalogMarketMetricsResponse:
+      description: List of market metrics statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketMetricsInfo'
+          type: array
+      required:
+      - data
+      type: object
+    CatalogCandleFrequencies:
+      description: Frequencies of the candle.
+      items:
+        $ref: '#/components/schemas/CatalogCandleFrequency'
+      type: array
+    AssetsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AssetInfo'
+          type: array
+      required:
+      - data
+      type: object
+    OrderPriceMax:
+      description: Maximum price.
+      type: string
+      format: decimal
+    InstitutionMetricInfo:
+      description: Information about availability of metric for an institution.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/InstitutionMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogMarketLiquidationsResponse:
+      description: List of market liquidations statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketLiquidationsInfo'
+          type: array
+      required:
+      - data
+      type: object
     CatalogMarketOrderbookDatasets:
       description: Dataset-specific availability ranges for this order book depth.
       items:
         $ref: '#/components/schemas/CatalogMarketOrderbookDataset'
       type: array
-    FullName:
-      description: Human-friendly name.
+    OptionStrike:
+      description: Strike price for option trade.
       type: string
-    DefiPoolConfigId:
-      description: DeFi pooling config ID.
+      format: decimal
+    Subcategory:
+      description: Subcategory of the metric.
       type: string
-    OptionContractType:
-      description: '''call or ''put'' option contract type.'
-      type: string
-    CatalogIndexFrequency:
+    CatalogMarketGreeksInfo:
+      description: Information about market and time range of its available greeks data.
       properties:
-        frequency:
-          type: string
-          description: Frequency of the index.
+        market:
+          $ref: '#/components/schemas/MarketId'
         min_time:
           $ref: '#/components/schemas/MinTime'
         max_time:
           $ref: '#/components/schemas/MaxTime'
+      type: object
       required:
-      - frequency
+      - market
       - min_time
       - max_time
-    CatalogMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMetricInfo'
-          type: array
-      required:
-      - data
-      type: object
-    MarketType:
-      description: Type of the market (spot, future).
-      type: string
-    MinTime:
-      description: Minimal available time for time series.
-      type: string
-      format: date-time
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
-    CatalogPairMetricInfo:
-      description: Information about pair metric.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        description:
-          $ref: '#/components/schemas/Description'
-        product:
-          $ref: '#/components/schemas/Product'
-        category:
-          $ref: '#/components/schemas/Category'
-        subcategory:
-          $ref: '#/components/schemas/Subcategory'
-        unit:
-          $ref: '#/components/schemas/Unit'
-        data_type:
-          $ref: '#/components/schemas/MetricDataType'
-        type:
-          $ref: '#/components/schemas/MetricType'
-        reviewable:
-          $ref: '#/components/schemas/Reviewable'
-        frequencies:
-          $ref: '#/components/schemas/CatalogPairMetricFrequencies'
-        display_name:
-          $ref: '#/components/schemas/DisplayName'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalMetric'
-      required:
-      - metric
-      - full_name
-      - description
-      - product
-      - category
-      - subcategory
-      - unit
-      - data_type
-      - type
-      - frequencies
-      type: object
-    AssetId:
-      description: Unique name of the asset.
-      type: string
-    AssetInfo:
-      description: Information about asset.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalAsset'
-        metrics:
-          $ref: '#/components/schemas/MetricsIds'
-        exchanges:
-          $ref: '#/components/schemas/ExchangesIds'
-        markets:
-          $ref: '#/components/schemas/MarketsIds'
-        atlas:
-          $ref: '#/components/schemas/AssetAtlas'
-      type: object
-      required:
-      - asset
-      - full_name
-    MaxHash:
-      description: Maximal available block hash for time series.
-      type: string
     CatalogExchangeMetricInfo:
       description: Information about exchange metric.
       properties:
@@ -2121,58 +2256,496 @@ components:
       - type
       - frequencies
       type: object
-    OrderAmountMax:
-      description: Maximum amount size.
+    PairMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/PairMetricFrequency'
+      type: array
+    AssetAlertSubRuleDescription:
+      description: Description of the asset alert.
+      type: string
+    CatalogMarketContractPricesInfo:
+      description: Information about market and time range of its available contract prices data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    ExchangeAssetMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/ExchangeAssetMetricInfo'
+      type: array
+    OrderAmountMin:
+      description: Minimum amount size.
       type: string
       format: decimal
-    AssetAlertRuleName:
-      description: Name of the asset alert.
+    InstitutionMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/InstitutionMetricFrequency'
+      type: array
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    MinHash:
+      description: Minimal available black hash for time series.
       type: string
-    CatalogMetricInfo:
-      description: Information about asset metric.
+    CatalogIndexFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the index.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - frequency
+      - min_time
+      - max_time
+    AssetIdBase:
+      description: Unique name of the base asset.
+      type: string
+    CatalogMarketCandlesInfo:
+      description: Information about market and its supported candle durations.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        frequencies:
+          $ref: '#/components/schemas/CatalogCandleFrequencies'
+      type: object
+      required:
+      - market
+      - candles
+    AssetAlertRuleInfo:
+      description: Information about the asset alert.
+      properties:
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        name:
+          $ref: '#/components/schemas/AssetAlertRuleName'
+        conditions:
+          $ref: '#/components/schemas/AssetAlertSubRules'
+      type: object
+      required:
+      - asset
+      - name
+      - conditions
+    ExchangeMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/ExchangeMetricFrequency'
+      type: array
+    CatalogInstitutionMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogInstitutionMetricInfo'
+          type: array
+      required:
+      - data
+      type: object
+    Institutions:
+      description: List of institutions.
+      items:
+        $ref: '#/components/schemas/InstitutionId'
+      type: array
+    MaxTime:
+      description: Maximal available time for time series.
+      type: string
+      format: date-time
+    SettlementPrice:
+      description: Price of underlying asset at contract expiration.
+      type: string
+      format: decimal
+    MetricId:
+      description: Name of the metric.
+      type: string
+    MarketId:
+      description: Unique name of the market.
+      type: string
+    OrderPriceMin:
+      description: Minimum price.
+      type: string
+      format: decimal
+    DerivativeContractExpiration:
+      description: Derivative contract expiration date.
+      type: string
+      format: date-time
+    CatalogMarketOrderbookDepth:
+      description: 'Order book availability for a depth. The depth-level min_time and max_time are backward-compatible summary fields. When the snapshots dataset is present, they match the snapshots dataset min_time and max_time. If snapshots is absent and updates is present, they fall back to the updates dataset range. They do not represent a union of dataset ranges.
+
+        '
+      properties:
+        depth:
+          type: string
+          description: Depth of the book
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+        datasets:
+          $ref: '#/components/schemas/CatalogMarketOrderbookDatasets'
+      required:
+      - depth
+      - min_time
+      - max_time
+    CatalogAssetMetricFrequencies:
+      description: List of asset metric frequencies.
+      items:
+        $ref: '#/components/schemas/CatalogAssetMetricFrequency'
+      type: array
+    AssetAlertRulesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AssetAlertRuleInfo'
+          type: array
+      required:
+      - data
+      type: object
+    CatalogMarketOrderbooksInfo:
+      description: Information about market and time range of its available orderbooks data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+        depths:
+          $ref: '#/components/schemas/CatalogMarketOrderbookDepths'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+      - depths
+    AssetMetricInfo:
+      description: Information about availability of metric for an asset.
       properties:
         metric:
           $ref: '#/components/schemas/MetricId'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        description:
-          $ref: '#/components/schemas/Description'
-        category:
-          $ref: '#/components/schemas/Category'
-        subcategory:
-          $ref: '#/components/schemas/Subcategory'
-        unit:
-          $ref: '#/components/schemas/Unit'
-        data_type:
-          $ref: '#/components/schemas/MetricDataType'
-        type:
-          $ref: '#/components/schemas/MetricType'
-        reviewable:
-          $ref: '#/components/schemas/Reviewable'
         frequencies:
-          $ref: '#/components/schemas/CatalogAssetMetricFrequencies'
-        display_name:
-          $ref: '#/components/schemas/DisplayName'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalMetric'
+          $ref: '#/components/schemas/AssetMetricFrequencies'
       required:
       - metric
-      - full_name
-      - description
-      - category
-      - subcategory
-      - unit
-      - data_type
-      - type
       - frequencies
+    CatalogMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMetricInfo'
+          type: array
+      required:
+      - data
       type: object
-    ExchangeId:
-      description: Unique name of the exchange.
+    CatalogMarketQuotesInfo:
+      description: Information about market and time range of its available quotes data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    ExchangeAssetsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ExchangeAssetInfo'
+          type: array
+      required:
+      - data
+      type: object
+    Description:
+      description: Human-friendly description.
       type: string
-    OrderPriceIncrement:
-      description: Price precision.
+    CatalogInstitutionMetricFrequencies:
+      description: List of institution metric frequencies.
+      items:
+        $ref: '#/components/schemas/CatalogInstitutionMetricFrequency'
+      type: array
+    DefiFee:
+      description: DeFi fee (in percents).
       type: string
       format: decimal
+    IndexId:
+      description: Name of the index.
+      type: string
+    PairMetricInfo:
+      description: Information about availability of metric for an pair.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/PairMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogMarketQuotesResponse:
+      description: List of market quotes statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketQuotesInfo'
+          type: array
+      required:
+      - data
+      type: object
+    AssetIdQuote:
+      description: Unique name of the quote asset.
+      type: string
+    CatalogPairCandlesInfo:
+      description: Information about pair and its supported candle durations.
+      properties:
+        pair:
+          $ref: '#/components/schemas/PairId'
+        frequencies:
+          $ref: '#/components/schemas/CatalogCandleFrequencies'
+      type: object
+      required:
+      - pair
+    CatalogInstitutionMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the institution metric.
+        institutions:
+          $ref: '#/components/schemas/Institutions'
+      type: object
+      required:
+      - frequency
+      - institutions
+    ExchangeIds:
+      description: List of exchange names.
+      items:
+        $ref: '#/components/schemas/ExchangeId'
+      type: array
+    MarketTimeRange:
+      description: Available time range for time series.
+      properties:
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - min_time
+      - max_time
+    Pairs:
+      description: List of pair names.
+      items:
+        $ref: '#/components/schemas/PairId'
+      type: array
+    IndexInfo:
+      description: Information about an index.
+      properties:
+        index:
+          $ref: '#/components/schemas/IndexId'
+        full_name:
+          $ref: '#/components/schemas/Description'
+        description:
+          $ref: '#/components/schemas/Description'
+        frequencies:
+          $ref: '#/components/schemas/IndexFrequencies'
+        type:
+          $ref: '#/components/schemas/IndexType'
+      required:
+      - index
+      - full_name
+      - description
+      - frequencies
+      type: object
+    CatalogMarketOpeninterestInfo:
+      description: Information about market and time range of its available open interest data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    CatalogPairCandlesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogPairCandlesInfo'
+          type: array
+      required:
+      - data
+      type: object
+    ExchangeAssetMetricInfo:
+      description: Information about availability of metric for an exchange-asset.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/ExchangeAssetMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    Category:
+      description: Category of the metric.
+      type: string
+    CatalogMarketOrderbooksResponse:
+      description: List of market orderbooks statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketOrderbooksInfo'
+          type: array
+      required:
+      - data
+      type: object
+    CatalogAssetChainsInfo:
+      description: Information about asset chains.
+      properties:
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - asset
+      - min_time
+      - max_time
+      type: object
+    ExperimentalAssetMetric:
+      description: Asset, metric, and frequency combination is experimental.
+      type: boolean
+    CatalogPairMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the pair metric.
+        pairs:
+          $ref: '#/components/schemas/Pairs'
+      type: object
+      required:
+      - frequency
+      - pairs
+    MarketMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - frequency
+      - min_time
+      - max_time
+    AssetAlertSubRuleConstituents:
+      description: Names of the alerting metrics that form an alerting value to be compared against the Key Risk Indicator threshold.
+      items:
+        $ref: '#/components/schemas/AssetAlertSubRuleConstituent'
+      type: array
+    MarketMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/MarketMetricFrequency'
+      type: array
+    CatalogPairMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogPairMetricInfo'
+          type: array
+      required:
+      - data
+      type: object
+    Status:
+      description: Market status (online/offline).
+      type: string
+    CatalogMarketOpeninterestResponse:
+      description: List of market open interest statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketOpeninterestInfo'
+          type: array
+      required:
+      - data
+      type: object
+    MarketsIds:
+      description: List of market names.
+      items:
+        $ref: '#/components/schemas/MarketId'
+      type: array
+    CatalogExchangeAssetMetricFrequencies:
+      description: List of exchange-asset metric frequencies.
+      items:
+        $ref: '#/components/schemas/CatalogExchangeAssetMetricFrequency'
+      type: array
+    CatalogMarketGreeksResponse:
+      description: List of greeks statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketGreeksInfo'
+          type: array
+      required:
+      - data
+      type: object
+    CatalogExchangeMetricFrequencies:
+      description: List of exchange metric frequencies.
+      items:
+        $ref: '#/components/schemas/CatalogExchangeMetricFrequency'
+      type: array
+    InstitutionMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/InstitutionMetricInfo'
+      type: array
+    MarketsResponse:
+      description: List of markets.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/MarketInfo'
+          type: array
+      required:
+      - data
+      type: object
+    OptionContractType:
+      description: '''call or ''put'' option contract type.'
+      type: string
+    MetricDataType:
+      description: 'Data Type of the metric. Can be bigint or decimal.<br/>
+
+        "bigint" means that you should expect an integer number in a range from -9223372036854775808 to 9223372036854775807.<br/>
+
+        "decimal" means that a number can have up to 131072 digits before the decimal point and up to 16383 digits after the decimal point.
+
+        '
+      type: string
     CatalogCandleFrequency:
       properties:
         frequency:
@@ -2186,86 +2759,53 @@ components:
       - frequency
       - min_time
       - max_time
-    Subcategory:
-      description: Subcategory of the metric.
-      type: string
-    AssetIdBase:
-      description: Unique name of the base asset.
-      type: string
-    ExchangeAssetInfo:
-      description: Information about Exchange-asset combination.
-      properties:
-        exchange_asset:
-          $ref: '#/components/schemas/ExchangeAsset'
-        metrics:
-          $ref: '#/components/schemas/ExchangeAssetMetricsIds'
-      type: object
-      required:
-      - pair
-    ExperimentalMetric:
-      description: If set to true, indicates that metrics collection is under active development - there is a chance of temporary discrepancies in the served dataset.
-      type: boolean
-    CatalogPairMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogPairMetricInfo'
-          type: array
-      required:
-      - data
-      type: object
-    ExchangeMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/ExchangeMetricInfo'
-      type: array
-    MaxHeight:
-      description: Maximal available block height for time series.
+    MinHeight:
+      description: Minimal available block height for time series.
       type: string
       format: int64
-    CatalogMarketMetricsInfo:
-      description: Information about market and its supported metrics.
+    PairMetricFrequency:
       properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        metrics:
-          $ref: '#/components/schemas/MarketMetricsIds'
+        frequency:
+          type: string
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
       type: object
       required:
-      - market
-      - metrics
-    ExchangeInfo:
-      description: Information about an exchange.
+      - frequency
+      - min_time
+      - max_time
+    CatalogTransactionTrackerInfo:
+      description: Information about transaction tracker.
       properties:
-        exchange:
-          $ref: '#/components/schemas/ExchangeId'
-        markets:
-          $ref: '#/components/schemas/MarketsIds'
-        metrics:
-          $ref: '#/components/schemas/ExchangeMetricsIds'
+        asset:
+          $ref: '#/components/schemas/AssetId'
         min_time:
           $ref: '#/components/schemas/MinTime'
         max_time:
           $ref: '#/components/schemas/MaxTime'
       required:
-      - exchange
-      - markets
+      - asset
       - min_time
       - max_time
       type: object
-    Description:
-      description: Human-friendly description.
-      type: string
-    CatalogMarketQuotesResponse:
-      description: List of market quotes statistics.
+    CatalogAssetMetricFrequency:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketQuotesInfo'
-          type: array
-      required:
-      - data
+        frequency:
+          type: string
+          description: Frequency of the asset metric.
+        assets:
+          $ref: '#/components/schemas/AssetsIds'
       type: object
+      required:
+      - frequency
+      - assets
+    OrderAmountIncrement:
+      description: Volume precision.
+      type: string
+      format: decimal
     CatalogExchangeAssetMetricInfo:
       description: Information about exchange-asset metric.
       properties:
@@ -2307,319 +2847,11 @@ components:
       - type
       - frequencies
       type: object
-    AssetAlertSubRuleDescription:
-      description: Description of the asset alert.
-      type: string
-    CatalogInstitutionMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogInstitutionMetricInfo'
-          type: array
-      required:
-      - data
-      type: object
-    AssetsIds:
-      description: List of asset names.
+    ExchangesIds:
+      description: List of exchange names.
       items:
-        $ref: '#/components/schemas/AssetId'
+        $ref: '#/components/schemas/ExchangeId'
       type: array
-    ExperimentalAsset:
-      description: If set to true, discrepancies might be present in the dataset for this asset, and that's expected.
-      type: boolean
-    MarketTimeRange:
-      description: Available time range for time series.
-      properties:
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - min_time
-      - max_time
-    DefiFee:
-      description: DeFi fee (in percents).
-      type: string
-      format: decimal
-    InstitutionMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/InstitutionMetricFrequency'
-      type: array
-    CatalogMarketTradesResponse:
-      description: List of market trades statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketTradesInfo'
-          type: array
-      required:
-      - data
-      type: object
-    CatalogAssetChainsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogAssetChainsInfo'
-          type: array
-      required:
-      - data
-      type: object
-    PairId:
-      description: Unique name of the pair.
-      type: string
-    IndexesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/IndexInfo'
-          type: array
-      required:
-      - data
-      type: object
-    CatalogMiningPoolTipsSummaryResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMiningPoolTipsSummaryInfo'
-          type: array
-      required:
-      - data
-      type: object
-    MetricType:
-      description: Type of the metric.
-      type: string
-    MetricId:
-      description: Name of the metric.
-      type: string
-    CatalogTransactionTrackerResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogTransactionTrackerInfo'
-          type: array
-      required:
-      - data
-      type: object
-    AssetAlertSubRuleThreshold:
-      description: Asset alert's Key Risk Indicator triggering value. Omitted if asset alert condition depends on the variable metric threshold (this fact will be reflected in the condition description).
-      type: string
-    MetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/AssetMetricInfo'
-      type: array
-    ExchangeMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogMarketOrderbookDataset:
-      properties:
-        dataset:
-          type: string
-          description: Order book dataset name.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - dataset
-      - min_time
-      - max_time
-    ExchangeAssetMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/ExchangeAssetMetricFrequency'
-      type: array
-    DerivativeContractSizeAsset:
-      description: Name of the derivative contract size asset.
-      type: string
-    AssetMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-        min_height:
-          $ref: '#/components/schemas/MinHeight'
-        max_height:
-          $ref: '#/components/schemas/MaxHeight'
-        min_hash:
-          $ref: '#/components/schemas/MinHash'
-        max_hash:
-          $ref: '#/components/schemas/MaxHash'
-        community:
-          $ref: '#/components/schemas/Community'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalAssetMetric'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    MarketContractSize:
-      description: Market contract size.
-      type: string
-      format: decimal
-    PairMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogExchangeAssetMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the exchange-asset metric.
-        exchange_assets:
-          $ref: '#/components/schemas/ExchangeAssets'
-      type: object
-      required:
-      - frequency
-      - exchange_assets
-    CatalogMarketLiquidationsResponse:
-      description: List of market liquidations statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketLiquidationsInfo'
-          type: array
-      required:
-      - data
-      type: object
-    IndexInfo:
-      description: Information about an index.
-      properties:
-        index:
-          $ref: '#/components/schemas/IndexId'
-        full_name:
-          $ref: '#/components/schemas/Description'
-        description:
-          $ref: '#/components/schemas/Description'
-        frequencies:
-          $ref: '#/components/schemas/IndexFrequencies'
-        type:
-          $ref: '#/components/schemas/IndexType'
-      required:
-      - index
-      - full_name
-      - description
-      - frequencies
-      type: object
-    CatalogMarketImpliedVolatilityResponse:
-      description: List of implied volatility statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketImpliedVolatilityInfo'
-          type: array
-      required:
-      - data
-      type: object
-    InstitutionMetricInfo:
-      description: Information about availability of metric for an institution.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/InstitutionMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    Product:
-      description: Associated Product of the metric.
-      type: string
-    CatalogIndexCandlesInfo:
-      description: Information about index and its supported candle durations.
-      properties:
-        index:
-          $ref: '#/components/schemas/IndexId'
-        frequencies:
-          $ref: '#/components/schemas/CatalogCandleFrequencies'
-      type: object
-      required:
-      - index
-    ExperimentalAssetMetric:
-      description: Asset, metric, and frequency combination is experimental.
-      type: boolean
-    OrderPriceMax:
-      description: Maximum price.
-      type: string
-      format: decimal
-    PairsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/PairInfo'
-          type: array
-      required:
-      - data
-      type: object
-    CatalogMarketOrderbooksInfo:
-      description: Information about market and time range of its available orderbooks data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-        depths:
-          $ref: '#/components/schemas/CatalogMarketOrderbookDepths'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-      - depths
-    OrderAmountMin:
-      description: Minimum amount size.
-      type: string
-      format: decimal
-    OrderMakerFee:
-      type: string
-      format: decimal
-    DefiQuoteAddress:
-      description: DeFi quote address.
-      type: string
-    MarketMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/MarketMetricFrequency'
-      type: array
-    CatalogMarketOpeninterestResponse:
-      description: List of market open interest statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketOpeninterestInfo'
-          type: array
-      required:
-      - data
-      type: object
     CatalogExchangeAssetMetricsResponse:
       properties:
         data:
@@ -2629,21 +2861,8 @@ components:
       required:
       - data
       type: object
-    FutureTickSize:
-      description: Futures tick size.
-      type: string
-      format: decimal
-    CatalogIndexCandlesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogIndexCandlesInfo'
-          type: array
-      required:
-      - data
-      type: object
-    CatalogMarketContractPricesInfo:
-      description: Information about market and time range of its available contract prices data.
+    CatalogMarketLiquidationsInfo:
+      description: Information about market and time range of its available liquidations data.
       properties:
         market:
           $ref: '#/components/schemas/MarketId'
@@ -2656,99 +2875,24 @@ components:
       - market
       - min_time
       - max_time
-    DefiContractAddress:
-      description: DeFi contract address.
+    IndexType:
+      description: Type of the index.
       type: string
-    CatalogPairMetricFrequencies:
-      description: List of pair metric frequencies.
-      items:
-        $ref: '#/components/schemas/CatalogPairMetricFrequency'
-      type: array
-    CatalogAssetMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the asset metric.
-        assets:
-          $ref: '#/components/schemas/AssetsIds'
-      type: object
-      required:
-      - frequency
-      - assets
-    Category:
-      description: Category of the metric.
+    Exchange:
+      description: Name of the exchange.
       type: string
-    DerivativeContractExpiration:
-      description: Derivative contract expiration date.
+    MarketContractSize:
+      description: Market contract size.
       type: string
-      format: date-time
-    AssetIdQuote:
-      description: Unique name of the quote asset.
-      type: string
+      format: decimal
     DisplayName:
       description: More detailed and human friendly name of a metric.
       type: string
-    OrderSizeMin:
-      description: Minimum order size, where order size is amount * price.
-      type: string
-      format: decimal
-    CatalogPairCandlesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogPairCandlesInfo'
-          type: array
-      required:
-      - data
-      type: object
-    DefiBaseAddress:
-      description: DeFi base address.
-      type: string
-    CatalogMarketImpliedVolatilityInfo:
-      description: Information about market and time range of its available implied volatility data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    OrderAmountIncrement:
-      description: Volume precision.
-      type: string
-      format: decimal
-    MarketSymbol:
-      description: Unique name of the derivative market symbol.
-      type: string
-    InstitutionMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    MarketsResponse:
-      description: List of markets.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/MarketInfo'
-          type: array
-      required:
-      - data
-      type: object
+    PairMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/PairMetricInfo'
+      type: array
     CatalogAssetMetricsResponse:
       properties:
         data:
@@ -2758,8 +2902,8 @@ components:
       required:
       - data
       type: object
-    CatalogTransactionTrackerInfo:
-      description: Information about transaction tracker.
+    CatalogMiningPoolTipsSummaryInfo:
+      description: Information about mining pool tips summary.
       properties:
         asset:
           $ref: '#/components/schemas/AssetId'
@@ -2772,195 +2916,205 @@ components:
       - min_time
       - max_time
       type: object
-    AssetMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/AssetMetricFrequency'
-      type: array
-    ExchangeMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/ExchangeMetricFrequency'
-      type: array
-    InstitutionMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/InstitutionMetricInfo'
-      type: array
-    MinHash:
-      description: Minimal available black hash for time series.
+    MetricType:
+      description: Type of the metric.
       type: string
-    CatalogMarketCandlesInfo:
-      description: Information about market and its supported candle durations.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        frequencies:
-          $ref: '#/components/schemas/CatalogCandleFrequencies'
-      type: object
-      required:
-      - market
-      - candles
-    IndexFrequencies:
-      description: Frequencies of the index.
-      items:
-        $ref: '#/components/schemas/CatalogIndexFrequency'
-      type: array
-    CatalogInstitutionMetricInfo:
-      description: Information about institution metric.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        description:
-          $ref: '#/components/schemas/Description'
-        product:
-          $ref: '#/components/schemas/Product'
-        category:
-          $ref: '#/components/schemas/Category'
-        subcategory:
-          $ref: '#/components/schemas/Subcategory'
-        unit:
-          $ref: '#/components/schemas/Unit'
-        data_type:
-          $ref: '#/components/schemas/MetricDataType'
-        type:
-          $ref: '#/components/schemas/MetricType'
-        reviewable:
-          $ref: '#/components/schemas/Reviewable'
-        frequencies:
-          $ref: '#/components/schemas/CatalogInstitutionMetricFrequencies'
-        display_name:
-          $ref: '#/components/schemas/DisplayName'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalMetric'
-      required:
-      - metric
-      - full_name
-      - description
-      - product
-      - category
-      - subcategory
-      - unit
-      - data_type
-      - type
-      - frequencies
-      type: object
-    ExperimentalMarket:
-      description: If set to true, indicates that market collection is under active development - there is a chance of temporary discrepancies in the served dataset.
-      type: boolean
     MarketMetricsIds:
       description: List of metrics.
       items:
         $ref: '#/components/schemas/MarketMetricInfo'
       type: array
-    CatalogMarketCandlesResponse:
-      description: List of market candles statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketCandlesInfo'
-          type: array
-      required:
-      - data
-      type: object
-    CatalogMarketFundingRatesInfo:
-      description: Information about market and time range of its available funding rates data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    CatalogCandleFrequencies:
-      description: Frequencies of the candle.
+    ExchangeAssets:
+      description: List of exchange-asset pairs.
       items:
-        $ref: '#/components/schemas/CatalogCandleFrequency'
+        $ref: '#/components/schemas/ExchangeAsset'
       type: array
-    MarketsIds:
-      description: List of market names.
-      items:
-        $ref: '#/components/schemas/MarketId'
-      type: array
-    CatalogMarketGreeksResponse:
-      description: List of greeks statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketGreeksInfo'
-          type: array
-      required:
-      - data
-      type: object
-    ExchangeAssetMetricInfo:
-      description: Information about availability of metric for an exchange-asset.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/ExchangeAssetMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    PairInfo:
-      description: Information about pair.
-      properties:
-        pair:
-          $ref: '#/components/schemas/PairId'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        metrics:
-          $ref: '#/components/schemas/PairMetricsIds'
-      type: object
-      required:
-      - pair
-    CatalogMarketOrderbookDepths:
-      description: Depths of the book.
-      items:
-        $ref: '#/components/schemas/CatalogMarketOrderbookDepth'
-      type: array
+  parameters:
+    CatalogAssetExcludeFields:
+      description: Comma separated list of fields to exclude from response. Supported values are `metrics`, `markets`, `exchanges`. Included by default if omitted.
+      in: query
+      name: exclude
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketQuote:
+      description: Quote asset of markets.
+      in: query
+      name: quote
+      schema:
+        type: string
+    CatalogPairId:
+      description: Comma separated list of asset pairs. By default, all asset pairs are returned.
+      in: query
+      name: pairs
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketBase:
+      description: Base asset of markets.
+      in: query
+      name: base
+      schema:
+        type: string
+    Exchange:
+      description: Unique name of an exchange.
+      in: query
+      name: exchange
+      schema:
+        type: string
+    Reviewable:
+      description: Limit to human-reviewable metrics. By default all metrics are returned.
+      in: query
+      name: reviewable
+      schema:
+        type: boolean
+    CatalogMarketExcludeFields:
+      description: Comma separated list of fields to exclude from response. Supported values are `trades`, `orderbooks`, `quotes`, `funding_rates`, `openinterest`, `liquidations`. Included by default if omitted.
+      in: query
+      name: exclude
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogInstitutionId:
+      description: Comma separated list of institutions. By default, all institutions are returned.
+      in: query
+      name: institutions
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogExchangeId:
+      description: 'Comma separated list of exchanges. By default all exchanges are returned. Supports the following formats: `<exchange>` - Coin Metrics exchange name (e.g., `binance`), `<namespace>:<name>` - External provider market name (e.g., `talos:binance`), `<namespace>:by-id:<id>` - External provider numeric market ID (e.g., `talos:by-id:1003`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by numeric ID rather than name.'
+      in: query
+      name: exchanges
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogAssetIncludeFields:
+      description: Comma separated list of fields to include in response. Supported values are `metrics`, `markets`, `exchanges`. Included by default if omitted.
+      in: query
+      name: include
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogResponseFormat:
+      description: Format of the response. Supported values are `json`, `json_stream`.
+      in: query
+      name: format
+      schema:
+        type: string
+        default: json
+    CatalogExchangeAssetId:
+      description: Comma separated list of exchange-assets. By default, all exchange-assets pairs are returned.
+      in: query
+      name: exchange_assets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketSymbol:
+      description: Symbol of derivative markets, full instrument name.
+      in: query
+      name: symbol
+      schema:
+        type: string
+    CatalogMetric:
+      description: Comma separated list of metrics. By default all metrics are returned.
+      in: query
+      name: metrics
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogAssetAlertId:
+      description: Comma separated list of asset alert names. By default all asset alerts are returned.
+      in: query
+      name: alerts
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketType:
+      description: Type of markets.
+      in: query
+      name: type
+      schema:
+        enum:
+        - spot
+        - future
+        - option
+        type: string
+    CatalogMarketIncludeFields:
+      description: Comma separated list of fields to include in response. Supported values are `trades`, `orderbooks`, `quotes`, `funding_rates`, `openinterest`, `liquidations`. Included by default if omitted.
+      in: query
+      name: include
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogMarketId:
+      description: Comma separated list of markets. By default all markets are returned.
+      in: query
+      name: markets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogAssetId:
+      description: 'Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol.'
+      in: query
+      name: assets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogMarketLimit:
+      description: Limit of response items. `none` means no limit. Maximum value is 100.
+      in: query
+      name: limit
+      schema:
+        type: string
+        default: none
+    CatalogIndexId:
+      description: Comma separated list of indexes. By default all indexes are returned.
+      in: query
+      name: indexes
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketAsset:
+      description: Any asset of markets.
+      in: query
+      name: asset
+      schema:
+        type: string
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
   responses:
-    CatalogMarketOpeninterest:
-      description: List of market open interest statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-1000BTTCUSDT-future
-              min_time: '2022-01-26T03:30:43.271000000Z'
-              max_time: '2022-04-11T08:51:00.000000000Z'
-            - market: binance-1000LUNCBUSD-future
-              min_time: '2022-05-31T02:45:00.000000000Z'
-              max_time: '2022-07-04T13:53:00.000000000Z'
-            - market: binance-1000SHIBUSDT-future
-              min_time: '2021-05-10T13:00:58.123000000Z'
-              max_time: '2022-07-04T13:53:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMarketOpeninterestResponse'
-    CatalogMarketGreeks:
-      description: List of greeks statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: deribit-BTC-15OCT21-60000-C-option
-              min_time: '2022-01-26T08:00:00.001000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: deribit-BTC-1OCT21-75000-C-option
-              min_time: '2022-05-30T16:00:00.005000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            - market: deribit-BTC-26NOV21-60000-C-option
-              min_time: '2021-05-10T16:00:00.013000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMarketGreeksResponse'
     CatalogMarketOrderbooks:
       description: List of market orderbooks statistics.
       content:
@@ -2983,263 +3137,6 @@ components:
                 max_time: '2023-09-08T11:00:00.000000000Z'
           schema:
             $ref: '#/components/schemas/CatalogMarketOrderbooksResponse'
-    IndexNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'indexes'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Index not found.
-    CatalogPairCandles:
-      description: List of asset pair candles statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - pair: btc-eur
-              frequencies:
-              - frequency: 1m
-                min_time: '2011-08-28T18:26:00.000000000Z'
-                max_time: '2022-06-29T23:25:00.000000000Z'
-              - frequency: 5m
-                min_time: '2011-08-28T18:25:00.000000000Z'
-                max_time: '2022-06-29T23:20:00.000000000Z'
-              - frequency: 10m
-                min_time: '2011-08-28T18:20:00.000000000Z'
-                max_time: '2022-06-29T23:10:00.000000000Z'
-              - frequency: 15m
-                min_time: '2011-08-28T18:15:00.000000000Z'
-                max_time: '2022-06-29T23:00:00.000000000Z'
-              - frequency: 30m
-                min_time: '2011-08-28T18:00:00.000000000Z'
-                max_time: '2022-06-29T22:30:00.000000000Z'
-              - frequency: 1h
-                min_time: '2011-08-28T18:00:00.000000000Z'
-                max_time: '2022-06-29T22:00:00.000000000Z'
-              - frequency: 4h
-                min_time: '2011-08-28T16:00:00.000000000Z'
-                max_time: '2022-06-29T16:00:00.000000000Z'
-              - frequency: 1d
-                min_time: '2011-08-28T00:00:00.000000000Z'
-                max_time: '2022-06-28T00:00:00.000000000Z'
-            - pair: btc-usd
-              frequencies:
-              - frequency: 1m
-                min_time: '2010-07-18T03:43:00.000000000Z'
-                max_time: '2022-06-29T23:25:00.000000000Z'
-              - frequency: 5m
-                min_time: '2010-07-18T03:40:00.000000000Z'
-                max_time: '2022-06-29T23:20:00.000000000Z'
-              - frequency: 10m
-                min_time: '2010-07-18T03:40:00.000000000Z'
-                max_time: '2022-06-29T23:10:00.000000000Z'
-              - frequency: 15m
-                min_time: '2010-07-18T03:30:00.000000000Z'
-                max_time: '2022-06-29T23:00:00.000000000Z'
-              - frequency: 30m
-                min_time: '2010-07-18T03:30:00.000000000Z'
-                max_time: '2022-06-29T22:30:00.000000000Z'
-              - frequency: 1h
-                min_time: '2010-07-18T03:00:00.000000000Z'
-                max_time: '2022-06-29T22:00:00.000000000Z'
-              - frequency: 4h
-                min_time: '2010-07-18T00:00:00.000000000Z'
-                max_time: '2022-06-29T16:00:00.000000000Z'
-              - frequency: 1d
-                min_time: '2010-07-18T00:00:00.000000000Z'
-                max_time: '2022-06-28T00:00:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogPairCandlesResponse'
-    CatalogTransactionTracker:
-      description: List of transaction tracker assets
-      content:
-        application/json:
-          example:
-            data:
-            - asset: btc
-              min_time: '2021-08-09T10:34:38.290000000Z'
-              max_time: '2023-03-30T17:24:20.193000000Z'
-            - asset: eth
-              min_time: '2022-02-16T09:10:20.286000000Z'
-              max_time: '2023-03-30T18:18:23.559000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogTransactionTrackerResponse'
-    CatalogAssetMetrics:
-      description: List of asset metrics.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: AdrActCnt
-              full_name: Addresses, active, count
-              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
-              product: Network Data
-              category: Addresses
-              subcategory: Active
-              unit: Addresses
-              data_type: bigint
-              type: Sum
-              frequencies:
-              - frequency: 1b
-                assets:
-                - btc
-                - eth
-                - sol
-              - frequency: 1d
-                assets:
-                - ada
-                - btc
-              display_name: Active Addr Cnt
-            - metric: AdrActContCnt
-              full_name: Addresses, active, contracts, count
-              description: The sum count of unique smart contract addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
-              product: Network Data
-              category: Addresses
-              subcategory: Active
-              unit: Addresses
-              data_type: bigint
-              type: Sum
-              frequencies:
-              - frequency: 1d
-                assets:
-                - etc
-                - eth
-                - xtz
-              display_name: Active Smart Contract Addr Cnt
-          schema:
-            $ref: '#/components/schemas/CatalogAssetMetricsResponse'
-    CatalogAssetChains:
-      description: List of asset chains assets
-      content:
-        application/json:
-          example:
-            data:
-            - asset: btc
-              min_time: '2021-08-09T10:34:38.290000000Z'
-              max_time: '2023-03-30T17:24:20.193000000Z'
-            - asset: eth
-              min_time: '2022-02-16T09:10:20.286000000Z'
-              max_time: '2023-03-30T18:18:23.559000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogAssetChainsResponse'
-    CatalogMarketCandles:
-      description: List of market candles statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: bitmex-XBTUSD-future
-              frequencies:
-              - frequency: 5m
-                min_time: '2020-01-19T21:00:00.000001000Z'
-                max_time: '2020-01-19T21:25:00.000000000Z'
-              - frequency: 10m
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 15m
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 30m
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 1h
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 1d
-                min_time: '2010-07-19T00:00:00.000000000Z'
-                max_time: '2019-12-25T00:00:00.000000000Z'
-            - market: bittrex-btc-usd-spot
-              frequencies:
-              - frequency: 1m
-                min_time: '2020-01-19T21:00:00.000001000Z'
-                max_time: '2020-01-19T21:00:00.000001000Z'
-              - frequency: 5m
-                min_time: '2020-01-19T21:00:00.000001000Z'
-                max_time: '2020-01-19T21:25:00.000000000Z'
-              - frequency: 10m
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 15m
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 30m
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 1h
-                min_time: '2020-01-19T21:00:00.000000000Z'
-                max_time: '2020-01-19T21:00:00.000000000Z'
-              - frequency: 1d
-                min_time: '2010-07-19T00:00:00.000000000Z'
-                max_time: '2019-12-25T00:00:00.000000000Z'
-            - market: cme-BTCQ1-future
-              frequencies:
-              - frequency: 1d
-                min_time: '2019-12-25T00:00:00.000000000Z'
-                max_time: '2019-12-25T00:00:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMarketCandlesResponse'
-    CatalogMetrics:
-      description: List of asset metrics.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: AdrActCnt
-              full_name: Addresses, active, count
-              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
-              category: Addresses
-              subcategory: Active
-              unit: Addresses
-              data_type: bigint
-              type: Sum
-              frequencies:
-              - frequency: 1b
-                assets:
-                - btc
-                - eth
-                - sol
-              - frequency: 1d
-                assets:
-                - ada
-                - btc
-              display_name: Active Addr Cnt
-            - metric: AdrActContCnt
-              full_name: Addresses, active, contracts, count
-              description: The sum count of unique smart contract addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
-              category: Addresses
-              subcategory: Active
-              unit: Addresses
-              data_type: bigint
-              type: Sum
-              frequencies:
-              - frequency: 1d
-                assets:
-                - etc
-                - eth
-                - xtz
-              display_name: Active Smart Contract Addr Cnt
-          schema:
-            $ref: '#/components/schemas/CatalogMetricsResponse'
-    CatalogMarketLiquidations:
-      description: List of market liquidations statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-1000BTTCUSDT-future
-              min_time: '2022-01-26T03:46:28.290000000Z'
-              max_time: '2022-04-11T03:40:00.193000000Z'
-            - market: binance-1000LUNCBUSD-future
-              min_time: '2022-05-31T02:45:32.286000000Z'
-              max_time: '2022-07-04T12:25:16.559000000Z'
-            - market: binance-1000SHIBUSDT-future
-              min_time: '2021-05-11T23:00:17.729000000Z'
-              max_time: '2022-07-04T13:35:00.567000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMarketLiquidationsResponse'
     CatalogExchangeMetrics:
       description: List of exchange metrics.
       content:
@@ -3294,141 +3191,23 @@ components:
               display_name: Reported Perpetual Future Volume
           schema:
             $ref: '#/components/schemas/CatalogExchangeMetricsResponse'
-    CatalogMarketTrades:
-      description: List of market trades statistics.
+    CatalogMarketLiquidations:
+      description: List of market liquidations statistics.
       content:
         application/json:
           example:
             data:
-            - market: bibox-1inch-usdt-spot
-              min_time: '2022-03-07T19:43:21.195000000Z'
-              max_time: '2022-07-04T11:47:49.707000000Z'
-            - market: bibox-aaa-usdt-spot
-              min_time: '2021-12-01T11:11:20.656000000Z'
-              max_time: '2022-03-01T18:14:06.507000000Z'
-            - market: bibox-aave-btc-spot
-              min_time: '2022-03-07T19:47:10.014000000Z'
-              max_time: '2022-07-04T11:47:56.717000000Z'
+            - market: binance-1000BTTCUSDT-future
+              min_time: '2022-01-26T03:46:28.290000000Z'
+              max_time: '2022-04-11T03:40:00.193000000Z'
+            - market: binance-1000LUNCBUSD-future
+              min_time: '2022-05-31T02:45:32.286000000Z'
+              max_time: '2022-07-04T12:25:16.559000000Z'
+            - market: binance-1000SHIBUSDT-future
+              min_time: '2021-05-11T23:00:17.729000000Z'
+              max_time: '2022-07-04T13:35:00.567000000Z'
           schema:
-            $ref: '#/components/schemas/CatalogMarketTradesResponse'
-    CatalogInstitutionMetrics:
-      description: List of institution metrics.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: bat_coin_per_share
-              full_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
-              description: The number of native units of the coin per share of the Grayscale Basic Attention Token Trust.
-              product: Market Data
-              category: Institutions
-              subcategory: Investment Products
-              unit: Native Units
-              data_type: decimal
-              type: Ratio
-              frequencies:
-              - frequency: 1d
-                institutions:
-                - grayscale
-              display_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
-            - metric: bat_market_price
-              full_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
-              description: The market price per share in U.S. dollars of the Grayscale Basic Attention Token Trust.
-              product: Market Data
-              category: Institutions
-              subcategory: Investment Products
-              unit: USD
-              data_type: decimal
-              type: Ratio
-              frequencies:
-              - frequency: 1d
-                institutions:
-                - grayscale
-              display_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
-          schema:
-            $ref: '#/components/schemas/CatalogInstitutionMetricsResponse'
-    Exchanges:
-      description: List of exchanges.
-      content:
-        application/json:
-          example:
-            data:
-            - exchange: bibox
-              markets:
-              - bibox-abt-btc-spot
-              - bibox-etc-usdt-spot
-              min_time: '2019-04-24T11:09:59.000000000Z'
-              max_time: '2019-05-18T16:06:10.927000000Z'
-            - exchange: binance
-              markets:
-              - binance-BTCUSDT-future
-              - binance-LTCUSDT-future
-              - binance-ada-bnb-spot
-              - binance-btc-usdt-spot
-              - binance-bcpt-btc-spot
-              - binance-bcd-eth-spot
-              min_time: '2017-07-14T04:00:00.510000000Z'
-              max_time: '2020-06-08T20:33:28.868000000Z'
-          schema:
-            $ref: '#/components/schemas/ExchangesResponse'
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    CatalogMempoolFeerates:
-      description: List of mempool feerates assets
-      content:
-        application/json:
-          example:
-            data:
-            - asset: btc
-              min_time: '2023-03-27T21:14:00.000000000Z'
-              max_time: '2023-04-03T21:22:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMempoolFeeratesResponse'
-    CatalogPairMetrics:
-      description: List of pair metrics.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: open_interest_reported_future_coin_margined_usd
-              full_name: Open interest, reported, future, coin-margined, USD
-              description: The sum of all reported open interest from futures markets where the margin asset is equivalent to the underlying base asset in units of U.S. dollars.
-              product: Market Data
-              category: Open Interest
-              subcategory: Future
-              unit: USD
-              data_type: decimal
-              type: Sum
-              frequencies:
-              - frequency: 1h
-                pairs:
-                - 1inch-usd
-                - ada-usd
-                - algo-usd
-              - frequency: 1d
-                pairs:
-                - 1inch-usdc
-                - ada-usdc
-                - algo-usdc
-              display_name: Reported Coin-Margined Future Open Interest
-            - metric: volume_reported_future_coin_margined_usd_1d
-              full_name: Volume, reported, future, coin-margined, USD, one day
-              description: The sum of all reported volume from futures markets where the margin asset is equivalent to the underlying base asset in units of U.S. dollars.
-              product: Market Data
-              category: Volume
-              subcategory: Future
-              unit: USD
-              data_type: decimal
-              type: Sum
-              frequencies:
-              - frequency: 1d
-                pairs:
-                - 1inch-usdc
-                - ada-usdc
-                - algo-usdc
-              display_name: Reported Coin-Margined Future Volume
-          schema:
-            $ref: '#/components/schemas/CatalogPairMetricsResponse'
+            $ref: '#/components/schemas/CatalogMarketLiquidationsResponse'
     AssetAlertNotFound:
       content:
         application/json:
@@ -3439,166 +3218,37 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
       description: Asset alert not found.
-    Pairs:
-      description: List of asset pairs.
+    CatalogMarketContractPrices:
+      description: List of contract prices statistics.
       content:
         application/json:
           example:
             data:
-            - pair: aave-bnb
-              full_name: Aave - BNB
-              metrics:
-              - metric: volume_trusted_spot_usd_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2020-10-16T00:00:00.000000000Z'
-                  max_time: '2021-01-05T00:00:00.000000000Z'
-              - metric: volume_trusted_spot_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2020-10-15T03:00:00.000000000Z'
-                  max_time: '2021-01-06T12:00:00.000000000Z'
-            - pair: aave-btc
-              full_name: Aave - Bitcoin
-              metrics:
-              - metric: volume_trusted_spot_usd_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2020-10-11T00:00:00.000000000Z'
-                  max_time: '2021-01-05T00:00:00.000000000Z'
-              - metric: volume_trusted_spot_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2020-10-10T19:00:00.000000000Z'
-                  max_time: '2021-01-06T12:00:00.000000000Z'
+            - market: deribit-BTC-15OCT21-60000-C-option
+              min_time: '2022-01-26T08:00:00.001000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: deribit-BTC-1OCT21-75000-C-option
+              min_time: '2022-05-30T16:00:00.005000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            - market: deribit-BTC-26NOV21-60000-C-option
+              min_time: '2021-05-10T16:00:00.013000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
           schema:
-            $ref: '#/components/schemas/PairsResponse'
-    PairNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'pairs'. Value 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Pair not found.
-    ExchangeAssets:
-      description: List of exchange-assets.
+            $ref: '#/components/schemas/CatalogMarketContractPricesResponse'
+    CatalogAssetChains:
+      description: List of asset chains assets
       content:
         application/json:
           example:
             data:
-            - exchange_asset: binance-btc
-              metrics:
-              - metric: volume_trusted_spot_usd_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2020-10-16T00:00:00.000000000Z'
-                  max_time: '2021-01-05T00:00:00.000000000Z'
-              - metric: volume_trusted_spot_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2020-10-15T03:00:00.000000000Z'
-                  max_time: '2021-01-06T12:00:00.000000000Z'
-            - exchange_asset: coinbase-eth
-              metrics:
-              - metric: volume_trusted_spot_usd_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2020-10-11T00:00:00.000000000Z'
-                  max_time: '2021-01-05T00:00:00.000000000Z'
-              - metric: volume_trusted_spot_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2020-10-10T19:00:00.000000000Z'
-                  max_time: '2021-01-06T12:00:00.000000000Z'
+            - asset: btc
+              min_time: '2021-08-09T10:34:38.290000000Z'
+              max_time: '2023-03-30T17:24:20.193000000Z'
+            - asset: eth
+              min_time: '2022-02-16T09:10:20.286000000Z'
+              max_time: '2023-03-30T18:18:23.559000000Z'
           schema:
-            $ref: '#/components/schemas/ExchangeAssetsResponse'
-    Indexes:
-      description: List of indexes.
-      content:
-        application/json:
-          example:
-            data:
-            - index: CMBI10
-              full_name: CMBI 10 Index
-              description: An index consisting of the 10 largest cryptoassets, weighted by their free float market capitalization.
-              frequencies:
-              - frequency: 15s
-                min_time: '2020-06-08T20:12:40.000000000Z'
-                max_time: '2020-06-08T20:29:30.000000000Z'
-            - index: CMBIBTC
-              full_name: CMBI Bitcoin Index
-              description: A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin.
-              frequencies:
-              - frequency: 15s
-                min_time: '2010-07-18T20:00:00.000000000Z'
-                max_time: '2020-06-08T20:29:45.000000000Z'
-              - frequency: 1d
-                min_time: '2010-07-19T00:00:00.000000000Z'
-                max_time: '2020-06-08T00:00:00.000000000Z'
-              - frequency: 1d-ny-close
-                min_time: '2010-07-18T20:00:00.000000000Z'
-                max_time: '2020-06-08T20:00:00.000000000Z'
-              - frequency: 1d-sg-close
-                min_time: '2010-07-19T08:00:00.000000000Z'
-                max_time: '2020-06-08T08:00:00.000000000Z'
-              - frequency: 1h
-                min_time: '2010-07-18T20:00:00.000000000Z'
-                max_time: '2020-06-08T20:00:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/IndexesResponse'
-    CatalogExchangeAssetMetrics:
-      description: List of exchange-asset metrics.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: open_interest_reported_future_nonperpetual_usd
-              full_name: Open interest, reported, future, non-perpetual, USD
-              description: The sum of all reported open interest from non-perpetual futures markets in units of U.S. dollars.
-              product: Market Data
-              category: Open Interest
-              subcategory: Future
-              unit: USD
-              data_type: decimal
-              type: Sum
-              frequencies:
-              - frequency: 1h
-                exchange_assets:
-                - binance-1inch
-                - binance-ada
-                - binance-algo
-              - frequency: 1d
-                exchange_assets:
-                - binance-1inch
-                - binance-ada
-                - binance-algo
-              display_name: Reported Non-Perpetual Future Open Interest
-            - metric: open_interest_reported_future_tether_margined_usd
-              full_name: Open interest, reported, future, tether-margined, USD
-              description: The sum of all reported open interest from futures markets where the margin asset is Tether in units of U.S. dollars.
-              product: Market Data
-              category: Open Interest
-              subcategory: Future
-              unit: USD
-              data_type: decimal
-              type: Sum
-              frequencies:
-              - frequency: 1h
-                exchange_assets:
-                - binance-1inch
-                - binance-ada
-                - binance-algo
-              - frequency: 1d
-                exchange_assets:
-                - binance-1inch
-                - binance-ada
-                - binance-algo
-              display_name: Reported Tether-Margined Future Open Interest
-          schema:
-            $ref: '#/components/schemas/CatalogExchangeAssetMetricsResponse'
+            $ref: '#/components/schemas/CatalogAssetChainsResponse'
     ExchangeNotFound:
       content:
         application/json:
@@ -3669,16 +3319,99 @@ components:
                 max_time: '2022-07-14T00:00:00.000000000Z'
           schema:
             $ref: '#/components/schemas/CatalogIndexCandlesResponse'
-    MetricNotFound:
+    CatalogMarketCandles:
+      description: List of market candles statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: bitmex-XBTUSD-future
+              frequencies:
+              - frequency: 5m
+                min_time: '2020-01-19T21:00:00.000001000Z'
+                max_time: '2020-01-19T21:25:00.000000000Z'
+              - frequency: 10m
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 15m
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 30m
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 1h
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 1d
+                min_time: '2010-07-19T00:00:00.000000000Z'
+                max_time: '2019-12-25T00:00:00.000000000Z'
+            - market: bittrex-btc-usd-spot
+              frequencies:
+              - frequency: 1m
+                min_time: '2020-01-19T21:00:00.000001000Z'
+                max_time: '2020-01-19T21:00:00.000001000Z'
+              - frequency: 5m
+                min_time: '2020-01-19T21:00:00.000001000Z'
+                max_time: '2020-01-19T21:25:00.000000000Z'
+              - frequency: 10m
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 15m
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 30m
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 1h
+                min_time: '2020-01-19T21:00:00.000000000Z'
+                max_time: '2020-01-19T21:00:00.000000000Z'
+              - frequency: 1d
+                min_time: '2010-07-19T00:00:00.000000000Z'
+                max_time: '2019-12-25T00:00:00.000000000Z'
+            - market: cme-BTCQ1-future
+              frequencies:
+              - frequency: 1d
+                min_time: '2019-12-25T00:00:00.000000000Z'
+                max_time: '2019-12-25T00:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogMarketCandlesResponse'
+    IndexNotFound:
       content:
         application/json:
           example:
             error:
               type: bad_parameter
-              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+              message: Bad parameter 'indexes'. Value 'asdgwav' is not supported.
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-      description: Metric not found.
+      description: Index not found.
+    CatalogMarketFundingRates:
+      description: List of market funding rates statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: binance-1000BTTCUSDT-future
+              min_time: '2022-01-26T08:00:00.001000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: binance-1000LUNCBUSD-future
+              min_time: '2022-05-30T16:00:00.005000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            - market: binance-1000SHIBUSDT-future
+              min_time: '2021-05-10T16:00:00.013000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogMarketFundingRatesResponse'
+    AssetNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'assets'. Value 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Asset not found.
     Assets:
       description: List of assets.
       content:
@@ -3765,37 +3498,6 @@ components:
               - liquid-eth-usd-spot
           schema:
             $ref: '#/components/schemas/AssetsResponse'
-    Institutions:
-      description: List of institutions.
-      content:
-        application/json:
-          example:
-            data:
-            - institution: grayscale
-              metrics:
-              - metric: btc_total_assets
-                frequencies:
-                - frequency: 1d
-                  min_time: '2020-10-16T00:00:00.000000000Z'
-                  max_time: '2021-01-05T00:00:00.000000000Z'
-              - metric: btc_shares_outstanding
-                frequencies:
-                - frequency: 1h
-                  min_time: '2020-10-15T03:00:00.000000000Z'
-                  max_time: '2021-01-06T12:00:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/InstitutionsResponse'
-    CatalogMiningPoolTipsSummary:
-      description: List of mining pool tips assets
-      content:
-        application/json:
-          example:
-            data:
-            - asset: btc
-              min_time: '2021-08-09T10:34:38.290000000Z'
-              max_time: '2023-03-30T17:24:20.193000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMiningPoolTipsSummaryResponse'
     CatalogMarketMetrics:
       description: List of market metrics statistics.
       content:
@@ -3838,6 +3540,281 @@ components:
                   max_time: '2022-01-20T00:00:00.000000000Z'
           schema:
             $ref: '#/components/schemas/CatalogMarketMetricsResponse'
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    CatalogPairMetrics:
+      description: List of pair metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: open_interest_reported_future_coin_margined_usd
+              full_name: Open interest, reported, future, coin-margined, USD
+              description: The sum of all reported open interest from futures markets where the margin asset is equivalent to the underlying base asset in units of U.S. dollars.
+              product: Market Data
+              category: Open Interest
+              subcategory: Future
+              unit: USD
+              data_type: decimal
+              type: Sum
+              frequencies:
+              - frequency: 1h
+                pairs:
+                - 1inch-usd
+                - ada-usd
+                - algo-usd
+              - frequency: 1d
+                pairs:
+                - 1inch-usdc
+                - ada-usdc
+                - algo-usdc
+              display_name: Reported Coin-Margined Future Open Interest
+            - metric: volume_reported_future_coin_margined_usd_1d
+              full_name: Volume, reported, future, coin-margined, USD, one day
+              description: The sum of all reported volume from futures markets where the margin asset is equivalent to the underlying base asset in units of U.S. dollars.
+              product: Market Data
+              category: Volume
+              subcategory: Future
+              unit: USD
+              data_type: decimal
+              type: Sum
+              frequencies:
+              - frequency: 1d
+                pairs:
+                - 1inch-usdc
+                - ada-usdc
+                - algo-usdc
+              display_name: Reported Coin-Margined Future Volume
+          schema:
+            $ref: '#/components/schemas/CatalogPairMetricsResponse'
+    CatalogPairCandles:
+      description: List of asset pair candles statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - pair: btc-eur
+              frequencies:
+              - frequency: 1m
+                min_time: '2011-08-28T18:26:00.000000000Z'
+                max_time: '2022-06-29T23:25:00.000000000Z'
+              - frequency: 5m
+                min_time: '2011-08-28T18:25:00.000000000Z'
+                max_time: '2022-06-29T23:20:00.000000000Z'
+              - frequency: 10m
+                min_time: '2011-08-28T18:20:00.000000000Z'
+                max_time: '2022-06-29T23:10:00.000000000Z'
+              - frequency: 15m
+                min_time: '2011-08-28T18:15:00.000000000Z'
+                max_time: '2022-06-29T23:00:00.000000000Z'
+              - frequency: 30m
+                min_time: '2011-08-28T18:00:00.000000000Z'
+                max_time: '2022-06-29T22:30:00.000000000Z'
+              - frequency: 1h
+                min_time: '2011-08-28T18:00:00.000000000Z'
+                max_time: '2022-06-29T22:00:00.000000000Z'
+              - frequency: 4h
+                min_time: '2011-08-28T16:00:00.000000000Z'
+                max_time: '2022-06-29T16:00:00.000000000Z'
+              - frequency: 1d
+                min_time: '2011-08-28T00:00:00.000000000Z'
+                max_time: '2022-06-28T00:00:00.000000000Z'
+            - pair: btc-usd
+              frequencies:
+              - frequency: 1m
+                min_time: '2010-07-18T03:43:00.000000000Z'
+                max_time: '2022-06-29T23:25:00.000000000Z'
+              - frequency: 5m
+                min_time: '2010-07-18T03:40:00.000000000Z'
+                max_time: '2022-06-29T23:20:00.000000000Z'
+              - frequency: 10m
+                min_time: '2010-07-18T03:40:00.000000000Z'
+                max_time: '2022-06-29T23:10:00.000000000Z'
+              - frequency: 15m
+                min_time: '2010-07-18T03:30:00.000000000Z'
+                max_time: '2022-06-29T23:00:00.000000000Z'
+              - frequency: 30m
+                min_time: '2010-07-18T03:30:00.000000000Z'
+                max_time: '2022-06-29T22:30:00.000000000Z'
+              - frequency: 1h
+                min_time: '2010-07-18T03:00:00.000000000Z'
+                max_time: '2022-06-29T22:00:00.000000000Z'
+              - frequency: 4h
+                min_time: '2010-07-18T00:00:00.000000000Z'
+                max_time: '2022-06-29T16:00:00.000000000Z'
+              - frequency: 1d
+                min_time: '2010-07-18T00:00:00.000000000Z'
+                max_time: '2022-06-28T00:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogPairCandlesResponse'
+    InstitutionNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'institutions'. Value 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Institution not found.
+    AssetAlertRules:
+      description: List of asset alerts.
+      content:
+        application/json:
+          example:
+            data:
+            - asset: btc
+              name: block_count_empty_6b_hi
+              conditions:
+              - description: The last 4 blocks were empty.
+                threshold: '4'
+                constituents:
+                - block_count_empty_6b
+          schema:
+            $ref: '#/components/schemas/AssetAlertRulesResponse'
+    CatalogTransactionTracker:
+      description: List of transaction tracker assets
+      content:
+        application/json:
+          example:
+            data:
+            - asset: btc
+              min_time: '2021-08-09T10:34:38.290000000Z'
+              max_time: '2023-03-30T17:24:20.193000000Z'
+            - asset: eth
+              min_time: '2022-02-16T09:10:20.286000000Z'
+              max_time: '2023-03-30T18:18:23.559000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogTransactionTrackerResponse'
+    CatalogMarketTrades:
+      description: List of market trades statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: bibox-1inch-usdt-spot
+              min_time: '2022-03-07T19:43:21.195000000Z'
+              max_time: '2022-07-04T11:47:49.707000000Z'
+            - market: bibox-aaa-usdt-spot
+              min_time: '2021-12-01T11:11:20.656000000Z'
+              max_time: '2022-03-01T18:14:06.507000000Z'
+            - market: bibox-aave-btc-spot
+              min_time: '2022-03-07T19:47:10.014000000Z'
+              max_time: '2022-07-04T11:47:56.717000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogMarketTradesResponse'
+    Pairs:
+      description: List of asset pairs.
+      content:
+        application/json:
+          example:
+            data:
+            - pair: aave-bnb
+              full_name: Aave - BNB
+              metrics:
+              - metric: volume_trusted_spot_usd_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2020-10-16T00:00:00.000000000Z'
+                  max_time: '2021-01-05T00:00:00.000000000Z'
+              - metric: volume_trusted_spot_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2020-10-15T03:00:00.000000000Z'
+                  max_time: '2021-01-06T12:00:00.000000000Z'
+            - pair: aave-btc
+              full_name: Aave - Bitcoin
+              metrics:
+              - metric: volume_trusted_spot_usd_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2020-10-11T00:00:00.000000000Z'
+                  max_time: '2021-01-05T00:00:00.000000000Z'
+              - metric: volume_trusted_spot_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2020-10-10T19:00:00.000000000Z'
+                  max_time: '2021-01-06T12:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/PairsResponse'
+    CatalogAssetMetrics:
+      description: List of asset metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: AdrActCnt
+              full_name: Addresses, active, count
+              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
+              product: Network Data
+              category: Addresses
+              subcategory: Active
+              unit: Addresses
+              data_type: bigint
+              type: Sum
+              frequencies:
+              - frequency: 1b
+                assets:
+                - btc
+                - eth
+                - sol
+              - frequency: 1d
+                assets:
+                - ada
+                - btc
+              display_name: Active Addr Cnt
+            - metric: AdrActContCnt
+              full_name: Addresses, active, contracts, count
+              description: The sum count of unique smart contract addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
+              product: Network Data
+              category: Addresses
+              subcategory: Active
+              unit: Addresses
+              data_type: bigint
+              type: Sum
+              frequencies:
+              - frequency: 1d
+                assets:
+                - etc
+                - eth
+                - xtz
+              display_name: Active Smart Contract Addr Cnt
+          schema:
+            $ref: '#/components/schemas/CatalogAssetMetricsResponse'
+    CatalogMarketImpliedVolatility:
+      description: List of implied volatility statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: deribit-BTC-15OCT21-60000-C-option
+              min_time: '2022-01-26T08:00:00.001000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: deribit-BTC-1OCT21-75000-C-option
+              min_time: '2022-05-30T16:00:00.005000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            - market: deribit-BTC-26NOV21-60000-C-option
+              min_time: '2021-05-10T16:00:00.013000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogMarketImpliedVolatilityResponse'
     Markets:
       description: List of markets.
       content:
@@ -3898,6 +3875,294 @@ components:
               margin_trading_enabled: false
           schema:
             $ref: '#/components/schemas/MarketsResponse'
+    CatalogMetrics:
+      description: List of asset metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: AdrActCnt
+              full_name: Addresses, active, count
+              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
+              category: Addresses
+              subcategory: Active
+              unit: Addresses
+              data_type: bigint
+              type: Sum
+              frequencies:
+              - frequency: 1b
+                assets:
+                - btc
+                - eth
+                - sol
+              - frequency: 1d
+                assets:
+                - ada
+                - btc
+              display_name: Active Addr Cnt
+            - metric: AdrActContCnt
+              full_name: Addresses, active, contracts, count
+              description: The sum count of unique smart contract addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
+              category: Addresses
+              subcategory: Active
+              unit: Addresses
+              data_type: bigint
+              type: Sum
+              frequencies:
+              - frequency: 1d
+                assets:
+                - etc
+                - eth
+                - xtz
+              display_name: Active Smart Contract Addr Cnt
+          schema:
+            $ref: '#/components/schemas/CatalogMetricsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    Institutions:
+      description: List of institutions.
+      content:
+        application/json:
+          example:
+            data:
+            - institution: grayscale
+              metrics:
+              - metric: btc_total_assets
+                frequencies:
+                - frequency: 1d
+                  min_time: '2020-10-16T00:00:00.000000000Z'
+                  max_time: '2021-01-05T00:00:00.000000000Z'
+              - metric: btc_shares_outstanding
+                frequencies:
+                - frequency: 1h
+                  min_time: '2020-10-15T03:00:00.000000000Z'
+                  max_time: '2021-01-06T12:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/InstitutionsResponse'
+    CatalogExchangeAssetMetrics:
+      description: List of exchange-asset metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: open_interest_reported_future_nonperpetual_usd
+              full_name: Open interest, reported, future, non-perpetual, USD
+              description: The sum of all reported open interest from non-perpetual futures markets in units of U.S. dollars.
+              product: Market Data
+              category: Open Interest
+              subcategory: Future
+              unit: USD
+              data_type: decimal
+              type: Sum
+              frequencies:
+              - frequency: 1h
+                exchange_assets:
+                - binance-1inch
+                - binance-ada
+                - binance-algo
+              - frequency: 1d
+                exchange_assets:
+                - binance-1inch
+                - binance-ada
+                - binance-algo
+              display_name: Reported Non-Perpetual Future Open Interest
+            - metric: open_interest_reported_future_tether_margined_usd
+              full_name: Open interest, reported, future, tether-margined, USD
+              description: The sum of all reported open interest from futures markets where the margin asset is Tether in units of U.S. dollars.
+              product: Market Data
+              category: Open Interest
+              subcategory: Future
+              unit: USD
+              data_type: decimal
+              type: Sum
+              frequencies:
+              - frequency: 1h
+                exchange_assets:
+                - binance-1inch
+                - binance-ada
+                - binance-algo
+              - frequency: 1d
+                exchange_assets:
+                - binance-1inch
+                - binance-ada
+                - binance-algo
+              display_name: Reported Tether-Margined Future Open Interest
+          schema:
+            $ref: '#/components/schemas/CatalogExchangeAssetMetricsResponse'
+    Exchanges:
+      description: List of exchanges.
+      content:
+        application/json:
+          example:
+            data:
+            - exchange: bibox
+              markets:
+              - bibox-abt-btc-spot
+              - bibox-etc-usdt-spot
+              min_time: '2019-04-24T11:09:59.000000000Z'
+              max_time: '2019-05-18T16:06:10.927000000Z'
+            - exchange: binance
+              markets:
+              - binance-BTCUSDT-future
+              - binance-LTCUSDT-future
+              - binance-ada-bnb-spot
+              - binance-btc-usdt-spot
+              - binance-bcpt-btc-spot
+              - binance-bcd-eth-spot
+              min_time: '2017-07-14T04:00:00.510000000Z'
+              max_time: '2020-06-08T20:33:28.868000000Z'
+          schema:
+            $ref: '#/components/schemas/ExchangesResponse'
+    PairNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'pairs'. Value 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Pair not found.
+    MetricNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Metric not found.
+    CatalogMarketGreeks:
+      description: List of greeks statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: deribit-BTC-15OCT21-60000-C-option
+              min_time: '2022-01-26T08:00:00.001000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: deribit-BTC-1OCT21-75000-C-option
+              min_time: '2022-05-30T16:00:00.005000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            - market: deribit-BTC-26NOV21-60000-C-option
+              min_time: '2021-05-10T16:00:00.013000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogMarketGreeksResponse'
+    Indexes:
+      description: List of indexes.
+      content:
+        application/json:
+          example:
+            data:
+            - index: CMBI10
+              full_name: CMBI 10 Index
+              description: An index consisting of the 10 largest cryptoassets, weighted by their free float market capitalization.
+              frequencies:
+              - frequency: 15s
+                min_time: '2020-06-08T20:12:40.000000000Z'
+                max_time: '2020-06-08T20:29:30.000000000Z'
+            - index: CMBIBTC
+              full_name: CMBI Bitcoin Index
+              description: A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin.
+              frequencies:
+              - frequency: 15s
+                min_time: '2010-07-18T20:00:00.000000000Z'
+                max_time: '2020-06-08T20:29:45.000000000Z'
+              - frequency: 1d
+                min_time: '2010-07-19T00:00:00.000000000Z'
+                max_time: '2020-06-08T00:00:00.000000000Z'
+              - frequency: 1d-ny-close
+                min_time: '2010-07-18T20:00:00.000000000Z'
+                max_time: '2020-06-08T20:00:00.000000000Z'
+              - frequency: 1d-sg-close
+                min_time: '2010-07-19T08:00:00.000000000Z'
+                max_time: '2020-06-08T08:00:00.000000000Z'
+              - frequency: 1h
+                min_time: '2010-07-18T20:00:00.000000000Z'
+                max_time: '2020-06-08T20:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/IndexesResponse'
+    CatalogInstitutionMetrics:
+      description: List of institution metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: bat_coin_per_share
+              full_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
+              description: The number of native units of the coin per share of the Grayscale Basic Attention Token Trust.
+              product: Market Data
+              category: Institutions
+              subcategory: Investment Products
+              unit: Native Units
+              data_type: decimal
+              type: Ratio
+              frequencies:
+              - frequency: 1d
+                institutions:
+                - grayscale
+              display_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
+            - metric: bat_market_price
+              full_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
+              description: The market price per share in U.S. dollars of the Grayscale Basic Attention Token Trust.
+              product: Market Data
+              category: Institutions
+              subcategory: Investment Products
+              unit: USD
+              data_type: decimal
+              type: Ratio
+              frequencies:
+              - frequency: 1d
+                institutions:
+                - grayscale
+              display_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
+          schema:
+            $ref: '#/components/schemas/CatalogInstitutionMetricsResponse'
+    CatalogMempoolFeerates:
+      description: List of mempool feerates assets
+      content:
+        application/json:
+          example:
+            data:
+            - asset: btc
+              min_time: '2023-03-27T21:14:00.000000000Z'
+              max_time: '2023-04-03T21:22:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogMempoolFeeratesResponse'
+    ExchangeAssets:
+      description: List of exchange-assets.
+      content:
+        application/json:
+          example:
+            data:
+            - exchange_asset: binance-btc
+              metrics:
+              - metric: volume_trusted_spot_usd_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2020-10-16T00:00:00.000000000Z'
+                  max_time: '2021-01-05T00:00:00.000000000Z'
+              - metric: volume_trusted_spot_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2020-10-15T03:00:00.000000000Z'
+                  max_time: '2021-01-06T12:00:00.000000000Z'
+            - exchange_asset: coinbase-eth
+              metrics:
+              - metric: volume_trusted_spot_usd_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2020-10-11T00:00:00.000000000Z'
+                  max_time: '2021-01-05T00:00:00.000000000Z'
+              - metric: volume_trusted_spot_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2020-10-10T19:00:00.000000000Z'
+                  max_time: '2021-01-06T12:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/ExchangeAssetsResponse'
     CatalogMarketQuotes:
       description: List of market quotes statistics.
       content:
@@ -3915,296 +4180,34 @@ components:
               max_time: '2022-07-04T13:00:00.000000000Z'
           schema:
             $ref: '#/components/schemas/CatalogMarketQuotesResponse'
-    InstitutionNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'institutions'. Value 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Institution not found.
-    CatalogMarketContractPrices:
-      description: List of contract prices statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: deribit-BTC-15OCT21-60000-C-option
-              min_time: '2022-01-26T08:00:00.001000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: deribit-BTC-1OCT21-75000-C-option
-              min_time: '2022-05-30T16:00:00.005000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            - market: deribit-BTC-26NOV21-60000-C-option
-              min_time: '2021-05-10T16:00:00.013000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMarketContractPricesResponse'
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    AssetAlertRules:
-      description: List of asset alerts.
+    CatalogMiningPoolTipsSummary:
+      description: List of mining pool tips assets
       content:
         application/json:
           example:
             data:
             - asset: btc
-              name: block_count_empty_6b_hi
-              conditions:
-              - description: The last 4 blocks were empty.
-                threshold: '4'
-                constituents:
-                - block_count_empty_6b
+              min_time: '2021-08-09T10:34:38.290000000Z'
+              max_time: '2023-03-30T17:24:20.193000000Z'
           schema:
-            $ref: '#/components/schemas/AssetAlertRulesResponse'
-    CatalogMarketFundingRates:
-      description: List of market funding rates statistics.
+            $ref: '#/components/schemas/CatalogMiningPoolTipsSummaryResponse'
+    CatalogMarketOpeninterest:
+      description: List of market open interest statistics.
       content:
         application/json:
           example:
             data:
             - market: binance-1000BTTCUSDT-future
-              min_time: '2022-01-26T08:00:00.001000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
+              min_time: '2022-01-26T03:30:43.271000000Z'
+              max_time: '2022-04-11T08:51:00.000000000Z'
             - market: binance-1000LUNCBUSD-future
-              min_time: '2022-05-30T16:00:00.005000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
+              min_time: '2022-05-31T02:45:00.000000000Z'
+              max_time: '2022-07-04T13:53:00.000000000Z'
             - market: binance-1000SHIBUSDT-future
-              min_time: '2021-05-10T16:00:00.013000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
+              min_time: '2021-05-10T13:00:58.123000000Z'
+              max_time: '2022-07-04T13:53:00.000000000Z'
           schema:
-            $ref: '#/components/schemas/CatalogMarketFundingRatesResponse'
-    AssetNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'assets'. Value 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Asset not found.
-    CatalogMarketImpliedVolatility:
-      description: List of implied volatility statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: deribit-BTC-15OCT21-60000-C-option
-              min_time: '2022-01-26T08:00:00.001000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: deribit-BTC-1OCT21-75000-C-option
-              min_time: '2022-05-30T16:00:00.005000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            - market: deribit-BTC-26NOV21-60000-C-option
-              min_time: '2021-05-10T16:00:00.013000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogMarketImpliedVolatilityResponse'
-  parameters:
-    MarketType:
-      description: Type of markets.
-      in: query
-      name: type
-      schema:
-        enum:
-        - spot
-        - future
-        - option
-        type: string
-    CatalogResponseFormat:
-      description: Format of the response. Supported values are `json`, `json_stream`.
-      in: query
-      name: format
-      schema:
-        type: string
-        default: json
-    CatalogAssetAlertId:
-      description: Comma separated list of asset alert names. By default all asset alerts are returned.
-      in: query
-      name: alerts
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketQuote:
-      description: Quote asset of markets.
-      in: query
-      name: quote
-      schema:
-        type: string
-    Reviewable:
-      description: Limit to human-reviewable metrics. By default all metrics are returned.
-      in: query
-      name: reviewable
-      schema:
-        type: boolean
-    CatalogMarketLimit:
-      description: Limit of response items. `none` means no limit. Maximum value is 100.
-      in: query
-      name: limit
-      schema:
-        type: string
-        default: none
-    CatalogIndexId:
-      description: Comma separated list of indexes. By default all indexes are returned.
-      in: query
-      name: indexes
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogMetric:
-      description: Comma separated list of metrics. By default all metrics are returned.
-      in: query
-      name: metrics
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketSymbol:
-      description: Symbol of derivative markets, full instrument name.
-      in: query
-      name: symbol
-      schema:
-        type: string
-    MarketBase:
-      description: Base asset of markets.
-      in: query
-      name: base
-      schema:
-        type: string
-    CatalogAssetId:
-      description: 'Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol.'
-      in: query
-      name: assets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogMarketId:
-      description: Comma separated list of markets. By default all markets are returned.
-      in: query
-      name: markets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogMarketExcludeFields:
-      description: Comma separated list of fields to exclude from response. Supported values are `trades`, `orderbooks`, `quotes`, `funding_rates`, `openinterest`, `liquidations`. Included by default if omitted.
-      in: query
-      name: exclude
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogAssetIncludeFields:
-      description: Comma separated list of fields to include in response. Supported values are `metrics`, `markets`, `exchanges`. Included by default if omitted.
-      in: query
-      name: include
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketAsset:
-      description: Any asset of markets.
-      in: query
-      name: asset
-      schema:
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    CatalogAssetExcludeFields:
-      description: Comma separated list of fields to exclude from response. Supported values are `metrics`, `markets`, `exchanges`. Included by default if omitted.
-      in: query
-      name: exclude
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogMarketIncludeFields:
-      description: Comma separated list of fields to include in response. Supported values are `trades`, `orderbooks`, `quotes`, `funding_rates`, `openinterest`, `liquidations`. Included by default if omitted.
-      in: query
-      name: include
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    Exchange:
-      description: Unique name of an exchange.
-      in: query
-      name: exchange
-      schema:
-        type: string
-    CatalogPairId:
-      description: Comma separated list of asset pairs. By default, all asset pairs are returned.
-      in: query
-      name: pairs
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogExchangeAssetId:
-      description: Comma separated list of exchange-assets. By default, all exchange-assets pairs are returned.
-      in: query
-      name: exchange_assets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogExchangeId:
-      description: 'Comma separated list of exchanges. By default all exchanges are returned. Supports the following formats: `<exchange>` - Coin Metrics exchange name (e.g., `binance`), `<namespace>:<name>` - External provider market name (e.g., `talos:binance`), `<namespace>:by-id:<id>` - External provider numeric market ID (e.g., `talos:by-id:1003`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by numeric ID rather than name.'
-      in: query
-      name: exchanges
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogInstitutionId:
-      description: Comma separated list of institutions. By default, all institutions are returned.
-      in: query
-      name: institutions
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
+            $ref: '#/components/schemas/CatalogMarketOpeninterestResponse'
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

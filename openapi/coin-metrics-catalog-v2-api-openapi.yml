@@ -1,17 +1,14 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Coin Metrics API v4 Blockchain Explorer Job Catalog v2 API
-  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+  title: Coin Metrics API v4 Catalog v2 API
+  description: 'Coin Metrics Homepage
 
-    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+    API Backward Compatibility Policy
 
-    # Authentication
+    Python API Client
 
-    <!-- ReDoc-Inject: <security-definitions> -->
 
-    # Response headers
-
-    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.'
   termsOfService: https://coinmetrics.io/api/terms
   contact:
     name: Coin Metrics Support
@@ -27,7 +24,9 @@ servers:
 - url: https://community-api.coinmetrics.io/v4
 tags:
 - name: Catalog v2
-  description: Catalog of available for your `api_key` data.<br/> Use the [Full catalog V2](#tag/Full-catalog-v2) endpoints for the full list of supported by Coin Metrics data.
+  description: 'Catalog of available for your `api_key` data.
+
+    Use the Full catalog V2 endpoints for the full list of supported by Coin Metrics data.'
 paths:
   /catalog-v2/asset-metrics:
     servers:
@@ -1732,11 +1731,11 @@ paths:
       - api_key: []
 components:
   schemas:
-    CatalogV2BlockchainBlocksResponse:
+    CatalogV2MempoolFeeratesResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
+            $ref: '#/components/schemas/CatalogMempoolFeeratesInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -1745,194 +1744,31 @@ components:
       required:
       - data
       type: object
-    CatalogV2TransactionTrackerResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogTransactionTrackerInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ExchangePairMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/ExchangePairMetricFrequency'
-      type: array
-    CatalogMarketGreeksInfo:
-      description: Information about market and time range of its available greeks data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    AssetMetricInfo:
-      description: Information about availability of metric for an asset.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/AssetMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    CatalogMarketOpeninterestInfo:
-      description: Information about market and time range of its available open interest data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    PairMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/PairMetricFrequency'
-      type: array
-    PairMetricInfo:
-      description: Information about availability of metric for an pair.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/PairMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    MinHeight:
-      description: Minimal available block height for time series.
+    AssetId:
+      description: Unique name of the asset.
       type: string
-      format: int64
-    CatalogV2IndexLevelsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2IndexInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
+    CatalogV2ProtocolMetricsInfo:
+      description: Available metrics for a protocol/market/chain combination.
       type: object
-    CatalogMarketQuotesInfo:
-      description: Information about market and time range of its available quotes data.
       properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    MarketMetricFrequency:
-      properties:
-        frequency:
+        protocol:
+          description: Protocol name.
           type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogMiningPoolTipsSummaryInfo:
-      description: Information about mining pool tips summary.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - asset
-      - min_time
-      - max_time
-      type: object
-    CatalogV2MarketFundingRatesResponse:
-      description: List of market funding rates statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketFundingRatesInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2BlockchainAssetsInfo:
-      description: Information about blockchain assets.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalAsset'
-      required:
-      - asset
-      - min_time
-      - max_time
-      type: object
-    CatalogAssetChainsInfo:
-      description: Information about asset chains.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - asset
-      - min_time
-      - max_time
-      type: object
-    CatalogMarketTradesInfo:
-      description: Information about market and time range of its available trades data.
-      properties:
         market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
+          description: Protocol market.
+          type: string
+        chain:
+          description: Protocol chain.
+          type: string
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogV2ProtocolMetricInfo'
       required:
+      - protocol
       - market
-      - min_time
-      - max_time
+      - chain
+      - metrics
     ExchangeMetricInfo:
       description: Information about availability of metric for an exchange.
       properties:
@@ -1943,114 +1779,21 @@ components:
       required:
       - metric
       - frequencies
-    CatalogV2IndexCandlesResponse:
+    CatalogIndexCandlesInfo:
+      description: Information about index and its supported candle durations.
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogIndexCandlesInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2InstitutionMetricsInfo:
-      description: Information about institution metrics.
-      properties:
-        institution:
-          $ref: '#/components/schemas/InstitutionId'
-        metrics:
-          $ref: '#/components/schemas/InstitutionMetricsIds'
-      required:
-      - institution
-      - metrics
-      type: object
-    ExchangePairMetricInfo:
-      description: Information about availability of metric for an exchange-pair.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/ExchangePairMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    MarketMetricInfo:
-      description: Information about availability of metric for a market.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/MarketMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    Time:
-      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
-      type: string
-      format: date-time
-    CatalogV2MiningPoolTipsSummaryResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMiningPoolTipsSummaryInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2MarketOrderbooksInfo:
-      description: Information about market and time range of its available orderbooks data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        depths:
-          $ref: '#/components/schemas/CatalogMarketOrderbookDepths'
-      type: object
-      required:
-      - market
-      - depths
-    CatalogPairCandlesInfo:
-      description: Information about pair and its supported candle durations.
-      properties:
-        pair:
-          $ref: '#/components/schemas/PairId'
+        index:
+          $ref: '#/components/schemas/IndexId'
         frequencies:
           $ref: '#/components/schemas/CatalogCandleFrequencies'
       type: object
       required:
-      - pair
-    MaxTime:
-      description: Maximal available time for time series.
-      type: string
-      format: date-time
-    CatalogV2ExchangeMetricsInfo:
-      description: Information about exchange metrics.
-      properties:
-        exchange:
-          $ref: '#/components/schemas/ExchangeId'
-        metrics:
-          $ref: '#/components/schemas/ExchangeMetricsIds'
-      required:
-      - exchange
-      - metrics
-      type: object
-    InstitutionId:
-      description: Unique name of the institution.
-      type: string
-    IndexId:
-      description: Name of the index.
-      type: string
-    CatalogV2PairMetricsResponse:
+      - index
+    CatalogV2ExchangeMetricsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogV2PairMetricsInfo'
+            $ref: '#/components/schemas/CatalogV2ExchangeMetricsInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2070,84 +1813,29 @@ components:
       - exchange_asset
       - metrics
       type: object
-    MarketId:
-      description: Unique name of the market.
-      type: string
-    CatalogV2BlockchainAccountsResponse:
+    CatalogMarketTradesInfo:
+      description: Information about market and time range of its available trades data.
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2MarketContractPricesResponse:
-      description: List of contract prices statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketContractPricesInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2ExchangeMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2ExchangeMetricsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2PairMetricsInfo:
-      description: Information about pair metrics.
-      properties:
-        pair:
-          $ref: '#/components/schemas/PairId'
-        metrics:
-          $ref: '#/components/schemas/PairMetricsIds'
-      required:
-      - pair
-      - metrics
-      type: object
-    ExchangeAssetMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
+        market:
+          $ref: '#/components/schemas/MarketId'
         min_time:
           $ref: '#/components/schemas/MinTime'
         max_time:
           $ref: '#/components/schemas/MaxTime'
       type: object
       required:
-      - frequency
+      - market
       - min_time
       - max_time
-    ExchangeAssetMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/ExchangeAssetMetricInfo'
-      type: array
-    CatalogV2InstitutionMetricsResponse:
+    InstitutionId:
+      description: Unique name of the institution.
+      type: string
+    CatalogV2MarketOrderbooksResponse:
+      description: List of market orderbooks statistics.
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogV2InstitutionMetricsInfo'
+            $ref: '#/components/schemas/CatalogV2MarketOrderbooksInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2156,12 +1844,83 @@ components:
       required:
       - data
       type: object
-    CatalogV2MarketMetricsResponse:
-      description: List of market metrics statistics.
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    CatalogV2PairCandlesResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogMarketMetricsInfo'
+            $ref: '#/components/schemas/CatalogPairCandlesInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogMarketMetricsInfo:
+      description: Information about market and its supported metrics.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        metrics:
+          $ref: '#/components/schemas/MarketMetricsIds'
+      type: object
+      required:
+      - market
+      - metrics
+    CatalogV2MarketOpeninterestResponse:
+      description: List of market open interest statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketOpeninterestInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    ExchangeMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/ExchangeMetricInfo'
+      type: array
+    IndexFrequencies:
+      description: Frequencies of the index.
+      items:
+        $ref: '#/components/schemas/CatalogIndexFrequency'
+      type: array
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    MinTime:
+      description: Minimal available time for time series.
+      type: string
+      format: date-time
+    CatalogV2IndexLevelsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2IndexInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogV2ExchangeAssetMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2ExchangeAssetMetricsInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2184,37 +1943,15 @@ components:
       - min_time
       - max_time
       type: object
-    CatalogMarketOrderbookDepth:
-      description: 'Order book availability for a depth. The depth-level min_time and max_time are backward-compatible summary fields. When the snapshots dataset is present, they match the snapshots dataset min_time and max_time. If snapshots is absent and updates is present, they fall back to the updates dataset range. They do not represent a union of dataset ranges.
-
-        '
-      properties:
-        depth:
-          type: string
-          description: Depth of the book
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-        datasets:
-          $ref: '#/components/schemas/CatalogMarketOrderbookDatasets'
-      required:
-      - depth
-      - min_time
-      - max_time
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    CatalogV2MarketGreeksResponse:
-      description: List of greeks statistics.
+    Community:
+      description: Indicates an availability of the metric in the community version of the API.
+      type: boolean
+    CatalogV2MarketFundingRatesResponse:
+      description: List of market funding rates statistics.
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogMarketGreeksInfo'
+            $ref: '#/components/schemas/CatalogMarketFundingRatesInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2223,6 +1960,122 @@ components:
       required:
       - data
       type: object
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    ExchangeId:
+      description: Unique name of the exchange.
+      type: string
+    ExchangeAssetMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - frequency
+      - min_time
+      - max_time
+    MaxHash:
+      description: Maximal available block hash for time series.
+      type: string
+    CatalogMarketImpliedVolatilityInfo:
+      description: Information about market and time range of its available implied volatility data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    ExchangePairMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/ExchangePairMetricInfo'
+      type: array
+    CatalogMarketFundingRatesInfo:
+      description: Information about market and time range of its available funding rates data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    AssetMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/AssetMetricFrequency'
+      type: array
+    CatalogMarketOrderbookDataset:
+      properties:
+        dataset:
+          type: string
+          description: Order book dataset name.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - dataset
+      - min_time
+      - max_time
+    PairId:
+      description: Unique name of the pair.
+      type: string
+    CatalogMarketOrderbookDepths:
+      description: Depths of the book.
+      items:
+        $ref: '#/components/schemas/CatalogMarketOrderbookDepth'
+      type: array
+    MarketMetricInfo:
+      description: Information about availability of metric for a market.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/MarketMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    MaxHeight:
+      description: Maximal available block height for time series.
+      type: string
+      format: int64
+    CatalogV2MarketOrderbooksInfo:
+      description: Information about market and time range of its available orderbooks data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        depths:
+          $ref: '#/components/schemas/CatalogMarketOrderbookDepths'
+      type: object
+      required:
+      - market
+      - depths
     CatalogV2ProtocolMetricFrequency:
       description: Time range for a metric at a given frequency.
       type: object
@@ -2238,30 +2091,12 @@ components:
       - frequency
       - min_time
       - max_time
-    CatalogMarketLiquidationsInfo:
-      description: Information about market and time range of its available liquidations data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    PairMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/PairMetricInfo'
-      type: array
-    CatalogV2MempoolFeeratesResponse:
+    CatalogV2MarketTradesResponse:
+      description: List of market trades statistics.
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogMempoolFeeratesInfo'
+            $ref: '#/components/schemas/CatalogMarketTradesInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2270,85 +2105,11 @@ components:
       required:
       - data
       type: object
-    Community:
-      description: Indicates an availability of the metric in the community version of the API.
-      type: boolean
-    CatalogMarketOrderbookDatasets:
-      description: Dataset-specific availability ranges for this order book depth.
-      items:
-        $ref: '#/components/schemas/CatalogMarketOrderbookDataset'
-      type: array
-    CatalogIndexFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the index.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogV2MarketOrderbooksResponse:
-      description: List of market orderbooks statistics.
+    CatalogV2ExchangePairMetricsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogV2MarketOrderbooksInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    MinTime:
-      description: Minimal available time for time series.
-      type: string
-      format: date-time
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
-    AssetId:
-      description: Unique name of the asset.
-      type: string
-    MaxHash:
-      description: Maximal available block hash for time series.
-      type: string
-    ExchangeId:
-      description: Unique name of the exchange.
-      type: string
-    CatalogCandleFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the candle.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogV2MarketFundingRatesPredictedResponse:
-      description: List of predicted market funding rates statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketFundingRatesPredictedInfo'
+            $ref: '#/components/schemas/CatalogV2ExchangePairMetricsInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2371,114 +2132,6 @@ components:
       required:
       - data
       type: object
-    CatalogV2ProtocolMetricInfo:
-      description: Metric availability across frequencies.
-      type: object
-      properties:
-        metric:
-          description: Metric name.
-          type: string
-        frequencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/CatalogV2ProtocolMetricFrequency'
-      required:
-      - metric
-      - frequencies
-    CatalogV2BlockchainTransactionsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ExchangeMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/ExchangeMetricInfo'
-      type: array
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
-    MaxHeight:
-      description: Maximal available block height for time series.
-      type: string
-      format: int64
-    CatalogMarketMetricsInfo:
-      description: Information about market and its supported metrics.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        metrics:
-          $ref: '#/components/schemas/MarketMetricsIds'
-      type: object
-      required:
-      - market
-      - metrics
-    CatalogV2MarketLiquidationsResponse:
-      description: List of market liquidations statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketLiquidationsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ExperimentalAsset:
-      description: If set to true, discrepancies might be present in the dataset for this asset, and that's expected.
-      type: boolean
-    InstitutionMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/InstitutionMetricFrequency'
-      type: array
-    CatalogV2ProtocolMetricsResponse:
-      description: Catalog of available protocol metrics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2ProtocolMetricsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    PairId:
-      description: Unique name of the pair.
-      type: string
-    CatalogV2IndexInfo:
-      description: Information about an index.
-      properties:
-        index:
-          $ref: '#/components/schemas/IndexId'
-        frequencies:
-          $ref: '#/components/schemas/IndexFrequencies'
-      required:
-      - index
-      - frequencies
-      type: object
-    MetricId:
-      description: Name of the metric.
-      type: string
-    MetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/AssetMetricInfo'
-      type: array
     ExchangeMetricFrequency:
       properties:
         frequency:
@@ -2493,36 +2146,24 @@ components:
       - frequency
       - min_time
       - max_time
-    CatalogMarketOrderbookDataset:
+    InstitutionMetricFrequency:
       properties:
-        dataset:
+        frequency:
           type: string
-          description: Order book dataset name.
+          description: Frequency of the metric.
         min_time:
           $ref: '#/components/schemas/MinTime'
         max_time:
           $ref: '#/components/schemas/MaxTime'
+      type: object
       required:
-      - dataset
+      - frequency
       - min_time
       - max_time
-    CatalogV2AssetMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2AssetMetricsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ExchangeAssetMetricFrequencies:
-      description: List of metric frequencies.
+    MetricsIds:
+      description: List of metrics.
       items:
-        $ref: '#/components/schemas/ExchangeAssetMetricFrequency'
+        $ref: '#/components/schemas/AssetMetricInfo'
       type: array
     AssetMetricFrequency:
       properties:
@@ -2550,181 +2191,20 @@ components:
       - frequency
       - min_time
       - max_time
-    ExchangePairMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogV2MarketOpeninterestResponse:
-      description: List of market open interest statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketOpeninterestInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2ExchangePairMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2ExchangePairMetricsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    PairMetricFrequency:
-      properties:
-        frequency:
-          type: string
-          description: Frequency of the metric.
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - frequency
-      - min_time
-      - max_time
-    CatalogV2ExchangeAssetMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogV2ExchangeAssetMetricsInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2MarketCandlesResponse:
-      description: List of market candles statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketCandlesInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogV2AssetMetricsInfo:
-      description: Information about asset metrics.
-      properties:
-        asset:
-          $ref: '#/components/schemas/AssetId'
-        metrics:
-          $ref: '#/components/schemas/MetricsIds'
-      required:
-      - asset
-      - metrics
-      type: object
-    InstitutionMetricInfo:
-      description: Information about availability of metric for an institution.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/InstitutionMetricFrequencies'
-      required:
-      - metric
-      - frequencies
-    CatalogV2MarketQuotesResponse:
-      description: List of market quotes statistics.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CatalogMarketQuotesInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    CatalogMarketFundingRatesPredictedInfo:
-      description: Information about market and time range of its available predicted funding rates data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    NextPageUrl:
-      description: URL of the next page results for a given request.
-      type: string
-    CatalogV2ProtocolMetricsInfo:
-      description: Available metrics for a protocol/market/chain combination.
-      type: object
-      properties:
-        protocol:
-          description: Protocol name.
-          type: string
-        market:
-          description: Protocol market.
-          type: string
-        chain:
-          description: Protocol chain.
-          type: string
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/CatalogV2ProtocolMetricInfo'
-      required:
-      - protocol
-      - market
-      - chain
-      - metrics
-    CatalogIndexCandlesInfo:
-      description: Information about index and its supported candle durations.
-      properties:
-        index:
-          $ref: '#/components/schemas/IndexId'
-        frequencies:
-          $ref: '#/components/schemas/CatalogCandleFrequencies'
-      type: object
-      required:
-      - index
-    ExperimentalAssetMetric:
-      description: Asset, metric, and frequency combination is experimental.
-      type: boolean
-    MarketMetricFrequencies:
+    ExchangeAssetMetricFrequencies:
       description: List of metric frequencies.
       items:
-        $ref: '#/components/schemas/MarketMetricFrequency'
+        $ref: '#/components/schemas/ExchangeAssetMetricFrequency'
       type: array
-    CatalogV2BlockchainBalanceUpdatesResponse:
+    ExperimentalAsset:
+      description: If set to true, discrepancies might be present in the dataset for this asset, and that's expected.
+      type: boolean
+    CatalogCandleFrequencies:
+      description: Frequencies of the candle.
+      items:
+        $ref: '#/components/schemas/CatalogCandleFrequency'
+      type: array
+    CatalogV2BlockchainBlocksResponse:
       properties:
         data:
           items:
@@ -2737,12 +2217,46 @@ components:
       required:
       - data
       type: object
-    CatalogV2MarketTradesResponse:
-      description: List of market trades statistics.
+    InstitutionMetricInfo:
+      description: Information about availability of metric for an institution.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/InstitutionMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogMarketOrderbookDatasets:
+      description: Dataset-specific availability ranges for this order book depth.
+      items:
+        $ref: '#/components/schemas/CatalogMarketOrderbookDataset'
+      type: array
+    CatalogMarketGreeksInfo:
+      description: Information about market and time range of its available greeks data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    PairMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/PairMetricFrequency'
+      type: array
+    CatalogV2MarketQuotesResponse:
+      description: List of market quotes statistics.
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogMarketTradesInfo'
+            $ref: '#/components/schemas/CatalogMarketQuotesInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2765,21 +2279,12 @@ components:
       - market
       - min_time
       - max_time
-    CatalogMarketImpliedVolatilityInfo:
-      description: Information about market and time range of its available implied volatility data.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        min_time:
-          $ref: '#/components/schemas/MinTime'
-        max_time:
-          $ref: '#/components/schemas/MaxTime'
-      type: object
-      required:
-      - market
-      - min_time
-      - max_time
-    InstitutionMetricFrequency:
+    ExchangeAssetMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/ExchangeAssetMetricInfo'
+      type: array
+    ExchangePairMetricFrequency:
       properties:
         frequency:
           type: string
@@ -2793,6 +2298,342 @@ components:
       - frequency
       - min_time
       - max_time
+    InstitutionMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/InstitutionMetricFrequency'
+      type: array
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    MinHash:
+      description: Minimal available black hash for time series.
+      type: string
+    CatalogIndexFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the index.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - frequency
+      - min_time
+      - max_time
+    CatalogMarketCandlesInfo:
+      description: Information about market and its supported candle durations.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        frequencies:
+          $ref: '#/components/schemas/CatalogCandleFrequencies'
+      type: object
+      required:
+      - market
+      - candles
+    CatalogV2ProtocolMetricsResponse:
+      description: Catalog of available protocol metrics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2ProtocolMetricsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogV2MarketContractPricesResponse:
+      description: List of contract prices statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketContractPricesInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    ExchangeMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/ExchangeMetricFrequency'
+      type: array
+    MaxTime:
+      description: Maximal available time for time series.
+      type: string
+      format: date-time
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    MetricId:
+      description: Name of the metric.
+      type: string
+    MarketId:
+      description: Unique name of the market.
+      type: string
+    CatalogMarketOrderbookDepth:
+      description: 'Order book availability for a depth. The depth-level min_time and max_time are backward-compatible summary fields. When the snapshots dataset is present, they match the snapshots dataset min_time and max_time. If snapshots is absent and updates is present, they fall back to the updates dataset range. They do not represent a union of dataset ranges.
+
+        '
+      properties:
+        depth:
+          type: string
+          description: Depth of the book
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+        datasets:
+          $ref: '#/components/schemas/CatalogMarketOrderbookDatasets'
+      required:
+      - depth
+      - min_time
+      - max_time
+    CatalogV2IndexInfo:
+      description: Information about an index.
+      properties:
+        index:
+          $ref: '#/components/schemas/IndexId'
+        frequencies:
+          $ref: '#/components/schemas/IndexFrequencies'
+      required:
+      - index
+      - frequencies
+      type: object
+    AssetMetricInfo:
+      description: Information about availability of metric for an asset.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/AssetMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogMarketQuotesInfo:
+      description: Information about market and time range of its available quotes data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    CatalogV2ExchangeMetricsInfo:
+      description: Information about exchange metrics.
+      properties:
+        exchange:
+          $ref: '#/components/schemas/ExchangeId'
+        metrics:
+          $ref: '#/components/schemas/ExchangeMetricsIds'
+      required:
+      - exchange
+      - metrics
+      type: object
+    CatalogV2MarketFundingRatesPredictedResponse:
+      description: List of predicted market funding rates statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketFundingRatesPredictedInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogV2BlockchainRebasingChangesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    IndexId:
+      description: Name of the index.
+      type: string
+    PairMetricInfo:
+      description: Information about availability of metric for an pair.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/PairMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogV2PairMetricsInfo:
+      description: Information about pair metrics.
+      properties:
+        pair:
+          $ref: '#/components/schemas/PairId'
+        metrics:
+          $ref: '#/components/schemas/PairMetricsIds'
+      required:
+      - pair
+      - metrics
+      type: object
+    CatalogV2ExchangePairMetricsInfo:
+      description: Information about exchange-pair metrics.
+      properties:
+        exchange_pair:
+          $ref: '#/components/schemas/ExchangeId'
+        metrics:
+          $ref: '#/components/schemas/ExchangePairMetricsIds'
+      required:
+      - exchange_pair
+      - metrics
+      type: object
+    CatalogPairCandlesInfo:
+      description: Information about pair and its supported candle durations.
+      properties:
+        pair:
+          $ref: '#/components/schemas/PairId'
+        frequencies:
+          $ref: '#/components/schemas/CatalogCandleFrequencies'
+      type: object
+      required:
+      - pair
+    CatalogV2BlockchainTransactionsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogV2InstitutionMetricsInfo:
+      description: Information about institution metrics.
+      properties:
+        institution:
+          $ref: '#/components/schemas/InstitutionId'
+        metrics:
+          $ref: '#/components/schemas/InstitutionMetricsIds'
+      required:
+      - institution
+      - metrics
+      type: object
+    CatalogV2MarketLiquidationsResponse:
+      description: List of market liquidations statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketLiquidationsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogMarketOpeninterestInfo:
+      description: Information about market and time range of its available open interest data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    ExchangeAssetMetricInfo:
+      description: Information about availability of metric for an exchange-asset.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/ExchangeAssetMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogV2TransactionTrackerResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogTransactionTrackerInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogV2MiningPoolTipsSummaryResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMiningPoolTipsSummaryInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogV2IndexCandlesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogIndexCandlesInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogAssetChainsInfo:
+      description: Information about asset chains.
+      properties:
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - asset
+      - min_time
+      - max_time
+      type: object
     CatalogV2AssetChainsResponse:
       properties:
         data:
@@ -2806,6 +2647,145 @@ components:
       required:
       - data
       type: object
+    CatalogV2MarketCandlesResponse:
+      description: List of market candles statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketCandlesInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    ExperimentalAssetMetric:
+      description: Asset, metric, and frequency combination is experimental.
+      type: boolean
+    CatalogV2ProtocolMetricInfo:
+      description: Metric availability across frequencies.
+      type: object
+      properties:
+        metric:
+          description: Metric name.
+          type: string
+        frequencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogV2ProtocolMetricFrequency'
+      required:
+      - metric
+      - frequencies
+    MarketMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - frequency
+      - min_time
+      - max_time
+    MarketMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/MarketMetricFrequency'
+      type: array
+    ExchangePairMetricInfo:
+      description: Information about availability of metric for an exchange-pair.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        frequencies:
+          $ref: '#/components/schemas/ExchangePairMetricFrequencies'
+      required:
+      - metric
+      - frequencies
+    CatalogV2MarketGreeksResponse:
+      description: List of greeks statistics.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketGreeksInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    ExchangePairMetricFrequencies:
+      description: List of metric frequencies.
+      items:
+        $ref: '#/components/schemas/ExchangePairMetricFrequency'
+      type: array
+    InstitutionMetricsIds:
+      description: List of metrics.
+      items:
+        $ref: '#/components/schemas/InstitutionMetricInfo'
+      type: array
+    CatalogV2AssetMetricsInfo:
+      description: Information about asset metrics.
+      properties:
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        metrics:
+          $ref: '#/components/schemas/MetricsIds'
+      required:
+      - asset
+      - metrics
+      type: object
+    CatalogV2BlockchainAccountsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    CatalogCandleFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the candle.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - frequency
+      - min_time
+      - max_time
+    MinHeight:
+      description: Minimal available block height for time series.
+      type: string
+      format: int64
+    PairMetricFrequency:
+      properties:
+        frequency:
+          type: string
+          description: Frequency of the metric.
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - frequency
+      - min_time
+      - max_time
     CatalogTransactionTrackerInfo:
       description: Information about transaction tracker.
       properties:
@@ -2820,26 +2800,11 @@ components:
       - min_time
       - max_time
       type: object
-    ExchangeMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/ExchangeMetricFrequency'
-      type: array
-    AssetMetricFrequencies:
-      description: List of metric frequencies.
-      items:
-        $ref: '#/components/schemas/AssetMetricFrequency'
-      type: array
-    InstitutionMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/InstitutionMetricInfo'
-      type: array
-    CatalogV2BlockchainRebasingChangesResponse:
+    CatalogV2InstitutionMetricsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
+            $ref: '#/components/schemas/CatalogV2InstitutionMetricsInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2848,30 +2813,11 @@ components:
       required:
       - data
       type: object
-    MinHash:
-      description: Minimal available black hash for time series.
-      type: string
-    CatalogMarketCandlesInfo:
-      description: Information about market and its supported candle durations.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        frequencies:
-          $ref: '#/components/schemas/CatalogCandleFrequencies'
-      type: object
-      required:
-      - market
-      - candles
-    IndexFrequencies:
-      description: Frequencies of the index.
-      items:
-        $ref: '#/components/schemas/CatalogIndexFrequency'
-      type: array
-    CatalogV2PairCandlesResponse:
+    CatalogV2AssetMetricsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/CatalogPairCandlesInfo'
+            $ref: '#/components/schemas/CatalogV2AssetMetricsInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -2880,13 +2826,8 @@ components:
       required:
       - data
       type: object
-    MarketMetricsIds:
-      description: List of metrics.
-      items:
-        $ref: '#/components/schemas/MarketMetricInfo'
-      type: array
-    CatalogMarketFundingRatesInfo:
-      description: Information about market and time range of its available funding rates data.
+    CatalogMarketFundingRatesPredictedInfo:
+      description: Information about market and time range of its available predicted funding rates data.
       properties:
         market:
           $ref: '#/components/schemas/MarketId'
@@ -2899,43 +2840,212 @@ components:
       - market
       - min_time
       - max_time
-    CatalogV2ExchangePairMetricsInfo:
-      description: Information about exchange-pair metrics.
+    CatalogV2MarketMetricsResponse:
+      description: List of market metrics statistics.
       properties:
-        exchange_pair:
-          $ref: '#/components/schemas/ExchangeId'
-        metrics:
-          $ref: '#/components/schemas/ExchangePairMetricsIds'
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogMarketMetricsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
       required:
-      - exchange_pair
-      - metrics
+      - data
       type: object
-    CatalogCandleFrequencies:
-      description: Frequencies of the candle.
-      items:
-        $ref: '#/components/schemas/CatalogCandleFrequency'
-      type: array
-    ExchangePairMetricsIds:
+    CatalogMarketLiquidationsInfo:
+      description: Information about market and time range of its available liquidations data.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      type: object
+      required:
+      - market
+      - min_time
+      - max_time
+    CatalogV2BlockchainBalanceUpdatesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2BlockchainAssetsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    PairMetricsIds:
       description: List of metrics.
       items:
-        $ref: '#/components/schemas/ExchangePairMetricInfo'
+        $ref: '#/components/schemas/PairMetricInfo'
       type: array
-    ExchangeAssetMetricInfo:
-      description: Information about availability of metric for an exchange-asset.
+    CatalogV2BlockchainAssetsInfo:
+      description: Information about blockchain assets.
       properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        frequencies:
-          $ref: '#/components/schemas/ExchangeAssetMetricFrequencies'
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalAsset'
       required:
-      - metric
-      - frequencies
-    CatalogMarketOrderbookDepths:
-      description: Depths of the book.
+      - asset
+      - min_time
+      - max_time
+      type: object
+    MarketMetricsIds:
+      description: List of metrics.
       items:
-        $ref: '#/components/schemas/CatalogMarketOrderbookDepth'
+        $ref: '#/components/schemas/MarketMetricInfo'
       type: array
+    CatalogMiningPoolTipsSummaryInfo:
+      description: Information about mining pool tips summary.
+      properties:
+        asset:
+          $ref: '#/components/schemas/AssetId'
+        min_time:
+          $ref: '#/components/schemas/MinTime'
+        max_time:
+          $ref: '#/components/schemas/MaxTime'
+      required:
+      - asset
+      - min_time
+      - max_time
+      type: object
+    CatalogV2PairMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CatalogV2PairMetricsInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
   responses:
+    CatalogV2PairCandles:
+      description: List of asset pair candles statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - pair: btc-eur
+              frequencies:
+              - frequency: 1m
+                min_time: '2011-08-28T18:26:00.000000000Z'
+                max_time: '2022-06-29T23:25:00.000000000Z'
+              - frequency: 5m
+                min_time: '2011-08-28T18:25:00.000000000Z'
+                max_time: '2022-06-29T23:20:00.000000000Z'
+              - frequency: 10m
+                min_time: '2011-08-28T18:20:00.000000000Z'
+                max_time: '2022-06-29T23:10:00.000000000Z'
+              - frequency: 15m
+                min_time: '2011-08-28T18:15:00.000000000Z'
+                max_time: '2022-06-29T23:00:00.000000000Z'
+              - frequency: 30m
+                min_time: '2011-08-28T18:00:00.000000000Z'
+                max_time: '2022-06-29T22:30:00.000000000Z'
+              - frequency: 1h
+                min_time: '2011-08-28T18:00:00.000000000Z'
+                max_time: '2022-06-29T22:00:00.000000000Z'
+              - frequency: 4h
+                min_time: '2011-08-28T16:00:00.000000000Z'
+                max_time: '2022-06-29T16:00:00.000000000Z'
+              - frequency: 1d
+                min_time: '2011-08-28T00:00:00.000000000Z'
+                max_time: '2022-06-28T00:00:00.000000000Z'
+            - pair: btc-usd
+              frequencies:
+              - frequency: 1m
+                min_time: '2010-07-18T03:43:00.000000000Z'
+                max_time: '2022-06-29T23:25:00.000000000Z'
+              - frequency: 5m
+                min_time: '2010-07-18T03:40:00.000000000Z'
+                max_time: '2022-06-29T23:20:00.000000000Z'
+              - frequency: 10m
+                min_time: '2010-07-18T03:40:00.000000000Z'
+                max_time: '2022-06-29T23:10:00.000000000Z'
+              - frequency: 15m
+                min_time: '2010-07-18T03:30:00.000000000Z'
+                max_time: '2022-06-29T23:00:00.000000000Z'
+              - frequency: 30m
+                min_time: '2010-07-18T03:30:00.000000000Z'
+                max_time: '2022-06-29T22:30:00.000000000Z'
+              - frequency: 1h
+                min_time: '2010-07-18T03:00:00.000000000Z'
+                max_time: '2022-06-29T22:00:00.000000000Z'
+              - frequency: 4h
+                min_time: '2010-07-18T00:00:00.000000000Z'
+                max_time: '2022-06-29T16:00:00.000000000Z'
+              - frequency: 1d
+                min_time: '2010-07-18T00:00:00.000000000Z'
+                max_time: '2022-06-28T00:00:00.000000000Z'
+            next_page_token: Q01CSTEw
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/pair-candles?api_key=<your_key>&page_size=2&next_page_token=Q01CSTEw
+          schema:
+            $ref: '#/components/schemas/CatalogV2PairCandlesResponse'
+    CatalogV2MarketFundingRatesPredicted:
+      description: List of predicted market funding rates statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: bybit-1000000VINUUSDT-future
+              min_time: '2023-11-28T10:09:00.000000000Z'
+              max_time: '2024-01-30T13:17:00.000000000Z'
+            - market: bybit-10000LADYSUSDT-future
+              min_time: '2023-05-11T13:08:00.000000000Z'
+              max_time: '2024-01-30T13:17:00.000000000Z'
+            - market: bybit-10000NFTUSDT-future
+              min_time: '2023-01-27T21:22:00.000000000Z'
+              max_time: '2024-01-30T13:17:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogV2MarketFundingRatesPredictedResponse'
+    CatalogV2MempoolFeerates:
+      description: List of mempool feerates assets
+      content:
+        application/json:
+          example:
+            data:
+            - asset: btc
+              min_time: '2023-08-17T14:58:45.614000000Z'
+              max_time: '2023-08-24T15:29:26.235000000Z'
+            next_page_token: ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/mempool-feerates?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+          schema:
+            $ref: '#/components/schemas/CatalogV2MempoolFeeratesResponse'
+    CatalogV2MarketGreeks:
+      description: List of greeks statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: deribit-BTC-15OCT21-60000-C-option
+              min_time: '2022-01-26T08:00:00.001000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: deribit-BTC-1OCT21-75000-C-option
+              min_time: '2022-05-30T16:00:00.005000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            - market: deribit-BTC-26NOV21-60000-C-option
+              min_time: '2021-05-10T16:00:00.013000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-greeks?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
+          schema:
+            $ref: '#/components/schemas/CatalogV2MarketGreeksResponse'
     CatalogV2MarketCandles:
       description: List of market candles statistics.
       content:
@@ -2994,81 +3104,8 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-candles?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
           schema:
             $ref: '#/components/schemas/CatalogV2MarketCandlesResponse'
-    CatalogV2MarketMetrics:
-      description: List of market metrics statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-BTCUSDT-future
-              metrics:
-              - metric: liquidations_reported_future_buy_usd_5m
-                frequencies:
-                - frequency: 5m
-                  min_time: '2020-01-01T01:25:00.000000000Z'
-                  max_time: '2022-01-21T00:30:00.000000000Z'
-              - metric: liquidations_reported_future_buy_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2020-01-01T01:00:00.000000000Z'
-                  max_time: '2022-01-20T23:00:00.000000000Z'
-              - metric: liquidations_reported_future_buy_units_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2020-01-01T00:00:00.000000000Z'
-                  max_time: '2022-01-20T00:00:00.000000000Z'
-            - market: bybit-BTCUSDT-future
-              metrics:
-              - metric: liquidations_reported_future_buy_usd_5m
-                frequencies:
-                - frequency: 5m
-                  min_time: '2021-04-30T12:35:00.000000000Z'
-                  max_time: '2022-01-21T00:25:00.000000000Z'
-              - metric: liquidations_reported_future_buy_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2021-04-30T12:00:00.000000000Z'
-                  max_time: '2022-01-20T23:00:00.000000000Z'
-              - metric: liquidations_reported_future_buy_units_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2021-04-30T00:00:00.000000000Z'
-                  max_time: '2022-01-20T00:00:00.000000000Z'
-            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-metrics?api_key=<your_key>&page_size=2&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketMetricsResponse'
-    IndexNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'indexes'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Index not found.
-    CatalogV2MarketFundingRates:
-      description: List of market funding rates statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-1000BTTCUSDT-future
-              min_time: '2022-01-26T08:00:00.001000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: binance-1000LUNCBUSD-future
-              min_time: '2022-05-30T16:00:00.005000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            - market: binance-1000SHIBUSDT-future
-              min_time: '2021-05-10T16:00:00.013000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-funding-rates?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketFundingRatesResponse'
-    CatalogV2MempoolFeerates:
-      description: List of mempool feerates assets
+    CatalogV2BlockchainTransactions:
+      description: List of blockchain transactions assets
       content:
         application/json:
           example:
@@ -3077,75 +3114,19 @@ components:
               min_time: '2023-08-17T14:58:45.614000000Z'
               max_time: '2023-08-24T15:29:26.235000000Z'
             next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/mempool-feerates?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/transactions?api_key=<your_key>&page_size=1&next_page_token=ZXRo
           schema:
-            $ref: '#/components/schemas/CatalogV2MempoolFeeratesResponse'
-    CatalogV2ExchangePairMetrics:
-      description: List of exchange-pair metrics.
+            $ref: '#/components/schemas/CatalogV2BlockchainTransactionsResponse'
+    ProtocolNotFound:
       content:
         application/json:
           example:
-            data:
-            - exchange_pair: binance-bnb-usdt
-              metrics:
-              - metric: volatility_implied_call_delta_05_14d_expiration
-                frequencies:
-                - frequency: 1h
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-                - frequency: 1d
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-              - metric: volatility_implied_put_delta_20_30d_expiration
-                frequencies:
-                - frequency: 1h
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-                - frequency: 1d
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-            - exchange_pair: binance-btc-usdt
-              metrics:
-              - metric: volatility_implied_call_delta_05_14d_expiration
-                frequencies:
-                - frequency: 1h
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-                - frequency: 1d
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-              - metric: volatility_implied_put_delta_20_30d_expiration
-                frequencies:
-                - frequency: 1h
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-                - frequency: 1d
-                  min_time: '2025-05-19T12:00:00.000000000Z'
-                  max_time: '2025-11-27T14:00:00.000000000Z'
-            next_page_token: YmluYW5jZS1ldGgtdXNkdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/exchange-pair-metrics?metrics=volatility_implied_call_delta_05_14d_expiration,volatility_implied_put_delta_20_30d_expiration&page_size=2&pretty=true&api_key=<your_key>&next_page_token=YmluYW5jZS1ldGgtdXNkdA
+            error:
+              type: bad_parameter
+              message: Bad parameter 'protocols'. Value 'asdgwav' is not supported.
           schema:
-            $ref: '#/components/schemas/CatalogV2ExchangePairMetricsResponse'
-    CatalogV2MarketOrderbooks:
-      description: List of market orderbooks statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-1000BTTCUSDT-future
-              depths:
-              - depth: '30000'
-                min_time: '2022-01-26T03:00:00.000000000Z'
-                max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: binance-1000FLOKIUSDT-future
-              depths:
-              - depth: '30000'
-                min_time: '2023-05-06T16:00:00.000000000Z'
-                max_time: '2023-09-08T11:00:00.000000000Z'
-            next_page_token: YmluYW5jZS0xMDAwTFVOQ0JVU0QtZnV0dXJl
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-orderbooks?api_key=<your_key>&page_size=2&next_page_token=YmluYW5jZS0xMDAwTFVOQ0JVU0QtZnV0dXJl
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketOrderbooksResponse'
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Protocol not found.
     CatalogV2TransactionTracker:
       description: List of transaction tracker assets
       content:
@@ -3159,32 +3140,6 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/catalog-v2/transaction-tracker?api_key=<your_key>&page_size=1&next_page_token=ZXRo
           schema:
             $ref: '#/components/schemas/CatalogV2TransactionTrackerResponse'
-    CatalogV2MiningPoolTipsSummary:
-      description: List of mining pool tips assets
-      content:
-        application/json:
-          example:
-            data:
-            - asset: btc
-              min_time: '2023-08-17T14:58:45.614000000Z'
-              max_time: '2023-08-24T15:29:26.235000000Z'
-            next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/mining-pool-tips-summary?api_key=<your_key>&page_size=1&next_page_token=ZXRo
-          schema:
-            $ref: '#/components/schemas/CatalogV2MiningPoolTipsSummaryResponse'
-    CatalogV2BlockchainBalanceUpdates:
-      description: List of blockchain balance updates assets
-      content:
-        application/json:
-          example:
-            data:
-            - asset: btc
-              min_time: '2023-08-17T14:58:45.614000000Z'
-              max_time: '2023-08-24T15:29:26.235000000Z'
-            next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/balance-updates?api_key=<your_key>&page_size=1&next_page_token=ZXRo
-          schema:
-            $ref: '#/components/schemas/CatalogV2BlockchainBalanceUpdatesResponse'
     CatalogV2IndexCandles:
       description: List of index candles statistics.
       content:
@@ -3247,75 +3202,8 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/catalog-v2/index-candles?api_key=<your_key>&page_size=2&next_page_token=Q01CSTEw
           schema:
             $ref: '#/components/schemas/CatalogV2IndexCandlesResponse'
-    ProtocolNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'protocols'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Protocol not found.
-    CatalogV2MarketOpeninterest:
-      description: List of market open interest statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-1000BTTCUSDT-future
-              min_time: '2022-01-26T03:30:43.271000000Z'
-              max_time: '2022-04-11T08:51:00.000000000Z'
-            - market: binance-1000LUNCBUSD-future
-              min_time: '2022-05-31T02:45:00.000000000Z'
-              max_time: '2022-07-04T13:53:00.000000000Z'
-            - market: binance-1000SHIBUSDT-future
-              min_time: '2021-05-10T13:00:58.123000000Z'
-              max_time: '2022-07-04T13:53:00.000000000Z'
-            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-openinterest?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketOpeninterestResponse'
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    CatalogV2MarketQuotes:
-      description: List of market quotes statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-1000BTTCUSDT-future
-              min_time: '2022-01-26T03:00:00.000000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: binance-1000LUNCBUSD-future
-              min_time: '2022-05-31T02:00:00.000000000Z'
-              max_time: '2022-07-04T13:00:00.000000000Z'
-            - market: binance-1000SHIBUSDT-future
-              min_time: '2021-11-10T22:00:00.000000000Z'
-              max_time: '2022-07-04T13:00:00.000000000Z'
-            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-quotes?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketQuotesResponse'
-    CatalogV2MarketFundingRatesPredicted:
-      description: List of predicted market funding rates statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: bybit-1000000VINUUSDT-future
-              min_time: '2023-11-28T10:09:00.000000000Z'
-              max_time: '2024-01-30T13:17:00.000000000Z'
-            - market: bybit-10000LADYSUSDT-future
-              min_time: '2023-05-11T13:08:00.000000000Z'
-              max_time: '2024-01-30T13:17:00.000000000Z'
-            - market: bybit-10000NFTUSDT-future
-              min_time: '2023-01-27T21:22:00.000000000Z'
-              max_time: '2024-01-30T13:17:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketFundingRatesPredictedResponse'
-    CatalogV2BlockchainAccounts:
-      description: List of blockchain accounts assets
+    CatalogV2BlockchainBlocks:
+      description: List of blockchain block assets
       content:
         application/json:
           example:
@@ -3324,99 +3212,133 @@ components:
               min_time: '2023-08-17T14:58:45.614000000Z'
               max_time: '2023-08-24T15:29:26.235000000Z'
             next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/accounts?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/blocks?api_key=<your_key>&page_size=1&next_page_token=ZXRo
           schema:
-            $ref: '#/components/schemas/CatalogV2BlockchainAccountsResponse'
-    CatalogV2MarketContractPrices:
-      description: List of contract prices statistics.
+            $ref: '#/components/schemas/CatalogV2BlockchainBlocksResponse'
+    CatalogV2MarketMetrics:
+      description: List of market metrics statistics.
       content:
         application/json:
           example:
             data:
-            - market: deribit-BTC-15OCT21-60000-C-option
+            - market: binance-BTCUSDT-future
+              metrics:
+              - metric: liquidations_reported_future_buy_usd_5m
+                frequencies:
+                - frequency: 5m
+                  min_time: '2020-01-01T01:25:00.000000000Z'
+                  max_time: '2022-01-21T00:30:00.000000000Z'
+              - metric: liquidations_reported_future_buy_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2020-01-01T01:00:00.000000000Z'
+                  max_time: '2022-01-20T23:00:00.000000000Z'
+              - metric: liquidations_reported_future_buy_units_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2020-01-01T00:00:00.000000000Z'
+                  max_time: '2022-01-20T00:00:00.000000000Z'
+            - market: bybit-BTCUSDT-future
+              metrics:
+              - metric: liquidations_reported_future_buy_usd_5m
+                frequencies:
+                - frequency: 5m
+                  min_time: '2021-04-30T12:35:00.000000000Z'
+                  max_time: '2022-01-21T00:25:00.000000000Z'
+              - metric: liquidations_reported_future_buy_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2021-04-30T12:00:00.000000000Z'
+                  max_time: '2022-01-20T23:00:00.000000000Z'
+              - metric: liquidations_reported_future_buy_units_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2021-04-30T00:00:00.000000000Z'
+                  max_time: '2022-01-20T00:00:00.000000000Z'
+            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-metrics?api_key=<your_key>&page_size=2&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
+          schema:
+            $ref: '#/components/schemas/CatalogV2MarketMetricsResponse'
+    CatalogV2PairMetrics:
+      description: List of pair metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - pair: 1inch-btc
+              metrics:
+              - metric: volume_reported_spot_usd_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2022-06-06T00:00:00.000000000Z'
+                  max_time: '2023-08-08T00:00:00.000000000Z'
+              - metric: volume_reported_spot_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2022-06-06T23:00:00.000000000Z'
+                  max_time: '2023-08-09T10:00:00.000000000Z'
+            - pair: 1inch-busd
+              metrics:
+              - metric: volume_reported_spot_usd_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2022-06-06T00:00:00.000000000Z'
+                  max_time: '2023-08-08T00:00:00.000000000Z'
+              - metric: volume_reported_spot_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2022-06-06T23:00:00.000000000Z'
+                  max_time: '2023-08-09T10:00:00.000000000Z'
+            next_page_token: MWluY2gtZGFp
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/pair-metrics?api_key=<your_key>&page_size=2&next_page_token=MWluY2gtZGFp
+          schema:
+            $ref: '#/components/schemas/CatalogV2PairMetricsResponse'
+    CatalogV2MarketFundingRates:
+      description: List of market funding rates statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: binance-1000BTTCUSDT-future
               min_time: '2022-01-26T08:00:00.001000000Z'
               max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: deribit-BTC-1OCT21-75000-C-option
+            - market: binance-1000LUNCBUSD-future
               min_time: '2022-05-30T16:00:00.005000000Z'
               max_time: '2022-07-04T08:00:00.001000000Z'
-            - market: deribit-BTC-26NOV21-60000-C-option
+            - market: binance-1000SHIBUSDT-future
               min_time: '2021-05-10T16:00:00.013000000Z'
               max_time: '2022-07-04T08:00:00.001000000Z'
             next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-contract-prices?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-funding-rates?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
           schema:
-            $ref: '#/components/schemas/CatalogV2MarketContractPricesResponse'
-    CatalogV2BlockchainRebasingChanges:
-      description: List of blockchain rebasing changes assets
+            $ref: '#/components/schemas/CatalogV2MarketFundingRatesResponse'
+    CatalogV2ProtocolMetrics:
+      description: List of available protocol metrics with time ranges per metric and frequency.
       content:
         application/json:
           example:
             data:
-            - asset: steth_eth
-              min_time: '2023-08-17T14:58:45.614000000Z'
-              max_time: '2023-08-24T15:29:26.235000000Z'
-            next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/rebasing-changes?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+            - protocol: aave_v3
+              market: core-weth
+              chain: ethereum
+              metrics:
+              - metric: supply_apy
+                frequencies:
+                - frequency: 1m
+                  min_time: '2026-06-12T00:00:00.000000000Z'
+                  max_time: '2026-06-12T00:01:00.000000000Z'
+                - frequency: 1d
+                  min_time: '2026-06-12T00:00:00.000000000Z'
+                  max_time: '2026-06-13T00:00:00.000000000Z'
+              - metric: utilization_rate
+                frequencies:
+                - frequency: 1d
+                  min_time: '2026-06-12T00:00:00.000000000Z'
+                  max_time: '2026-06-13T00:00:00.000000000Z'
+            next_page_token: bW9ycGhvX2JsdWUtc3RlYWt1c2RjLWV0aGVyZXVt
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/protocol-metrics?api_key=<your_key>&page_size=1&next_page_token=bW9ycGhvX2JsdWUtc3RlYWt1c2RjLWV0aGVyZXVt
           schema:
-            $ref: '#/components/schemas/CatalogV2BlockchainRebasingChangesResponse'
-    PairNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'pairs'. Value 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Pair not found.
-    CatalogV2MarketImpliedVolatility:
-      description: List of implied volatility statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: deribit-BTC-15OCT21-60000-C-option
-              min_time: '2022-01-26T08:00:00.001000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: deribit-BTC-1OCT21-75000-C-option
-              min_time: '2022-05-30T16:00:00.005000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            - market: deribit-BTC-26NOV21-60000-C-option
-              min_time: '2021-05-10T16:00:00.013000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-implied-volatility?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketImpliedVolatilityResponse'
-    CatalogV2MarketGreeks:
-      description: List of greeks statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: deribit-BTC-15OCT21-60000-C-option
-              min_time: '2022-01-26T08:00:00.001000000Z'
-              max_time: '2022-04-11T08:00:00.000000000Z'
-            - market: deribit-BTC-1OCT21-75000-C-option
-              min_time: '2022-05-30T16:00:00.005000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            - market: deribit-BTC-26NOV21-60000-C-option
-              min_time: '2021-05-10T16:00:00.013000000Z'
-              max_time: '2022-07-04T08:00:00.001000000Z'
-            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-greeks?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
-          schema:
-            $ref: '#/components/schemas/CatalogV2MarketGreeksResponse'
-    ExchangeNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'id'. Exchange 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Exchange not found.
+            $ref: '#/components/schemas/CatalogV2ProtocolMetricsResponse'
     CatalogV2AssetMetrics:
       description: List of asset metrics.
       content:
@@ -3480,8 +3402,8 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/catalog-v2/asset-metrics?api_key=<your_key>&page_size=2&next_page_token=cGVycA
           schema:
             $ref: '#/components/schemas/CatalogV2AssetMetricsResponse'
-    CatalogV2BlockchainTransactions:
-      description: List of blockchain transactions assets
+    CatalogV2MiningPoolTipsSummary:
+      description: List of mining pool tips assets
       content:
         application/json:
           example:
@@ -3490,87 +3412,110 @@ components:
               min_time: '2023-08-17T14:58:45.614000000Z'
               max_time: '2023-08-24T15:29:26.235000000Z'
             next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/transactions?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/mining-pool-tips-summary?api_key=<your_key>&page_size=1&next_page_token=ZXRo
           schema:
-            $ref: '#/components/schemas/CatalogV2BlockchainTransactionsResponse'
-    CatalogV2ExchangeMetrics:
-      description: List of exchange metrics.
-      content:
-        application/json:
-          example:
-            data:
-            - exchange: bibox
-              metrics:
-              - metric: volume_reported_spot_usd_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2022-06-06T00:00:00.000000000Z'
-                  max_time: '2023-08-08T00:00:00.000000000Z'
-              - metric: volume_reported_spot_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2022-06-06T23:00:00.000000000Z'
-                  max_time: '2023-08-09T10:00:00.000000000Z'
-            - exchange: binance
-              metrics:
-              - metric: liquidations_reported_future_buy_units_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2023-04-09T00:00:00.000000000Z'
-                  max_time: '2023-08-08T00:00:00.000000000Z'
-              - metric: liquidations_reported_future_buy_units_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2023-04-09T23:00:00.000000000Z'
-                  max_time: '2023-08-09T10:00:00.000000000Z'
-            next_page_token: YmluYW5jZS51cw
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/exchange-metrics?api_key=<your_key>&page_size=2&next_page_token=YmluYW5jZS51cw
-          schema:
-            $ref: '#/components/schemas/CatalogV2ExchangeMetricsResponse'
-    CatalogV2PairMetrics:
-      description: List of pair metrics.
-      content:
-        application/json:
-          example:
-            data:
-            - pair: 1inch-btc
-              metrics:
-              - metric: volume_reported_spot_usd_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2022-06-06T00:00:00.000000000Z'
-                  max_time: '2023-08-08T00:00:00.000000000Z'
-              - metric: volume_reported_spot_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2022-06-06T23:00:00.000000000Z'
-                  max_time: '2023-08-09T10:00:00.000000000Z'
-            - pair: 1inch-busd
-              metrics:
-              - metric: volume_reported_spot_usd_1d
-                frequencies:
-                - frequency: 1d
-                  min_time: '2022-06-06T00:00:00.000000000Z'
-                  max_time: '2023-08-08T00:00:00.000000000Z'
-              - metric: volume_reported_spot_usd_1h
-                frequencies:
-                - frequency: 1h
-                  min_time: '2022-06-06T23:00:00.000000000Z'
-                  max_time: '2023-08-09T10:00:00.000000000Z'
-            next_page_token: MWluY2gtZGFp
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/pair-metrics?api_key=<your_key>&page_size=2&next_page_token=MWluY2gtZGFp
-          schema:
-            $ref: '#/components/schemas/CatalogV2PairMetricsResponse'
-    MetricNotFound:
+            $ref: '#/components/schemas/CatalogV2MiningPoolTipsSummaryResponse'
+    ExchangeNotFound:
       content:
         application/json:
           example:
             error:
               type: bad_parameter
-              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+              message: Bad parameter 'id'. Exchange 'sdvwbtc' is not supported.
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-      description: Metric not found.
+      description: Exchange not found.
+    CatalogV2InstitutionMetrics:
+      description: List of institution metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - institution: grayscale
+              metrics:
+              - metric: bat_coin_per_share
+                frequencies:
+                - frequency: 1d
+                  min_time: '2022-10-31T00:00:00.000000000Z'
+                  max_time: '2023-08-08T00:00:00.000000000Z'
+              - metric: bat_market_price
+                frequencies:
+                - frequency: 1d
+                  min_time: '2022-10-31T00:00:00.000000000Z'
+                  max_time: '2023-08-08T00:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/CatalogV2InstitutionMetricsResponse'
+    CatalogV2MarketLiquidations:
+      description: List of market liquidations statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: binance-1000BTTCUSDT-future
+              min_time: '2022-01-26T03:46:28.290000000Z'
+              max_time: '2022-04-11T03:40:00.193000000Z'
+            - market: binance-1000LUNCBUSD-future
+              min_time: '2022-05-31T02:45:32.286000000Z'
+              max_time: '2022-07-04T12:25:16.559000000Z'
+            - market: binance-1000SHIBUSDT-future
+              min_time: '2021-05-11T23:00:17.729000000Z'
+              max_time: '2022-07-04T13:35:00.567000000Z'
+            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-liquidations?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
+          schema:
+            $ref: '#/components/schemas/CatalogV2MarketLiquidationsResponse'
+    IndexNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'indexes'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Index not found.
+    CatalogV2BlockchainRebasingChanges:
+      description: List of blockchain rebasing changes assets
+      content:
+        application/json:
+          example:
+            data:
+            - asset: steth_eth
+              min_time: '2023-08-17T14:58:45.614000000Z'
+              max_time: '2023-08-24T15:29:26.235000000Z'
+            next_page_token: ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/rebasing-changes?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+          schema:
+            $ref: '#/components/schemas/CatalogV2BlockchainRebasingChangesResponse'
+    CatalogV2MarketOpeninterest:
+      description: List of market open interest statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: binance-1000BTTCUSDT-future
+              min_time: '2022-01-26T03:30:43.271000000Z'
+              max_time: '2022-04-11T08:51:00.000000000Z'
+            - market: binance-1000LUNCBUSD-future
+              min_time: '2022-05-31T02:45:00.000000000Z'
+              max_time: '2022-07-04T13:53:00.000000000Z'
+            - market: binance-1000SHIBUSDT-future
+              min_time: '2021-05-10T13:00:58.123000000Z'
+              max_time: '2022-07-04T13:53:00.000000000Z'
+            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-openinterest?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
+          schema:
+            $ref: '#/components/schemas/CatalogV2MarketOpeninterestResponse'
+    AssetNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'assets'. Value 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Asset not found.
     CatalogV2IndexLevels:
       description: List of index levels.
       content:
@@ -3615,19 +3560,91 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/catalog-v2/index-levels?api_key=<your_key>&page_size=2&next_page_token=Q01CSTEwRVg
           schema:
             $ref: '#/components/schemas/CatalogV2IndexLevelsResponse'
-    CatalogV2AssetChains:
-      description: List of asset chains assets
+    CatalogV2MarketOrderbooks:
+      description: List of market orderbooks statistics.
       content:
         application/json:
           example:
             data:
-            - asset: btc
-              min_time: '2023-08-17T14:58:45.614000000Z'
-              max_time: '2023-08-24T15:29:26.235000000Z'
-            next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/asset-chains?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+            - market: binance-1000BTTCUSDT-future
+              depths:
+              - depth: '30000'
+                min_time: '2022-01-26T03:00:00.000000000Z'
+                max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: binance-1000FLOKIUSDT-future
+              depths:
+              - depth: '30000'
+                min_time: '2023-05-06T16:00:00.000000000Z'
+                max_time: '2023-09-08T11:00:00.000000000Z'
+            next_page_token: YmluYW5jZS0xMDAwTFVOQ0JVU0QtZnV0dXJl
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-orderbooks?api_key=<your_key>&page_size=2&next_page_token=YmluYW5jZS0xMDAwTFVOQ0JVU0QtZnV0dXJl
           schema:
-            $ref: '#/components/schemas/CatalogV2AssetChainsResponse'
+            $ref: '#/components/schemas/CatalogV2MarketOrderbooksResponse'
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    CatalogV2ExchangePairMetrics:
+      description: List of exchange-pair metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - exchange_pair: binance-bnb-usdt
+              metrics:
+              - metric: volatility_implied_call_delta_05_14d_expiration
+                frequencies:
+                - frequency: 1h
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+                - frequency: 1d
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+              - metric: volatility_implied_put_delta_20_30d_expiration
+                frequencies:
+                - frequency: 1h
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+                - frequency: 1d
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+            - exchange_pair: binance-btc-usdt
+              metrics:
+              - metric: volatility_implied_call_delta_05_14d_expiration
+                frequencies:
+                - frequency: 1h
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+                - frequency: 1d
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+              - metric: volatility_implied_put_delta_20_30d_expiration
+                frequencies:
+                - frequency: 1h
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+                - frequency: 1d
+                  min_time: '2025-05-19T12:00:00.000000000Z'
+                  max_time: '2025-11-27T14:00:00.000000000Z'
+            next_page_token: YmluYW5jZS1ldGgtdXNkdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/exchange-pair-metrics?metrics=volatility_implied_call_delta_05_14d_expiration,volatility_implied_put_delta_20_30d_expiration&page_size=2&pretty=true&api_key=<your_key>&next_page_token=YmluYW5jZS1ldGgtdXNkdA
+          schema:
+            $ref: '#/components/schemas/CatalogV2ExchangePairMetricsResponse'
     CatalogV2MarketTrades:
       description: List of market trades statistics.
       content:
@@ -3647,107 +3664,139 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-trades?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
           schema:
             $ref: '#/components/schemas/CatalogV2MarketTradesResponse'
-    CatalogV2InstitutionMetrics:
-      description: List of institution metrics.
+    CatalogV2MarketImpliedVolatility:
+      description: List of implied volatility statistics.
       content:
         application/json:
           example:
             data:
-            - institution: grayscale
-              metrics:
-              - metric: bat_coin_per_share
-                frequencies:
-                - frequency: 1d
-                  min_time: '2022-10-31T00:00:00.000000000Z'
-                  max_time: '2023-08-08T00:00:00.000000000Z'
-              - metric: bat_market_price
-                frequencies:
-                - frequency: 1d
-                  min_time: '2022-10-31T00:00:00.000000000Z'
-                  max_time: '2023-08-08T00:00:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/CatalogV2InstitutionMetricsResponse'
-    CatalogV2MarketLiquidations:
-      description: List of market liquidations statistics.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-1000BTTCUSDT-future
-              min_time: '2022-01-26T03:46:28.290000000Z'
-              max_time: '2022-04-11T03:40:00.193000000Z'
-            - market: binance-1000LUNCBUSD-future
-              min_time: '2022-05-31T02:45:32.286000000Z'
-              max_time: '2022-07-04T12:25:16.559000000Z'
-            - market: binance-1000SHIBUSDT-future
-              min_time: '2021-05-11T23:00:17.729000000Z'
-              max_time: '2022-07-04T13:35:00.567000000Z'
+            - market: deribit-BTC-15OCT21-60000-C-option
+              min_time: '2022-01-26T08:00:00.001000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: deribit-BTC-1OCT21-75000-C-option
+              min_time: '2022-05-30T16:00:00.005000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            - market: deribit-BTC-26NOV21-60000-C-option
+              min_time: '2021-05-10T16:00:00.013000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
             next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-liquidations?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-implied-volatility?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
           schema:
-            $ref: '#/components/schemas/CatalogV2MarketLiquidationsResponse'
-    CatalogV2PairCandles:
-      description: List of asset pair candles statistics.
+            $ref: '#/components/schemas/CatalogV2MarketImpliedVolatilityResponse'
+    CatalogV2BlockchainBalanceUpdates:
+      description: List of blockchain balance updates assets
       content:
         application/json:
           example:
             data:
-            - pair: btc-eur
-              frequencies:
-              - frequency: 1m
-                min_time: '2011-08-28T18:26:00.000000000Z'
-                max_time: '2022-06-29T23:25:00.000000000Z'
-              - frequency: 5m
-                min_time: '2011-08-28T18:25:00.000000000Z'
-                max_time: '2022-06-29T23:20:00.000000000Z'
-              - frequency: 10m
-                min_time: '2011-08-28T18:20:00.000000000Z'
-                max_time: '2022-06-29T23:10:00.000000000Z'
-              - frequency: 15m
-                min_time: '2011-08-28T18:15:00.000000000Z'
-                max_time: '2022-06-29T23:00:00.000000000Z'
-              - frequency: 30m
-                min_time: '2011-08-28T18:00:00.000000000Z'
-                max_time: '2022-06-29T22:30:00.000000000Z'
-              - frequency: 1h
-                min_time: '2011-08-28T18:00:00.000000000Z'
-                max_time: '2022-06-29T22:00:00.000000000Z'
-              - frequency: 4h
-                min_time: '2011-08-28T16:00:00.000000000Z'
-                max_time: '2022-06-29T16:00:00.000000000Z'
-              - frequency: 1d
-                min_time: '2011-08-28T00:00:00.000000000Z'
-                max_time: '2022-06-28T00:00:00.000000000Z'
-            - pair: btc-usd
-              frequencies:
-              - frequency: 1m
-                min_time: '2010-07-18T03:43:00.000000000Z'
-                max_time: '2022-06-29T23:25:00.000000000Z'
-              - frequency: 5m
-                min_time: '2010-07-18T03:40:00.000000000Z'
-                max_time: '2022-06-29T23:20:00.000000000Z'
-              - frequency: 10m
-                min_time: '2010-07-18T03:40:00.000000000Z'
-                max_time: '2022-06-29T23:10:00.000000000Z'
-              - frequency: 15m
-                min_time: '2010-07-18T03:30:00.000000000Z'
-                max_time: '2022-06-29T23:00:00.000000000Z'
-              - frequency: 30m
-                min_time: '2010-07-18T03:30:00.000000000Z'
-                max_time: '2022-06-29T22:30:00.000000000Z'
-              - frequency: 1h
-                min_time: '2010-07-18T03:00:00.000000000Z'
-                max_time: '2022-06-29T22:00:00.000000000Z'
-              - frequency: 4h
-                min_time: '2010-07-18T00:00:00.000000000Z'
-                max_time: '2022-06-29T16:00:00.000000000Z'
-              - frequency: 1d
-                min_time: '2010-07-18T00:00:00.000000000Z'
-                max_time: '2022-06-28T00:00:00.000000000Z'
-            next_page_token: Q01CSTEw
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/pair-candles?api_key=<your_key>&page_size=2&next_page_token=Q01CSTEw
+            - asset: btc
+              min_time: '2023-08-17T14:58:45.614000000Z'
+              max_time: '2023-08-24T15:29:26.235000000Z'
+            next_page_token: ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/balance-updates?api_key=<your_key>&page_size=1&next_page_token=ZXRo
           schema:
-            $ref: '#/components/schemas/CatalogV2PairCandlesResponse'
+            $ref: '#/components/schemas/CatalogV2BlockchainBalanceUpdatesResponse'
+    CatalogV2AssetChains:
+      description: List of asset chains assets
+      content:
+        application/json:
+          example:
+            data:
+            - asset: btc
+              min_time: '2023-08-17T14:58:45.614000000Z'
+              max_time: '2023-08-24T15:29:26.235000000Z'
+            next_page_token: ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/asset-chains?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+          schema:
+            $ref: '#/components/schemas/CatalogV2AssetChainsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    CatalogV2BlockchainAccounts:
+      description: List of blockchain accounts assets
+      content:
+        application/json:
+          example:
+            data:
+            - asset: btc
+              min_time: '2023-08-17T14:58:45.614000000Z'
+              max_time: '2023-08-24T15:29:26.235000000Z'
+            next_page_token: ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/accounts?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+          schema:
+            $ref: '#/components/schemas/CatalogV2BlockchainAccountsResponse'
+    PairNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'pairs'. Value 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Pair not found.
+    CatalogV2MarketContractPrices:
+      description: List of contract prices statistics.
+      content:
+        application/json:
+          example:
+            data:
+            - market: deribit-BTC-15OCT21-60000-C-option
+              min_time: '2022-01-26T08:00:00.001000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: deribit-BTC-1OCT21-75000-C-option
+              min_time: '2022-05-30T16:00:00.005000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            - market: deribit-BTC-26NOV21-60000-C-option
+              min_time: '2021-05-10T16:00:00.013000000Z'
+              max_time: '2022-07-04T08:00:00.001000000Z'
+            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-contract-prices?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
+          schema:
+            $ref: '#/components/schemas/CatalogV2MarketContractPricesResponse'
+    CatalogV2ExchangeMetrics:
+      description: List of exchange metrics.
+      content:
+        application/json:
+          example:
+            data:
+            - exchange: bibox
+              metrics:
+              - metric: volume_reported_spot_usd_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2022-06-06T00:00:00.000000000Z'
+                  max_time: '2023-08-08T00:00:00.000000000Z'
+              - metric: volume_reported_spot_usd_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2022-06-06T23:00:00.000000000Z'
+                  max_time: '2023-08-09T10:00:00.000000000Z'
+            - exchange: binance
+              metrics:
+              - metric: liquidations_reported_future_buy_units_1d
+                frequencies:
+                - frequency: 1d
+                  min_time: '2023-04-09T00:00:00.000000000Z'
+                  max_time: '2023-08-08T00:00:00.000000000Z'
+              - metric: liquidations_reported_future_buy_units_1h
+                frequencies:
+                - frequency: 1h
+                  min_time: '2023-04-09T23:00:00.000000000Z'
+                  max_time: '2023-08-09T10:00:00.000000000Z'
+            next_page_token: YmluYW5jZS51cw
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/exchange-metrics?api_key=<your_key>&page_size=2&next_page_token=YmluYW5jZS51cw
+          schema:
+            $ref: '#/components/schemas/CatalogV2ExchangeMetricsResponse'
+    MetricNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Metric not found.
     CatalogV2ExchangeAssetMetrics:
       description: List of exchange-asset metrics.
       content:
@@ -3782,119 +3831,67 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/catalog-v2/exchange-asset-metrics?api_key=<your_key>&page_size=2&next_page_token=Ymlib3gtYWNz
           schema:
             $ref: '#/components/schemas/CatalogV2ExchangeAssetMetricsResponse'
-    CatalogV2BlockchainBlocks:
-      description: List of blockchain block assets
+    CatalogV2MarketQuotes:
+      description: List of market quotes statistics.
       content:
         application/json:
           example:
             data:
-            - asset: btc
-              min_time: '2023-08-17T14:58:45.614000000Z'
-              max_time: '2023-08-24T15:29:26.235000000Z'
-            next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/blockchain-v2/blocks?api_key=<your_key>&page_size=1&next_page_token=ZXRo
+            - market: binance-1000BTTCUSDT-future
+              min_time: '2022-01-26T03:00:00.000000000Z'
+              max_time: '2022-04-11T08:00:00.000000000Z'
+            - market: binance-1000LUNCBUSD-future
+              min_time: '2022-05-31T02:00:00.000000000Z'
+              max_time: '2022-07-04T13:00:00.000000000Z'
+            - market: binance-1000SHIBUSDT-future
+              min_time: '2021-11-10T22:00:00.000000000Z'
+              max_time: '2022-07-04T13:00:00.000000000Z'
+            next_page_token: Ymlib3gtYWF2ZS1ldGgtc3BvdA
+            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/market-quotes?api_key=<your_key>&page_size=3&next_page_token=Ymlib3gtYWF2ZS1ldGgtc3BvdA
           schema:
-            $ref: '#/components/schemas/CatalogV2BlockchainBlocksResponse'
-    CatalogV2ProtocolMetrics:
-      description: List of available protocol metrics with time ranges per metric and frequency.
-      content:
-        application/json:
-          example:
-            data:
-            - protocol: aave_v3
-              market: core-weth
-              chain: ethereum
-              metrics:
-              - metric: supply_apy
-                frequencies:
-                - frequency: 1m
-                  min_time: '2026-06-12T00:00:00.000000000Z'
-                  max_time: '2026-06-12T00:01:00.000000000Z'
-                - frequency: 1d
-                  min_time: '2026-06-12T00:00:00.000000000Z'
-                  max_time: '2026-06-13T00:00:00.000000000Z'
-              - metric: utilization_rate
-                frequencies:
-                - frequency: 1d
-                  min_time: '2026-06-12T00:00:00.000000000Z'
-                  max_time: '2026-06-13T00:00:00.000000000Z'
-            next_page_token: bW9ycGhvX2JsdWUtc3RlYWt1c2RjLWV0aGVyZXVt
-            next_page_url: https://api.coinmetrics.io/v4/catalog-v2/protocol-metrics?api_key=<your_key>&page_size=1&next_page_token=bW9ycGhvX2JsdWUtc3RlYWt1c2RjLWV0aGVyZXVt
-          schema:
-            $ref: '#/components/schemas/CatalogV2ProtocolMetricsResponse'
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    AssetNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'assets'. Value 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Asset not found.
+            $ref: '#/components/schemas/CatalogV2MarketQuotesResponse'
   parameters:
-    MarketType:
-      description: Type of markets.
-      in: query
-      name: type
-      schema:
-        enum:
-        - spot
-        - future
-        - option
-        type: string
-    CatalogResponseFormat:
-      description: Format of the response. Supported values are `json`, `json_stream`.
-      in: query
-      name: format
-      schema:
-        type: string
-        default: json
-    StartTime:
-      description: 'Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.'
-      in: query
-      name: start_time
-      schema:
-        type: string
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
-    EndTime:
-      description: 'End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.'
-      in: query
-      name: end_time
-      schema:
-        type: string
     MarketQuote:
       description: Quote asset of markets.
       in: query
       name: quote
+      schema:
+        type: string
+    Protocols:
+      description: Comma separated list of protocols like `aave_v3` or `morpho_blue`.
+      in: query
+      name: protocols
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogPairId:
+      description: Comma separated list of asset pairs. By default, all asset pairs are returned.
+      in: query
+      name: pairs
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    StartInclusive:
+      description: Inclusive or exclusive corresponding `start_*` parameters.
+      in: query
+      name: start_inclusive
+      schema:
+        default: true
+        type: boolean
+    MarketBase:
+      description: Base asset of markets.
+      in: query
+      name: base
+      schema:
+        type: string
+    Exchange:
+      description: Unique name of an exchange.
+      in: query
+      name: exchange
       schema:
         type: string
     Reviewable:
@@ -3903,71 +3900,10 @@ components:
       name: reviewable
       schema:
         type: boolean
-    CatalogIndexId:
-      description: Comma separated list of indexes. By default all indexes are returned.
+    CatalogExchangeAssetId:
+      description: Comma separated list of exchange-assets. By default, all exchange-assets pairs are returned.
       in: query
-      name: indexes
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogMetric:
-      description: Comma separated list of metrics. By default all metrics are returned.
-      in: query
-      name: metrics
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketSymbol:
-      description: Symbol of derivative markets, full instrument name.
-      in: query
-      name: symbol
-      schema:
-        type: string
-    MarketBase:
-      description: Base asset of markets.
-      in: query
-      name: base
-      schema:
-        type: string
-    CatalogAssetId:
-      description: 'Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol.'
-      in: query
-      name: assets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogMarketId:
-      description: Comma separated list of markets. By default all markets are returned.
-      in: query
-      name: markets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketAsset:
-      description: Any asset of markets.
-      in: query
-      name: asset
-      schema:
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    Protocols:
-      description: Comma separated list of protocols like `aave_v3` or `morpho_blue`.
-      in: query
-      name: protocols
+      name: exchange_assets
       schema:
         type: array
         items:
@@ -3984,65 +3920,10 @@ components:
         - end
         type: string
         format: PagingFrom
-    Timezone:
-      description: Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    CatalogInstitutionId:
+      description: Comma separated list of institutions. By default, all institutions are returned.
       in: query
-      name: timezone
-      schema:
-        example: America/New_York
-        default: UTC
-        type: string
-    ProtocolMetrics:
-      description: Comma separated list of protocol metrics like `supply_apy`.
-      in: query
-      name: metrics
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    StartInclusive:
-      description: Inclusive or exclusive corresponding `start_*` parameters.
-      in: query
-      name: start_inclusive
-      schema:
-        default: true
-        type: boolean
-    EndInclusive:
-      description: Inclusive or exclusive corresponding `end_*` parameters.
-      in: query
-      name: end_inclusive
-      schema:
-        default: true
-        type: boolean
-    Exchange:
-      description: Unique name of an exchange.
-      in: query
-      name: exchange
-      schema:
-        type: string
-    CatalogPairId:
-      description: Comma separated list of asset pairs. By default, all asset pairs are returned.
-      in: query
-      name: pairs
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogExchangeAssetId:
-      description: Comma separated list of exchange-assets. By default, all exchange-assets pairs are returned.
-      in: query
-      name: exchange_assets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    ProtocolMarkets:
-      description: Comma separated list of protocol markets like `core-weth` or `steakusdc`.
-      in: query
-      name: markets
+      name: institutions
       schema:
         type: array
         items:
@@ -4057,15 +3938,20 @@ components:
         items:
           type: string
       explode: false
-    CatalogInstitutionId:
-      description: Comma separated list of institutions. By default, all institutions are returned.
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
       in: query
-      name: institutions
+      name: next_page_token
       schema:
-        type: array
-        items:
-          type: string
-      explode: false
+        type: string
+    Timezone:
+      description: Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+      in: query
+      name: timezone
+      schema:
+        example: America/New_York
+        default: UTC
+        type: string
     ProtocolChains:
       description: Comma separated list of protocol chains like `ethereum` or `base`.
       in: query
@@ -4075,6 +3961,19 @@ components:
         items:
           type: string
       explode: false
+    StartTime:
+      description: 'Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.'
+      in: query
+      name: start_time
+      schema:
+        type: string
+    CatalogResponseFormat:
+      description: Format of the response. Supported values are `json`, `json_stream`.
+      in: query
+      name: format
+      schema:
+        type: string
+        default: json
     CatalogExchangePairId:
       description: Comma separated list of exchange-pairs. By default, all exchange-pairs are returned.
       in: query
@@ -4084,12 +3983,112 @@ components:
         items:
           type: string
       explode: false
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+    EndTime:
+      description: 'End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.'
       in: query
-      name: next_page_token
+      name: end_time
       schema:
         type: string
+    MarketSymbol:
+      description: Symbol of derivative markets, full instrument name.
+      in: query
+      name: symbol
+      schema:
+        type: string
+    ProtocolMarkets:
+      description: Comma separated list of protocol markets like `core-weth` or `steakusdc`.
+      in: query
+      name: markets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogMetric:
+      description: Comma separated list of metrics. By default all metrics are returned.
+      in: query
+      name: metrics
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketType:
+      description: Type of markets.
+      in: query
+      name: type
+      schema:
+        enum:
+        - spot
+        - future
+        - option
+        type: string
+    CatalogMarketId:
+      description: Comma separated list of markets. By default all markets are returned.
+      in: query
+      name: markets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    EndInclusive:
+      description: Inclusive or exclusive corresponding `end_*` parameters.
+      in: query
+      name: end_inclusive
+      schema:
+        default: true
+        type: boolean
+    CatalogAssetId:
+      description: 'Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol.'
+      in: query
+      name: assets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    CatalogIndexId:
+      description: Comma separated list of indexes. By default all indexes are returned.
+      in: query
+      name: indexes
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    MarketAsset:
+      description: Any asset of markets.
+      in: query
+      name: asset
+      schema:
+        type: string
+    ProtocolMetrics:
+      description: Comma separated list of protocol metrics like `supply_apy`.
+      in: query
+      name: metrics
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

@@ -1,17 +1,14 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Coin Metrics API v4 Blockchain Explorer Job Security Master API
-  description: '[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>
+  title: Coin Metrics API v4 Security Master API
+  description: 'Coin Metrics Homepage
 
-    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.
+    API Backward Compatibility Policy
 
-    # Authentication
+    Python API Client
 
-    <!-- ReDoc-Inject: <security-definitions> -->
 
-    # Response headers
-
-    Note that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. '
+    HTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.'
   termsOfService: https://coinmetrics.io/api/terms
   contact:
     name: Coin Metrics Support
@@ -149,118 +146,11 @@ paths:
       - api_key: []
 components:
   schemas:
-    DefiQuoteAddress:
-      description: DeFi quote address.
+    AssetIdBase:
+      description: Unique name of the base asset.
       type: string
-    FutureMultiplierSize:
-      description: Futures multiplier size.
-      type: string
-      format: decimal
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
-    Pair:
-      description: Pair string representation as `<base>-<quote>`.
-      type: string
-    SecurityMasterMarketsResponse:
-      description: List of markets and their metadata in security master
-      properties:
-        data:
-          $ref: '#/components/schemas/SecurityMasterMarkets'
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    FutureTickSize:
-      description: Futures tick size.
-      type: string
-      format: decimal
-    MarginTradingEnabled:
-      type: boolean
-    DefiPriceIncludesFee:
-      description: Whether the reported price for a trade is inclusive (true) or exclusive (false) of fee.
-      type: boolean
-    CandlePriceHigh:
-      description: The high price of the candle.
-      type: string
-      format: decimal
-    Exchange:
-      description: Name of the exchange.
-      type: string
-    AssetIdQuoteNative:
-      description: Exchange name of the quote asset.
-      type: string
-    DefiContractAddress:
-      description: DeFi contract address.
-      type: string
-    SecurityMasterAssets:
-      type: array
-      items:
-        $ref: '#/components/schemas/SecurityMasterAssetData'
-    DerivativeContractExpiration:
-      description: Derivative contract expiration date.
-      type: string
-      format: date-time
-    CandleTradesCount:
-      description: The number of trades used for candle calculation.
-      type: string
-      format: int64
-    AssetIdQuote:
-      description: Unique name of the quote asset.
-      type: string
-    OrderSizeMin:
-      description: Minimum order size, where order size is amount * price.
-      type: string
-      format: decimal
-    DefiFee:
-      description: DeFi fee (in percents).
-      type: string
-      format: decimal
-    SecurityMasterAssetCode:
-      description: Ten-digit alphanumeric asset identifying code
-      type: string
-      example: C758EA35B0
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    DefiBaseAddress:
-      description: DeFi base address.
-      type: string
-    OrderAmountIncrement:
-      description: Volume precision.
-      type: string
-      format: decimal
-    CandleVolume:
-      description: The volume of the candle in units of the base asset.
-      type: string
-      format: decimal
-    CandlePriceLow:
-      description: The low price of the candle.
-      type: string
-      format: decimal
-    MarketSymbol:
-      description: Unique name of the derivative market symbol.
-      type: string
-    SettlementPrice:
-      description: Price of underlying asset at contract expiration.
-      type: string
-      format: decimal
-    SecurityMasterMarkets:
-      type: array
-      items:
-        $ref: '#/components/schemas/SecurityMasterMarketData'
-    DerivativeContractSizeAsset:
-      description: Name of the derivative contract size asset.
-      type: string
-    CandleUsdVolume:
-      description: The volume of the candle in USD.
+    CandlePriceClose:
+      description: The closing price of the candle.
       type: string
       format: decimal
     SecurityMasterAssetsResponse:
@@ -275,14 +165,188 @@ components:
       required:
       - data
       type: object
-    OptionStrike:
-      description: Strike price for option trade.
+    MarketSymbol:
+      description: Unique name of the derivative market symbol.
+      type: string
+    CandlePriceLow:
+      description: The low price of the candle.
       type: string
       format: decimal
-    MarketContractSize:
-      description: Market contract size.
+    DefiPoolConfigId:
+      description: DeFi pooling config ID.
+      type: string
+    ExperimentalMarket:
+      description: If set to true, indicates that market collection is under active development - there is a chance of temporary discrepancies in the served dataset.
+      type: boolean
+    OrderAmountMax:
+      description: Maximum amount size.
       type: string
       format: decimal
+    SecurityMasterAssetCode:
+      description: Ten-digit alphanumeric asset identifying code
+      type: string
+      example: C758EA35B0
+    Pair:
+      description: Pair string representation as `<base>-<quote>`.
+      type: string
+    CandlePriceHigh:
+      description: The high price of the candle.
+      type: string
+      format: decimal
+    MarketType:
+      description: Type of the market (spot, future).
+      type: string
+    CandleVolume:
+      description: The volume of the candle in units of the base asset.
+      type: string
+      format: decimal
+    DefiVariableFee:
+      description: Whether the market has a variable (true) or fixed (false) fee structure.
+      type: boolean
+    DerivativeContractSizeAsset:
+      description: Name of the derivative contract size asset.
+      type: string
+    OrderTakerFee:
+      type: string
+      format: decimal
+    AssetIdQuoteNative:
+      description: Exchange name of the quote asset.
+      type: string
+    DefiQuoteAddress:
+      description: DeFi quote address.
+      type: string
+    SettlementPrice:
+      description: Price of underlying asset at contract expiration.
+      type: string
+      format: decimal
+    AssetIdBaseNative:
+      description: Exchange name of the base asset.
+      type: string
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    MarketId:
+      description: Unique name of the market.
+      type: string
+    SecurityMasterAssetData:
+      type: object
+      properties:
+        asset:
+          description: Asset name
+          example: btc
+          type: string
+        code:
+          $ref: '#/components/schemas/SecurityMasterAssetCode'
+        description:
+          description: Description of the asset.
+          type: string
+        overview:
+          description: Overview of the asset.
+          type: string
+        website:
+          description: Official website URL of the asset.
+          type: string
+        whitepaper:
+          description: Official whitepaper URL of the asset.
+          type: string
+        decimals:
+          description: Number of decimals
+          type: string
+        creation_date:
+          description: Date of the asset creation (first block) in ISO 8601 format.
+          type: string
+        type:
+          description: Asset type
+          type: string
+        parent_asset:
+          description: Parent asset name
+          type: string
+        pricing_asset:
+          description: Pricing asset name
+          type: string
+        erc20_token_contract:
+          description: ERC20 contract
+          type: string
+        fiat:
+          description: Fiat flag
+          type: boolean
+      required:
+      - asset
+    SecurityMasterMarketsResponse:
+      description: List of markets and their metadata in security master
+      properties:
+        data:
+          $ref: '#/components/schemas/SecurityMasterMarkets'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    OrderPriceMin:
+      description: Minimum price.
+      type: string
+      format: decimal
+    DerivativeContractExpiration:
+      description: Derivative contract expiration date.
+      type: string
+      format: date-time
+    Status:
+      description: Market status (online/offline).
+      type: string
+    IsEuropean:
+      description: shows if the options contract is european or not.
+      type: boolean
+    OptionContractType:
+      description: '''call or ''put'' option contract type.'
+      type: string
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    FutureTickSize:
+      description: Futures tick size.
+      type: string
+      format: decimal
+    MarginTradingEnabled:
+      type: boolean
+    DefiPriceIncludesFee:
+      description: Whether the reported price for a trade is inclusive (true) or exclusive (false) of fee.
+      type: boolean
+    DefiFee:
+      description: DeFi fee (in percents).
+      type: string
+      format: decimal
+    CandleVwap:
+      description: The volume-weighted average price of the candle.
+      type: string
+      format: decimal
+    OrderAmountIncrement:
+      description: Volume precision.
+      type: string
+      format: decimal
+    DerivativeContractListing:
+      description: Derivative contract listing date.
+      type: string
+      format: date-time
+    OrderPriceIncrement:
+      description: Price precision.
+      type: string
+      format: decimal
+    DefiContractAddress:
+      description: DeFi contract address.
+      type: string
+    SecurityMasterAssets:
+      type: array
+      items:
+        $ref: '#/components/schemas/SecurityMasterAssetData'
+    OrderPriceMax:
+      description: Maximum price.
+      type: string
+      format: decimal
+    DefiBaseAddress:
+      description: DeFi base address.
+      type: string
     SecurityMasterMarketData:
       type: object
       properties:
@@ -422,79 +486,17 @@ components:
       - market
       - type
       - exchange
-    DefiVariableFee:
-      description: Whether the market has a variable (true) or fixed (false) fee structure.
-      type: boolean
-    DefiPoolConfigId:
-      description: DeFi pooling config ID.
-      type: string
-    OrderTakerFee:
+    OrderSizeMin:
+      description: Minimum order size, where order size is amount * price.
       type: string
       format: decimal
-    DerivativeContractMarginAsset:
-      description: Name of the derivative margin asset.
+    AssetIdQuote:
+      description: Unique name of the quote asset.
       type: string
-    OptionContractType:
-      description: '''call or ''put'' option contract type.'
-      type: string
-    OrderPriceMin:
-      description: Minimum price.
+    OptionStrike:
+      description: Strike price for option trade.
       type: string
       format: decimal
-    SecurityMasterAssetData:
-      type: object
-      properties:
-        asset:
-          description: Asset name
-          example: btc
-          type: string
-        code:
-          $ref: '#/components/schemas/SecurityMasterAssetCode'
-        description:
-          description: Description of the asset.
-          type: string
-        overview:
-          description: Overview of the asset.
-          type: string
-        website:
-          description: Official website URL of the asset.
-          type: string
-        whitepaper:
-          description: Official whitepaper URL of the asset.
-          type: string
-        decimals:
-          description: Number of decimals
-          type: string
-        creation_date:
-          description: Date of the asset creation (first block) in ISO 8601 format.
-          type: string
-        type:
-          description: Asset type
-          type: string
-        parent_asset:
-          description: Parent asset name
-          type: string
-        pricing_asset:
-          description: Pricing asset name
-          type: string
-        erc20_token_contract:
-          description: ERC20 contract
-          type: string
-        fiat:
-          description: Fiat flag
-          type: boolean
-      required:
-      - asset
-    MarketType:
-      description: Type of the market (spot, future).
-      type: string
-    CandlePriceClose:
-      description: The closing price of the candle.
-      type: string
-      format: decimal
-    ExperimentalMarket:
-      description: If set to true, indicates that market collection is under active development - there is a chance of temporary discrepancies in the served dataset.
-      type: boolean
     ErrorObject:
       properties:
         type:
@@ -507,56 +509,170 @@ components:
       - type
       - description
       type: object
-    IsEuropean:
-      description: shows if the options contract is european or not.
-      type: boolean
-    CandlePriceOpen:
-      description: The opening price of the candle.
+    OrderMakerFee:
       type: string
       format: decimal
-    CandleVwap:
-      description: The volume-weighted average price of the candle.
+    FutureMultiplierSize:
+      description: Futures multiplier size.
       type: string
       format: decimal
-    NextPageUrl:
-      description: URL of the next page results for a given request.
+    Exchange:
+      description: Name of the exchange.
       type: string
-    OrderAmountMax:
-      description: Maximum amount size.
+    SecurityMasterMarkets:
+      type: array
+      items:
+        $ref: '#/components/schemas/SecurityMasterMarketData'
+    MarketContractSize:
+      description: Market contract size.
       type: string
       format: decimal
-    OrderPriceMax:
-      description: Maximum price.
+    CandleUsdVolume:
+      description: The volume of the candle in USD.
       type: string
       format: decimal
+    CandleTradesCount:
+      description: The number of trades used for candle calculation.
+      type: string
+      format: int64
     OrderAmountMin:
       description: Minimum amount size.
       type: string
       format: decimal
-    DerivativeContractListing:
-      description: Derivative contract listing date.
-      type: string
-      format: date-time
-    OrderPriceIncrement:
-      description: Price precision.
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    CandlePriceOpen:
+      description: The opening price of the candle.
       type: string
       format: decimal
-    OrderMakerFee:
+    DerivativeContractMarginAsset:
+      description: Name of the derivative margin asset.
       type: string
-      format: decimal
-    MarketId:
-      description: Unique name of the market.
-      type: string
-    AssetIdBase:
-      description: Unique name of the base asset.
-      type: string
-    Status:
-      description: Market status (online/offline).
-      type: string
-    AssetIdBaseNative:
-      description: Exchange name of the base asset.
-      type: string
+  parameters:
+    PagingFromWithStartByDefault:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: start
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    MarketQuote:
+      description: Quote asset of markets.
+      in: query
+      name: quote
+      schema:
+        type: string
+    SecurityMasterCodes:
+      description: Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`.
+      name: codes
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    SecurityMasterMarkets:
+      description: List of markets.
+      name: markets
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    SecurityMasterAssets:
+      description: Comma-separated list of assets to query. Mutually exclusive with `codes`.
+      name: assets
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketBase:
+      description: Base asset of markets.
+      in: query
+      name: base
+      schema:
+        type: string
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    MarketSymbol:
+      description: Symbol of derivative markets, full instrument name.
+      in: query
+      name: symbol
+      schema:
+        type: string
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    SecurityMasterMarketType:
+      description: Type of markets.
+      in: query
+      name: type
+      required: false
+      schema:
+        enum:
+        - spot
+        - future
+        - option
+        type: string
+    Exchange:
+      description: Unique name of an exchange.
+      in: query
+      name: exchange
+      schema:
+        type: string
   responses:
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     SecurityMasterAssets:
       description: List of assets and their metadata in security master
       content:
@@ -647,6 +763,8 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/security-master/markets?type=future&api_key=<your_key>&next_page_token=0.MTUwMjYyMzI
           schema:
             $ref: '#/components/schemas/SecurityMasterMarketsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
     BlockchainForbidden:
       content:
         application/json:
@@ -657,127 +775,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
       description: Requested resource is not available with supplied credentials.
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    MarketQuote:
-      description: Quote asset of markets.
-      in: query
-      name: quote
-      schema:
-        type: string
-    SecurityMasterMarkets:
-      description: List of markets.
-      name: markets
-      in: query
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    SecurityMasterCodes:
-      description: Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`.
-      name: codes
-      in: query
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketSymbol:
-      description: Symbol of derivative markets, full instrument name.
-      in: query
-      name: symbol
-      schema:
-        type: string
-    SecurityMasterAssets:
-      description: Comma-separated list of assets to query. Mutually exclusive with `codes`.
-      name: assets
-      in: query
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketBase:
-      description: Base asset of markets.
-      in: query
-      name: base
-      schema:
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    Exchange:
-      description: Unique name of an exchange.
-      in: query
-      name: exchange
-      schema:
-        type: string
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
-    PagingFromWithStartByDefault:
-      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: paging_from
-      schema:
-        default: start
-        enum:
-        - start
-        - end
-        type: string
-        format: PagingFrom
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    SecurityMasterMarketType:
-      description: Type of markets.
-      in: query
-      name: type
-      required: false
-      schema:
-        enum:
-        - spot
-        - future
-        - option
-        type: string
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

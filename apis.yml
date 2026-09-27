@@ -37,8 +37,11 @@ accessModel:
   source:
   - {url: 'https://coinmetrics.io/', status: 301, note: 'declared website redirects to https://www.talos.com/our-solutions/data/overview — a different registrable domain (coinmetrics.io -> talos.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/coin-metrics.png
+x-docs-platform: gitbook
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
 tags:
-- Financial
+- Finance
 - Market Data
 - Crypto
 - Blockchain

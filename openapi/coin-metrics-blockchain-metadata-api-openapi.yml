@@ -216,134 +216,13 @@ paths:
       security:
       - api_key: []
 components:
-  responses:
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BlockchainMetadataOwners:
-      description: List of owners.
-      content:
-        application/json:
-          example:
-            data:
-            - owner_name: Coinbase
-              type: EXCHANGE
-            - owner_name: 1Hash
-              type: MINING
-          schema:
-            $ref: '#/components/schemas/BlockchainMetadataOwnersResponse'
-    BlockchainMetadataLocations:
-      description: List of locations.
-      content:
-        application/json:
-          example:
-            data:
-            - location: btc
-            - location: eth
-          schema:
-            $ref: '#/components/schemas/BlockchainMetadataLocationsResponse'
-    BlockchainMetadataTags:
-      description: List of tags.
-      content:
-        application/json:
-          example:
-            data:
-            - tag: ADDRESS_IS_COLD_WALLET
-              type: ENTITY
-              description: Tag the ADDRESS as COLD wallet.
-            - tag: ADDRESS_IS_EXCHANGE
-              type: ENTITY
-              description: Tag the ADDRESS as EXCHANGE.
-          schema:
-            $ref: '#/components/schemas/BlockchainMetadataTagsResponse'
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    BlockchainMetadataTaggedEntities:
-      description: List of tagged entities. Ordered by tuple `(entity, tag, location, start_time)` if requested by providing `entities` parameter. Ordered by tuple `(tag, location, entity, started_time)` if requested by providing `tags` parameter. Ordered by tuple `(owner_name, location, entity, tag, timestamp_start)` if requested by providing `owner_name` parameter.
-      content:
-        application/json:
-          example:
-            data:
-            - entity: 00000000000003441d59dde9a90bffb1cd3fabf1
-              tag: ADDRESS_IS_CONTRACT
-              location: eth
-              owner_name: Coinbase
-              type: ADDRESS
-              tagger_type: COINMETRICS
-              tagger_method: DETERMINISTIC
-              start_time: '2021-04-24T09:23:53.000000000Z'
-              start_block_height: '12302098'
-              start_block_hash: 3f18d476b03fca40a128b3a715f2f6da1056cf4dcc9ec24500f7a53acee4733b
-            - entity: 00000000000006b2ab6decbc6fc7ec6bd2fbc720
-              tag: ADDRESS_IS_CONTRACT
-              location: eth
-              type: ADDRESS
-              tagger_type: COINMETRICS
-              tagger_method: DETERMINISTIC
-              start_time: '2023-10-12T21:50:47.000000000Z'
-              start_block_height: '18337128'
-              start_block_hash: 5184d01e7ba0c8769553342bdf66b4a5aabb096ad4f5c754429733613a155ae5
-            next_page_token: 0.MjAyMC0wNi0wOFQyMTowM
-            next_page_url: https://api.coinmetrics.io/v4/blockchain-metadata/tagged-entities?api_key=<your_key>&tags=ADDRESS_IS_CONTRACT&next_page_token=0.MjAyMC0wNi0wOFQyMTowM
-          schema:
-            $ref: '#/components/schemas/BlockchainMetadataTaggedEntitiesResponse'
   schemas:
-    BlockchainMetadataLocation:
-      type: object
-      properties:
-        location:
-          type: string
-          description: Asset representation where the entity has been tagged.
-      required:
-      - location
-    BlockchainMetadataTaggedEntitiesResponse:
-      description: Blockchain metadata tagged entities response
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlockchainMetadataTaggedEntity'
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
     NextPageUrl:
       description: URL of the next page results for a given request.
       type: string
-    BlockchainMetadataOwnersResponse:
-      description: Blockchain metadata owners response.
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlockchainMetadataOwner'
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
     BlockchainMetadataTagInfo:
       type: object
       properties:
@@ -359,6 +238,27 @@ components:
       required:
       - tag
       - type
+    BlockchainMetadataOwnersResponse:
+      description: Blockchain metadata owners response.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockchainMetadataOwner'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    BlockchainMetadataLocation:
+      type: object
+      properties:
+        location:
+          type: string
+          description: Asset representation where the entity has been tagged.
+      required:
+      - location
     BlockchainMetadataTagsResponse:
       description: Blockchain metadata tags response.
       properties:
@@ -366,6 +266,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BlockchainMetadataTagInfo'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    BlockchainMetadataLocationsResponse:
+      description: Blockchain metadata locations response.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockchainMetadataLocation'
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
         next_page_url:
@@ -384,6 +297,26 @@ components:
       required:
       - owner_name
       - type
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    BlockchainMetadataTaggedEntitiesResponse:
+      description: Blockchain metadata tagged entities response
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockchainMetadataTaggedEntity'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
     ErrorObject:
       properties:
         type:
@@ -445,60 +378,7 @@ components:
       - type
       - tagger_type
       - tagger_method
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    BlockchainMetadataLocationsResponse:
-      description: Blockchain metadata locations response.
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlockchainMetadataLocation'
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
   parameters:
-    EntityLocations:
-      description: Comma separated list of entity locations (asset representation where the entity has been tagged). Currently a single entity location is allowed per each request.
-      in: query
-      name: locations
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    TagType:
-      description: The type of a tag.
-      in: query
-      name: type
-      required: false
-      schema:
-        type: string
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
     Pretty:
       description: Human-readable formatting of JSON responses.
       in: query
@@ -506,6 +386,12 @@ components:
       schema:
         type: boolean
         default: false
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
     Tags:
       description: Comma separated list of tags. Mutually exclusive with `entities` and `owner_names` parameter. Currently a single tag is allowed in a request.
       in: query
@@ -516,10 +402,20 @@ components:
         items:
           type: string
       explode: false
-    Entities:
-      description: Comma separated list of entities. Mutually exclusive with `tags` and `owner_names` parameter.
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
       in: query
-      name: entities
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    EntityLocations:
+      description: Comma separated list of entity locations (asset representation where the entity has been tagged). Currently a single entity location is allowed per each request.
+      in: query
+      name: locations
       required: false
       schema:
         type: array
@@ -536,6 +432,110 @@ components:
         items:
           type: string
       explode: false
+    Entities:
+      description: Comma separated list of entities. Mutually exclusive with `tags` and `owner_names` parameter.
+      in: query
+      name: entities
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    TagType:
+      description: The type of a tag.
+      in: query
+      name: type
+      required: false
+      schema:
+        type: string
+  responses:
+    BlockchainMetadataTags:
+      description: List of tags.
+      content:
+        application/json:
+          example:
+            data:
+            - tag: ADDRESS_IS_COLD_WALLET
+              type: ENTITY
+              description: Tag the ADDRESS as COLD wallet.
+            - tag: ADDRESS_IS_EXCHANGE
+              type: ENTITY
+              description: Tag the ADDRESS as EXCHANGE.
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataTagsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BlockchainMetadataTaggedEntities:
+      description: List of tagged entities. Ordered by tuple `(entity, tag, location, start_time)` if requested by providing `entities` parameter. Ordered by tuple `(tag, location, entity, started_time)` if requested by providing `tags` parameter. Ordered by tuple `(owner_name, location, entity, tag, timestamp_start)` if requested by providing `owner_name` parameter.
+      content:
+        application/json:
+          example:
+            data:
+            - entity: 00000000000003441d59dde9a90bffb1cd3fabf1
+              tag: ADDRESS_IS_CONTRACT
+              location: eth
+              owner_name: Coinbase
+              type: ADDRESS
+              tagger_type: COINMETRICS
+              tagger_method: DETERMINISTIC
+              start_time: '2021-04-24T09:23:53.000000000Z'
+              start_block_height: '12302098'
+              start_block_hash: 3f18d476b03fca40a128b3a715f2f6da1056cf4dcc9ec24500f7a53acee4733b
+            - entity: 00000000000006b2ab6decbc6fc7ec6bd2fbc720
+              tag: ADDRESS_IS_CONTRACT
+              location: eth
+              type: ADDRESS
+              tagger_type: COINMETRICS
+              tagger_method: DETERMINISTIC
+              start_time: '2023-10-12T21:50:47.000000000Z'
+              start_block_height: '18337128'
+              start_block_hash: 5184d01e7ba0c8769553342bdf66b4a5aabb096ad4f5c754429733613a155ae5
+            next_page_token: 0.MjAyMC0wNi0wOFQyMTowM
+            next_page_url: https://api.coinmetrics.io/v4/blockchain-metadata/tagged-entities?api_key=<your_key>&tags=ADDRESS_IS_CONTRACT&next_page_token=0.MjAyMC0wNi0wOFQyMTowM
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataTaggedEntitiesResponse'
+    BlockchainMetadataOwners:
+      description: List of owners.
+      content:
+        application/json:
+          example:
+            data:
+            - owner_name: Coinbase
+              type: EXCHANGE
+            - owner_name: 1Hash
+              type: MINING
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataOwnersResponse'
+    BlockchainMetadataLocations:
+      description: List of locations.
+      content:
+        application/json:
+          example:
+            data:
+            - location: btc
+            - location: eth
+          schema:
+            $ref: '#/components/schemas/BlockchainMetadataLocationsResponse'
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

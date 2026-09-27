@@ -89,17 +89,123 @@ paths:
       security:
       - api_key: []
 components:
-  schemas:
-    TaxonomySectorId:
-      description: Taxonomy sector identifier.
-      type: string
-    UpdatedAtTaxonomyVersion:
-      description: Taxonomy version the asset was classified or re-classified at.
-      type: string
+  parameters:
+    TaxonomySectorIds:
+      description: Comma separated list of sector identifiers.
+      in: query
+      name: sector_ids
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    TaxonomyAssets:
+      description: Comma separated list of assets.
+      in: query
+      name: assets
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    EndInclusive:
+      description: Inclusive or exclusive corresponding `end_*` parameters.
+      in: query
+      name: end_inclusive
+      schema:
+        default: true
+        type: boolean
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    PagingFromWithStartByDefault:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: start
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    TaxonomySubsectorIds:
+      description: Comma separated list of subsector identifiers.
+      in: query
+      name: subsector_ids
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    StartInclusive:
+      description: Inclusive or exclusive corresponding `start_*` parameters.
+      in: query
+      name: start_inclusive
+      schema:
+        default: true
+        type: boolean
     TaxonomyAssetClassificationStartTime:
-      description: Taxonomy asset's classification start time.
+      description: 'Start time of taxonomy asset classification.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
+      in: query
+      name: classification_start_time
+      required: false
+      schema:
+        type: string
+    TaxonomyClassIds:
+      description: Comma separated list of class identifiers.
+      in: query
+      name: class_ids
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    TaxonomyAssetClassificationEndTime:
+      description: 'End time of taxonomy asset classification.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
+      in: query
+      name: classification_end_time
+      required: false
+      schema:
+        type: string
+    TaxonomyVersion:
+      description: Taxonomy version. Defaults to `latest` when no `*_time` parameters specified. Specify asterisk `*` in order to get all versions.
+      in: query
+      name: version
+      required: false
+      schema:
+        type: string
+  schemas:
+    NextPageUrl:
+      description: URL of the next page results for a given request.
       type: string
-      format: date-time
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
     TaxonomySubsector:
       description: Taxonomy subsector name.
       type: string
@@ -107,11 +213,50 @@ components:
       description: Taxonomy asset's classification end time.
       type: string
       format: date-time
+    TaxonomySubsectorId:
+      description: Taxonomy subsector identifier.
+      type: string
+    TaxonomyAssetsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/TaxonomyAsset'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    TaxonomySectorId:
+      description: Taxonomy sector identifier.
+      type: string
+    TaxonomyAssetClassificationStartTime:
+      description: Taxonomy asset's classification start time.
+      type: string
+      format: date-time
+    TaxonomyClassId:
+      description: Taxonomy class identifier.
+      type: string
     TaxonomySector:
       description: Taxonomy sector name.
       type: string
-    TaxonomySubsectorId:
-      description: Taxonomy subsector identifier.
+    Asset:
+      description: Name of the asset.
+      type: string
+    UpdatedAtTaxonomyVersion:
+      description: Taxonomy version the asset was classified or re-classified at.
+      type: string
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    TaxonomyClass:
+      description: Taxonomy class name.
       type: string
     TaxonomyAsset:
       description: Information about taxonomy of an asset.
@@ -153,37 +298,6 @@ components:
       - sector
       - subsector_id
       - subsector
-    TaxonomyClassId:
-      description: Taxonomy class identifier.
-      type: string
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
-    TaxonomyClass:
-      description: Taxonomy class name.
-      type: string
-    TaxonomyAssetsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/TaxonomyAsset'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    NextPageUrl:
-      description: URL of the next page results for a given request.
-      type: string
-    Asset:
-      description: Name of the asset.
-      type: string
-    TaxonomyAssetFullName:
-      description: The full name of the asset.
-      type: string
     ErrorObject:
       properties:
         type:
@@ -196,127 +310,25 @@ components:
       - type
       - description
       type: object
+    TaxonomyAssetFullName:
+      description: The full name of the asset.
+      type: string
     TaxonomyVersion:
       description: This field is obsolete and will be removed in future releases in favor to `updated_at_taxonomy_version` field.
       type: string
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-  parameters:
-    PagingFromWithStartByDefault:
-      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: paging_from
-      schema:
-        default: start
-        enum:
-        - start
-        - end
-        type: string
-        format: PagingFrom
-    EndInclusive:
-      description: Inclusive or exclusive corresponding `end_*` parameters.
-      in: query
-      name: end_inclusive
-      schema:
-        default: true
-        type: boolean
-    TaxonomySectorIds:
-      description: Comma separated list of sector identifiers.
-      in: query
-      name: sector_ids
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    TaxonomySubsectorIds:
-      description: Comma separated list of subsector identifiers.
-      in: query
-      name: subsector_ids
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    TaxonomyAssetClassificationStartTime:
-      description: 'Start time of taxonomy asset classification.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
-      in: query
-      name: classification_start_time
-      required: false
-      schema:
-        type: string
-    StartInclusive:
-      description: Inclusive or exclusive corresponding `start_*` parameters.
-      in: query
-      name: start_inclusive
-      schema:
-        default: true
-        type: boolean
-    TaxonomyAssetClassificationEndTime:
-      description: 'End time of taxonomy asset classification.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
-      in: query
-      name: classification_end_time
-      required: false
-      schema:
-        type: string
-    TaxonomyClassIds:
-      description: Comma separated list of class identifiers.
-      in: query
-      name: class_ids
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    TaxonomyVersion:
-      description: Taxonomy version. Defaults to `latest` when no `*_time` parameters specified. Specify asterisk `*` in order to get all versions.
-      in: query
-      name: version
-      required: false
-      schema:
-        type: string
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    TaxonomyAssets:
-      description: Comma separated list of assets.
-      in: query
-      name: assets
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
   responses:
+    Forbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
     Unauthorized:
       description: Requested resource requires authorization.
       content:
@@ -369,18 +381,6 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/taxonomy/assets?page_size=2&api_key=<your_key>&next_page_token=bHJjfDE2Njc0MzM2MDAwMDA
           schema:
             $ref: '#/components/schemas/TaxonomyAssetsResponse'
-    Forbidden:
-      content:
-        application/json:
-          example:
-            error:
-              type: forbidden
-              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Requested resource is not available with supplied credentials.
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

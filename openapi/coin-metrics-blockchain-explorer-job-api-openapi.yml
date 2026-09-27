@@ -118,37 +118,6 @@ paths:
       - api_key: []
 components:
   schemas:
-    BlockchainTransactionIds:
-      description: Transactions ids.
-      type: array
-      items:
-        $ref: '#/components/schemas/BlockchainTransactionId'
-    AssetId:
-      description: Unique name of the asset.
-      type: string
-    BlockchainJobStartSlot:
-      description: The start slot indicates the beginning slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `end_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
-      type: integer
-      format: int64
-    BlockchainJobStartTime:
-      description: 'Start of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `end_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.'
-      type: string
-      format: date-time
-    BlockchainJobAtSlot:
-      description: Indicates the slot for which the set of account balances will be returned.<br/> Mutually exclusive with `at_height` and `at_time`.<br/> Specifying either `at_slot` or `at_height` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>
-      type: integer
-      format: int64
-    BlockchainJobAccount:
-      description: Account id. For ETH_CL, this can either be a validator public key or a validator index.
-      type: string
-    BlockchainJobEndHeight:
-      description: The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `start_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
-      type: integer
-      format: int64
-    BlockchainJobEndTime:
-      description: 'End of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `start_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.'
-      type: string
-      format: date-time
     BlockchainJobBalanceUpdatesRequest:
       properties:
         assets:
@@ -170,26 +139,10 @@ components:
       required:
       - assets
       - accounts
-    BlockchainJobEndSlot:
-      description: The end slot indicates the ending slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `start_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+    BlockchainJobAtHeight:
+      description: Indicates the block height for which the set of account balances will be returned.<br/> Mutually exclusive with `at_slot` and `at_time`.<br/> Specifying either `at_height` or `at_slot` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>
       type: integer
       format: int64
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
-    BlockchainJobAtTime:
-      description: 'Indicates the point in time for which the set of account balances will be returned.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> UTC timezone by default. `Z` suffix is optional.<br/> Mutually exclusive with `at_height` and `at_slot`.<br/> Specifying either `at_time` or `at_height` / `at_slot` parameter is mandatory.<br/>'
-      type: string
-      format: date-time
     BlockchainJobAccountBalancesRequest:
       properties:
         assets:
@@ -205,18 +158,14 @@ components:
       required:
       - assets
       - accounts
-    BlockchainJobAccounts:
-      description: Account ids. For ETH_CL, this can either be a validator public key or a validator index.
-      type: array
-      items:
-        $ref: '#/components/schemas/BlockchainJobAccount'
-    BlockchainTransactionId:
-      description: Identifier (txid) of the transaction.
-      type: string
     BlockchainJobStartHeight:
       description: The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `end_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
       type: integer
       format: int64
+    BlockchainJobStartTime:
+      description: 'Start of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `end_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.'
+      type: string
+      format: date-time
     BlockchainJobTransactionsRequest:
       properties:
         assets:
@@ -226,10 +175,28 @@ components:
       required:
       - assets
       - txids
-    BlockchainJobAtHeight:
-      description: Indicates the block height for which the set of account balances will be returned.<br/> Mutually exclusive with `at_slot` and `at_time`.<br/> Specifying either `at_height` or `at_slot` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>
+    BlockchainJobEndTime:
+      description: 'End of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `start_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.'
+      type: string
+      format: date-time
+    BlockchainJobAtSlot:
+      description: Indicates the slot for which the set of account balances will be returned.<br/> Mutually exclusive with `at_height` and `at_time`.<br/> Specifying either `at_slot` or `at_height` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>
       type: integer
       format: int64
+    BlockchainJobEndHeight:
+      description: The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `start_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+      type: integer
+      format: int64
+    BlockchainTransactionId:
+      description: Identifier (txid) of the transaction.
+      type: string
+    AssetId:
+      description: Unique name of the asset.
+      type: string
+    BlockchainJobAssets:
+      description: Comma separated list of assets, or wildcard (*) for all supported assets.
+      items:
+        $ref: '#/components/schemas/AssetId'
     CreatedJobDetailsResponse:
       properties:
         job_id:
@@ -241,6 +208,11 @@ components:
       required:
       - job_id
       - job_url
+    BlockchainTransactionIds:
+      description: Transactions ids.
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainTransactionId'
     ErrorResponse:
       properties:
         error:
@@ -248,10 +220,38 @@ components:
       required:
       - error
       type: object
-    BlockchainJobAssets:
-      description: Comma separated list of assets, or wildcard (*) for all supported assets.
+    BlockchainJobAccounts:
+      description: Account ids. For ETH_CL, this can either be a validator public key or a validator index.
+      type: array
       items:
-        $ref: '#/components/schemas/AssetId'
+        $ref: '#/components/schemas/BlockchainJobAccount'
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    BlockchainJobAccount:
+      description: Account id. For ETH_CL, this can either be a validator public key or a validator index.
+      type: string
+    BlockchainJobStartSlot:
+      description: The start slot indicates the beginning slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `end_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+      type: integer
+      format: int64
+    BlockchainJobEndSlot:
+      description: The end slot indicates the ending slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `start_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />
+      type: integer
+      format: int64
+    BlockchainJobAtTime:
+      description: 'Indicates the point in time for which the set of account balances will be returned.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> UTC timezone by default. `Z` suffix is optional.<br/> Mutually exclusive with `at_height` and `at_slot`.<br/> Specifying either `at_time` or `at_height` / `at_slot` parameter is mandatory.<br/>'
+      type: string
+      format: date-time
   responses:
     Unauthorized:
       description: Requested resource requires authorization.

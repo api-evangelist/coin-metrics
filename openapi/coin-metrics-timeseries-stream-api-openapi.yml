@@ -422,568 +422,6 @@ paths:
       security:
       - api_key: []
 components:
-  schemas:
-    TradeLiquidation:
-      description: Indicates whether the maker side, taker side, or both sides of the trade is under liquidation.
-      type: string
-    MarketQuote:
-      description: Information about market quote.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        time:
-          $ref: '#/components/schemas/Time'
-        coin_metrics_id:
-          $ref: '#/components/schemas/OrderBookAndQuoteCoinMetricsId'
-        ask_price:
-          $ref: '#/components/schemas/QuoteAskPrice'
-        ask_size:
-          $ref: '#/components/schemas/QuoteAskSize'
-        bid_price:
-          $ref: '#/components/schemas/QuoteBidPrice'
-        bid_size:
-          $ref: '#/components/schemas/QuoteBidSize'
-      type: object
-      required:
-      - market
-      - time
-      - coin_metrics_id
-    TradeBeneficiary:
-      description: Swap output receiver. Available for DeFi markets only.
-      type: string
-    QuoteAskPrice:
-      description: The limit price of the top ask on the order book. If no asks in the order book, the ask price is skipped.
-      type: string
-      format: decimal
-    StreamingMarketTrade:
-      description: Market trade WebSocket message.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        time:
-          $ref: '#/components/schemas/Time'
-        coin_metrics_id:
-          $ref: '#/components/schemas/TradesCoinMetricsId'
-        amount:
-          $ref: '#/components/schemas/TradeAmount'
-        price:
-          $ref: '#/components/schemas/TradePrice'
-        side:
-          $ref: '#/components/schemas/TradeSide'
-        cm_sequence_id:
-          $ref: '#/components/schemas/cmSequenceId'
-        collect_time:
-          $ref: '#/components/schemas/TradeCollectTime'
-        block_hash:
-          $ref: '#/components/schemas/TradeBlockHash'
-        block_height:
-          $ref: '#/components/schemas/TradeBlockHeight'
-        txid:
-          $ref: '#/components/schemas/TradeTransactionId'
-        initiator:
-          $ref: '#/components/schemas/TradeInitiator'
-        sender:
-          $ref: '#/components/schemas/TradeSender'
-        beneficiary:
-          $ref: '#/components/schemas/TradeBeneficiary'
-        mark_price:
-          $ref: '#/components/schemas/TradeMarkPrice'
-        index_price:
-          $ref: '#/components/schemas/TradeIndexPrice'
-        iv_trade:
-          $ref: '#/components/schemas/TradeImpliedVolatility'
-        liquidation:
-          $ref: '#/components/schemas/TradeLiquidation'
-      required:
-      - market
-      - time
-      - coin_metrics_id
-      - amount
-      - price
-      - collect_time
-      - cm_sequence_id
-      type: object
-    VerificationIndexLevelValue:
-      description: The verification value of the index.
-      type: string
-      format: decimal
-    Time:
-      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
-      type: string
-      format: date-time
-    StreamingMarketOpenInterest:
-      description: Market open interest WebSocket message.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        time:
-          $ref: '#/components/schemas/Time'
-        contract_count:
-          $ref: '#/components/schemas/ContractCount'
-        value_usd:
-          deprecated: true
-          $ref: '#/components/schemas/ContractValueUSD'
-        exchange_time:
-          $ref: '#/components/schemas/OpenInterestExchangeTime'
-        cm_sequence_id:
-          $ref: '#/components/schemas/cmSequenceId'
-      required:
-      - market
-      - time
-      - contract_count
-      - value_usd
-      - cm_sequence_id
-      type: object
-    LiquidationSide:
-      description: The market order side. "buy" means that an ask was removed from the book by an incoming buy order, "sell" means that a bid was removed from the book by an incoming sell order.
-      type: string
-    OrderBookBids:
-      description: The bids orders on the order book.
-      items:
-        $ref: '#/components/schemas/BookEntry'
-      type: array
-    QuoteBidSize:
-      description: The size of the top bid on the order book. If no bids in the order book, the bid size is skipped.
-      type: string
-      format: decimal
-    IndexPrice:
-      description: The price index is an aggregate price derived from the major exchanges to be representative of the underlying asset's market consensus price.
-      type: string
-      format: decimal
-    AggregatedSpreadQuote:
-      description: Information about aggregated spread quote.
-      properties:
-        pair:
-          $ref: '#/components/schemas/Pair'
-        time:
-          $ref: '#/components/schemas/Time'
-        ask_price:
-          $ref: '#/components/schemas/QuoteAskPrice'
-        ask_size:
-          $ref: '#/components/schemas/QuoteAskSize'
-        bid_price:
-          $ref: '#/components/schemas/QuoteBidPrice'
-        bid_size:
-          $ref: '#/components/schemas/QuoteBidSize'
-        mid_price:
-          $ref: '#/components/schemas/QuoteMidPrice'
-        spread:
-          $ref: '#/components/schemas/QuoteSpread'
-      type: object
-      required:
-      - pair
-      - time
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
-    TradeAmount:
-      description: The amount of the base asset traded.
-      type: string
-      format: decimal
-    TradeInitiator:
-      description: Swap transaction initiator. Available for DeFi markets only.
-      type: string
-    CandleTradesCount:
-      description: The number of trades used for candle calculation.
-      type: string
-      format: int64
-    ContractCount:
-      description: Number of contracts.
-      type: string
-      format: int64
-    CandlePriceOpen:
-      description: The opening price of the candle.
-      type: string
-      format: decimal
-    SettlementPriceEstimated:
-      description: The estimated price of the underlying asset.
-      type: string
-      format: decimal
-    CandlePriceClose:
-      description: The closing price of the candle.
-      type: string
-      format: decimal
-    CandlePriceHigh:
-      description: The high price of the candle.
-      type: string
-      format: decimal
-    StreamingMarketCandle:
-      allOf:
-      - $ref: '#/components/schemas/MarketCandle'
-      - type: object
-        properties:
-          cm_sequence_id:
-            $ref: '#/components/schemas/cmSequenceId'
-        required:
-        - cm_sequence_id
-    cmSequenceId:
-      description: The monotonically increasing message number, resets on disconnection.
-      type: string
-    StreamingAggregatedSpreadQuote:
-      allOf:
-      - $ref: '#/components/schemas/AggregatedSpreadQuote'
-      - type: object
-        properties:
-          cm_sequence_id:
-            $ref: '#/components/schemas/cmSequenceId'
-        required:
-        - cm_sequence_id
-    QuoteAskSize:
-      description: The size of the top ask on the order book. If no asks in the order book, the ask size is skipped.
-      type: string
-      format: decimal
-    TradeIndexPrice:
-      description: The price index is an aggregate price derived from the major exchanges to be representative of the underlying asset's market consensus price.
-      type: string
-      format: decimal
-    OrderBookCollectTime:
-      description: Time of when the order book was received from the exchange.
-      type: string
-      format: date-time
-    Verification:
-      description: Information about verification.
-      properties:
-        timestamp:
-          $ref: '#/components/schemas/VerificationTime'
-        level:
-          $ref: '#/components/schemas/VerificationIndexLevelValue'
-        signature:
-          $ref: '#/components/schemas/Signature'
-      type: object
-      required:
-      - signature
-    LiquidationPrice:
-      description: The price of the base asset quoted in the quote asset that the liquidation was executed at.
-      type: string
-      format: decimal
-    TradeBlockHash:
-      description: Swap block hash. Available for DeFi markets only.
-      type: string
-    Index:
-      description: Name of the index.
-      type: string
-    OrderBookAsks:
-      description: The ask orders on the order book.
-      items:
-        $ref: '#/components/schemas/BookEntry'
-      type: array
-    TradeBlockHeight:
-      description: Swap block height. Available for DeFi markets only.
-      type: string
-      format: int64
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    QuoteBidPrice:
-      description: The limit price of the top bid on the order book. If no bids in the order book, the bid price is skipped.
-      type: string
-      format: decimal
-    CandlePriceLow:
-      description: The low price of the candle.
-      type: string
-      format: decimal
-    MarketId:
-      description: Unique name of the market.
-      type: string
-    LiquidationsCoinMetricsId:
-      description: ID of a liquidation (unique per exchange market). We are using exchange reported value if exchange reports a unique numeric liquidation id. If exchange reports liquidation id as a string we convert to numeric using Bijective mapping from exchange reported liquidation id's string. If exchange doesn't report unique ID we transform it using exchange reported data to form a unique value per market.
-      type: string
-    TradeTransactionId:
-      description: Swap transaction ID. Available for DeFi markets only.
-      type: string
-    OrderBookSize:
-      description: The size of the limit order on the order book in units of the base asset.
-      type: string
-      format: decimal
-    Asset:
-      description: Name of the asset.
-      type: string
-    LiquidationAmount:
-      description: The amount of the base asset liquidated.
-      type: string
-      format: decimal
-    CandleVwap:
-      description: The volume-weighted average price of the candle.
-      type: string
-      format: decimal
-    OrderBookAndQuoteCoinMetricsId:
-      description: ID of an order book or quote. It can be generated by Coin Metrics or provided by an exchange. If it is generated by Coin Metrics it is unique. If it is generated by exchange we can't guarantee its uniqueness.
-      type: string
-    TradeImpliedVolatility:
-      description: Implied volatility calculated from the trade price.
-      type: string
-      format: decimal
-    MarkPrice:
-      description: The price representing the futures' or option's price calculated by the exchange for risk management purposes.
-      type: string
-      format: decimal
-    VerificationTime:
-      description: The verification time of the index.
-      type: string
-      format: date-time
-    OrderBookPrice:
-      description: The limit price of the order on the order book.
-      type: string
-      format: decimal
-    StreamingMarketLiquidation:
-      description: Market liquidation WebSocket message.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        time:
-          $ref: '#/components/schemas/Time'
-        coin_metrics_id:
-          $ref: '#/components/schemas/LiquidationsCoinMetricsId'
-        amount:
-          $ref: '#/components/schemas/LiquidationAmount'
-        price:
-          $ref: '#/components/schemas/LiquidationPrice'
-        side:
-          $ref: '#/components/schemas/LiquidationSide'
-        type:
-          $ref: '#/components/schemas/LiquidationType'
-        cm_sequence_id:
-          $ref: '#/components/schemas/cmSequenceId'
-      required:
-      - market
-      - time
-      - coin_metrics_id
-      - amount
-      - price
-      - type
-      - cm_sequence_id
-      type: object
-    IndexLevelValue:
-      description: The value of the index.
-      type: string
-      format: decimal
-    Signature:
-      description: The signature information.
-      type: string
-    CandleUsdVolume:
-      description: The volume of the candle in USD.
-      type: string
-      format: decimal
-    StreamingAssetMetric:
-      description: Metric values.
-      properties:
-        asset:
-          $ref: '#/components/schemas/Asset'
-        time:
-          $ref: '#/components/schemas/Time'
-        cm_sequence_id:
-          $ref: '#/components/schemas/cmSequenceId'
-      required:
-      - asset
-      - time
-      - cm_sequence_id
-      additionalProperties:
-        description: Metric value.
-        type:
-        - string
-        - 'null'
-      type: object
-    QuoteMidPrice:
-      description: The average of the bid price and ask price.
-      type: string
-      format: decimal
-    OpenInterestExchangeTime:
-      description: Time corresponding to open interest data point, according to the exchange. Can be NULL, if exchange doesn't support it.
-      type: string
-      format: date-time
-    TradeSide:
-      description: The market order side. "buy" means that an ask was removed from the book by an incoming buy order, "sell" means that a bid was removed from the book by an incoming sell order.
-      type: string
-    StreamingMarketOrderbook:
-      allOf:
-      - type: object
-        properties:
-          market:
-            $ref: '#/components/schemas/MarketId'
-          time:
-            $ref: '#/components/schemas/Time'
-          coin_metrics_id:
-            $ref: '#/components/schemas/OrderBookAndQuoteCoinMetricsId'
-          asks:
-            $ref: '#/components/schemas/OrderBookAsks'
-          bids:
-            $ref: '#/components/schemas/OrderBookBids'
-          type:
-            $ref: '#/components/schemas/OrderBookType'
-          collect_time:
-            $ref: '#/components/schemas/OrderBookCollectTime'
-          cm_sequence_id:
-            $ref: '#/components/schemas/cmSequenceId'
-        required:
-        - market
-        - time
-        - coin_metrics_id
-        - asks
-        - bids
-        - type
-        - collect_time
-        - cm_sequence_id
-    CandleVolume:
-      description: The volume of the candle in units of the base asset.
-      type: string
-      format: decimal
-    StreamingMarketQuote:
-      allOf:
-      - $ref: '#/components/schemas/MarketQuote'
-      - type: object
-        properties:
-          cm_sequence_id:
-            $ref: '#/components/schemas/cmSequenceId'
-        required:
-        - cm_sequence_id
-    LiquidationType:
-      description: The liquidation type. "trade" means that liquidation was executed, "order" means that the order was placed for the liquidation at the timestamp of the data entry but it wasn't necessarily executed yet.
-      type: string
-    OrderBookType:
-      description: Type of the order book.
-      enum:
-      - snapshot
-      - update
-      type: string
-    TradeMarkPrice:
-      description: The price representing the futures' or option's price calculated by the exchange for risk management purposes.
-      type: string
-      format: decimal
-    MarketCandle:
-      description: Information about market candle.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        time:
-          $ref: '#/components/schemas/Time'
-        price_open:
-          $ref: '#/components/schemas/CandlePriceOpen'
-        price_close:
-          $ref: '#/components/schemas/CandlePriceClose'
-        price_high:
-          $ref: '#/components/schemas/CandlePriceHigh'
-        price_low:
-          $ref: '#/components/schemas/CandlePriceLow'
-        vwap:
-          $ref: '#/components/schemas/CandleVwap'
-        volume:
-          $ref: '#/components/schemas/CandleVolume'
-        candle_usd_volume:
-          $ref: '#/components/schemas/CandleUsdVolume'
-        candle_trades_count:
-          $ref: '#/components/schemas/CandleTradesCount'
-      type: object
-      required:
-      - market
-      - time
-      - price_open
-      - price_close
-      - price_high
-      - price_low
-      - vwap
-      - volume
-      - candle_usd_volume
-      - candle_trades_count
-    QuoteSpread:
-      description: The difference between the bid price and ask price as a percentage of the mid price.
-      type: string
-      format: decimal
-    ContractValueUSD:
-      deprecated: true
-      description: 'Deprecated. Contract value in USD. This field was previously calculated using hardcoded logic that no longer reflects current contract specifications across all exchanges. Please use the new metrics available via `/timeseries/market-metrics` endpoint: `open_interest_reported_future_usd` for futures markets and `open_interest_reported_option_notional_usd` for options markets.'
-      type: string
-      format: decimal
-    TradeSender:
-      description: Swap caller. Available for DeFi markets only.
-      type: string
-    TradesCoinMetricsId:
-      description: ID of a trade (unique per exchange market). We are using exchange reported value if exchange reports a unique numeric trade id. If exchange reports trade id as a string we convert to numeric using Bijective mapping from exchange reported trade id's string. If exchange doesn't report unique ID we transform it using exchange reported data to form a unique value per market.
-      type: string
-    BookEntry:
-      properties:
-        price:
-          $ref: '#/components/schemas/OrderBookPrice'
-        size:
-          $ref: '#/components/schemas/OrderBookSize'
-      required:
-      - price
-      - size
-      type: object
-    OptionTickerExchangeTime:
-      description: Time corresponding to option ticker data point, according to the exchange. Can be NULL, if exchange doesn't support it.
-      type: string
-      format: date-time
-    TradeCollectTime:
-      description: Time of when the trade was received from the exchange.
-      type: string
-      format: date-time
-    IndexLevel:
-      description: Information about index level.
-      properties:
-        index:
-          $ref: '#/components/schemas/Index'
-        time:
-          $ref: '#/components/schemas/Time'
-        level:
-          $ref: '#/components/schemas/IndexLevelValue'
-        verification:
-          $ref: '#/components/schemas/Verification'
-      type: object
-      required:
-      - index
-      - time
-      - level
-    StreamingIndexLevel:
-      allOf:
-      - $ref: '#/components/schemas/IndexLevel'
-      - type: object
-        properties:
-          cm_sequence_id:
-            $ref: '#/components/schemas/cmSequenceId'
-        required:
-        - cm_sequence_id
-    TradePrice:
-      description: The price of the base asset quoted in the quote asset that the trade was executed at.
-      type: string
-      format: decimal
-    Pair:
-      description: Pair string representation as `<base>-<quote>`.
-      type: string
-    StreamingMarketContractPrice:
-      description: Market contract price WebSocket message.
-      properties:
-        market:
-          $ref: '#/components/schemas/MarketId'
-        time:
-          $ref: '#/components/schemas/Time'
-        mark_price:
-          $ref: '#/components/schemas/MarkPrice'
-        index_price:
-          $ref: '#/components/schemas/IndexPrice'
-        settlement_price_estimated:
-          $ref: '#/components/schemas/SettlementPriceEstimated'
-        exchange_time:
-          $ref: '#/components/schemas/OptionTickerExchangeTime'
-        cm_sequence_id:
-          $ref: '#/components/schemas/cmSequenceId'
-      required:
-      - market
-      - time
-      - cm_sequence_id
-      type: object
   parameters:
     AssetId:
       description: Comma separated list of assets.<br/> Use a corresponding `/catalog-all-v2/asset-{dataType}` endpoint for the full list of supported assets for a given data type.
@@ -995,13 +433,6 @@ components:
         items:
           type: string
       explode: false
-    IgnoreUnsupportedErrors:
-      description: Ignore "unsupported" errors for not currently supported by Coin Metrics items.
-      in: query
-      name: ignore_unsupported_errors
-      schema:
-        type: boolean
-        default: false
     AssetMetrics:
       description: Comma separated metrics to request time series data for.<br/> Information on all available metrics can be found on page https://coverage.coinmetrics.io/asset-metrics-v2.<br/> Use the [/catalog-all-v2/asset-metrics](#operation/getCatalogAllV2AssetMetrics) endpoint for the full list of supported metrics per asset.
       in: query
@@ -1015,10 +446,78 @@ components:
         items:
           type: string
       explode: false
+    AggregationMethod:
+      description: The method to use for aggregation.
+      in: query
+      name: aggregation_method
+      required: false
+      schema:
+        type: string
+        default: aggregated_spread
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    StreamingPair:
+      description: Comma separated list of asset pairs or patterns like `btc-*`, or `*-btc`.
+      in: query
+      name: pairs
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketId:
+      description: Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type.
+      in: query
+      name: markets
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
     IgnoreForbiddenErrors:
       description: Ignore "forbidden" errors for the items you currently don't have access to.
       in: query
       name: ignore_forbidden_errors
+      schema:
+        type: boolean
+        default: false
+    StreamingBookDepth:
+      description: Book depth limit.
+      in: query
+      name: depth_limit
+      schema:
+        default: '100'
+        enum:
+        - '100'
+        - full_book
+        type: string
+    StreamAssetMetricsFrequency:
+      description: Frequency of the metrics. Supported values are `1b` (block by block), `1s`, `200ms`.
+      in: query
+      name: frequency
+      schema:
+        default: 1b
+        example: 1s
+        type: string
+    StreamingCandleFrequency:
+      description: Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`.
+      in: query
+      name: frequency
+      schema:
+        default: 1m
+        example: 1m
+        type: string
+    IgnoreUnsupportedErrors:
+      description: Ignore "unsupported" errors for not currently supported by Coin Metrics items.
+      in: query
+      name: ignore_unsupported_errors
       schema:
         type: boolean
         default: false
@@ -1040,16 +539,6 @@ components:
       schema:
         type: boolean
         default: false
-    StreamingPair:
-      description: Comma separated list of asset pairs or patterns like `btc-*`, or `*-btc`.
-      in: query
-      name: pairs
-      required: true
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
     Backfill:
       description: What data should be sent upon a connection.<br/> By default the latest values are sent just before real-time data.
       in: query
@@ -1060,14 +549,6 @@ components:
         enum:
         - latest
         - none
-    StreamingCandleFrequency:
-      description: Candle duration. Supported values are `1m`, `5m`, `10m`, `15m`, `30m`, `1h`, `4h`, `1d`.
-      in: query
-      name: frequency
-      schema:
-        default: 1m
-        example: 1m
-        type: string
     IncludeVerification:
       description: If set to true, includes information about verification.
       in: query
@@ -1076,61 +557,32 @@ components:
       schema:
         type: boolean
         default: false
-    AggregationMethod:
-      description: The method to use for aggregation.
-      in: query
-      name: aggregation_method
-      required: false
-      schema:
-        type: string
-        default: aggregated_spread
-    MarketId:
-      description: Comma separated list of markets or market patterns like `exchange-*` or `exchange-*-spot` or `*USDT-future`.<br/> Use a corresponding `/catalog-all-v2/market-{dataType}` endpoint for the full list of supported markets for a given data type.
-      in: query
-      name: markets
-      required: true
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    StreamingBookDepth:
-      description: Book depth limit.
-      in: query
-      name: depth_limit
-      schema:
-        default: '100'
-        enum:
-        - '100'
-        - full_book
-        type: string
-    StreamAssetMetricsFrequency:
-      description: Frequency of the metrics. Supported values are `1b` (block by block), `1s`, `200ms`.
-      in: query
-      name: frequency
-      schema:
-        default: 1b
-        example: 1s
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
   responses:
-    StreamingIndexLevels:
-      description: Index levels WebSocket message.
+    Forbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+    StreamingMarketTrades:
+      description: Trade WebSocket message.
       content:
         application/json:
           examples:
-            new_index_level:
-              summary: Example of an index level message.
+            new_trade:
+              summary: Example of a trade message.
               value:
-                index: CMBIWORK
-                level: '389473805.713838875'
-                time: '2017-05-22T00:00:00.000000000Z'
+                time: '2020-06-08T21:00:06.138932000Z'
+                market: coinbase-btc-usd-spot
+                coin_metrics_id: '94233007'
+                amount: '0.0197263'
+                price: '9702'
+                collect_time: '2020-06-08T21:00:06.203893000Z'
+                side: buy
                 cm_sequence_id: '0'
             warning:
               summary: Example of a warning message.
@@ -1145,7 +597,37 @@ components:
                   type: stall
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
-            $ref: '#/components/schemas/StreamingIndexLevel'
+            $ref: '#/components/schemas/StreamingMarketTrade'
+    StreamingMarketOpenInterests:
+      description: Open Interest WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_openinterest:
+              summary: Example of an open interest message.
+              value:
+                market: okex-EOS-USDT-231027-future
+                time: '2023-10-26T06:06:00.000000000Z'
+                contract_count: '5122'
+                value_usd: '31121.272'
+                exchange_time: '2023-10-26T06:06:00.000000000Z'
+                cm_sequence_id: '126'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingMarketOpenInterest'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
     StreamingMarketQuotes:
       description: Market quote WebSocket message.
       content:
@@ -1176,52 +658,22 @@ components:
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
             $ref: '#/components/schemas/StreamingMarketQuote'
-    StreamingMarketOpenInterests:
-      description: Open Interest WebSocket message.
+    StreamingAggregatedSpreadQuotes:
+      description: Aggregated spread quote WebSocket message.
       content:
         application/json:
           examples:
-            new_openinterest:
-              summary: Example of an open interest message.
+            new_quote:
+              summary: Example of a quote message.
               value:
-                market: okex-EOS-USDT-231027-future
-                time: '2023-10-26T06:06:00.000000000Z'
-                contract_count: '5122'
-                value_usd: '31121.272'
-                exchange_time: '2023-10-26T06:06:00.000000000Z'
-                cm_sequence_id: '126'
-            warning:
-              summary: Example of a warning message.
-              value:
-                warning:
-                  type: falling_behind
-                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
-            error:
-              summary: Example of an error message.
-              value:
-                error:
-                  type: stall
-                  message: The client was reading too slowly and was disconnected by the server.
-          schema:
-            $ref: '#/components/schemas/StreamingMarketOpenInterest'
-    StreamingMarketCandles:
-      description: Candle WebSocket message.
-      content:
-        application/json:
-          examples:
-            new_candle:
-              summary: Example of a candle message.
-              value:
-                market: bitstamp-btc-usd-spot
-                time: '2022-05-17T09:00:00.000000000Z'
-                price_open: '30547.68'
-                price_close: '30558.65'
-                price_high: '30563.59'
-                price_low: '30547.68'
-                vwap: '30553.973252816509'
-                volume: '1.908'
-                candle_usd_volume: '58296.980966373899172'
-                candle_trades_count: '10'
+                time: '2020-06-08T21:15:45.771742000Z'
+                pair: btc-usd
+                ask_price: '24343.725954328216'
+                ask_size: '2.96375165'
+                bid_price: '24342.036360171896'
+                bid_size: '12.00588437'
+                mid_price: '24342.881157250056'
+                spread: '0.0000694081421754166'
                 cm_sequence_id: '0'
             warning:
               summary: Example of a warning message.
@@ -1236,7 +688,7 @@ components:
                   type: stall
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
-            $ref: '#/components/schemas/StreamingMarketCandle'
+            $ref: '#/components/schemas/StreamingAggregatedSpreadQuote'
     StreamingMarketLiquidations:
       description: Liquidation WebSocket message.
       content:
@@ -1267,37 +719,6 @@ components:
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
             $ref: '#/components/schemas/StreamingMarketLiquidation'
-    Forbidden:
-      content:
-        application/json:
-          example:
-            error:
-              type: forbidden
-              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Requested resource is not available with supplied credentials.
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
     StreamingAssetMetrics:
       description: Asset metrics WebSocket message.
       content:
@@ -1340,21 +761,24 @@ components:
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
             $ref: '#/components/schemas/StreamingAssetMetric'
-    StreamingMarketTrades:
-      description: Trade WebSocket message.
+    StreamingMarketCandles:
+      description: Candle WebSocket message.
       content:
         application/json:
           examples:
-            new_trade:
-              summary: Example of a trade message.
+            new_candle:
+              summary: Example of a candle message.
               value:
-                time: '2020-06-08T21:00:06.138932000Z'
-                market: coinbase-btc-usd-spot
-                coin_metrics_id: '94233007'
-                amount: '0.0197263'
-                price: '9702'
-                collect_time: '2020-06-08T21:00:06.203893000Z'
-                side: buy
+                market: bitstamp-btc-usd-spot
+                time: '2022-05-17T09:00:00.000000000Z'
+                price_open: '30547.68'
+                price_close: '30558.65'
+                price_high: '30563.59'
+                price_low: '30547.68'
+                vwap: '30553.973252816509'
+                volume: '1.908'
+                candle_usd_volume: '58296.980966373899172'
+                candle_trades_count: '10'
                 cm_sequence_id: '0'
             warning:
               summary: Example of a warning message.
@@ -1369,38 +793,7 @@ components:
                   type: stall
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
-            $ref: '#/components/schemas/StreamingMarketTrade'
-    StreamingAggregatedSpreadQuotes:
-      description: Aggregated spread quote WebSocket message.
-      content:
-        application/json:
-          examples:
-            new_quote:
-              summary: Example of a quote message.
-              value:
-                time: '2020-06-08T21:15:45.771742000Z'
-                pair: btc-usd
-                ask_price: '24343.725954328216'
-                ask_size: '2.96375165'
-                bid_price: '24342.036360171896'
-                bid_size: '12.00588437'
-                mid_price: '24342.881157250056'
-                spread: '0.0000694081421754166'
-                cm_sequence_id: '0'
-            warning:
-              summary: Example of a warning message.
-              value:
-                warning:
-                  type: falling_behind
-                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
-            error:
-              summary: Example of an error message.
-              value:
-                error:
-                  type: stall
-                  message: The client was reading too slowly and was disconnected by the server.
-          schema:
-            $ref: '#/components/schemas/StreamingAggregatedSpreadQuote'
+            $ref: '#/components/schemas/StreamingMarketCandle'
     StreamingMarketOrderbooks:
       description: Orderbook WebSocket message.
       content:
@@ -1462,6 +855,51 @@ components:
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
             $ref: '#/components/schemas/StreamingMarketOrderbook'
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    StreamingIndexLevels:
+      description: Index levels WebSocket message.
+      content:
+        application/json:
+          examples:
+            new_index_level:
+              summary: Example of an index level message.
+              value:
+                index: CMBIWORK
+                level: '389473805.713838875'
+                time: '2017-05-22T00:00:00.000000000Z'
+                cm_sequence_id: '0'
+            warning:
+              summary: Example of a warning message.
+              value:
+                warning:
+                  type: falling_behind
+                  message: Your connection is falling behind and messages are being queued for delivery to you. Your queue is now over 60% full. You will be disconnected when the queue is full.
+            error:
+              summary: Example of an error message.
+              value:
+                error:
+                  type: stall
+                  message: The client was reading too slowly and was disconnected by the server.
+          schema:
+            $ref: '#/components/schemas/StreamingIndexLevel'
     StreamingMarketContractPrices:
       description: Contract prices WebSocket message.
       content:
@@ -1491,6 +929,568 @@ components:
                   message: The client was reading too slowly and was disconnected by the server.
           schema:
             $ref: '#/components/schemas/StreamingMarketContractPrice'
+  schemas:
+    OrderBookAsks:
+      description: The ask orders on the order book.
+      items:
+        $ref: '#/components/schemas/BookEntry'
+      type: array
+    TradeIndexPrice:
+      description: The price index is an aggregate price derived from the major exchanges to be representative of the underlying asset's market consensus price.
+      type: string
+      format: decimal
+    StreamingMarketQuote:
+      allOf:
+      - $ref: '#/components/schemas/MarketQuote'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    QuoteAskPrice:
+      description: The limit price of the top ask on the order book. If no asks in the order book, the ask price is skipped.
+      type: string
+      format: decimal
+    CandlePriceLow:
+      description: The low price of the candle.
+      type: string
+      format: decimal
+    QuoteSpread:
+      description: The difference between the bid price and ask price as a percentage of the mid price.
+      type: string
+      format: decimal
+    TradeCollectTime:
+      description: Time of when the trade was received from the exchange.
+      type: string
+      format: date-time
+    QuoteMidPrice:
+      description: The average of the bid price and ask price.
+      type: string
+      format: decimal
+    OrderBookBids:
+      description: The bids orders on the order book.
+      items:
+        $ref: '#/components/schemas/BookEntry'
+      type: array
+    CandleVwap:
+      description: The volume-weighted average price of the candle.
+      type: string
+      format: decimal
+    Asset:
+      description: Name of the asset.
+      type: string
+    OrderBookPrice:
+      description: The limit price of the order on the order book.
+      type: string
+      format: decimal
+    StreamingMarketOpenInterest:
+      description: Market open interest WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        contract_count:
+          $ref: '#/components/schemas/ContractCount'
+        value_usd:
+          deprecated: true
+          $ref: '#/components/schemas/ContractValueUSD'
+        exchange_time:
+          $ref: '#/components/schemas/OpenInterestExchangeTime'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - market
+      - time
+      - contract_count
+      - value_usd
+      - cm_sequence_id
+      type: object
+    QuoteAskSize:
+      description: The size of the top ask on the order book. If no asks in the order book, the ask size is skipped.
+      type: string
+      format: decimal
+    TradeSide:
+      description: The market order side. "buy" means that an ask was removed from the book by an incoming buy order, "sell" means that a bid was removed from the book by an incoming sell order.
+      type: string
+    StreamingMarketOrderbook:
+      allOf:
+      - type: object
+        properties:
+          market:
+            $ref: '#/components/schemas/MarketId'
+          time:
+            $ref: '#/components/schemas/Time'
+          coin_metrics_id:
+            $ref: '#/components/schemas/OrderBookAndQuoteCoinMetricsId'
+          asks:
+            $ref: '#/components/schemas/OrderBookAsks'
+          bids:
+            $ref: '#/components/schemas/OrderBookBids'
+          type:
+            $ref: '#/components/schemas/OrderBookType'
+          collect_time:
+            $ref: '#/components/schemas/OrderBookCollectTime'
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - market
+        - time
+        - coin_metrics_id
+        - asks
+        - bids
+        - type
+        - collect_time
+        - cm_sequence_id
+    CandleUsdVolume:
+      description: The volume of the candle in USD.
+      type: string
+      format: decimal
+    StreamingMarketCandle:
+      allOf:
+      - $ref: '#/components/schemas/MarketCandle'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    TradeBeneficiary:
+      description: Swap output receiver. Available for DeFi markets only.
+      type: string
+    VerificationTime:
+      description: The verification time of the index.
+      type: string
+      format: date-time
+    IndexPrice:
+      description: The price index is an aggregate price derived from the major exchanges to be representative of the underlying asset's market consensus price.
+      type: string
+      format: decimal
+    MarkPrice:
+      description: The price representing the futures' or option's price calculated by the exchange for risk management purposes.
+      type: string
+      format: decimal
+    TradePrice:
+      description: The price of the base asset quoted in the quote asset that the trade was executed at.
+      type: string
+      format: decimal
+    StreamingMarketLiquidation:
+      description: Market liquidation WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        coin_metrics_id:
+          $ref: '#/components/schemas/LiquidationsCoinMetricsId'
+        amount:
+          $ref: '#/components/schemas/LiquidationAmount'
+        price:
+          $ref: '#/components/schemas/LiquidationPrice'
+        side:
+          $ref: '#/components/schemas/LiquidationSide'
+        type:
+          $ref: '#/components/schemas/LiquidationType'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - market
+      - time
+      - coin_metrics_id
+      - amount
+      - price
+      - type
+      - cm_sequence_id
+      type: object
+    cmSequenceId:
+      description: The monotonically increasing message number, resets on disconnection.
+      type: string
+    LiquidationsCoinMetricsId:
+      description: ID of a liquidation (unique per exchange market). We are using exchange reported value if exchange reports a unique numeric liquidation id. If exchange reports liquidation id as a string we convert to numeric using Bijective mapping from exchange reported liquidation id's string. If exchange doesn't report unique ID we transform it using exchange reported data to form a unique value per market.
+      type: string
+    OpenInterestExchangeTime:
+      description: Time corresponding to open interest data point, according to the exchange. Can be NULL, if exchange doesn't support it.
+      type: string
+      format: date-time
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    TradeBlockHeight:
+      description: Swap block height. Available for DeFi markets only.
+      type: string
+      format: int64
+    Verification:
+      description: Information about verification.
+      properties:
+        timestamp:
+          $ref: '#/components/schemas/VerificationTime'
+        level:
+          $ref: '#/components/schemas/VerificationIndexLevelValue'
+        signature:
+          $ref: '#/components/schemas/Signature'
+      type: object
+      required:
+      - signature
+    StreamingMarketContractPrice:
+      description: Market contract price WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        mark_price:
+          $ref: '#/components/schemas/MarkPrice'
+        index_price:
+          $ref: '#/components/schemas/IndexPrice'
+        settlement_price_estimated:
+          $ref: '#/components/schemas/SettlementPriceEstimated'
+        exchange_time:
+          $ref: '#/components/schemas/OptionTickerExchangeTime'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - market
+      - time
+      - cm_sequence_id
+      type: object
+    BookEntry:
+      properties:
+        price:
+          $ref: '#/components/schemas/OrderBookPrice'
+        size:
+          $ref: '#/components/schemas/OrderBookSize'
+      required:
+      - price
+      - size
+      type: object
+    TradeLiquidation:
+      description: Indicates whether the maker side, taker side, or both sides of the trade is under liquidation.
+      type: string
+    ContractValueUSD:
+      deprecated: true
+      description: 'Deprecated. Contract value in USD. This field was previously calculated using hardcoded logic that no longer reflects current contract specifications across all exchanges. Please use the new metrics available via `/timeseries/market-metrics` endpoint: `open_interest_reported_future_usd` for futures markets and `open_interest_reported_option_notional_usd` for options markets.'
+      type: string
+      format: decimal
+    CandlePriceOpen:
+      description: The opening price of the candle.
+      type: string
+      format: decimal
+    CandleTradesCount:
+      description: The number of trades used for candle calculation.
+      type: string
+      format: int64
+    OptionTickerExchangeTime:
+      description: Time corresponding to option ticker data point, according to the exchange. Can be NULL, if exchange doesn't support it.
+      type: string
+      format: date-time
+    TradeMarkPrice:
+      description: The price representing the futures' or option's price calculated by the exchange for risk management purposes.
+      type: string
+      format: decimal
+    CandleVolume:
+      description: The volume of the candle in units of the base asset.
+      type: string
+      format: decimal
+    OrderBookAndQuoteCoinMetricsId:
+      description: ID of an order book or quote. It can be generated by Coin Metrics or provided by an exchange. If it is generated by Coin Metrics it is unique. If it is generated by exchange we can't guarantee its uniqueness.
+      type: string
+    ContractCount:
+      description: Number of contracts.
+      type: string
+      format: int64
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    IndexLevel:
+      description: Information about index level.
+      properties:
+        index:
+          $ref: '#/components/schemas/Index'
+        time:
+          $ref: '#/components/schemas/Time'
+        level:
+          $ref: '#/components/schemas/IndexLevelValue'
+        verification:
+          $ref: '#/components/schemas/Verification'
+      type: object
+      required:
+      - index
+      - time
+      - level
+    AggregatedSpreadQuote:
+      description: Information about aggregated spread quote.
+      properties:
+        pair:
+          $ref: '#/components/schemas/Pair'
+        time:
+          $ref: '#/components/schemas/Time'
+        ask_price:
+          $ref: '#/components/schemas/QuoteAskPrice'
+        ask_size:
+          $ref: '#/components/schemas/QuoteAskSize'
+        bid_price:
+          $ref: '#/components/schemas/QuoteBidPrice'
+        bid_size:
+          $ref: '#/components/schemas/QuoteBidSize'
+        mid_price:
+          $ref: '#/components/schemas/QuoteMidPrice'
+        spread:
+          $ref: '#/components/schemas/QuoteSpread'
+      type: object
+      required:
+      - pair
+      - time
+    QuoteBidSize:
+      description: The size of the top bid on the order book. If no bids in the order book, the bid size is skipped.
+      type: string
+      format: decimal
+    Pair:
+      description: Pair string representation as `<base>-<quote>`.
+      type: string
+    OrderBookCollectTime:
+      description: Time of when the order book was received from the exchange.
+      type: string
+      format: date-time
+    StreamingAssetMetric:
+      description: Metric values.
+      properties:
+        asset:
+          $ref: '#/components/schemas/Asset'
+        time:
+          $ref: '#/components/schemas/Time'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+      required:
+      - asset
+      - time
+      - cm_sequence_id
+      additionalProperties:
+        description: Metric value.
+        type:
+        - string
+        - 'null'
+      type: object
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    IndexLevelValue:
+      description: The value of the index.
+      type: string
+      format: decimal
+    MarketQuote:
+      description: Information about market quote.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        coin_metrics_id:
+          $ref: '#/components/schemas/OrderBookAndQuoteCoinMetricsId'
+        ask_price:
+          $ref: '#/components/schemas/QuoteAskPrice'
+        ask_size:
+          $ref: '#/components/schemas/QuoteAskSize'
+        bid_price:
+          $ref: '#/components/schemas/QuoteBidPrice'
+        bid_size:
+          $ref: '#/components/schemas/QuoteBidSize'
+      type: object
+      required:
+      - market
+      - time
+      - coin_metrics_id
+    TradesCoinMetricsId:
+      description: ID of a trade (unique per exchange market). We are using exchange reported value if exchange reports a unique numeric trade id. If exchange reports trade id as a string we convert to numeric using Bijective mapping from exchange reported trade id's string. If exchange doesn't report unique ID we transform it using exchange reported data to form a unique value per market.
+      type: string
+    CandlePriceHigh:
+      description: The high price of the candle.
+      type: string
+      format: decimal
+    TradeTransactionId:
+      description: Swap transaction ID. Available for DeFi markets only.
+      type: string
+    LiquidationSide:
+      description: The market order side. "buy" means that an ask was removed from the book by an incoming buy order, "sell" means that a bid was removed from the book by an incoming sell order.
+      type: string
+    StreamingMarketTrade:
+      description: Market trade WebSocket message.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        coin_metrics_id:
+          $ref: '#/components/schemas/TradesCoinMetricsId'
+        amount:
+          $ref: '#/components/schemas/TradeAmount'
+        price:
+          $ref: '#/components/schemas/TradePrice'
+        side:
+          $ref: '#/components/schemas/TradeSide'
+        cm_sequence_id:
+          $ref: '#/components/schemas/cmSequenceId'
+        collect_time:
+          $ref: '#/components/schemas/TradeCollectTime'
+        block_hash:
+          $ref: '#/components/schemas/TradeBlockHash'
+        block_height:
+          $ref: '#/components/schemas/TradeBlockHeight'
+        txid:
+          $ref: '#/components/schemas/TradeTransactionId'
+        initiator:
+          $ref: '#/components/schemas/TradeInitiator'
+        sender:
+          $ref: '#/components/schemas/TradeSender'
+        beneficiary:
+          $ref: '#/components/schemas/TradeBeneficiary'
+        mark_price:
+          $ref: '#/components/schemas/TradeMarkPrice'
+        index_price:
+          $ref: '#/components/schemas/TradeIndexPrice'
+        iv_trade:
+          $ref: '#/components/schemas/TradeImpliedVolatility'
+        liquidation:
+          $ref: '#/components/schemas/TradeLiquidation'
+      required:
+      - market
+      - time
+      - coin_metrics_id
+      - amount
+      - price
+      - collect_time
+      - cm_sequence_id
+      type: object
+    StreamingIndexLevel:
+      allOf:
+      - $ref: '#/components/schemas/IndexLevel'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    TradeAmount:
+      description: The amount of the base asset traded.
+      type: string
+      format: decimal
+    Index:
+      description: Name of the index.
+      type: string
+    Signature:
+      description: The signature information.
+      type: string
+    TradeImpliedVolatility:
+      description: Implied volatility calculated from the trade price.
+      type: string
+      format: decimal
+    CandlePriceClose:
+      description: The closing price of the candle.
+      type: string
+      format: decimal
+    TradeSender:
+      description: Swap caller. Available for DeFi markets only.
+      type: string
+    VerificationIndexLevelValue:
+      description: The verification value of the index.
+      type: string
+      format: decimal
+    StreamingAggregatedSpreadQuote:
+      allOf:
+      - $ref: '#/components/schemas/AggregatedSpreadQuote'
+      - type: object
+        properties:
+          cm_sequence_id:
+            $ref: '#/components/schemas/cmSequenceId'
+        required:
+        - cm_sequence_id
+    TradeBlockHash:
+      description: Swap block hash. Available for DeFi markets only.
+      type: string
+    LiquidationType:
+      description: The liquidation type. "trade" means that liquidation was executed, "order" means that the order was placed for the liquidation at the timestamp of the data entry but it wasn't necessarily executed yet.
+      type: string
+    OrderBookType:
+      description: Type of the order book.
+      enum:
+      - snapshot
+      - update
+      type: string
+    LiquidationAmount:
+      description: The amount of the base asset liquidated.
+      type: string
+      format: decimal
+    QuoteBidPrice:
+      description: The limit price of the top bid on the order book. If no bids in the order book, the bid price is skipped.
+      type: string
+      format: decimal
+    MarketCandle:
+      description: Information about market candle.
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketId'
+        time:
+          $ref: '#/components/schemas/Time'
+        price_open:
+          $ref: '#/components/schemas/CandlePriceOpen'
+        price_close:
+          $ref: '#/components/schemas/CandlePriceClose'
+        price_high:
+          $ref: '#/components/schemas/CandlePriceHigh'
+        price_low:
+          $ref: '#/components/schemas/CandlePriceLow'
+        vwap:
+          $ref: '#/components/schemas/CandleVwap'
+        volume:
+          $ref: '#/components/schemas/CandleVolume'
+        candle_usd_volume:
+          $ref: '#/components/schemas/CandleUsdVolume'
+        candle_trades_count:
+          $ref: '#/components/schemas/CandleTradesCount'
+      type: object
+      required:
+      - market
+      - time
+      - price_open
+      - price_close
+      - price_high
+      - price_low
+      - vwap
+      - volume
+      - candle_usd_volume
+      - candle_trades_count
+    TradeInitiator:
+      description: Swap transaction initiator. Available for DeFi markets only.
+      type: string
+    OrderBookSize:
+      description: The size of the limit order on the order book in units of the base asset.
+      type: string
+      format: decimal
+    SettlementPriceEstimated:
+      description: The estimated price of the underlying asset.
+      type: string
+      format: decimal
+    MarketId:
+      description: Unique name of the market.
+      type: string
+    LiquidationPrice:
+      description: The price of the base asset quoted in the quote asset that the liquidation was executed at.
+      type: string
+      format: decimal
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

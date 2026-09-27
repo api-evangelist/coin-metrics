@@ -140,90 +140,20 @@ paths:
       - api_key: []
 components:
   schemas:
-    AssetId:
-      description: Unique name of the asset.
+    NextPageToken:
+      description: Token of the next page results for a given request.
       type: string
-    AssetProfileTokenGenerationEventSupply:
-      description: Asset's token generation event supply.
+    NetworkProfileSignificantHistoricalChangesDate:
+      description: Date of significant historical change.
       type: string
-    NetworkProfileRollupInfoRollupType:
-      description: Network rollup information.
+    AssetProfileVestingScheduleAllocation:
+      description: Vesting schedule allocation.
       type: string
-    NetworkProfileSignificantHistoricalChange:
-      type: object
-      properties:
-        date:
-          $ref: '#/components/schemas/NetworkProfileSignificantHistoricalChangesDate'
-        details:
-          $ref: '#/components/schemas/NetworkProfileSignificantHistoricalChangesDetails'
-    NetworkProfileFoundingTeamIdentity:
-      description: Network team identity.
+    NetworkProfileNetwork:
+      description: Network name.
       type: string
-    NetworkProfileTransactionFinality:
-      description: Network transaction finality.
-      type: string
-    AssetProfileInitialSupplyProjectDistribution:
-      type: object
-      properties:
-        initial_supply_allocation:
-          $ref: '#/components/schemas/AssetProfileInitialSupplyAllocation'
-        initial_supply_distribution:
-          $ref: '#/components/schemas/AssetProfileInitialSupplyDistribution'
-    AssetProfileBlogUpdates:
-      description: Asset's blog updates.
-      type: string
-    NextPageUrl:
-      description: URL of the next page results for a given request.
-      type: string
-    NetworkProfileRepositoryGithubRepository:
-      description: GitHub repository.
-      type: string
-    ProfileRepository:
-      type: string
-    AssetProfileUpgradeHistoryDetails:
-      description: Details about the upgrade.
-      type: string
-    AssetProfileOverview:
-      description: Overview of the asset.
-      type: string
-    AssetProfileFullName:
-      description: Full name of the asset.
-      type: string
-    NetworkProfileSignificantHistoricalChangesDetails:
-      description: Details about significant historical change.
-      type: string
-    NetworkProfileUpgradeHistory:
-      type: object
-      properties:
-        date:
-          $ref: '#/components/schemas/NetworkProfileUpgradeHistoryDate'
-        details:
-          $ref: '#/components/schemas/NetworkProfileUpgradeHistoryDetails'
-    NetworkProfileUpgradeHistoryDate:
+    AssetProfileUpgradeHistoryDate:
       description: Date of the upgrade.
-      type: string
-    NetworkProfileRepository:
-      description: Network profile repository.
-      type: object
-      properties:
-        github_repository:
-          $ref: '#/components/schemas/NetworkProfileRepositoryGithubRepository'
-        github_url:
-          $ref: '#/components/schemas/NetworkProfileRepositoryGithubUrl'
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
-    NetworkProfileSmartContractDeployment:
-      description: Network smart contract deployment.
       type: string
     AssetProfileInfo:
       description: Asset profile data.
@@ -318,37 +248,62 @@ components:
       - description
       - overview
       - creation_date
-    AssetProfileAssetRegulation:
-      description: Asset's regulation.
+    NetworkProfileRollupInfoRollupType:
+      description: Network rollup information.
       type: string
-    NetworkProfileNativeFeeToken:
-      description: Network native fee token.
+    NetworkProfileUpgradeHistory:
+      type: object
+      properties:
+        date:
+          $ref: '#/components/schemas/NetworkProfileUpgradeHistoryDate'
+        details:
+          $ref: '#/components/schemas/NetworkProfileUpgradeHistoryDetails'
+    NetworkProfileModularOrMonolithic:
+      description: Network modular or monolithic.
       type: string
-    AssetProfileVestingScheduleCliff:
-      description: Vesting schedule cliff.
+    AssetProfileInitialSupplyProjectDistribution:
+      type: object
+      properties:
+        initial_supply_allocation:
+          $ref: '#/components/schemas/AssetProfileInitialSupplyAllocation'
+        initial_supply_distribution:
+          $ref: '#/components/schemas/AssetProfileInitialSupplyDistribution'
+    AssetProfileInitialSupplyAllocation:
+      description: Initial supply allocation.
       type: string
-    NetworkProfileOverview:
-      description: Network overview.
-      type: string
-    AssetProfileAssetRegulatedProduct:
-      type: string
-    NetworkProfileProfileChainExplorer:
-      type: string
-    NetworkProfileConsensusMechanism:
-      description: Network consensus mechanism.
-      type: string
-    NetworkProfileUpgradeHistoryDetails:
-      description: Details about the upgrade.
-      type: string
-    NetworkProfileFoundation:
-      type: string
+      format: int64
     AssetProfileEtpCustodian:
       type: string
-    AssetProfileIssuanceScheduleChanges:
-      description: Issuance schedule changes.
+    AssetProfileWebsiteUrl:
+      description: Official website URL of the asset.
       type: string
-    AssetProfileWhitepaperUrl:
-      description: Official whitepaper URL of the asset.
+    NetworkProfileSignificantHistoricalChange:
+      type: object
+      properties:
+        date:
+          $ref: '#/components/schemas/NetworkProfileSignificantHistoricalChangesDate'
+        details:
+          $ref: '#/components/schemas/NetworkProfileSignificantHistoricalChangesDetails'
+    NetworkProfileFoundingTeamIdentity:
+      description: Network team identity.
+      type: string
+    AssetProfileCreationDate:
+      description: Date of the asset creation (first block) in ISO 8601 format.
+      type: string
+      format: date-time
+    AssetProfileTokenGenerationEventSupply:
+      description: Asset's token generation event supply.
+      type: string
+    AssetProfileUpgradeHistoryDetails:
+      description: Details about the upgrade.
+      type: string
+    NetworkProfileTransactionFinality:
+      description: Network transaction finality.
+      type: string
+    NetworkProfileAvailableClient:
+      type: string
+    AssetProfileFullName:
+      description: Full name of the asset.
       type: string
     AssetProfileSignificantHistoricalChanges:
       type: object
@@ -357,141 +312,13 @@ components:
           $ref: '#/components/schemas/AssetProfileSignificantHistoricalChangesDate'
         details:
           $ref: '#/components/schemas/AssetProfileSignificantHistoricalChangesDetails'
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    AssetProfileTokenPurpose:
+    AssetProfileBlogUpdates:
+      description: Asset's blog updates.
       type: string
-    AssetProfileProjectTeam:
-      description: Asset's project team.
-      type: string
-    NetworkProfileRollupInfoStateValidation:
-      description: Network state validation.
-      type: string
-    NetworkProfileModularOrMonolithic:
-      description: Network modular or monolithic.
-      type: string
-    NetworkProfileFullName:
-      description: Network full name.
-      type: string
-    AssetProfileVestingScheduleTotalUnlockTime:
-      description: Vesting schedule total unlock time.
-      type: string
-      format: date-time
     AssetProfileSupplyCap:
       description: Supply cap of the asset. If not present then the theoretical maximum supply is infinite for that asset.
       type: string
       format: int64
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
-    NetworkProfileHashingAlgorithm:
-      description: Network hashing algorithm.
-      type: string
-    AssetProfileBridgedNetwork:
-      type: string
-    AssetProfileVestingScheduleAllocation:
-      description: Vesting schedule allocation.
-      type: string
-    NetworkProfileRollupInfo:
-      description: Network rollup information.
-      type: object
-      properties:
-        rollup_type:
-          $ref: '#/components/schemas/NetworkProfileRollupInfoRollupType'
-        state_validation:
-          $ref: '#/components/schemas/NetworkProfileRollupInfoStateValidation'
-    AssetProfileNewTokenIssuanceRecipient:
-      description: Token issuance recipient.
-      type: string
-    AssetProfilesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/AssetProfileInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    AssetProfileDescription:
-      description: Description of the asset.
-      type: string
-    NetworkProfileAvailableClient:
-      type: string
-    NetworkProfileTypeOfNetwork:
-      description: Type of network.
-      type: string
-    AssetProfileUpgradeHistory:
-      type: object
-      properties:
-        date:
-          $ref: '#/components/schemas/AssetProfileUpgradeHistoryDate'
-        details:
-          $ref: '#/components/schemas/AssetProfileUpgradeHistoryDetails'
-    AssetProfileSignificantHistoricalChangesDate:
-      description: Date of significant historical change.
-      type: string
-    NetworkProfileRepositoryGithubUrl:
-      description: GitHub repository URL.
-      type: string
-    AssetProfileCreationDate:
-      description: Date of the asset creation (first block) in ISO 8601 format.
-      type: string
-      format: date-time
-    AssetProfileWebsiteUrl:
-      description: Official website URL of the asset.
-      type: string
-    AssetProfileInitialSupplyAllocation:
-      description: Initial supply allocation.
-      type: string
-      format: int64
-    NetworkProfileTransactionVisibility:
-      description: Network transaction visibility.
-      type: string
-    AssetProfileIssuingNetwork:
-      type: string
-    NetworkProfileNetwork:
-      description: Network name.
-      type: string
-    NetworkProfileSignificantHistoricalChangesDate:
-      description: Date of significant historical change.
-      type: string
-    NetworkProfilesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/NetworkProfileInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    AssetProfileSignificantHistoricalChangesDetails:
-      description: Details about significant historical change.
-      type: string
-    NetworkProfileNetworkScalingSolution:
-      description: Network scaling solution.
-      type: string
-    AssetProfileVestingSchedule:
-      type: object
-      properties:
-        vesting_schedule_allocation:
-          $ref: '#/components/schemas/AssetProfileVestingScheduleAllocation'
-        vesting_schedule_cliff:
-          $ref: '#/components/schemas/AssetProfileVestingScheduleCliff'
-        vesting_schedule_total_unlock_time:
-          $ref: '#/components/schemas/AssetProfileVestingScheduleTotalUnlockTime'
     NetworkProfileInfo:
       description: Network profile data.
       properties:
@@ -561,90 +388,188 @@ components:
       - full_name
       - network
       - modular_or_monolithic
-    AssetProfileInitialSupplyDistribution:
-      description: Initial supply distribution.
+    NetworkProfileFoundation:
       type: string
+    NetworkProfileSmartContractDeployment:
+      description: Network smart contract deployment.
+      type: string
+    NetworkProfileNativeFeeToken:
+      description: Network native fee token.
+      type: string
+    AssetProfileWhitepaperUrl:
+      description: Official whitepaper URL of the asset.
+      type: string
+    AssetProfileVestingScheduleCliff:
+      description: Vesting schedule cliff.
+      type: string
+    NetworkProfileTransactionVisibility:
+      description: Network transaction visibility.
+      type: string
+    AssetProfileBridgedNetwork:
+      type: string
+    NetworkProfileUpgradeHistoryDetails:
+      description: Details about the upgrade.
+      type: string
+    NetworkProfileNetworkScalingSolution:
+      description: Network scaling solution.
+      type: string
+    NetworkProfileSignificantHistoricalChangesDetails:
+      description: Details about significant historical change.
+      type: string
+    ProfileRepository:
+      type: string
+    NetworkProfileRollupInfoStateValidation:
+      description: Network state validation.
+      type: string
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    NetworkProfileConsensusMechanism:
+      description: Network consensus mechanism.
+      type: string
+    NetworkProfileRepositoryGithubRepository:
+      description: GitHub repository.
+      type: string
+    NetworkProfileFullName:
+      description: Network full name.
+      type: string
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    AssetProfileAssetRegulation:
+      description: Asset's regulation.
+      type: string
+    AssetProfileSignificantHistoricalChangesDetails:
+      description: Details about significant historical change.
+      type: string
+    AssetProfileUpgradeHistory:
+      type: object
+      properties:
+        date:
+          $ref: '#/components/schemas/AssetProfileUpgradeHistoryDate'
+        details:
+          $ref: '#/components/schemas/AssetProfileUpgradeHistoryDetails'
+    NetworkProfileOverview:
+      description: Network overview.
+      type: string
+    AssetProfileProjectTeam:
+      description: Asset's project team.
+      type: string
+    AssetProfileNewTokenIssuanceRecipient:
+      description: Token issuance recipient.
+      type: string
+    AssetId:
+      description: Unique name of the asset.
+      type: string
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    AssetProfileIssuingNetwork:
+      type: string
+    NetworkProfilesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/NetworkProfileInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    NetworkProfileTypeOfNetwork:
+      description: Type of network.
+      type: string
+    AssetProfileVestingSchedule:
+      type: object
+      properties:
+        vesting_schedule_allocation:
+          $ref: '#/components/schemas/AssetProfileVestingScheduleAllocation'
+        vesting_schedule_cliff:
+          $ref: '#/components/schemas/AssetProfileVestingScheduleCliff'
+        vesting_schedule_total_unlock_time:
+          $ref: '#/components/schemas/AssetProfileVestingScheduleTotalUnlockTime'
     AssetProfileFoundation:
       description: Asset foundation.
       type: string
-    AssetProfileUpgradeHistoryDate:
+    AssetProfileInitialSupplyDistribution:
+      description: Initial supply distribution.
+      type: string
+    AssetProfileAssetRegulatedProduct:
+      type: string
+    NetworkProfileUpgradeHistoryDate:
       description: Date of the upgrade.
       type: string
-  parameters:
-    PagingFromWithStartByDefault:
-      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: paging_from
-      schema:
-        default: start
-        enum:
-        - start
-        - end
-        type: string
-        format: PagingFrom
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    NetworkProfileNetworks:
-      description: Comma separated list of networks.<br/> By default profile data for all networks is returned. Mutually exclusive with `full_names` parameter.
-      in: query
-      name: networks
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    AssetProfileAssetIds:
-      description: Comma separated list of asset ids.<br/> By default profile data for all assets is returned. Mutually exclusive with `full_names` parameter.
-      in: query
-      name: assets
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    AssetProfileFullNames:
-      description: Comma separated list of asset full names.<br/> By default profile data for all assets is returned. Mutually exclusive with `assets` parameter.
-      in: query
-      name: full_names
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    NetworkProfileFullNames:
-      description: Comma separated list of network full names.<br/> By default profile data for all networks is returned. Mutually exclusive with `networks` parameter.
-      in: query
-      name: full_names
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
+    NetworkProfileRepository:
+      description: Network profile repository.
+      type: object
+      properties:
+        github_repository:
+          $ref: '#/components/schemas/NetworkProfileRepositoryGithubRepository'
+        github_url:
+          $ref: '#/components/schemas/NetworkProfileRepositoryGithubUrl'
+    AssetProfileIssuanceScheduleChanges:
+      description: Issuance schedule changes.
+      type: string
+    NetworkProfileRollupInfo:
+      description: Network rollup information.
+      type: object
+      properties:
+        rollup_type:
+          $ref: '#/components/schemas/NetworkProfileRollupInfoRollupType'
+        state_validation:
+          $ref: '#/components/schemas/NetworkProfileRollupInfoStateValidation'
+    AssetProfileDescription:
+      description: Description of the asset.
+      type: string
+    NetworkProfileRepositoryGithubUrl:
+      description: GitHub repository URL.
+      type: string
+    AssetProfileOverview:
+      description: Overview of the asset.
+      type: string
+    AssetProfileTokenPurpose:
+      type: string
+    NetworkProfileHashingAlgorithm:
+      description: Network hashing algorithm.
+      type: string
+    NetworkProfileProfileChainExplorer:
+      type: string
+    AssetProfilesResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AssetProfileInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    AssetProfileSignificantHistoricalChangesDate:
+      description: Date of significant historical change.
+      type: string
+    AssetProfileVestingScheduleTotalUnlockTime:
+      description: Vesting schedule total unlock time.
+      type: string
+      format: date-time
   responses:
     Forbidden:
       content:
@@ -656,73 +581,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
       description: Requested resource is not available with supplied credentials.
-    NetworkProfiles:
-      description: Network profiles data.
-      content:
-        application/json:
-          example:
-            data:
-            - full_name: Solana
-              network: sol
-              modular_or_monolithic: Monolithic
-              overview: Solana (SOL) is a smart contract compatible layer one blockchain that supports high speed transactions using a proof-of-history consensus mechanism. Solana was built to support high frequency blockchain applications by addressing scalability, decentralization, and cost issues. Solana is capable of executing 65,000 transactions per second and 400 ms block times using a proof-of-history consensus protocol. Nodes on the blockchain often struggle to determine an accurate timeline of events due to issues of latency and slow network speeds. Solana is able to create a synchronized clock for each node using a variable delay function with a fixed runtime and verifiable solution ultimately creating the proof-of-history consensus mechanism. Solana’s Tower Byzantine Fault Tolerance (BFT) Consensus Mechanism utilizes proof-of-history to latency and increase speeds. BFT ensures more efficient finality because once two-thirds of the validators have agreed on a certain order of events the timeline is finalized. The Solana main chain uses proof-of-delegated stake where SOL holders can stake themselves or delegate to a validator and earn passive returns.
-              consensus_mechanism: 'Proof-of-Stake: Proof-of-History'
-              hashing_algorithm: SHA256
-              transaction_finality: No Fixed Finality Threshold
-              available_clients:
-              - Rust Client
-              smart_contract_deployment: Permissionless
-              foundation:
-              - 'Solana Foundation: Non-profit foundation focused on decentralizing the network by providing grants, validator delegations, and server programs'
-              - 'Solana Labs: Organization building and implementing products and tooling to expand the Solana ecosystem'
-              founding_team_identity: Known
-              repository:
-              - github_repository: Solana Core
-                github_url: github.com/solana-labs/solana
-              transaction_visibility: Visible
-              native_fee_token: SOL
-              significant_historical_changes:
-              - date: '2020-10-07'
-                details: Solana announced its integration with Wormhole to support cross-chain message and asset transfers with Ethereum
-              - date: '2022-12-13'
-                details: Solana made its QUIC implementation the official message propogation standard for transactions in upgrade 1.13.4
-              - date: '2024-01-24'
-                details: Solana's Token Extensions program was released to increase token customizability for issuers
-              rollup_info:
-              - rollup_type: N/A
-                state_validation: N/A
-              network_scaling_solution: 'true'
-              type_of_network: Blockchain
-              chain_explorers:
-              - https://solscan.io/
-              - https://explorer.solana.com/
-              - https://solanabeach.io/
-              - https://solana.fm/
-            next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/profile/networks?api_key=<your_key>&pretty=true&next_page_token=ZXRo
-          schema:
-            $ref: '#/components/schemas/NetworkProfilesResponse'
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
     AssetProfiles:
       description: Asset profiles data.
       content:
@@ -782,6 +640,148 @@ components:
             next_page_url: https://api.coinmetrics.io/v4/profile/assets?api_key=<your_key>&pretty=true&next_page_token=YnRj
           schema:
             $ref: '#/components/schemas/AssetProfilesResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NetworkProfiles:
+      description: Network profiles data.
+      content:
+        application/json:
+          example:
+            data:
+            - full_name: Solana
+              network: sol
+              modular_or_monolithic: Monolithic
+              overview: Solana (SOL) is a smart contract compatible layer one blockchain that supports high speed transactions using a proof-of-history consensus mechanism. Solana was built to support high frequency blockchain applications by addressing scalability, decentralization, and cost issues. Solana is capable of executing 65,000 transactions per second and 400 ms block times using a proof-of-history consensus protocol. Nodes on the blockchain often struggle to determine an accurate timeline of events due to issues of latency and slow network speeds. Solana is able to create a synchronized clock for each node using a variable delay function with a fixed runtime and verifiable solution ultimately creating the proof-of-history consensus mechanism. Solana’s Tower Byzantine Fault Tolerance (BFT) Consensus Mechanism utilizes proof-of-history to latency and increase speeds. BFT ensures more efficient finality because once two-thirds of the validators have agreed on a certain order of events the timeline is finalized. The Solana main chain uses proof-of-delegated stake where SOL holders can stake themselves or delegate to a validator and earn passive returns.
+              consensus_mechanism: 'Proof-of-Stake: Proof-of-History'
+              hashing_algorithm: SHA256
+              transaction_finality: No Fixed Finality Threshold
+              available_clients:
+              - Rust Client
+              smart_contract_deployment: Permissionless
+              foundation:
+              - 'Solana Foundation: Non-profit foundation focused on decentralizing the network by providing grants, validator delegations, and server programs'
+              - 'Solana Labs: Organization building and implementing products and tooling to expand the Solana ecosystem'
+              founding_team_identity: Known
+              repository:
+              - github_repository: Solana Core
+                github_url: github.com/solana-labs/solana
+              transaction_visibility: Visible
+              native_fee_token: SOL
+              significant_historical_changes:
+              - date: '2020-10-07'
+                details: Solana announced its integration with Wormhole to support cross-chain message and asset transfers with Ethereum
+              - date: '2022-12-13'
+                details: Solana made its QUIC implementation the official message propogation standard for transactions in upgrade 1.13.4
+              - date: '2024-01-24'
+                details: Solana's Token Extensions program was released to increase token customizability for issuers
+              rollup_info:
+              - rollup_type: N/A
+                state_validation: N/A
+              network_scaling_solution: 'true'
+              type_of_network: Blockchain
+              chain_explorers:
+              - https://solscan.io/
+              - https://explorer.solana.com/
+              - https://solanabeach.io/
+              - https://solana.fm/
+            next_page_token: ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/profile/networks?api_key=<your_key>&pretty=true&next_page_token=ZXRo
+          schema:
+            $ref: '#/components/schemas/NetworkProfilesResponse'
+  parameters:
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    NetworkProfileFullNames:
+      description: Comma separated list of network full names.<br/> By default profile data for all networks is returned. Mutually exclusive with `networks` parameter.
+      in: query
+      name: full_names
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    NetworkProfileNetworks:
+      description: Comma separated list of networks.<br/> By default profile data for all networks is returned. Mutually exclusive with `full_names` parameter.
+      in: query
+      name: networks
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    AssetProfileFullNames:
+      description: Comma separated list of asset full names.<br/> By default profile data for all assets is returned. Mutually exclusive with `assets` parameter.
+      in: query
+      name: full_names
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    AssetProfileAssetIds:
+      description: Comma separated list of asset ids.<br/> By default profile data for all assets is returned. Mutually exclusive with `full_names` parameter.
+      in: query
+      name: assets
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    PagingFromWithStartByDefault:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: start
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

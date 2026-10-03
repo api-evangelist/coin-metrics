@@ -86,14 +86,13 @@ paths:
       - api_key: []
 components:
   schemas:
-    TaxonomyMetadataSubsectorClassId:
-      description: Taxonomy metadata subsector class identifier.
-      type: string
-    TaxonomyMetadataSubsectorSectorId:
-      description: Taxonomy metadata sector identifier.
-      type: string
-    NextPageUrl:
-      description: URL of the next page results for a given request.
+    TaxonomyMetadataSubsectors:
+      description: Taxonomy metadata subsectors.
+      items:
+        $ref: '#/components/schemas/TaxonomyMetadataSubsector'
+      type: array
+    TaxonomyMetadataSubsectorSector:
+      description: Taxonomy metadata sector name.
       type: string
     NextPageToken:
       description: Token of the next page results for a given request.
@@ -108,65 +107,6 @@ components:
     TaxonomyMetadataSubsectorSubsectorId:
       description: Taxonomy metadata subsector identifier.
       type: string
-    TaxonomyMetadataSubsectorSector:
-      description: Taxonomy metadata sector name.
-      type: string
-    TaxonomyMetadataSubsectorClass:
-      description: Taxonomy metadata subsector class name.
-      type: string
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    TaxonomyMetadataAssetsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/TaxonomyMetadataAsset'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    TaxonomyMetadataSubsectors:
-      description: Taxonomy metadata subsectors.
-      items:
-        $ref: '#/components/schemas/TaxonomyMetadataSubsector'
-      type: array
-    TaxonomyMetadataSubsector:
-      description: Taxonomy metadata subsector.
-      properties:
-        class_id:
-          $ref: '#/components/schemas/TaxonomyMetadataSubsectorClassId'
-        class:
-          $ref: '#/components/schemas/TaxonomyMetadataSubsectorClass'
-        sector_id:
-          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSectorId'
-        sector:
-          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSector'
-        subsector_id:
-          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSubsectorId'
-        subsector:
-          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSubsector'
-      type: object
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
     TaxonomyMetadataAsset:
       description: Information about taxonomy metadata of the assets.
       properties:
@@ -183,6 +123,51 @@ components:
       - taxonomy_version
       - taxonomy_start_time
       - subsectors
+    TaxonomyMetadataSubsectorClass:
+      description: Taxonomy metadata subsector class name.
+      type: string
+    TaxonomyMetadataAssetsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/TaxonomyMetadataAsset'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    TaxonomyMetadataSubsector:
+      description: Taxonomy metadata subsector.
+      properties:
+        class_id:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorClassId'
+        class:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorClass'
+        sector_id:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSectorId'
+        sector:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSector'
+        subsector_id:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSubsectorId'
+        subsector:
+          $ref: '#/components/schemas/TaxonomyMetadataSubsectorSubsector'
+      type: object
+    TaxonomyMetadataSubsectorSectorId:
+      description: Taxonomy metadata sector identifier.
+      type: string
     TaxonomyVersion:
       description: This field is obsolete and will be removed in future releases in favor to `updated_at_taxonomy_version` field.
       type: string
@@ -190,6 +175,91 @@ components:
       description: Taxonomy version's start time.
       type: string
       format: date-time
+    TaxonomyMetadataSubsectorClassId:
+      description: Taxonomy metadata subsector class identifier.
+      type: string
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+  parameters:
+    TaxonomyVersionStartTime:
+      description: 'Start time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
+      in: query
+      name: start_time
+      required: false
+      schema:
+        type: string
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    TaxonomyVersion:
+      description: Taxonomy version. Defaults to `latest` when no `*_time` parameters specified. Specify asterisk `*` in order to get all versions.
+      in: query
+      name: version
+      required: false
+      schema:
+        type: string
+    PagingFromWithStartByDefault:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: start
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    TaxonomyVersionEndTime:
+      description: 'End time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
+      in: query
+      name: end_time
+      required: false
+      schema:
+        type: string
+    StartInclusive:
+      description: Inclusive or exclusive corresponding `start_*` parameters.
+      in: query
+      name: start_inclusive
+      schema:
+        default: true
+        type: boolean
+    EndInclusive:
+      description: Inclusive or exclusive corresponding `end_*` parameters.
+      in: query
+      name: end_inclusive
+      schema:
+        default: true
+        type: boolean
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
   responses:
     Forbidden:
       content:
@@ -201,6 +271,25 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
       description: Requested resource is not available with supplied credentials.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     TaxonomyMetadataAssets:
       description: Assets' taxonomy metadata.
       content:
@@ -235,95 +324,6 @@ components:
             $ref: '#/components/schemas/TaxonomyMetadataAssetsResponse'
     UriTooLong:
       description: Provided URI is too long. It must not be greater than 10000 symbols.
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    EndInclusive:
-      description: Inclusive or exclusive corresponding `end_*` parameters.
-      in: query
-      name: end_inclusive
-      schema:
-        default: true
-        type: boolean
-    TaxonomyVersionEndTime:
-      description: 'End time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
-      in: query
-      name: end_time
-      required: false
-      schema:
-        type: string
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    PagingFromWithStartByDefault:
-      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: paging_from
-      schema:
-        default: start
-        enum:
-        - start
-        - end
-        type: string
-        format: PagingFrom
-    StartInclusive:
-      description: Inclusive or exclusive corresponding `start_*` parameters.
-      in: query
-      name: start_inclusive
-      schema:
-        default: true
-        type: boolean
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
-    TaxonomyVersionStartTime:
-      description: 'Start time of taxonomy version.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/>'
-      in: query
-      name: start_time
-      required: false
-      schema:
-        type: string
-    TaxonomyVersion:
-      description: Taxonomy version. Defaults to `latest` when no `*_time` parameters specified. Specify asterisk `*` in order to get all versions.
-      in: query
-      name: version
-      required: false
-      schema:
-        type: string
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

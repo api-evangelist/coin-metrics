@@ -200,115 +200,35 @@ paths:
       - api_key: []
 components:
   schemas:
-    BlockchainNumberOfCredits:
-      description: Number of credits.
-      type: string
-      format: int64
-    BlockchainBalanceChange:
-      description: Balance change.
-      type: string
-      format: decimal
-    BlockchainBlockTransactionInfoV2:
-      properties:
-        txid:
-          $ref: '#/components/schemas/BlockchainTransactionId'
-        consensus_time:
-          $ref: '#/components/schemas/Time'
-        miner_time:
-          $ref: '#/components/schemas/Time'
-        tx_position:
-          $ref: '#/components/schemas/BlockchainTransactionPosition'
-        min_chain_sequence_number:
-          $ref: '#/components/schemas/BlockchainChainSequenceNumber'
-        max_chain_sequence_number:
-          $ref: '#/components/schemas/BlockchainChainSequenceNumber'
-        n_balance_updates:
-          $ref: '#/components/schemas/BlockchainNumberOfBalanceUpdates'
-        amount:
-          $ref: '#/components/schemas/BlockchainTransactionAmount'
-        stale:
-          $ref: '#/components/schemas/BlockchainStaleBlock'
-      required:
-      - txid
-      - consensus_time
-      - tx_position
-      - n_balance_updates
-      - amount
-    BlockchainTransactionSequenceNumber:
-      description: It is used to order balance updates inside a single transaction to distinguish between serial and parallel balance updates.
-      type: string
-      format: int64
-    BlockchainDenomination:
-      description: The denomination of the asset transacted. Only set if not the same as the asset being queried.
-      type: string
-    BlockchainRebasingDenominator:
-      description: This field represents the denominator of the rebasing coefficient at the time of the update. This value is omitted from responses if equal to the default value of '1'.
-      type: string
-      format: decimal
     BlockchainStaleBlock:
       description: This field is set to true if the corresponding block is stale. Otherwise omitted.
       type: string
-    BlockchainTransactionPosition:
-      description: Transaction position.
-      type: string
-      format: int64
-    BlockchainRebasingRoundingMode:
-      description: 'This field represents the rounding mode used when converting tokens to shares using the rebasing coefficient at the time of the update. The possible values are: `UP`, `DOWN`, `HALF_UP`. This value is omitted from responses if equal to the default value of `DOWN`.'
+    BlockchainSubAccount:
+      description: Sub-account id.
       type: string
     BlockchainTransactionAmount:
       description: Sum of all debits in the transaction.
-      type: string
-      format: decimal
-    BlockchainTransactionConsensusSize:
-      description: Consensus size of the transaction.
       type: string
       format: decimal
     BlockchainBlockDifficulty:
       description: Difficulty of the block.
       type: string
       format: decimal
-    BlockchainAccountBalance:
-      description: Balance of the account.
+    BlockchainRebasingRoundingMode:
+      description: 'This field represents the rounding mode used when converting tokens to shares using the rebasing coefficient at the time of the update. The possible values are: `UP`, `DOWN`, `HALF_UP`. This value is omitted from responses if equal to the default value of `DOWN`.'
       type: string
-      format: decimal
-    BlockchainAccount:
-      description: Account id.
+    BlockchainNumberOfBalanceUpdates:
+      description: Number of balance updates.
       type: string
+      format: int64
+    BlockchainNumberOfDebits:
+      description: Number of debits.
+      type: string
+      format: int64
     BlockchainTotalReceived:
       description: Total amount received.
       type: string
       format: decimal
-    BlockchainBlockNonce:
-      description: Nonce of the block, hex-encoded.
-      type: string
-    BlockchainFullTransactionResponseV2:
-      allOf:
-      - $ref: '#/components/schemas/BlockchainBlockTransactionInfoV2'
-      - type: object
-        description: Blockchain full transaction response.
-        properties:
-          balance_updates:
-            $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
-    BlockchainTransactionBalanceUpdatesV2:
-      type: array
-      items:
-        $ref: '#/components/schemas/BlockchainTransactionBalanceUpdateV2'
-    BlockchainChainSequenceNumber:
-      description: Chain sequence number.
-      type: string
-      format: int64
-    BlockchainBlockConsensusSize:
-      description: Consensus size of the block.
-      type: string
-      format: int64
-    Time:
-      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
-      type: string
-      format: date-time
-    BlockchainFullTransactionsV2:
-      type: array
-      items:
-        $ref: '#/components/schemas/BlockchainFullTransactionResponseV2'
     BlockchainFullSingleTransactionResponseV2:
       allOf:
       - $ref: '#/components/schemas/BlockchainTransactionInfoV2'
@@ -317,24 +237,57 @@ components:
         properties:
           balance_updates:
             $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
+    BlockchainBlockHash:
+      description: Hash of the block.
+      type: string
     BlockchainTransactionFee:
       description: Fee of the transaction.
       type: string
       format: decimal
-    BlockchainTransactionPhysicalSize:
-      description: Physical size of the transaction, bytes.
+    BlockchainBalanceUpdateSubAccount:
+      properties:
+        sub_account:
+          $ref: '#/components/schemas/BlockchainSubAccount'
+        previous_balance:
+          $ref: '#/components/schemas/BlockchainAccountBalance'
+        new_balance:
+          $ref: '#/components/schemas/BlockchainAccountBalance'
+        n_debits:
+          $ref: '#/components/schemas/BlockchainNumberOfDebits'
+        n_credits:
+          $ref: '#/components/schemas/BlockchainNumberOfCredits'
+        previous_credit_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        previous_debit_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        previous_chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainTransactionSequenceNumber'
+        total_received:
+          $ref: '#/components/schemas/BlockchainTotalReceived'
+        total_sent:
+          $ref: '#/components/schemas/BlockchainTotalSent'
+        creation_height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+      required:
+      - chain_sequence_number
+      - account
+      - account_creation_height
+      - change
+      - transaction_sequence_number
+      - previous_n_debits
+      - previous_n_credits
+    BlockchainRebasingNumerator:
+      description: This field represents the numerator of the rebasing coefficient at the time of the update. This value is omitted from responses if equal to the default value of '1'.
       type: string
       format: decimal
-    BlockchainBlockPhysicalSize:
-      description: Physical size of the block, bytes.
+    BlockchainBlockNonce:
+      description: Nonce of the block, hex-encoded.
       type: string
-      format: int64
-    BlockchainTotalSent:
-      description: Total amount sent.
+    BlockchainBlockExtraData:
+      description: Extra data of the block, hex-encoded.
       type: string
-      format: decimal
-    BlockchainBlockConsensusSizeLimit:
-      description: Consensus size limit of the block.
+    BlockchainBlockHeight:
+      description: Height of the block.
       type: string
       format: int64
     BlockchainTransactionInfoV2:
@@ -359,13 +312,139 @@ components:
         required:
         - block_hash
         - height
+    BlockchainTransactionPosition:
+      description: Transaction position.
+      type: string
+      format: int64
+    BlockchainTransactionConsensusSize:
+      description: Consensus size of the transaction.
+      type: string
+      format: decimal
+    BlockchainTransactionVersion:
+      description: Version of the transaction.
+      type: string
+    BlockchainFullTransactionResponseV2:
+      allOf:
+      - $ref: '#/components/schemas/BlockchainBlockTransactionInfoV2'
+      - type: object
+        description: Blockchain full transaction response.
+        properties:
+          balance_updates:
+            $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
+    BlockchainBlockConsensusSizeLimit:
+      description: Consensus size limit of the block.
+      type: string
+      format: int64
+    BlockchainChainSequenceNumber:
+      description: Chain sequence number.
+      type: string
+      format: int64
+    BlockchainDenomination:
+      description: The denomination of the asset transacted. Only set if not the same as the asset being queried.
+      type: string
+    BlockchainAccountBalance:
+      description: Balance of the account.
+      type: string
+      format: decimal
+    BlockchainBlockPhysicalSize:
+      description: Physical size of the block, bytes.
+      type: string
+      format: int64
+    BlockchainBlockConsensusSize:
+      description: Consensus size of the block.
+      type: string
+      format: int64
+    BlockchainTransactionBalanceUpdatesV2:
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainTransactionBalanceUpdateV2'
     BlockchainBlockVersion:
       description: Version of the block.
       type: string
-    BlockchainNumberOfDebits:
-      description: Number of debits.
+    BlockchainTransactionSequenceNumber:
+      description: It is used to order balance updates inside a single transaction to distinguish between serial and parallel balance updates.
       type: string
       format: int64
+    BlockchainTotalSent:
+      description: Total amount sent.
+      type: string
+      format: decimal
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    BlockchainBlockInfoV2:
+      properties:
+        block_hash:
+          $ref: '#/components/schemas/BlockchainBlockHash'
+        parent_block_hash:
+          $ref: '#/components/schemas/BlockchainBlockHash'
+        height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        consensus_time:
+          $ref: '#/components/schemas/Time'
+        miner_time:
+          $ref: '#/components/schemas/Time'
+        nonce:
+          $ref: '#/components/schemas/BlockchainBlockNonce'
+        extra_data:
+          $ref: '#/components/schemas/BlockchainBlockExtraData'
+        n_transactions:
+          $ref: '#/components/schemas/BlockchainNumberOfTransactions'
+        n_balance_updates:
+          $ref: '#/components/schemas/BlockchainNumberOfBalanceUpdates'
+        version:
+          $ref: '#/components/schemas/BlockchainBlockVersion'
+        difficulty:
+          $ref: '#/components/schemas/BlockchainBlockDifficulty'
+        physical_size:
+          $ref: '#/components/schemas/BlockchainBlockPhysicalSize'
+        consensus_size:
+          $ref: '#/components/schemas/BlockchainBlockConsensusSize'
+        consensus_size_limit:
+          $ref: '#/components/schemas/BlockchainBlockConsensusSizeLimit'
+        stale:
+          $ref: '#/components/schemas/BlockchainStaleBlock'
+      required:
+      - block_hash
+      - height
+      - consensus_time
+      - export_time
+      - miner_time
+      - n_transactions
+      - n_balance_updates
+    BlockchainFullBlockResponseV2:
+      allOf:
+      - $ref: '#/components/schemas/BlockchainBlockInfoV2'
+      - type: object
+        description: Blockchain full block response.
+        properties:
+          transactions:
+            $ref: '#/components/schemas/BlockchainFullTransactionsV2'
+          balance_updates:
+            $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
+    BlockchainTransactionPhysicalSize:
+      description: Physical size of the transaction, bytes.
+      type: string
+      format: decimal
+    BlockchainNumberOfTransactions:
+      description: Number of transactions.
+      type: string
+      format: int64
+    BlockchainBalanceChange:
+      description: Balance change.
+      type: string
+      format: decimal
+    BlockchainAccount:
+      description: Account id.
+      type: string
+    BlockchainFullTransactionsV2:
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainFullTransactionResponseV2'
     BlockchainTransactionBalanceUpdateV2:
       properties:
         chain_sequence_number:
@@ -414,44 +493,47 @@ components:
       - transaction_sequence_number
       - n_debits
       - n_credits
+    BlockchainRebasingDenominator:
+      description: This field represents the denominator of the rebasing coefficient at the time of the update. This value is omitted from responses if equal to the default value of '1'.
+      type: string
+      format: decimal
     BlockchainTransactionId:
       description: Identifier (txid) of the transaction.
       type: string
-    BlockchainFullBlockResponseV2:
-      allOf:
-      - $ref: '#/components/schemas/BlockchainBlockInfoV2'
-      - type: object
-        description: Blockchain full block response.
-        properties:
-          transactions:
-            $ref: '#/components/schemas/BlockchainFullTransactionsV2'
-          balance_updates:
-            $ref: '#/components/schemas/BlockchainTransactionBalanceUpdatesV2'
-    BlockchainRebasingNumerator:
-      description: This field represents the numerator of the rebasing coefficient at the time of the update. This value is omitted from responses if equal to the default value of '1'.
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
       type: string
-      format: decimal
-    BlockchainNumberOfTransactions:
-      description: Number of transactions.
+      format: date-time
+    BlockchainNumberOfCredits:
+      description: Number of credits.
       type: string
       format: int64
-    BlockchainTransactionVersion:
-      description: Version of the transaction.
-      type: string
-    ErrorResponse:
+    BlockchainBlockTransactionInfoV2:
       properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
+        txid:
+          $ref: '#/components/schemas/BlockchainTransactionId'
+        consensus_time:
+          $ref: '#/components/schemas/Time'
+        miner_time:
+          $ref: '#/components/schemas/Time'
+        tx_position:
+          $ref: '#/components/schemas/BlockchainTransactionPosition'
+        min_chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainChainSequenceNumber'
+        max_chain_sequence_number:
+          $ref: '#/components/schemas/BlockchainChainSequenceNumber'
+        n_balance_updates:
+          $ref: '#/components/schemas/BlockchainNumberOfBalanceUpdates'
+        amount:
+          $ref: '#/components/schemas/BlockchainTransactionAmount'
+        stale:
+          $ref: '#/components/schemas/BlockchainStaleBlock'
       required:
-      - error
-      type: object
-    BlockchainNumberOfBalanceUpdates:
-      description: Number of balance updates.
-      type: string
-      format: int64
-    BlockchainBlockHash:
-      description: Hash of the block.
-      type: string
+      - txid
+      - consensus_time
+      - tx_position
+      - n_balance_updates
+      - amount
     ErrorObject:
       properties:
         type:
@@ -464,100 +546,11 @@ components:
       - type
       - description
       type: object
-    BlockchainBlockExtraData:
-      description: Extra data of the block, hex-encoded.
-      type: string
-    BlockchainBlockInfoV2:
-      properties:
-        block_hash:
-          $ref: '#/components/schemas/BlockchainBlockHash'
-        parent_block_hash:
-          $ref: '#/components/schemas/BlockchainBlockHash'
-        height:
-          $ref: '#/components/schemas/BlockchainBlockHeight'
-        consensus_time:
-          $ref: '#/components/schemas/Time'
-        miner_time:
-          $ref: '#/components/schemas/Time'
-        nonce:
-          $ref: '#/components/schemas/BlockchainBlockNonce'
-        extra_data:
-          $ref: '#/components/schemas/BlockchainBlockExtraData'
-        n_transactions:
-          $ref: '#/components/schemas/BlockchainNumberOfTransactions'
-        n_balance_updates:
-          $ref: '#/components/schemas/BlockchainNumberOfBalanceUpdates'
-        version:
-          $ref: '#/components/schemas/BlockchainBlockVersion'
-        difficulty:
-          $ref: '#/components/schemas/BlockchainBlockDifficulty'
-        physical_size:
-          $ref: '#/components/schemas/BlockchainBlockPhysicalSize'
-        consensus_size:
-          $ref: '#/components/schemas/BlockchainBlockConsensusSize'
-        consensus_size_limit:
-          $ref: '#/components/schemas/BlockchainBlockConsensusSizeLimit'
-        stale:
-          $ref: '#/components/schemas/BlockchainStaleBlock'
-      required:
-      - block_hash
-      - height
-      - consensus_time
-      - export_time
-      - miner_time
-      - n_transactions
-      - n_balance_updates
-    BlockchainBalanceUpdateSubAccount:
-      properties:
-        sub_account:
-          $ref: '#/components/schemas/BlockchainSubAccount'
-        previous_balance:
-          $ref: '#/components/schemas/BlockchainAccountBalance'
-        new_balance:
-          $ref: '#/components/schemas/BlockchainAccountBalance'
-        n_debits:
-          $ref: '#/components/schemas/BlockchainNumberOfDebits'
-        n_credits:
-          $ref: '#/components/schemas/BlockchainNumberOfCredits'
-        previous_credit_height:
-          $ref: '#/components/schemas/BlockchainBlockHeight'
-        previous_debit_height:
-          $ref: '#/components/schemas/BlockchainBlockHeight'
-        previous_chain_sequence_number:
-          $ref: '#/components/schemas/BlockchainTransactionSequenceNumber'
-        total_received:
-          $ref: '#/components/schemas/BlockchainTotalReceived'
-        total_sent:
-          $ref: '#/components/schemas/BlockchainTotalSent'
-        creation_height:
-          $ref: '#/components/schemas/BlockchainBlockHeight'
-      required:
-      - chain_sequence_number
-      - account
-      - account_creation_height
-      - change
-      - transaction_sequence_number
-      - previous_n_debits
-      - previous_n_credits
-    BlockchainSubAccount:
-      description: Sub-account id.
-      type: string
-    BlockchainBlockHeight:
-      description: Height of the block.
-      type: string
-      format: int64
   parameters:
-    BlockchainBlockHash:
-      description: Block hash.
-      in: path
-      name: block_hash
-      required: true
-      schema:
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
+    IgnoreUnsupportedErrors:
+      description: Ignore "unsupported" errors for not currently supported by Coin Metrics items.
       in: query
-      name: pretty
+      name: ignore_unsupported_errors
       schema:
         type: boolean
         default: false
@@ -568,6 +561,13 @@ components:
       required: true
       schema:
         type: string
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
     BlockchainIncludeSubAccountsV2:
       description: Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.
       in: query
@@ -582,90 +582,14 @@ components:
       required: true
       schema:
         type: string
-    IgnoreUnsupportedErrors:
-      description: Ignore "unsupported" errors for not currently supported by Coin Metrics items.
-      in: query
-      name: ignore_unsupported_errors
+    BlockchainBlockHash:
+      description: Block hash.
+      in: path
+      name: block_hash
+      required: true
       schema:
-        type: boolean
-        default: false
+        type: string
   responses:
-    BlockchainFullBlockV2:
-      description: Blockchain full block.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BlockchainFullBlockResponseV2'
-          example:
-            block_hash: 0000000000000000000079fca9c54dd7532d139ed258f02e3d1368e7006157d9
-            height: '758506'
-            consensus_time: '2022-10-13T18:27:09.000000000Z'
-            miner_time: '2022-10-13T18:57:56.000000000Z'
-            n_transactions: '469'
-            n_balance_updates: '7425'
-            transactions:
-            - txid: 232687100669217c7335d2b2b6f5e7ae61cc6d4c79b8b1b1c7a1fa21938422b9
-              consensus_time: '2022-10-13T18:27:09.000000000Z'
-              tx_position: '3257758463819776'
-              n_balance_updates: '4'
-              amount: '6.34186444'
-              balance_updates:
-              - chain_sequence_number: '3257758463819776'
-                account: FEES
-                account_creation_height: '0'
-                change: '-0.09186444'
-                rebasing_numerator: '1'
-                rebasing_denominator: '1'
-                rebasing_rounding_mode: DOWN
-                previous_balance: '0'
-                new_balance: '-0.09186444'
-                transaction_sequence_number: '0'
-                n_debits: '758507'
-                n_credits: '771183299'
-                previous_debit_height: '758505'
-                previous_credit_height: '758505'
-                previous_chain_sequence_number: '3257754168874991'
-              - chain_sequence_number: '3257758463819777'
-                account: ISSUANCE
-                account_creation_height: '0'
-                change: '-6.25'
-                rebasing_numerator: '1'
-                rebasing_denominator: '1'
-                rebasing_rounding_mode: DOWN
-                previous_balance: '-19178133.54497096'
-                new_balance: '-19178139.79497096'
-                transaction_sequence_number: '0'
-                n_debits: '758507'
-                n_credits: '0'
-                previous_debit_height: '758505'
-                previous_chain_sequence_number: '3257754168852481'
-              min_chain_sequence_number: '3257758463819776'
-              max_chain_sequence_number: '3257758463819779'
-            balance_updates: []
-            parent_block_hash: 000000000000000000079a2d36f1308ea00fd26fda92fe12c5dd4e1a5b0c15e7
-            difficulty: '35610794164371.65'
-            physical_size: '1075674'
-            consensus_size: '3993099'
-            consensus_size_limit: '4000000'
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BlockchainFullTransactionV2:
       description: Blockchain full transaction.
       content:
@@ -728,6 +652,63 @@ components:
               previous_debit_height: '2348134'
               previous_credit_height: '2350581'
               previous_chain_sequence_number: '10095668521598979'
+    BlockchainFullBlockV2:
+      description: Blockchain full block.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BlockchainFullBlockResponseV2'
+          example:
+            block_hash: 0000000000000000000079fca9c54dd7532d139ed258f02e3d1368e7006157d9
+            height: '758506'
+            consensus_time: '2022-10-13T18:27:09.000000000Z'
+            miner_time: '2022-10-13T18:57:56.000000000Z'
+            n_transactions: '469'
+            n_balance_updates: '7425'
+            transactions:
+            - txid: 232687100669217c7335d2b2b6f5e7ae61cc6d4c79b8b1b1c7a1fa21938422b9
+              consensus_time: '2022-10-13T18:27:09.000000000Z'
+              tx_position: '3257758463819776'
+              n_balance_updates: '4'
+              amount: '6.34186444'
+              balance_updates:
+              - chain_sequence_number: '3257758463819776'
+                account: FEES
+                account_creation_height: '0'
+                change: '-0.09186444'
+                rebasing_numerator: '1'
+                rebasing_denominator: '1'
+                rebasing_rounding_mode: DOWN
+                previous_balance: '0'
+                new_balance: '-0.09186444'
+                transaction_sequence_number: '0'
+                n_debits: '758507'
+                n_credits: '771183299'
+                previous_debit_height: '758505'
+                previous_credit_height: '758505'
+                previous_chain_sequence_number: '3257754168874991'
+              - chain_sequence_number: '3257758463819777'
+                account: ISSUANCE
+                account_creation_height: '0'
+                change: '-6.25'
+                rebasing_numerator: '1'
+                rebasing_denominator: '1'
+                rebasing_rounding_mode: DOWN
+                previous_balance: '-19178133.54497096'
+                new_balance: '-19178139.79497096'
+                transaction_sequence_number: '0'
+                n_debits: '758507'
+                n_credits: '0'
+                previous_debit_height: '758505'
+                previous_chain_sequence_number: '3257754168852481'
+              min_chain_sequence_number: '3257758463819776'
+              max_chain_sequence_number: '3257758463819779'
+            balance_updates: []
+            parent_block_hash: 000000000000000000079a2d36f1308ea00fd26fda92fe12c5dd4e1a5b0c15e7
+            difficulty: '35610794164371.65'
+            physical_size: '1075674'
+            consensus_size: '3993099'
+            consensus_size_limit: '4000000'
     BlockchainForbidden:
       content:
         application/json:
@@ -738,6 +719,25 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
       description: Requested resource is not available with supplied credentials.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

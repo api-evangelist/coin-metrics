@@ -84,20 +84,11 @@ paths:
       - api_key: []
 components:
   schemas:
-    NextPageUrl:
-      description: URL of the next page results for a given request.
-      type: string
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
-    TxTrackerReplaceByFeeSupported:
-      description: This field is set to true only if the transaction supports the replace-by-fee (RBF) feature.
-      type: boolean
     NodeLocation:
       description: A physical location of the blockchain node that have captured the transaction entering the mempool.
       type: string
-    BlockchainMempoolFeerate:
-      description: Aggregate function result over the feerate values of all the mempool transactions.
+    TxTrackerTxAmount:
+      description: The total amount of the transaction.
       type: string
       format: decimal
     TxTrackerResponse:
@@ -112,12 +103,90 @@ components:
       required:
       - data
       type: object
+    BlockchainMempoolFeerate:
+      description: Aggregate function result over the feerate values of all the mempool transactions.
+      type: string
+      format: decimal
+    BlockchainTransactionFeerate:
+      description: Feerate of the transaction.
+      type: string
+      format: decimal
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    TxTrackerTxAddress:
+      description: Identifier of the address associated with the transaction.
+      type: string
+    TxTrackerReplacementTxid:
+      description: <b>BTC asset only.</b><br/> Identifier (txid) of the transaction.
+      type: string
+    BlockchainBlockHash:
+      description: Hash of the block.
+      type: string
+    TxTrackerMempoolApproximateQueuePosition:
+      description: <b>BTC asset only.</b><br/> Approximate position of the transaction in the mempool.<br/> Miners choose mempool transactions to be included in the next block by scanning mempool and sort pending transactions by feerate in descending order.<br/> The value starts with 0. A lower number means higher feerate.
+      type: string
+    BlockchainTransactionFee:
+      description: Fee of the transaction.
+      type: string
+      format: decimal
+    TxTrackerTxStatusUpdate:
+      properties:
+        time:
+          $ref: '#/components/schemas/Time'
+        status:
+          $ref: '#/components/schemas/TxTrackerTxStatus'
+        block_hash:
+          $ref: '#/components/schemas/BlockchainBlockHash'
+        height:
+          $ref: '#/components/schemas/BlockchainBlockHeight'
+        removal_reason:
+          $ref: '#/components/schemas/TxTrackerRemovalReason'
+        replacement_txid:
+          $ref: '#/components/schemas/TxTrackerReplacementTxid'
+      required:
+      - time
+      - status
+    BlockchainBlockHeight:
+      description: Height of the block.
+      type: string
+      format: int64
     BlockchainTransactionConsensusSize:
       description: Consensus size of the transaction.
       type: string
       format: decimal
-    TxTrackerReplacementTxid:
-      description: <b>BTC asset only.</b><br/> Identifier (txid) of the transaction.
+    TxTrackerReplaceByFeeSupported:
+      description: This field is set to true only if the transaction supports the replace-by-fee (RBF) feature.
+      type: boolean
+    BlockchainNodeLocationSeenTime:
+      description: Transaction tracker response.
+      properties:
+        location:
+          $ref: '#/components/schemas/NodeLocation'
+        seen_time:
+          $ref: '#/components/schemas/Time'
+      required:
+      - location
+      - seen_time
+      type: object
+    BlockchainTransactionVersion:
+      description: Version of the transaction.
+      type: string
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    TxTrackerNConfirmations:
+      description: The number of blocks between the transaction's block and the latest block in the blockchain plus one.<br/> If the transaction is included in the last block, the value is 1.
+      type: string
+      format: int64
+    TxTrackerTxOutput:
+      properties:
+        address:
+          $ref: '#/components/schemas/TxTrackerTxAddress'
+      required:
+      - address
+    TxTrackerTxStatus:
+      description: 'Transaction status. Can have the following values: `UNCONFIRMED`, `CONFIRMED`, `REMOVED` (BTC asset only).'
       type: string
     TxTrackerTxDetails:
       description: Static information about the transaction.
@@ -142,14 +211,50 @@ components:
           $ref: '#/components/schemas/BlockchainTransactionPhysicalSize'
       required:
       - amount
+    TxTrackerTxStatusUpdates:
+      description: A list of status updates for the transaction.
+      type: array
+      items:
+        $ref: '#/components/schemas/TxTrackerTxStatusUpdate'
     TxTrackerTransactions:
       type: array
       items:
         $ref: '#/components/schemas/TxTrackerTransaction'
-    BlockchainTransactionFeerate:
-      description: Feerate of the transaction.
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    TxTrackerTxOutputs:
+      description: <b>BTC asset only.</b><br/> A list of tx outputs associated with the transaction.
+      type: array
+      items:
+        $ref: '#/components/schemas/TxTrackerTxOutput'
+    BlockchainTransactionPhysicalSize:
+      description: Physical size of the transaction, bytes.
       type: string
       format: decimal
+    TxTrackerRemovalReason:
+      description: '<b>BTC asset only.</b><br/> Why the transaction has been removed. This field is only present for `REMOVED` status. The possible values are: `EXPIRY`, `SIZE_LIMIT`, `REORG`, `CONFLICT`, `REPLACED`.'
+      type: string
+    TxTrackerNextBlockApproxSettlementProbabilityPercentage:
+      description: <b>BTC asset only.</b><br/> Approximate probability of including the mempool transaction to the next mined block.<br/> Miners choose mempool transactions to be included in the next block by scanning mempool and sort pending transactions by feerate in descending order.<br/> The value starts is a percentage between 0 and 100. A higher number means a higher probability.
+      type: string
+      format: decimal
+    BlockchainNodeLocationSeenTimes:
+      description: <b>BTC asset only.</b>
+      type: array
+      items:
+        $ref: '#/components/schemas/BlockchainNodeLocationSeenTime'
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    TxTrackerTxid:
+      description: Identifier (txid) of the transaction.
+      type: string
     TxTrackerTransaction:
       properties:
         txid:
@@ -192,95 +297,6 @@ components:
       - status_update_time
       - status_updates
       - details
-    Time:
-      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
-      type: string
-      format: date-time
-    BlockchainTransactionFee:
-      description: Fee of the transaction.
-      type: string
-      format: decimal
-    BlockchainTransactionPhysicalSize:
-      description: Physical size of the transaction, bytes.
-      type: string
-      format: decimal
-    TxTrackerTxOutput:
-      properties:
-        address:
-          $ref: '#/components/schemas/TxTrackerTxAddress'
-      required:
-      - address
-    TxTrackerTxStatusUpdates:
-      description: A list of status updates for the transaction.
-      type: array
-      items:
-        $ref: '#/components/schemas/TxTrackerTxStatusUpdate'
-    TxTrackerTxAddress:
-      description: Identifier of the address associated with the transaction.
-      type: string
-    TxTrackerNextBlockApproxSettlementProbabilityPercentage:
-      description: <b>BTC asset only.</b><br/> Approximate probability of including the mempool transaction to the next mined block.<br/> Miners choose mempool transactions to be included in the next block by scanning mempool and sort pending transactions by feerate in descending order.<br/> The value starts is a percentage between 0 and 100. A higher number means a higher probability.
-      type: string
-      format: decimal
-    TxTrackerRemovalReason:
-      description: '<b>BTC asset only.</b><br/> Why the transaction has been removed. This field is only present for `REMOVED` status. The possible values are: `EXPIRY`, `SIZE_LIMIT`, `REORG`, `CONFLICT`, `REPLACED`.'
-      type: string
-    BlockchainNodeLocationSeenTime:
-      description: Transaction tracker response.
-      properties:
-        location:
-          $ref: '#/components/schemas/NodeLocation'
-        seen_time:
-          $ref: '#/components/schemas/Time'
-      required:
-      - location
-      - seen_time
-      type: object
-    TxTrackerTxStatusUpdate:
-      properties:
-        time:
-          $ref: '#/components/schemas/Time'
-        status:
-          $ref: '#/components/schemas/TxTrackerTxStatus'
-        block_hash:
-          $ref: '#/components/schemas/BlockchainBlockHash'
-        height:
-          $ref: '#/components/schemas/BlockchainBlockHeight'
-        removal_reason:
-          $ref: '#/components/schemas/TxTrackerRemovalReason'
-        replacement_txid:
-          $ref: '#/components/schemas/TxTrackerReplacementTxid'
-      required:
-      - time
-      - status
-    TxTrackerTxStatus:
-      description: 'Transaction status. Can have the following values: `UNCONFIRMED`, `CONFIRMED`, `REMOVED` (BTC asset only).'
-      type: string
-    BlockchainTransactionVersion:
-      description: Version of the transaction.
-      type: string
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    TxTrackerMempoolApproximateQueuePosition:
-      description: <b>BTC asset only.</b><br/> Approximate position of the transaction in the mempool.<br/> Miners choose mempool transactions to be included in the next block by scanning mempool and sort pending transactions by feerate in descending order.<br/> The value starts with 0. A lower number means higher feerate.
-      type: string
-    BlockchainBlockHash:
-      description: Hash of the block.
-      type: string
-    BlockchainNodeLocationSeenTimes:
-      description: <b>BTC asset only.</b>
-      type: array
-      items:
-        $ref: '#/components/schemas/BlockchainNodeLocationSeenTime'
-    TxTrackerNConfirmations:
-      description: The number of blocks between the transaction's block and the latest block in the blockchain plus one.<br/> If the transaction is included in the last block, the value is 1.
-      type: string
-      format: int64
     ErrorObject:
       properties:
         type:
@@ -293,53 +309,11 @@ components:
       - type
       - description
       type: object
-    TxTrackerTxAmount:
-      description: The total amount of the transaction.
-      type: string
-      format: decimal
-    TxTrackerTxid:
-      description: Identifier (txid) of the transaction.
-      type: string
-    BlockchainBlockHeight:
-      description: Height of the block.
-      type: string
-      format: int64
-    TxTrackerTxOutputs:
-      description: <b>BTC asset only.</b><br/> A list of tx outputs associated with the transaction.
-      type: array
-      items:
-        $ref: '#/components/schemas/TxTrackerTxOutput'
   parameters:
-    EndTime:
-      description: 'End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.'
+    TxTrackerAddresses:
+      description: <b>BTC asset only.</b><br/> Comma separated list of bitcoin addresses to track transactions for. Transactions in which at least one of the addresses is either a sender or recipient will be returned.<br/> By default only transactions currently in mempool are returned. To return all associated transactions use `unconfirmed_only=false` parameter.<br/> Mutually exclusive with `txids`, `replacements_for_txids`, `replacements_for_txids` parameters.
       in: query
-      name: end_time
-      schema:
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    EndInclusive:
-      description: Inclusive or exclusive corresponding `end_*` parameters.
-      in: query
-      name: end_inclusive
-      schema:
-        default: true
-        type: boolean
-    OnlyUnconfirmedTransactions:
-      description: <b>BTC asset only.</b><br/> Can be used only in conjunction with `addresses` parameter. Controls whether all or only unconfirmed transactions (currently in mempool) are returned.
-      in: query
-      name: unconfirmed_only
-      schema:
-        type: boolean
-    ReplacementsForTransactions:
-      description: <b>BTC asset only.</b><br/> Comma separated list of transaction identifiers (txid) to get the corresponding replacement transactions for.<br/> Mutually exclusive with `txids`.<br/>
-      in: query
-      name: replacements_for_txids
+      name: addresses
       schema:
         type: array
         items:
@@ -354,18 +328,6 @@ components:
         items:
           type: string
       explode: false
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    StartTime:
-      description: 'Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.'
-      in: query
-      name: start_time
-      schema:
-        type: string
     Timezone:
       description: Timezone name for `start_time` and `end_time` timestamps.<br/> This parameter does not modify the output times, which are always `UTC`.<br/> Format is defined by [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
       in: query
@@ -374,34 +336,10 @@ components:
         example: America/New_York
         default: UTC
         type: string
-    StartInclusive:
-      description: Inclusive or exclusive corresponding `start_*` parameters.
+    OnlyUnconfirmedTransactions:
+      description: <b>BTC asset only.</b><br/> Can be used only in conjunction with `addresses` parameter. Controls whether all or only unconfirmed transactions (currently in mempool) are returned.
       in: query
-      name: start_inclusive
-      schema:
-        default: true
-        type: boolean
-    Format:
-      description: Format of the response.
-      in: query
-      name: format
-      schema:
-        enum:
-        - json
-        - csv
-        type: string
-        default: json
-    BlockchainAsset:
-      description: Asset name.
-      in: path
-      name: asset
-      required: true
-      schema:
-        type: string
-    OnlyReplacementTransactions:
-      description: <b>BTC asset only.</b><br/> Boolean indicating if the response should contain only the replacement transactions.
-      in: query
-      name: replacements_only
+      name: unconfirmed_only
       schema:
         type: boolean
     PageSize:
@@ -414,15 +352,77 @@ components:
         format: int32
         minimum: 1
         maximum: 10000
-    TxTrackerAddresses:
-      description: <b>BTC asset only.</b><br/> Comma separated list of bitcoin addresses to track transactions for. Transactions in which at least one of the addresses is either a sender or recipient will be returned.<br/> By default only transactions currently in mempool are returned. To return all associated transactions use `unconfirmed_only=false` parameter.<br/> Mutually exclusive with `txids`, `replacements_for_txids`, `replacements_for_txids` parameters.
+    BlockchainAsset:
+      description: Asset name.
+      in: path
+      name: asset
+      required: true
+      schema:
+        type: string
+    StartTime:
+      description: 'Start of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `start_time` is omitted, response will include time series from the **earliest** time available.'
       in: query
-      name: addresses
+      name: start_time
+      schema:
+        type: string
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    ReplacementsForTransactions:
+      description: <b>BTC asset only.</b><br/> Comma separated list of transaction identifiers (txid) to get the corresponding replacement transactions for.<br/> Mutually exclusive with `txids`.<br/>
+      in: query
+      name: replacements_for_txids
       schema:
         type: array
         items:
           type: string
       explode: false
+    Format:
+      description: Format of the response.
+      in: query
+      name: format
+      schema:
+        enum:
+        - json
+        - csv
+        type: string
+        default: json
+    EndTime:
+      description: 'End of the time interval.<br/> This field refers to the `time` field in the response.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default.<br/> UTC timezone by default. `Z` suffix is optional and `timezone` parameter has a priority over it.<br/> If `end_time` is omitted, response will include time series up to the **latest** time available.'
+      in: query
+      name: end_time
+      schema:
+        type: string
+    StartInclusive:
+      description: Inclusive or exclusive corresponding `start_*` parameters.
+      in: query
+      name: start_inclusive
+      schema:
+        default: true
+        type: boolean
+    EndInclusive:
+      description: Inclusive or exclusive corresponding `end_*` parameters.
+      in: query
+      name: end_inclusive
+      schema:
+        default: true
+        type: boolean
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    OnlyReplacementTransactions:
+      description: <b>BTC asset only.</b><br/> Boolean indicating if the response should contain only the replacement transactions.
+      in: query
+      name: replacements_only
+      schema:
+        type: boolean
     PagingFrom:
       description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
       in: query
@@ -435,25 +435,16 @@ components:
         type: string
         format: PagingFrom
   responses:
-    Unauthorized:
-      description: Requested resource requires authorization.
+    BlockchainForbidden:
       content:
         application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
+          example:
+            error:
+              type: forbidden
+              message: Requested resource is not available with supplied credentials.
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
     TxTracker:
       description: Current status and its updates for the requested transactions.
       content:
@@ -495,16 +486,25 @@ components:
             - address: 112dtXeVfH3QgRJJwCiQe1FuRAKBqWfY3U
             next_page_token: MjAyMS0wNi0wOFQxMDo0MTo1NS4zOTZafEJMZER2Q1JSd3FqSi16dTVSdDVPc1RCYVRBeFJfWG9DN2xsMS0wenM5Tm8
             next_page_url: https://api.coinmetrics.io/v4/blockchain/btc/transaction-tracker?api_key=<your_key>&pretty=true&txids=04b743bc2451c2a8c9fb3bb946de4eb1305a4c0c51fd7a02ee5975fb4cecf4da,edb7e7b0dc1914d29ef978b332a45b89c225c555f18d6d4cfbcec0963d432544&page_size=1&paging_from=start&next_page_token=MjAyMS0wNi0wOFQxMDo0MTo1NS4zOTZafEJMZER2Q1JSd3FqSi16dTVSdDVPc1RCYVRBeFJfWG9DN2xsMS0wenM5Tm8
-    BlockchainForbidden:
+    Unauthorized:
+      description: Requested resource requires authorization.
       content:
         application/json:
-          example:
-            error:
-              type: forbidden
-              message: Requested resource is not available with supplied credentials.
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-      description: Requested resource is not available with supplied credentials.
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

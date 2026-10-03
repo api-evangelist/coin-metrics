@@ -708,13 +708,755 @@ paths:
       security:
       - api_key: []
 components:
-  schemas:
-    SecurityDescription:
-      description: Description of the security (e.g., "30-Year Treasury Bond").
-      type: string
+  parameters:
+    MarketBase:
+      description: Base asset of markets.
+      in: query
+      name: base
+      schema:
+        type: string
+    MarketAsset:
+      description: Any asset of markets.
+      in: query
+      name: asset
+      schema:
+        type: string
+    AssetClass:
+      description: Asset class of markets.
+      in: query
+      name: asset_class
+      schema:
+        $ref: '#/components/schemas/AssetClass'
+    PagingFromWithStartByDefault:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: start
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    Exchange:
+      description: Unique name of an exchange.
+      in: query
+      name: exchange
+      schema:
+        type: string
+    CatalogAssetId:
+      description: 'Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol.'
+      in: query
+      name: assets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogMarketId:
+      description: Comma separated list of markets. By default all markets are returned.
+      in: query
+      name: markets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    MarketFigi:
+      description: FIGI identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time.
+      in: query
+      name: figi
+      schema:
+        type: string
+    MarketCusip:
+      description: CUSIP identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time.
+      in: query
+      name: cusip
+      schema:
+        type: string
+    CatalogMetric:
+      description: Comma separated list of metrics. By default all metrics are returned.
+      in: query
+      name: metrics
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogIndexId:
+      description: Comma separated list of indexes. By default all indexes are returned.
+      in: query
+      name: indexes
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    Protocols:
+      description: Comma separated list of protocols like `aave_v3` or `morpho_blue`.
+      in: query
+      name: protocols
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    ProtocolMarkets:
+      description: Comma separated list of protocol markets like `core-weth` or `steakusdc`.
+      in: query
+      name: markets
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    CatalogExchangeId:
+      description: 'Comma separated list of exchanges. By default all exchanges are returned. Supports the following formats: `<exchange>` - Coin Metrics exchange name (e.g., `binance`), `<namespace>:<name>` - External provider market name (e.g., `talos:binance`), `<namespace>:by-id:<id>` - External provider numeric market ID (e.g., `talos:by-id:1003`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by numeric ID rather than name.'
+      in: query
+      name: exchanges
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    ProtocolChains:
+      description: Comma separated list of protocol chains like `ethereum` or `base`.
+      in: query
+      name: chains
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    Reviewable:
+      description: Limit to human-reviewable metrics. By default all metrics are returned.
+      in: query
+      name: reviewable
+      schema:
+        type: boolean
+    MarketType:
+      description: Type of markets.
+      in: query
+      name: type
+      schema:
+        enum:
+        - spot
+        - future
+        - option
+        type: string
+    ReferenceDataNamespacesInclude:
+      description: Comma-separated list of namespaces to include in response. Currently, the only supported value is `talos`.
+      in: query
+      name: include
+      schema:
+        type: string
     NextPageToken:
-      description: Token of the next page results for a given request.
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    MarketQuote:
+      description: Quote asset of markets.
+      in: query
+      name: quote
+      schema:
+        type: string
+    CatalogPairId:
+      description: Comma separated list of asset pairs. By default, all asset pairs are returned.
+      in: query
+      name: pairs
+      schema:
+        type: array
+        items:
+          type: string
+      explode: false
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    MarketIsin:
+      description: ISIN identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time.
+      in: query
+      name: isin
+      schema:
+        type: string
+    MarketSymbol:
+      description: Symbol of derivative markets, full instrument name.
+      in: query
+      name: symbol
+      schema:
+        type: string
+    CatalogResponseFormat:
+      description: Format of the response. Supported values are `json`, `json_stream`.
+      in: query
+      name: format
+      schema:
+        type: string
+        default: json
+    SourceType:
+      description: Source type of exchange.
+      in: query
+      name: source_type
+      schema:
+        $ref: '#/components/schemas/SourceType'
+  responses:
+    ReferenceDataPairMetrics:
+      description: List of pair metrics metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: volatility_implied_call_delta_05_120d_expiration
+              full_name: Volatility, implied, call, 5 delta, 120 day expiration
+              description: The annualized interpolated implied volatility of a call option with 5 delta expiring 120 days in the future.
+              product: Market Data
+              category: Volatility
+              subcategory: Implied
+              unit: Dimensionless
+              data_type: decimal
+              type: Percentage
+              display_name: Implied Volatility, Call Option, 5 Delta, 120 Day Expiration
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/volatility/implied-volatility
+            - metric: volatility_implied_call_delta_05_14d_expiration
+              full_name: Volatility, implied, call, 5 delta, 14 day expiration
+              description: The annualized interpolated implied volatility of a call option with 5 delta expiring 14 days in the future.
+              product: Market Data
+              category: Volatility
+              subcategory: Implied
+              unit: Dimensionless
+              data_type: decimal
+              type: Percentage
+              display_name: Implied Volatility, Call Option, 5 Delta, 14 Day Expiration
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/volatility/implied-volatility
+            next_page_token: dm9sYXRpbGl0eV9pbXBsaWVkX2NhbGxfZGVsdGFfMDVfMTgwZF9leHBpcmF0aW9u
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-pair-metrics?page_size=2&pretty=true&api_key=<your_key>&next_page_token=dm9sYXRpbGl0eV9pbXBsaWVkX2NhbGxfZGVsdGFfMDVfMTgwZF9leHBpcmF0aW9u
+          schema:
+            $ref: '#/components/schemas/ReferenceDataPairMetricsResponse'
+    ReferenceDataInstitutionMetrics:
+      description: List of institution metrics metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: bat_coin_per_share
+              full_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
+              description: The number of native units of the coin per share of the Grayscale Basic Attention Token Trust.
+              product: Market Data
+              category: Institutions
+              subcategory: Investment Products
+              unit: Native Units
+              data_type: decimal
+              type: Ratio
+              display_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/institution-metrics-overview/grayscale/coin-per-share
+            - metric: bat_market_price
+              full_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
+              description: The market price per share in U.S. dollars of the Grayscale Basic Attention Token Trust.
+              product: Market Data
+              category: Institutions
+              subcategory: Investment Products
+              unit: USD
+              data_type: decimal
+              type: Ratio
+              display_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/institution-metrics-overview/grayscale/market-price
+            next_page_token: YmF0X25ldF9hc3NldF92YWx1ZQ
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/institution-metrics?api_key=<your_key>&page_size=2&next_page_token=YmF0X25ldF9hc3NldF92YWx1ZQ
+          schema:
+            $ref: '#/components/schemas/ReferenceDataInstitutionMetricsResponse'
+    ReferenceDataProtocols:
+      description: Protocol metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - market: core-weth
+              full_name: Core Aave Market Wrapped Ether
+              protocol: aave_v3
+              type: aave_pool
+              chains:
+              - chain: ethereum
+                address: '0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2'
+                asset: weth
+                asset_address: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+                asset_decimals: '18'
+                configurator_address: '0x64b761d848206f447fe2dd461b0c635ec39ebb27'
+                atoken_address: '0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8'
+                atoken_asset: aethweth_v3_eth
+                variable_debt_token_address: '0xea51d7853eefb32b6ee06b1c12e6dcca88be0ffe'
+                variable_debt_asset: vethweth_v3_eth
+                stable_debt_token_address: '0x102633152313c81cd80419b6ecf66d14ad68949a'
+            - market: steakusdc
+              full_name: Steakhouse USDC
+              protocol: morpho_blue
+              type: morpho_vault
+              chains:
+              - chain: ethereum
+                address: '0xbeef01735c132ada46aa9aa4c54623caa92a64cb'
+                asset: usdc
+                asset_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+                asset_decimals: '6'
+          schema:
+            $ref: '#/components/schemas/ReferenceDataProtocolsResponse'
+    ReferenceDataExchangeMetrics:
+      description: List of exchange metrics metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: liquidations_reported_future_buy_units_1d
+              full_name: Liquidations, reported, future, buys, native units, one day
+              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
+              product: Market Data
+              category: Liquidations
+              subcategory: Futures
+              unit: Native Units
+              data_type: decimal
+              type: Sum
+              display_name: Reported Futures Buy Liquidations, native units
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
+            - metric: liquidations_reported_future_buy_units_1h
+              full_name: Liquidations, reported, future, buys, native units, one hour
+              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
+              product: Market Data
+              category: Liquidations
+              subcategory: Futures
+              unit: Native Units
+              data_type: decimal
+              type: Sum
+              display_name: Reported Futures Buy Liquidations, native units
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
+            next_page_token: bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-metrics?api_key=<your_key>&page_size=2&next_page_token=bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
+          schema:
+            $ref: '#/components/schemas/ReferenceDataExchangeMetricsResponse'
+    AssetNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'assets'. Value 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Asset not found.
+    ProtocolNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'protocols'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Protocol not found.
+    ReferenceDataAssets:
+      description: List of assets metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - asset: btc
+              full_name: Bitcoin
+              talos:
+              - cm_ext_asset: talos:BTC
+                cm_ext_asset_by_id: talos:by-id:24
+                symbol: BTC
+                currency_id: '24'
+                description: Bitcoin
+            - asset: eth
+              full_name: Ethereum
+              talos:
+              - cm_ext_asset: talos:ETH
+                cm_ext_asset_by_id: talos:by-id:17
+                symbol: ETH
+                currency_id: '17'
+                description: Ethereum
+            - asset: sol
+              full_name: Solana
+              talos:
+              - cm_ext_asset: talos:SOL
+                cm_ext_asset_by_id: talos:by-id:653
+                symbol: SOL
+                currency_id: '653'
+                description: Solana
+            next_page_token: ZXRo
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/assets?api_key=<your_key>&page_size=2&next_page_token=ZXRo
+          schema:
+            $ref: '#/components/schemas/ReferenceDataAssetsResponse'
+    ReferenceDataMarkets:
+      description: List of markets metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - market: binance-btc-usdt-spot
+              exchange: binance
+              type: spot
+              base: btc
+              quote: usdt
+              pair: btc-usdt
+              symbol: BTCUSDT
+            - market: binance-1000FLOKIUSDT-future
+              exchange: binance
+              type: future
+              base: floki
+              quote: usdt
+              pair: floki-usdt
+              symbol: 1000FLOKIUSDT
+              size_asset: floki
+              margin_asset: usdt
+              contract_size: '1000'
+              tick_size: '0.00001'
+              listing: '2023-05-06T00:00:00.000000000Z'
+              order_amount_increment: '1'
+              order_amount_min: '1'
+              order_amount_max: '10000000'
+              order_price_increment: '0.0000100'
+              order_price_min: '0.0000100'
+              order_price_max: '200'
+              order_size_min: '5.0'
+            - market: deribit-BTC-10DEC22-17500-C-option
+              exchange: deribit
+              type: option
+              base: btc
+              quote: usd
+              pair: btc-usd
+              symbol: BTC-10DEC22-17500-C
+              size_asset: btc
+              strike: '17500'
+              option_contract_type: call
+              is_european: true
+              contract_size: '1'
+              listing: '2022-12-08T08:01:00.000000000Z'
+              expiration: '2022-12-10T08:00:00.000000000Z'
+              settlement_price: '17160.85'
+              status: offline
+              order_amount_min: '0.1'
+              order_price_increment: '0.0005'
+              order_taker_fee: '0.0003'
+              order_maker_fee: '0.0003'
+            next_page_token: ZGVyaWJpdC1CVEMtMTBERUMyMi0xNzUwMC1QLW9wdGlvbg
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/markets?api_key=<your_key>&page_size=3&next_page_token=ZGVyaWJpdC1CVEMtMTBERUMyMi0xNzUwMC1QLW9wdGlvbg
+          schema:
+            $ref: '#/components/schemas/ReferenceDataMarketsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    ReferenceDataIndexes:
+      description: List of indexes metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - index: CMBIBTCT
+              full_name: CMBI Bitcoin Total Return Index
+              description: A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin as well as liquidating legitimate forked assets.
+              type: single_asset
+            - index: CMBIBTCV
+              full_name: CMBI Bitcoin Index
+              description: A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin.
+            next_page_token: Q01CSURFWEU
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/indexes?api_key=<your_key>&page_size=2&next_page_token=Q01CSURFWEU
+          schema:
+            $ref: '#/components/schemas/ReferenceDataIndexesResponse'
+    IndexNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'indexes'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Index not found.
+    ReferenceDataExchangeAssetMetrics:
+      description: List of exchange asset metrics metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: basis_annualized_120d_exp
+              full_name: 'Basis, annualized, 120 day expiration '
+              description: The relative difference between the price of a futures contract that expires in 120 days and the price of its underlying spot market.
+              product: Market Data
+              category: Basis
+              subcategory: Future
+              unit: Dimensionless
+              data_type: decimal
+              type: Percentage
+              display_name: Annualized Futures Basis, 120 day expiration
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
+            - metric: basis_annualized_30d_exp
+              full_name: 'Basis, annualized, 30 day expiration '
+              description: The relative difference between the price of a futures contract that expires in 30 days and the price of its underlying spot market.
+              product: Market Data
+              category: Basis
+              subcategory: Future
+              unit: Dimensionless
+              data_type: decimal
+              type: Percentage
+              display_name: Annualized Futures Basis, 30 day expiration
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
+            next_page_token: YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-asset-metrics?api_key=<your_key>&page_size=2&next_page_token=YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
+          schema:
+            $ref: '#/components/schemas/ReferenceDataExchangeAssetMetricsResponse'
+    ReferenceDataExchanges:
+      description: List of exchanges metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - exchange: binance
+              full_name: Binance
+            - exchange: bittrex
+              full_name: Bittrex
+            next_page_token: YnliaXQ
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchanges?api_key=<your_key>&page_size=2&next_page_token=YnliaXQ
+          schema:
+            $ref: '#/components/schemas/ReferenceDataExchangesResponse'
+    PairNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'pairs'. Value 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Pair not found.
+    ReferenceDataExchangePairMetrics:
+      description: List of exchange pair metrics metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: basis_annualized_120d_exp
+              full_name: 'Basis, annualized, 120 day expiration '
+              description: The relative difference between the price of a futures contract that expires in 120 days and the price of its underlying spot market.
+              product: Market Data
+              category: Basis
+              subcategory: Future
+              unit: Dimensionless
+              data_type: decimal
+              type: Percentage
+              display_name: Annualized Futures Basis, 120 day expiration
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
+            - metric: basis_annualized_30d_exp
+              full_name: 'Basis, annualized, 30 day expiration '
+              description: The relative difference between the price of a futures contract that expires in 30 days and the price of its underlying spot market.
+              product: Market Data
+              category: Basis
+              subcategory: Future
+              unit: Dimensionless
+              data_type: decimal
+              type: Percentage
+              display_name: Annualized Futures Basis, 30 day expiration
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
+            next_page_token: YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-asset-metrics?api_key=<your_key>&page_size=2&next_page_token=YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
+          schema:
+            $ref: '#/components/schemas/ReferenceDataExchangePairMetricsResponse'
+    ReferenceDataAssetMetrics:
+      description: List of asset metrics metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: AdrAct30dCnt
+              full_name: Addresses, active, monthly, count
+              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) in the trailing 30 days up to the end of that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
+              product: Network Data
+              category: Addresses
+              subcategory: Active
+              unit: Addresses
+              data_type: bigint
+              type: Sum
+              display_name: Active Monthly Addr Cnt
+              docs_url: https://docs.coinmetrics.io/network-data/network-data-overview/addresses/active-addresses
+            - metric: AdrAct7dCnt
+              full_name: Addresses, active, weekly, count
+              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) in the trailing 7 days up to the end of that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if active several times in the considered interval.
+              product: Network Data
+              category: Addresses
+              subcategory: Active
+              unit: Addresses
+              data_type: bigint
+              type: Sum
+              display_name: Active Weekly Addr Cnt
+              docs_url: https://docs.coinmetrics.io/network-data/network-data-overview/addresses/active-addresses
+            next_page_token: QWRyQWN0Q250
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/asset-metrics?api_key=<your_key>&page_size=2&next_page_token=QWRyQWN0Q250
+          schema:
+            $ref: '#/components/schemas/ReferenceDataAssetMetricsResponse'
+    ReferenceDataPairs:
+      description: List of pairs metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - pair: btc-eur
+              full_name: Bitcoin - Euro
+            - pair: btc-usdt
+              full_name: Bitcoin - Tether
+            next_page_token: ZXRoLXVzZHQ
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/pairs?api_key=<your_key>&page_size=2&next_page_token=ZXRoLXVzZHQ
+          schema:
+            $ref: '#/components/schemas/ReferenceDataPairsResponse'
+    MarketNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'markets'. Market 'sdvwbtc-as-asd-spot' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Market not found.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ExchangeNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'id'. Exchange 'sdvwbtc' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Exchange not found.
+    MetricNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Metric not found.
+    ReferenceDataMarketMetrics:
+      description: List of market metrics metadata.
+      content:
+        application/json:
+          example:
+            data:
+            - metric: liquidations_reported_future_buy_units_1d
+              full_name: Liquidations, reported, future, buys, native units, one day
+              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
+              product: Market Data
+              category: Liquidations
+              subcategory: Futures
+              unit: Native Units
+              data_type: decimal
+              type: Sum
+              display_name: Reported Futures Buy Liquidations, native units
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
+            - metric: liquidations_reported_future_buy_units_1h
+              full_name: Liquidations, reported, future, buys, native units, one hour
+              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
+              product: Market Data
+              category: Liquidations
+              subcategory: Futures
+              unit: Native Units
+              data_type: decimal
+              type: Sum
+              display_name: Reported Futures Buy Liquidations, native units
+              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
+            next_page_token: bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
+            next_page_url: https://api.coinmetrics.io/v4/reference-data/market-metrics?api_key=<your_key>&page_size=2&next_page_token=bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
+          schema:
+            $ref: '#/components/schemas/ReferenceDataMarketMetricsResponse'
+  schemas:
+    ConstituentTimeframesUrl:
+      description: The endpoint URL of the constituent timeframes.
       type: string
+    DocsUrl:
+      description: The documentation URL.
+      type: string
+    Subcategory:
+      description: Subcategory of the metric.
+      type: string
+    DerivativeContractListing:
+      description: Derivative contract listing date.
+      type: string
+      format: date-time
+    DefiContractAddress:
+      description: DeFi contract address.
+      type: string
+    IndexType:
+      description: Type of the index.
+      type: string
+    ReferenceDataProtocol:
+      description: Protocol reference data response.
+      properties:
+        market:
+          description: Protocol market.
+          type: string
+        full_name:
+          description: Full human-readable name of the protocol market.
+          type: string
+        protocol:
+          description: Protocol name.
+          type: string
+        type:
+          description: Protocol type.
+          type: string
+        chains:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolChain'
+      required:
+      - market
+      - full_name
+      - protocol
+      - type
+      - chains
+      type: object
+    ReferenceDataAssetsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ReferenceDataAssetInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
     TalosMarketMetadata:
       description: Provider metadata for markets. Contains `cm_ext_market` (Coin Metrics symbol using provider namespace, e.g. "talos:kucoin:BTC-USDT") and `cm_ext_market_by_id` (Coin Metrics ID using provider namespace, e.g. "talos:by-id:1050:10") as optional fields, plus any additional provider-specific fields.
       type: object
@@ -864,73 +1606,6 @@ components:
           type:
           - string
           - 'null'
-    Unit:
-      description: Unit of the metric.
-      type: string
-    OrderMakerFee:
-      type: string
-      format: decimal
-    ConstituentTimeframesUrl:
-      description: The endpoint URL of the constituent timeframes.
-      type: string
-    ExperimentalMarket:
-      description: If set to true, indicates that market collection is under active development - there is a chance of temporary discrepancies in the served dataset.
-      type: boolean
-    ReferenceDataPairsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ReferenceDataPairInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    DefiFee:
-      description: DeFi fee (in percents).
-      type: string
-      format: decimal
-    OrderAmountIncrement:
-      description: Volume precision.
-      type: string
-      format: decimal
-    ReferenceDataProtocolsResponse:
-      description: Blockchain protocol reference data response.
-      properties:
-        data:
-          $ref: '#/components/schemas/ReferenceDataProtocols'
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-        warning:
-          $ref: '#/components/schemas/WarningObject'
-      required:
-      - data
-      type: object
-    Cusip:
-      description: CUSIP identifier for the security.
-      type: string
-    IssueDate:
-      description: Issue date of the security.
-      type: string
-      format: date
-    OrderAmountMin:
-      description: Minimum amount size.
-      type: string
-      format: decimal
-    MetricDataType:
-      description: 'Data Type of the metric. Can be bigint or decimal.<br/>
-
-        "bigint" means that you should expect an integer number in a range from -9223372036854775808 to 9223372036854775807.<br/>
-
-        "decimal" means that a number can have up to 131072 digits before the decimal point and up to 16383 digits after the decimal point.
-
-        '
-      type: string
     ReferenceDataExchangesResponse:
       properties:
         data:
@@ -957,438 +1632,12 @@ components:
       required:
       - data
       type: object
-    DerivativeContractListing:
-      description: Derivative contract listing date.
+    MarketType:
+      description: Type of the market (spot, future).
       type: string
-      format: date-time
-    DefiPriceIncludesFee:
-      description: Whether the reported price for a trade is inclusive (true) or exclusive (false) of fee.
-      type: boolean
-    AssetIdBase:
-      description: Unique name of the base asset.
+    NextPageUrl:
+      description: URL of the next page results for a given request.
       type: string
-    FutureMultiplierSize:
-      description: Futures multiplier size.
-      type: string
-      format: decimal
-    CouponRate:
-      description: Coupon rate of the security.
-      type: string
-      format: decimal
-    ProtocolChain:
-      description: Protocol chain.
-      properties:
-        chain:
-          description: Protocol chain.
-          type: string
-        address:
-          description: 'Primary contract address for the protocol entity. Aave: lending pool. Morpho vault: vault contract. Morpho market: market ID.
-
-            '
-          $ref: '#/components/schemas/ProtocolAddress'
-        asset:
-          description: 'Primary asset. Aave: reserve/underlying asset. Morpho vault: deposit asset. Morpho market: loan asset.
-
-            '
-          $ref: '#/components/schemas/ProtocolAsset'
-        asset_address:
-          description: Address of the primary asset token.
-          $ref: '#/components/schemas/ProtocolAddress'
-        asset_decimals:
-          description: Decimal conversion.
-          type: string
-        configurator_address:
-          $ref: '#/components/schemas/ProtocolAddress'
-        atoken_address:
-          $ref: '#/components/schemas/ProtocolAddress'
-        atoken_asset:
-          $ref: '#/components/schemas/ProtocolAsset'
-        variable_debt_token_address:
-          $ref: '#/components/schemas/ProtocolAddress'
-        variable_debt_asset:
-          $ref: '#/components/schemas/ProtocolAsset'
-        stable_debt_token_address:
-          $ref: '#/components/schemas/ProtocolAddress'
-        curator_address:
-          $ref: '#/components/schemas/ProtocolAddress'
-        curator_name:
-          $ref: '#/components/schemas/ProtocolAddressName'
-        guardian_address:
-          $ref: '#/components/schemas/ProtocolAddress'
-        guardian_name:
-          $ref: '#/components/schemas/ProtocolAddressName'
-        collateral_asset:
-          description: Collateral asset posted by borrowers.
-          $ref: '#/components/schemas/ProtocolAsset'
-        collateral_asset_address:
-          $ref: '#/components/schemas/ProtocolAddress'
-        oracle_address:
-          description: Price oracle contract for the market.
-          $ref: '#/components/schemas/ProtocolAddress'
-        irm_address:
-          description: Interest rate model contract for the market.
-          $ref: '#/components/schemas/ProtocolAddress'
-        lltv:
-          description: Liquidation loan-to-value ratio for the market.
-          type: string
-      required:
-      - chain
-      type: object
-    MetricId:
-      description: Name of the metric.
-      type: string
-    Asset:
-      description: Name of the asset.
-      type: string
-    Product:
-      description: Associated Product of the metric.
-      type: string
-    PricePer100:
-      description: Price per $100 face value.
-      type: string
-      format: decimal
-    SettlementPrice:
-      description: Price of underlying asset at contract expiration.
-      type: string
-      format: decimal
-    Category:
-      description: Category of the metric.
-      type: string
-    DerivativeContractExpiration:
-      description: Derivative contract expiration date.
-      type: string
-      format: date-time
-    DerivativeContractSizeAsset:
-      description: Name of the derivative contract size asset.
-      type: string
-    OrderSizeMin:
-      description: Minimum order size, where order size is amount * price.
-      type: string
-      format: decimal
-    Publisher:
-      description: Publisher of the market data.
-      type: string
-    ConstituentSnapshotsUrl:
-      description: The endpoint URL of the constituent snapshots.
-      type: string
-    ReferenceDataExchangeAssetMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ReferenceDataMetricInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ProtocolAddressName:
-      description: Name associated with the address.
-      type: string
-    OrderTakerFee:
-      type: string
-      format: decimal
-    ProtocolAsset:
-      description: Protocol asset symbol.
-      type: string
-    DocsUrl:
-      description: The documentation URL.
-      type: string
-    ReferenceDataMetricInfo:
-      description: Metric metadata.
-      properties:
-        metric:
-          $ref: '#/components/schemas/MetricId'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        description:
-          $ref: '#/components/schemas/Description'
-        product:
-          $ref: '#/components/schemas/Product'
-        category:
-          $ref: '#/components/schemas/Category'
-        subcategory:
-          $ref: '#/components/schemas/Subcategory'
-        unit:
-          $ref: '#/components/schemas/Unit'
-        data_type:
-          $ref: '#/components/schemas/MetricDataType'
-        type:
-          $ref: '#/components/schemas/MetricType'
-        reviewable:
-          $ref: '#/components/schemas/Reviewable'
-        display_name:
-          $ref: '#/components/schemas/DisplayName'
-        experimental:
-          $ref: '#/components/schemas/ExperimentalMetric'
-        constituent_snapshots_url:
-          $ref: '#/components/schemas/ConstituentSnapshotsUrl'
-        constituent_timeframes_url:
-          $ref: '#/components/schemas/ConstituentTimeframesUrl'
-        docs_url:
-          $ref: '#/components/schemas/DocsUrl'
-      required:
-      - metric
-      - full_name
-      - description
-      - product
-      - category
-      - subcategory
-      - unit
-      - data_type
-      - type
-      type: object
-    Description:
-      description: Human-friendly description.
-      type: string
-    TalosExchangeMetadata:
-      description: Provider metadata for exchanges. Contains `cm_ext_exchange` (Coin Metrics symbol using provider namespace, e.g. "talos:binance") and `cm_ext_exchange_by_id` (Coin Metrics ID using provider namespace, e.g. "talos:by-id:1003") as optional fields, plus any additional provider-specific fields.
-      type: object
-      properties:
-        cm_ext_exchange:
-          description: Coin Metrics symbol using provider namespace (e.g. "talos:binance").
-          type:
-          - string
-          - 'null'
-        cm_ext_exchange_by_id:
-          description: Coin Metrics ID using provider namespace (e.g. "talos:by-id:1003").
-          type:
-          - string
-          - 'null'
-        market:
-          description: Exchange name in the provider's namespace.
-          type:
-          - string
-          - 'null'
-        market_id:
-          description: Numeric market identifier in the provider's system.
-          type:
-          - integer
-          - 'null'
-        display_name:
-          description: Human-readable display name for the exchange.
-          type:
-          - string
-          - 'null'
-        short_name:
-          description: Short identifier for the exchange.
-          type:
-          - string
-          - 'null'
-        type:
-          description: Exchange type (e.g. "Exchange").
-          type:
-          - string
-          - 'null'
-        color:
-          description: Brand color for the exchange as a hex code.
-          type:
-          - string
-          - 'null'
-        depth_type:
-          description: Order book depth type (e.g. "Price").
-          type:
-          - string
-          - 'null'
-        capabilities:
-          description: Supported capabilities for this exchange.
-          type:
-          - object
-          - 'null'
-          properties:
-            transfers:
-              description: Whether transfers are supported.
-              type:
-              - boolean
-              - 'null'
-            market_data:
-              description: Whether market data is supported.
-              type:
-              - boolean
-              - 'null'
-            orders:
-              description: Whether order placement is supported.
-              type:
-              - boolean
-              - 'null'
-            balances:
-              description: Whether balance retrieval is supported.
-              type:
-              - boolean
-              - 'null'
-        flags:
-          description: Exchange capability flags.
-          type:
-          - object
-          - 'null'
-          properties:
-            supports_margin_cost:
-              description: Whether the exchange supports margin cost.
-              type:
-              - boolean
-              - 'null'
-            supports_reduce_only:
-              description: Whether the exchange supports reduce-only orders.
-              type:
-              - boolean
-              - 'null'
-            supports_native_counter_currency:
-              description: Whether the exchange supports native counter currency.
-              type:
-              - boolean
-              - 'null'
-            orders_fill_at_requested_price:
-              description: Whether orders fill at the requested price.
-              type:
-              - boolean
-              - 'null'
-            supports_exchange_credit:
-              description: Whether the exchange supports exchange credit.
-              type:
-              - boolean
-              - 'null'
-        supported_time_in_force:
-          description: List of supported time-in-force order types.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    ReferenceDataMarketsResponse:
-      description: List of markets.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ReferenceDataMarketInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ReferenceDataAssetsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ReferenceDataAssetInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ReferenceDataIndexesResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ReferenceDataIndexInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    AssetIdQuoteNative:
-      description: Exchange name of the quote asset.
-      type: string
-    Exchange:
-      description: Name of the exchange.
-      type: string
-    ReferenceDataAssetInfo:
-      description: Asset metadata.
-      properties:
-        asset:
-          $ref: '#/components/schemas/Asset'
-        full_name:
-          $ref: '#/components/schemas/FullName'
-        talos:
-          description: Talos metadata for the asset. Returned only when `include=talos` is specified.
-          type: array
-          items:
-            $ref: '#/components/schemas/TalosAssetMetadata'
-      required:
-      - asset
-      - full_name
-      type: object
-    ReferenceDataInstitutionMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ReferenceDataMetricInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    FutureTickSize:
-      description: Futures tick size.
-      type: string
-      format: decimal
-    DefiVariableFee:
-      description: Whether the market has a variable (true) or fixed (false) fee structure.
-      type: boolean
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
-          type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
-    TalosAssetMetadata:
-      description: Provider metadata. Contains `cm_ext_asset` (Coin Metrics symbol using provider namespace, e.g. "talos:BTC") and `cm_ext_asset_by_id` (Coin Metrics ID using provider namespace, e.g. "talos:by-id:24") as optional fields, plus any additional provider-specific fields.
-      type: object
-      properties:
-        cm_ext_asset:
-          description: Coin Metrics symbol using provider namespace (e.g. "talos:BTC").
-          type:
-          - string
-          - 'null'
-        cm_ext_asset_by_id:
-          description: Coin Metrics ID using provider namespace (e.g. "talos:by-id:24").
-          type:
-          - string
-          - 'null'
-        symbol:
-          description: Asset symbol in the provider's notation (e.g. "BTC").
-          type:
-          - string
-          - 'null'
-        currency_id:
-          description: Numeric currency identifier in the provider's system, as a string.
-          type:
-          - string
-          - 'null'
-        description:
-          description: Human-readable description of the asset.
-          type:
-          - string
-          - 'null'
-        alias_for_currency:
-          description: Alias for the underlying currency symbol.
-          type:
-          - string
-          - 'null'
-        alias_for_chain_symbol:
-          description: Alias for the blockchain chain symbol.
-          type:
-          - string
-          - 'null'
     ReferenceDataExchangePairMetricsResponse:
       properties:
         data:
@@ -1402,18 +1651,82 @@ components:
       required:
       - data
       type: object
-    MarketContractSize:
-      description: Market contract size.
+    Reviewable:
+      description: Reviewable by human flag.
+      type: boolean
+    OrderPriceMin:
+      description: Minimum price.
       type: string
       format: decimal
-    DefiQuoteAddress:
-      description: DeFi quote address.
+    ReferenceDataAssetMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ReferenceDataMetricInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    Exchange:
+      description: Name of the exchange.
       type: string
-    DefiBaseAddress:
-      description: DeFi base address.
+    AssetIdQuoteNative:
+      description: Exchange name of the quote asset.
       type: string
-    NextPageUrl:
-      description: URL of the next page results for a given request.
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    DefiVariableFee:
+      description: Whether the market has a variable (true) or fixed (false) fee structure.
+      type: boolean
+    FutureMultiplierSize:
+      description: Futures multiplier size.
+      type: string
+      format: decimal
+    DerivativeContractSizeAsset:
+      description: Name of the derivative contract size asset.
+      type: string
+    IsEuropean:
+      description: shows if the options contract is european or not.
+      type: boolean
+    Category:
+      description: Category of the metric.
+      type: string
+    Unit:
+      description: Unit of the metric.
+      type: string
+    ReferenceDataProtocols:
+      type: array
+      items:
+        $ref: '#/components/schemas/ReferenceDataProtocol'
+    SecurityDescription:
+      description: Description of the security (e.g., "30-Year Treasury Bond").
+      type: string
+    ProtocolAsset:
+      description: Protocol asset symbol.
+      type: string
+    Product:
+      description: Associated Product of the metric.
+      type: string
+    ProtocolAddress:
+      description: Address of the protocol contract.
+      type: string
+    DefiPoolConfigId:
+      description: DeFi pooling config ID.
+      type: string
+    DerivativeContractMarginAsset:
+      description: Name of the derivative margin asset.
+      type: string
+    SecurityType:
+      description: Type of the security (e.g., Treasury Bill, Treasury Note, Common Stock).
       type: string
     ReferenceDataMarketInfo:
       description: Information about a market.
@@ -1532,14 +1845,19 @@ components:
       - market
       - exchange
       - type
-    DerivativeContractMarginAsset:
-      description: Name of the derivative margin asset.
+    DerivativeContractExpiration:
+      description: Derivative contract expiration date.
       type: string
-    ReferenceDataExchangeMetricsResponse:
+      format: date-time
+    OptionStrike:
+      description: Strike price for option trade.
+      type: string
+      format: decimal
+    ReferenceDataPairsResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ReferenceDataMetricInfo'
+            $ref: '#/components/schemas/ReferenceDataPairInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -1548,27 +1866,261 @@ components:
       required:
       - data
       type: object
-    Subcategory:
-      description: Subcategory of the metric.
+    TalosExchangeMetadata:
+      description: Provider metadata for exchanges. Contains `cm_ext_exchange` (Coin Metrics symbol using provider namespace, e.g. "talos:binance") and `cm_ext_exchange_by_id` (Coin Metrics ID using provider namespace, e.g. "talos:by-id:1003") as optional fields, plus any additional provider-specific fields.
+      type: object
+      properties:
+        cm_ext_exchange:
+          description: Coin Metrics symbol using provider namespace (e.g. "talos:binance").
+          type:
+          - string
+          - 'null'
+        cm_ext_exchange_by_id:
+          description: Coin Metrics ID using provider namespace (e.g. "talos:by-id:1003").
+          type:
+          - string
+          - 'null'
+        market:
+          description: Exchange name in the provider's namespace.
+          type:
+          - string
+          - 'null'
+        market_id:
+          description: Numeric market identifier in the provider's system.
+          type:
+          - integer
+          - 'null'
+        display_name:
+          description: Human-readable display name for the exchange.
+          type:
+          - string
+          - 'null'
+        short_name:
+          description: Short identifier for the exchange.
+          type:
+          - string
+          - 'null'
+        type:
+          description: Exchange type (e.g. "Exchange").
+          type:
+          - string
+          - 'null'
+        color:
+          description: Brand color for the exchange as a hex code.
+          type:
+          - string
+          - 'null'
+        depth_type:
+          description: Order book depth type (e.g. "Price").
+          type:
+          - string
+          - 'null'
+        capabilities:
+          description: Supported capabilities for this exchange.
+          type:
+          - object
+          - 'null'
+          properties:
+            transfers:
+              description: Whether transfers are supported.
+              type:
+              - boolean
+              - 'null'
+            market_data:
+              description: Whether market data is supported.
+              type:
+              - boolean
+              - 'null'
+            orders:
+              description: Whether order placement is supported.
+              type:
+              - boolean
+              - 'null'
+            balances:
+              description: Whether balance retrieval is supported.
+              type:
+              - boolean
+              - 'null'
+        flags:
+          description: Exchange capability flags.
+          type:
+          - object
+          - 'null'
+          properties:
+            supports_margin_cost:
+              description: Whether the exchange supports margin cost.
+              type:
+              - boolean
+              - 'null'
+            supports_reduce_only:
+              description: Whether the exchange supports reduce-only orders.
+              type:
+              - boolean
+              - 'null'
+            supports_native_counter_currency:
+              description: Whether the exchange supports native counter currency.
+              type:
+              - boolean
+              - 'null'
+            orders_fill_at_requested_price:
+              description: Whether orders fill at the requested price.
+              type:
+              - boolean
+              - 'null'
+            supports_exchange_credit:
+              description: Whether the exchange supports exchange credit.
+              type:
+              - boolean
+              - 'null'
+        supported_time_in_force:
+          description: List of supported time-in-force order types.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Cusip:
+      description: CUSIP identifier for the security.
       type: string
-    OrderPriceMax:
-      description: Maximum price.
+    OrderAmountMax:
+      description: Maximum amount size.
       type: string
       format: decimal
-    OptionContractType:
-      description: '''call or ''put'' option contract type.'
+    MarketSymbol:
+      description: Unique name of the derivative market symbol.
       type: string
-    DefiPoolConfigId:
-      description: DeFi pooling config ID.
+    DefiBaseAddress:
+      description: DeFi base address.
       type: string
-    Status:
-      description: Market status (online/offline).
+    OrderAmountIncrement:
+      description: Volume precision.
       type: string
-    Reviewable:
-      description: Reviewable by human flag.
+      format: decimal
+    DisplayName:
+      description: More detailed and human friendly name of a metric.
+      type: string
+    ProtocolAddressName:
+      description: Name associated with the address.
+      type: string
+    DefiFee:
+      description: DeFi fee (in percents).
+      type: string
+      format: decimal
+    MarketId:
+      description: Unique name of the market.
+      type: string
+    CouponRate:
+      description: Coupon rate of the security.
+      type: string
+      format: decimal
+    DefiPriceIncludesFee:
+      description: Whether the reported price for a trade is inclusive (true) or exclusive (false) of fee.
       type: boolean
-    FullName:
-      description: Human-friendly name.
+    MarketContractSize:
+      description: Market contract size.
+      type: string
+      format: decimal
+    ReferenceDataPairInfo:
+      description: Pair metadata.
+      properties:
+        pair:
+          $ref: '#/components/schemas/Pair'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+      required:
+      - pair
+      - full_name
+      type: object
+    AssetIdBaseNative:
+      description: Exchange name of the base asset.
+      type: string
+    ReferenceDataProtocolsResponse:
+      description: Blockchain protocol reference data response.
+      properties:
+        data:
+          $ref: '#/components/schemas/ReferenceDataProtocols'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+        warning:
+          $ref: '#/components/schemas/WarningObject'
+      required:
+      - data
+      type: object
+    ReferenceDataMarketsResponse:
+      description: List of markets.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ReferenceDataMarketInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    TalosAssetMetadata:
+      description: Provider metadata. Contains `cm_ext_asset` (Coin Metrics symbol using provider namespace, e.g. "talos:BTC") and `cm_ext_asset_by_id` (Coin Metrics ID using provider namespace, e.g. "talos:by-id:24") as optional fields, plus any additional provider-specific fields.
+      type: object
+      properties:
+        cm_ext_asset:
+          description: Coin Metrics symbol using provider namespace (e.g. "talos:BTC").
+          type:
+          - string
+          - 'null'
+        cm_ext_asset_by_id:
+          description: Coin Metrics ID using provider namespace (e.g. "talos:by-id:24").
+          type:
+          - string
+          - 'null'
+        symbol:
+          description: Asset symbol in the provider's notation (e.g. "BTC").
+          type:
+          - string
+          - 'null'
+        currency_id:
+          description: Numeric currency identifier in the provider's system, as a string.
+          type:
+          - string
+          - 'null'
+        description:
+          description: Human-readable description of the asset.
+          type:
+          - string
+          - 'null'
+        alias_for_currency:
+          description: Alias for the underlying currency symbol.
+          type:
+          - string
+          - 'null'
+        alias_for_chain_symbol:
+          description: Alias for the blockchain chain symbol.
+          type:
+          - string
+          - 'null'
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    Publisher:
+      description: Publisher of the market data.
+      type: string
+    SecurityTerm:
+      description: Original term of the security (e.g., "4-Week", "10-Year").
+      type: string
+    Isin:
+      description: ISIN identifier for the security.
       type: string
     ReferenceDataIndexInfo:
       description: Index metadata.
@@ -1585,96 +2137,20 @@ components:
       - index
       - full_name
       type: object
-    ReferenceDataProtocol:
-      description: Protocol reference data response.
-      properties:
-        market:
-          description: Protocol market.
-          type: string
-        full_name:
-          description: Full human-readable name of the protocol market.
-          type: string
-        protocol:
-          description: Protocol name.
-          type: string
-        type:
-          description: Protocol type.
-          type: string
-        chains:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProtocolChain'
-      required:
-      - market
-      - full_name
-      - protocol
-      - type
-      - chains
-      type: object
-    DefiContractAddress:
-      description: DeFi contract address.
+    OrderTakerFee:
       type: string
-    Pair:
-      description: Pair string representation as `<base>-<quote>`.
+      format: decimal
+    OrderSizeMin:
+      description: Minimum order size, where order size is amount * price.
       type: string
+      format: decimal
     Figi:
       description: FIGI identifier for the security.
       type: string
-    SecurityType:
-      description: Type of the security (e.g., Treasury Bill, Treasury Note, Common Stock).
-      type: string
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    OrderPriceMin:
-      description: Minimum price.
+    OrderAmountMin:
+      description: Minimum amount size.
       type: string
       format: decimal
-    Isin:
-      description: ISIN identifier for the security.
-      type: string
-    ExperimentalMetric:
-      description: If set to true, indicates that metrics collection is under active development - there is a chance of temporary discrepancies in the served dataset.
-      type: boolean
-    AssetIdBaseNative:
-      description: Exchange name of the base asset.
-      type: string
-    WarningObject:
-      properties:
-        type:
-          description: Warning type string. Can be used for warning identification.
-          type: string
-        message:
-          description: Human-friendly warning description. Do not use for warning identification in your code.
-          type: string
-      required:
-      - type
-      - message
-      type: object
-    OrderAmountMax:
-      description: Maximum amount size.
-      type: string
-      format: decimal
-    ReferenceDataPairMetricsResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ReferenceDataMetricInfo'
-          type: array
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-      type: object
-    ProtocolAddress:
-      description: Address of the protocol contract.
-      type: string
     AssetClass:
       description: Asset class of the market.
       type: string
@@ -1682,36 +2158,29 @@ components:
       - digital
       - equity
       - fixed_income
-    MarketSymbol:
-      description: Unique name of the derivative market symbol.
+    Status:
+      description: Market status (online/offline).
       type: string
-    OrderPriceIncrement:
-      description: Price precision.
+    OrderPriceMax:
+      description: Maximum price.
       type: string
       format: decimal
-    MaturityDate:
-      description: Maturity date of the security.
+    SettlementPrice:
+      description: Price of underlying asset at contract expiration.
+      type: string
+      format: decimal
+    Description:
+      description: Human-friendly description.
+      type: string
+    IssueDate:
+      description: Issue date of the security.
       type: string
       format: date
-    Index:
-      description: Name of the index.
-      type: string
-    SourceType:
-      description: Source type of the exchange.
-      type: string
-      enum:
-      - exchange
-      - platform
-      - composite
-      - evaluated
-    AssetIdQuote:
-      description: Unique name of the quote asset.
-      type: string
-    ReferenceDataAssetMetricsResponse:
+    ReferenceDataIndexesResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ReferenceDataMetricInfo'
+            $ref: '#/components/schemas/ReferenceDataIndexInfo'
           type: array
         next_page_token:
           $ref: '#/components/schemas/NextPageToken'
@@ -1720,17 +2189,24 @@ components:
       required:
       - data
       type: object
-    OptionStrike:
-      description: Strike price for option trade.
+    OptionContractType:
+      description: '''call or ''put'' option contract type.'
       type: string
-      format: decimal
-    IndexType:
-      description: Type of the index.
+    AssetIdQuote:
+      description: Unique name of the quote asset.
       type: string
-    MarginTradingEnabled:
+    MaturityDate:
+      description: Maturity date of the security.
+      type: string
+      format: date
+    ExperimentalMetric:
+      description: If set to true, indicates that metrics collection is under active development - there is a chance of temporary discrepancies in the served dataset.
       type: boolean
-    SecurityTerm:
-      description: Original term of the security (e.g., "4-Week", "10-Year").
+    Index:
+      description: Name of the index.
+      type: string
+    DefiQuoteAddress:
+      description: DeFi quote address.
       type: string
     ReferenceDataExchangeInfo:
       description: Exchange metadata.
@@ -1748,16 +2224,84 @@ components:
       - exchange
       - full_name
       type: object
-    ReferenceDataPairInfo:
-      description: Pair metadata.
+    ExperimentalMarket:
+      description: If set to true, indicates that market collection is under active development - there is a chance of temporary discrepancies in the served dataset.
+      type: boolean
+    OrderMakerFee:
+      type: string
+      format: decimal
+    ReferenceDataAssetInfo:
+      description: Asset metadata.
       properties:
-        pair:
-          $ref: '#/components/schemas/Pair'
+        asset:
+          $ref: '#/components/schemas/Asset'
         full_name:
           $ref: '#/components/schemas/FullName'
+        talos:
+          description: Talos metadata for the asset. Returned only when `include=talos` is specified.
+          type: array
+          items:
+            $ref: '#/components/schemas/TalosAssetMetadata'
       required:
-      - pair
+      - asset
       - full_name
+      type: object
+    ReferenceDataPairMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ReferenceDataMetricInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    ReferenceDataMetricInfo:
+      description: Metric metadata.
+      properties:
+        metric:
+          $ref: '#/components/schemas/MetricId'
+        full_name:
+          $ref: '#/components/schemas/FullName'
+        description:
+          $ref: '#/components/schemas/Description'
+        product:
+          $ref: '#/components/schemas/Product'
+        category:
+          $ref: '#/components/schemas/Category'
+        subcategory:
+          $ref: '#/components/schemas/Subcategory'
+        unit:
+          $ref: '#/components/schemas/Unit'
+        data_type:
+          $ref: '#/components/schemas/MetricDataType'
+        type:
+          $ref: '#/components/schemas/MetricType'
+        reviewable:
+          $ref: '#/components/schemas/Reviewable'
+        display_name:
+          $ref: '#/components/schemas/DisplayName'
+        experimental:
+          $ref: '#/components/schemas/ExperimentalMetric'
+        constituent_snapshots_url:
+          $ref: '#/components/schemas/ConstituentSnapshotsUrl'
+        constituent_timeframes_url:
+          $ref: '#/components/schemas/ConstituentTimeframesUrl'
+        docs_url:
+          $ref: '#/components/schemas/DocsUrl'
+      required:
+      - metric
+      - full_name
+      - description
+      - product
+      - category
+      - subcategory
+      - unit
+      - data_type
+      - type
       type: object
     TalosMarketSizeBucket:
       description: A size bucket for order sizing.
@@ -1766,715 +2310,171 @@ components:
         size:
           description: The bucket size value.
           type: string
-    IsEuropean:
-      description: shows if the options contract is european or not.
-      type: boolean
-    ReferenceDataProtocols:
-      type: array
-      items:
-        $ref: '#/components/schemas/ReferenceDataProtocol'
-    DisplayName:
-      description: More detailed and human friendly name of a metric.
+    SourceType:
+      description: Source type of the exchange.
       type: string
-    MarketId:
-      description: Unique name of the market.
+      enum:
+      - exchange
+      - platform
+      - composite
+      - evaluated
+    ReferenceDataExchangeMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ReferenceDataMetricInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    ProtocolChain:
+      description: Protocol chain.
+      properties:
+        chain:
+          description: Protocol chain.
+          type: string
+        address:
+          description: 'Primary contract address for the protocol entity. Aave: lending pool. Morpho vault: vault contract. Morpho market: market ID.
+
+            '
+          $ref: '#/components/schemas/ProtocolAddress'
+        asset:
+          description: 'Primary asset. Aave: reserve/underlying asset. Morpho vault: deposit asset. Morpho market: loan asset.
+
+            '
+          $ref: '#/components/schemas/ProtocolAsset'
+        asset_address:
+          description: Address of the primary asset token.
+          $ref: '#/components/schemas/ProtocolAddress'
+        asset_decimals:
+          description: Decimal conversion.
+          type: string
+        configurator_address:
+          $ref: '#/components/schemas/ProtocolAddress'
+        atoken_address:
+          $ref: '#/components/schemas/ProtocolAddress'
+        atoken_asset:
+          $ref: '#/components/schemas/ProtocolAsset'
+        variable_debt_token_address:
+          $ref: '#/components/schemas/ProtocolAddress'
+        variable_debt_asset:
+          $ref: '#/components/schemas/ProtocolAsset'
+        stable_debt_token_address:
+          $ref: '#/components/schemas/ProtocolAddress'
+        curator_address:
+          $ref: '#/components/schemas/ProtocolAddress'
+        curator_name:
+          $ref: '#/components/schemas/ProtocolAddressName'
+        guardian_address:
+          $ref: '#/components/schemas/ProtocolAddress'
+        guardian_name:
+          $ref: '#/components/schemas/ProtocolAddressName'
+        collateral_asset:
+          description: Collateral asset posted by borrowers.
+          $ref: '#/components/schemas/ProtocolAsset'
+        collateral_asset_address:
+          $ref: '#/components/schemas/ProtocolAddress'
+        oracle_address:
+          description: Price oracle contract for the market.
+          $ref: '#/components/schemas/ProtocolAddress'
+        irm_address:
+          description: Interest rate model contract for the market.
+          $ref: '#/components/schemas/ProtocolAddress'
+        lltv:
+          description: Liquidation loan-to-value ratio for the market.
+          type: string
+      required:
+      - chain
+      type: object
+    Pair:
+      description: Pair string representation as `<base>-<quote>`.
+      type: string
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
+    OrderPriceIncrement:
+      description: Price precision.
+      type: string
+      format: decimal
+    MetricDataType:
+      description: 'Data Type of the metric. Can be bigint or decimal.<br/>
+
+        "bigint" means that you should expect an integer number in a range from -9223372036854775808 to 9223372036854775807.<br/>
+
+        "decimal" means that a number can have up to 131072 digits before the decimal point and up to 16383 digits after the decimal point.
+
+        '
+      type: string
+    ReferenceDataInstitutionMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ReferenceDataMetricInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    AssetIdBase:
+      description: Unique name of the base asset.
+      type: string
+    FutureTickSize:
+      description: Futures tick size.
+      type: string
+      format: decimal
+    ReferenceDataExchangeAssetMetricsResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ReferenceDataMetricInfo'
+          type: array
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+      type: object
+    FullName:
+      description: Human-friendly name.
+      type: string
+    MetricId:
+      description: Name of the metric.
+      type: string
+    Asset:
+      description: Name of the asset.
+      type: string
+    WarningObject:
+      properties:
+        type:
+          description: Warning type string. Can be used for warning identification.
+          type: string
+        message:
+          description: Human-friendly warning description. Do not use for warning identification in your code.
+          type: string
+      required:
+      - type
+      - message
+      type: object
+    PricePer100:
+      description: Price per $100 face value.
+      type: string
+      format: decimal
+    ConstituentSnapshotsUrl:
+      description: The endpoint URL of the constituent snapshots.
       type: string
     MetricType:
       description: Type of the metric.
       type: string
-    MarketType:
-      description: Type of the market (spot, future).
-      type: string
-  parameters:
-    CatalogAssetId:
-      description: 'Comma separated list of assets. By default all assets are returned. Supports the following formats: `<asset>` - Coin Metrics asset ticker (e.g., `btc`), `<namespace>:<symbol>` - External provider symbol (e.g., `talos:BTC`), `<namespace>:by-id:<id>` - External provider numeric ID (e.g., `talos:by-id:24`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by a provider-specific numeric ID rather than symbol.'
-      in: query
-      name: assets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    CatalogExchangeId:
-      description: 'Comma separated list of exchanges. By default all exchanges are returned. Supports the following formats: `<exchange>` - Coin Metrics exchange name (e.g., `binance`), `<namespace>:<name>` - External provider market name (e.g., `talos:binance`), `<namespace>:by-id:<id>` - External provider numeric market ID (e.g., `talos:by-id:1003`). The `namespace` identifies the external data provider (e.g., `talos`). The `by-id` selector indicates lookup by numeric ID rather than name.'
-      in: query
-      name: exchanges
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    SourceType:
-      description: Source type of exchange.
-      in: query
-      name: source_type
-      schema:
-        $ref: '#/components/schemas/SourceType'
-    MarketBase:
-      description: Base asset of markets.
-      in: query
-      name: base
-      schema:
-        type: string
-    Protocols:
-      description: Comma separated list of protocols like `aave_v3` or `morpho_blue`.
-      in: query
-      name: protocols
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    ProtocolMarkets:
-      description: Comma separated list of protocol markets like `core-weth` or `steakusdc`.
-      in: query
-      name: markets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    ProtocolChains:
-      description: Comma separated list of protocol chains like `ethereum` or `base`.
-      in: query
-      name: chains
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketQuote:
-      description: Quote asset of markets.
-      in: query
-      name: quote
-      schema:
-        type: string
-    CatalogResponseFormat:
-      description: Format of the response. Supported values are `json`, `json_stream`.
-      in: query
-      name: format
-      schema:
-        type: string
-        default: json
-    CatalogMetric:
-      description: Comma separated list of metrics. By default all metrics are returned.
-      in: query
-      name: metrics
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    Reviewable:
-      description: Limit to human-reviewable metrics. By default all metrics are returned.
-      in: query
-      name: reviewable
-      schema:
-        type: boolean
-    MarketSymbol:
-      description: Symbol of derivative markets, full instrument name.
-      in: query
-      name: symbol
-      schema:
-        type: string
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
-    CatalogPairId:
-      description: Comma separated list of asset pairs. By default, all asset pairs are returned.
-      in: query
-      name: pairs
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    MarketCusip:
-      description: CUSIP identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time.
-      in: query
-      name: cusip
-      schema:
-        type: string
-    MarketAsset:
-      description: Any asset of markets.
-      in: query
-      name: asset
-      schema:
-        type: string
-    MarketIsin:
-      description: ISIN identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time.
-      in: query
-      name: isin
-      schema:
-        type: string
-    MarketFigi:
-      description: FIGI identifier to filter markets. Only one of `cusip`, `figi`, or `isin` may be specified at a time.
-      in: query
-      name: figi
-      schema:
-        type: string
-    AssetClass:
-      description: Asset class of markets.
-      in: query
-      name: asset_class
-      schema:
-        $ref: '#/components/schemas/AssetClass'
-    MarketType:
-      description: Type of markets.
-      in: query
-      name: type
-      schema:
-        enum:
-        - spot
-        - future
-        - option
-        type: string
-    Exchange:
-      description: Unique name of an exchange.
-      in: query
-      name: exchange
-      schema:
-        type: string
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    PagingFromWithStartByDefault:
-      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: paging_from
-      schema:
-        default: start
-        enum:
-        - start
-        - end
-        type: string
-        format: PagingFrom
-    CatalogMarketId:
-      description: Comma separated list of markets. By default all markets are returned.
-      in: query
-      name: markets
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-    ReferenceDataNamespacesInclude:
-      description: Comma-separated list of namespaces to include in response. Currently, the only supported value is `talos`.
-      in: query
-      name: include
-      schema:
-        type: string
-    CatalogIndexId:
-      description: Comma separated list of indexes. By default all indexes are returned.
-      in: query
-      name: indexes
-      schema:
-        type: array
-        items:
-          type: string
-      explode: false
-  responses:
-    IndexNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'indexes'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Index not found.
-    ReferenceDataInstitutionMetrics:
-      description: List of institution metrics metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: bat_coin_per_share
-              full_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
-              description: The number of native units of the coin per share of the Grayscale Basic Attention Token Trust.
-              product: Market Data
-              category: Institutions
-              subcategory: Investment Products
-              unit: Native Units
-              data_type: decimal
-              type: Ratio
-              display_name: Grayscale Basic Attention Token Trust, Native Units of Coin Per Share
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/institution-metrics-overview/grayscale/coin-per-share
-            - metric: bat_market_price
-              full_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
-              description: The market price per share in U.S. dollars of the Grayscale Basic Attention Token Trust.
-              product: Market Data
-              category: Institutions
-              subcategory: Investment Products
-              unit: USD
-              data_type: decimal
-              type: Ratio
-              display_name: Grayscale Basic Attention Token Trust, Market Price per Share, USD
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/institution-metrics-overview/grayscale/market-price
-            next_page_token: YmF0X25ldF9hc3NldF92YWx1ZQ
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/institution-metrics?api_key=<your_key>&page_size=2&next_page_token=YmF0X25ldF9hc3NldF92YWx1ZQ
-          schema:
-            $ref: '#/components/schemas/ReferenceDataInstitutionMetricsResponse'
-    ReferenceDataPairMetrics:
-      description: List of pair metrics metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: volatility_implied_call_delta_05_120d_expiration
-              full_name: Volatility, implied, call, 5 delta, 120 day expiration
-              description: The annualized interpolated implied volatility of a call option with 5 delta expiring 120 days in the future.
-              product: Market Data
-              category: Volatility
-              subcategory: Implied
-              unit: Dimensionless
-              data_type: decimal
-              type: Percentage
-              display_name: Implied Volatility, Call Option, 5 Delta, 120 Day Expiration
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/volatility/implied-volatility
-            - metric: volatility_implied_call_delta_05_14d_expiration
-              full_name: Volatility, implied, call, 5 delta, 14 day expiration
-              description: The annualized interpolated implied volatility of a call option with 5 delta expiring 14 days in the future.
-              product: Market Data
-              category: Volatility
-              subcategory: Implied
-              unit: Dimensionless
-              data_type: decimal
-              type: Percentage
-              display_name: Implied Volatility, Call Option, 5 Delta, 14 Day Expiration
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/volatility/implied-volatility
-            next_page_token: dm9sYXRpbGl0eV9pbXBsaWVkX2NhbGxfZGVsdGFfMDVfMTgwZF9leHBpcmF0aW9u
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-pair-metrics?page_size=2&pretty=true&api_key=<your_key>&next_page_token=dm9sYXRpbGl0eV9pbXBsaWVkX2NhbGxfZGVsdGFfMDVfMTgwZF9leHBpcmF0aW9u
-          schema:
-            $ref: '#/components/schemas/ReferenceDataPairMetricsResponse'
-    ReferenceDataMarketMetrics:
-      description: List of market metrics metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: liquidations_reported_future_buy_units_1d
-              full_name: Liquidations, reported, future, buys, native units, one day
-              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
-              product: Market Data
-              category: Liquidations
-              subcategory: Futures
-              unit: Native Units
-              data_type: decimal
-              type: Sum
-              display_name: Reported Futures Buy Liquidations, native units
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
-            - metric: liquidations_reported_future_buy_units_1h
-              full_name: Liquidations, reported, future, buys, native units, one hour
-              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
-              product: Market Data
-              category: Liquidations
-              subcategory: Futures
-              unit: Native Units
-              data_type: decimal
-              type: Sum
-              display_name: Reported Futures Buy Liquidations, native units
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
-            next_page_token: bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/market-metrics?api_key=<your_key>&page_size=2&next_page_token=bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
-          schema:
-            $ref: '#/components/schemas/ReferenceDataMarketMetricsResponse'
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    MarketNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'markets'. Market 'sdvwbtc-as-asd-spot' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Market not found.
-    ProtocolNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'protocols'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Protocol not found.
-    ReferenceDataIndexes:
-      description: List of indexes metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - index: CMBIBTCT
-              full_name: CMBI Bitcoin Total Return Index
-              description: A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin as well as liquidating legitimate forked assets.
-              type: single_asset
-            - index: CMBIBTCV
-              full_name: CMBI Bitcoin Index
-              description: A single asset index measuring the performance an investor would expect from purchasing and holding Bitcoin.
-            next_page_token: Q01CSURFWEU
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/indexes?api_key=<your_key>&page_size=2&next_page_token=Q01CSURFWEU
-          schema:
-            $ref: '#/components/schemas/ReferenceDataIndexesResponse'
-    ReferenceDataMarkets:
-      description: List of markets metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - market: binance-btc-usdt-spot
-              exchange: binance
-              type: spot
-              base: btc
-              quote: usdt
-              pair: btc-usdt
-              symbol: BTCUSDT
-            - market: binance-1000FLOKIUSDT-future
-              exchange: binance
-              type: future
-              base: floki
-              quote: usdt
-              pair: floki-usdt
-              symbol: 1000FLOKIUSDT
-              size_asset: floki
-              margin_asset: usdt
-              contract_size: '1000'
-              tick_size: '0.00001'
-              listing: '2023-05-06T00:00:00.000000000Z'
-              order_amount_increment: '1'
-              order_amount_min: '1'
-              order_amount_max: '10000000'
-              order_price_increment: '0.0000100'
-              order_price_min: '0.0000100'
-              order_price_max: '200'
-              order_size_min: '5.0'
-            - market: deribit-BTC-10DEC22-17500-C-option
-              exchange: deribit
-              type: option
-              base: btc
-              quote: usd
-              pair: btc-usd
-              symbol: BTC-10DEC22-17500-C
-              size_asset: btc
-              strike: '17500'
-              option_contract_type: call
-              is_european: true
-              contract_size: '1'
-              listing: '2022-12-08T08:01:00.000000000Z'
-              expiration: '2022-12-10T08:00:00.000000000Z'
-              settlement_price: '17160.85'
-              status: offline
-              order_amount_min: '0.1'
-              order_price_increment: '0.0005'
-              order_taker_fee: '0.0003'
-              order_maker_fee: '0.0003'
-            next_page_token: ZGVyaWJpdC1CVEMtMTBERUMyMi0xNzUwMC1QLW9wdGlvbg
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/markets?api_key=<your_key>&page_size=3&next_page_token=ZGVyaWJpdC1CVEMtMTBERUMyMi0xNzUwMC1QLW9wdGlvbg
-          schema:
-            $ref: '#/components/schemas/ReferenceDataMarketsResponse'
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    ReferenceDataAssets:
-      description: List of assets metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - asset: btc
-              full_name: Bitcoin
-              talos:
-              - cm_ext_asset: talos:BTC
-                cm_ext_asset_by_id: talos:by-id:24
-                symbol: BTC
-                currency_id: '24'
-                description: Bitcoin
-            - asset: eth
-              full_name: Ethereum
-              talos:
-              - cm_ext_asset: talos:ETH
-                cm_ext_asset_by_id: talos:by-id:17
-                symbol: ETH
-                currency_id: '17'
-                description: Ethereum
-            - asset: sol
-              full_name: Solana
-              talos:
-              - cm_ext_asset: talos:SOL
-                cm_ext_asset_by_id: talos:by-id:653
-                symbol: SOL
-                currency_id: '653'
-                description: Solana
-            next_page_token: ZXRo
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/assets?api_key=<your_key>&page_size=2&next_page_token=ZXRo
-          schema:
-            $ref: '#/components/schemas/ReferenceDataAssetsResponse'
-    ReferenceDataExchanges:
-      description: List of exchanges metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - exchange: binance
-              full_name: Binance
-            - exchange: bittrex
-              full_name: Bittrex
-            next_page_token: YnliaXQ
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchanges?api_key=<your_key>&page_size=2&next_page_token=YnliaXQ
-          schema:
-            $ref: '#/components/schemas/ReferenceDataExchangesResponse'
-    MetricNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Metric not found.
-    ReferenceDataExchangeAssetMetrics:
-      description: List of exchange asset metrics metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: basis_annualized_120d_exp
-              full_name: 'Basis, annualized, 120 day expiration '
-              description: The relative difference between the price of a futures contract that expires in 120 days and the price of its underlying spot market.
-              product: Market Data
-              category: Basis
-              subcategory: Future
-              unit: Dimensionless
-              data_type: decimal
-              type: Percentage
-              display_name: Annualized Futures Basis, 120 day expiration
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
-            - metric: basis_annualized_30d_exp
-              full_name: 'Basis, annualized, 30 day expiration '
-              description: The relative difference between the price of a futures contract that expires in 30 days and the price of its underlying spot market.
-              product: Market Data
-              category: Basis
-              subcategory: Future
-              unit: Dimensionless
-              data_type: decimal
-              type: Percentage
-              display_name: Annualized Futures Basis, 30 day expiration
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
-            next_page_token: YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-asset-metrics?api_key=<your_key>&page_size=2&next_page_token=YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
-          schema:
-            $ref: '#/components/schemas/ReferenceDataExchangeAssetMetricsResponse'
-    ReferenceDataProtocols:
-      description: Protocol metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - market: core-weth
-              full_name: Core Aave Market Wrapped Ether
-              protocol: aave_v3
-              type: aave_pool
-              chains:
-              - chain: ethereum
-                address: '0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2'
-                asset: weth
-                asset_address: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
-                asset_decimals: '18'
-                configurator_address: '0x64b761d848206f447fe2dd461b0c635ec39ebb27'
-                atoken_address: '0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8'
-                atoken_asset: aethweth_v3_eth
-                variable_debt_token_address: '0xea51d7853eefb32b6ee06b1c12e6dcca88be0ffe'
-                variable_debt_asset: vethweth_v3_eth
-                stable_debt_token_address: '0x102633152313c81cd80419b6ecf66d14ad68949a'
-            - market: steakusdc
-              full_name: Steakhouse USDC
-              protocol: morpho_blue
-              type: morpho_vault
-              chains:
-              - chain: ethereum
-                address: '0xbeef01735c132ada46aa9aa4c54623caa92a64cb'
-                asset: usdc
-                asset_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
-                asset_decimals: '6'
-          schema:
-            $ref: '#/components/schemas/ReferenceDataProtocolsResponse'
-    AssetNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'assets'. Value 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Asset not found.
-    ReferenceDataPairs:
-      description: List of pairs metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - pair: btc-eur
-              full_name: Bitcoin - Euro
-            - pair: btc-usdt
-              full_name: Bitcoin - Tether
-            next_page_token: ZXRoLXVzZHQ
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/pairs?api_key=<your_key>&page_size=2&next_page_token=ZXRoLXVzZHQ
-          schema:
-            $ref: '#/components/schemas/ReferenceDataPairsResponse'
-    ExchangeNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'id'. Exchange 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Exchange not found.
-    ReferenceDataExchangeMetrics:
-      description: List of exchange metrics metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: liquidations_reported_future_buy_units_1d
-              full_name: Liquidations, reported, future, buys, native units, one day
-              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
-              product: Market Data
-              category: Liquidations
-              subcategory: Futures
-              unit: Native Units
-              data_type: decimal
-              type: Sum
-              display_name: Reported Futures Buy Liquidations, native units
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
-            - metric: liquidations_reported_future_buy_units_1h
-              full_name: Liquidations, reported, future, buys, native units, one hour
-              description: The sum of all buy liquidations from perpetual futures markets in native units of the underlying base asset.
-              product: Market Data
-              category: Liquidations
-              subcategory: Futures
-              unit: Native Units
-              data_type: decimal
-              type: Sum
-              display_name: Reported Futures Buy Liquidations, native units
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/liquidations/
-            next_page_token: bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-metrics?api_key=<your_key>&page_size=2&next_page_token=bGlxdWlkYXRpb25zX3JlcG9ydGVkX2Z1dHVyZV9idXlfdW5pdHNfNW0
-          schema:
-            $ref: '#/components/schemas/ReferenceDataExchangeMetricsResponse'
-    PairNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'pairs'. Value 'sdvwbtc' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Pair not found.
-    ReferenceDataExchangePairMetrics:
-      description: List of exchange pair metrics metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: basis_annualized_120d_exp
-              full_name: 'Basis, annualized, 120 day expiration '
-              description: The relative difference between the price of a futures contract that expires in 120 days and the price of its underlying spot market.
-              product: Market Data
-              category: Basis
-              subcategory: Future
-              unit: Dimensionless
-              data_type: decimal
-              type: Percentage
-              display_name: Annualized Futures Basis, 120 day expiration
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
-            - metric: basis_annualized_30d_exp
-              full_name: 'Basis, annualized, 30 day expiration '
-              description: The relative difference between the price of a futures contract that expires in 30 days and the price of its underlying spot market.
-              product: Market Data
-              category: Basis
-              subcategory: Future
-              unit: Dimensionless
-              data_type: decimal
-              type: Percentage
-              display_name: Annualized Futures Basis, 30 day expiration
-              docs_url: https://docs.coinmetrics.io/market-data/market-data-overview/basis/
-            next_page_token: YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/exchange-asset-metrics?api_key=<your_key>&page_size=2&next_page_token=YmFzaXNfYW5udWFsaXplZF82MGRfZXhw
-          schema:
-            $ref: '#/components/schemas/ReferenceDataExchangePairMetricsResponse'
-    ReferenceDataAssetMetrics:
-      description: List of asset metrics metadata.
-      content:
-        application/json:
-          example:
-            data:
-            - metric: AdrAct30dCnt
-              full_name: Addresses, active, monthly, count
-              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) in the trailing 30 days up to the end of that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
-              product: Network Data
-              category: Addresses
-              subcategory: Active
-              unit: Addresses
-              data_type: bigint
-              type: Sum
-              display_name: Active Monthly Addr Cnt
-              docs_url: https://docs.coinmetrics.io/network-data/network-data-overview/addresses/active-addresses
-            - metric: AdrAct7dCnt
-              full_name: Addresses, active, weekly, count
-              description: The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) in the trailing 7 days up to the end of that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if active several times in the considered interval.
-              product: Network Data
-              category: Addresses
-              subcategory: Active
-              unit: Addresses
-              data_type: bigint
-              type: Sum
-              display_name: Active Weekly Addr Cnt
-              docs_url: https://docs.coinmetrics.io/network-data/network-data-overview/addresses/active-addresses
-            next_page_token: QWRyQWN0Q250
-            next_page_url: https://api.coinmetrics.io/v4/reference-data/asset-metrics?api_key=<your_key>&page_size=2&next_page_token=QWRyQWN0Q250
-          schema:
-            $ref: '#/components/schemas/ReferenceDataAssetMetricsResponse'
+    MarginTradingEnabled:
+      type: boolean
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

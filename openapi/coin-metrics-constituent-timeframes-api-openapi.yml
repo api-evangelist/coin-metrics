@@ -97,23 +97,45 @@ paths:
       - api_key: []
 components:
   parameters:
-    ConstituentId:
-      description: 'Comma separated list of constituents. By default all constituents are returned.
+    ConstituentsEndTime:
+      description: 'End of the time interval, inclusive. \
 
-        Different asset metrics may have different constituents.
+        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
 
-        For example, constituents for `volume_trusted_spot_usd_1d` are exchanges.
+        Mutually exclusive with `at_time`.
 
         '
-      example: null
-      name: constituents
+      name: end_time
       in: query
-      required: false
       schema:
-        type: array
-        items:
-          type: string
-      explode: false
+        type: string
+    PagingFrom:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: end
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    Format:
+      description: Format of the response.
+      in: query
+      name: format
+      schema:
+        enum:
+        - json
+        - csv
+        type: string
+        default: json
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
     ConstituentsStartTime:
       description: 'Start of the time interval, inclusive. \
 
@@ -126,6 +148,13 @@ components:
       in: query
       schema:
         type: string
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
     ConstituentsMetricName:
       description: Target metric name.
       name: metric
@@ -143,107 +172,23 @@ components:
         format: int32
         minimum: 1
         maximum: 10000
-    ConstituentsEndTime:
-      description: 'End of the time interval, inclusive. \
+    ConstituentId:
+      description: 'Comma separated list of constituents. By default all constituents are returned.
 
-        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
+        Different asset metrics may have different constituents.
 
-        Mutually exclusive with `at_time`.
+        For example, constituents for `volume_trusted_spot_usd_1d` are exchanges.
 
         '
-      name: end_time
+      example: null
+      name: constituents
       in: query
+      required: false
       schema:
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    Format:
-      description: Format of the response.
-      in: query
-      name: format
-      schema:
-        enum:
-        - json
-        - csv
-        type: string
-        default: json
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    PagingFrom:
-      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: paging_from
-      schema:
-        default: end
-        enum:
-        - start
-        - end
-        type: string
-        format: PagingFrom
-  schemas:
-    ConstituentTimeframesAssetMetricsResponse:
-      description: Timeframes of asset metric constituents response.
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              start_time:
-                $ref: '#/components/schemas/Time'
-              end_time:
-                $ref: '#/components/schemas/Time'
-            required:
-            - start_time
-            additionalProperties:
-              type:
-              - string
-              - 'null'
-        next_page_token:
-          $ref: '#/components/schemas/NextPageToken'
-        next_page_url:
-          $ref: '#/components/schemas/NextPageUrl'
-      required:
-      - data
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
-    NextPageUrl:
-      description: URL of the next page results for a given request.
-      type: string
-    ErrorResponse:
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorObject'
-      required:
-      - error
-      type: object
-    Time:
-      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
-      type: string
-      format: date-time
-    ErrorObject:
-      properties:
-        type:
-          description: Error type string. Can be used for error identification.
+        type: array
+        items:
           type: string
-        message:
-          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
-          type: string
-      required:
-      - type
-      - description
-      type: object
+      explode: false
   responses:
     Forbidden:
       content:
@@ -255,27 +200,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
       description: Requested resource is not available with supplied credentials.
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     MetricNotFound:
       content:
         application/json:
@@ -325,6 +249,82 @@ components:
             bitstamp,2023-04-01T00:00:00.000000000Z,2023-10-12T00:00:00.000000000Z'
           schema:
             $ref: '#/components/schemas/ConstituentTimeframesAssetMetricsResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorObject:
+      properties:
+        type:
+          description: Error type string. Can be used for error identification.
+          type: string
+        message:
+          description: Human-friendly error description. Can be amended without prior notification. Do not use for error identification in your code.
+          type: string
+      required:
+      - type
+      - description
+      type: object
+    ConstituentTimeframesAssetMetricsResponse:
+      description: Timeframes of asset metric constituents response.
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              start_time:
+                $ref: '#/components/schemas/Time'
+              end_time:
+                $ref: '#/components/schemas/Time'
+            required:
+            - start_time
+            additionalProperties:
+              type:
+              - string
+              - 'null'
+        next_page_token:
+          $ref: '#/components/schemas/NextPageToken'
+        next_page_url:
+          $ref: '#/components/schemas/NextPageUrl'
+      required:
+      - data
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorObject'
+      required:
+      - error
+      type: object
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

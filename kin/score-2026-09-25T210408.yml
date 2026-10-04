@@ -1,46 +1,48 @@
-# Kin Score artifact — coin-metrics — 2026-08-24T064859
+# Kin Score artifact — coin-metrics — 2026-09-25T210408
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: coin-metrics
-  schema_version: 0.12.1
-  scored_at: '2026-08-24'
-  run_ts: 2026-08-24T064859
-  composite: 47.4
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T210408
+  composite: 41.5
   band: developing
   facets:
-    discoverability: 92.6
-    contract_quality: 65.6
-    governance: 16.7
+    discoverability: 73.2
+    contract_quality: 57.4
+    contract_governance: 4.5
     operational_transparency: 57.9
     developer_ergonomics: 66.1
-    commercial_clarity: 0.0
-    contract_governance: 16.7
     access_clarity: 0.0
   agent_readiness:
-    score: 38.2
-    band: agent-ready
+    score: 24.6
+    band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: bearer
       idempotency: false
       error_semantics: documented
       openapi_examples: false
       rate_limit_signal: documented
       event_surface_described: derived
       agent_skills: derived
-      well_known_catalog: true
+      well_known_catalog: false
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Securities & Market Data
     regime_id: securities_market_data
-    score: 28.3
+    score: 15.7
     matched_via: tags
   provenance:
     mcp: derived

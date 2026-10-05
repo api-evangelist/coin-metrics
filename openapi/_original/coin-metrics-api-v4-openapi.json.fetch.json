@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.coinmetrics.io/api/static/openapi.json",
+ "requested_url": "https://docs.coinmetrics.io/api/static/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 1271007,
+ "sha256": "df2316f6018a9a969bc2304873a434e182bc1336dcb9b7e5a30bacebeb465af5",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.995), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

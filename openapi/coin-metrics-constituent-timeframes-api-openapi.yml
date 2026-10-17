@@ -97,81 +97,6 @@ paths:
       - api_key: []
 components:
   parameters:
-    ConstituentsEndTime:
-      description: 'End of the time interval, inclusive. \
-
-        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
-
-        Mutually exclusive with `at_time`.
-
-        '
-      name: end_time
-      in: query
-      schema:
-        type: string
-    PagingFrom:
-      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: paging_from
-      schema:
-        default: end
-        enum:
-        - start
-        - end
-        type: string
-        format: PagingFrom
-    Format:
-      description: Format of the response.
-      in: query
-      name: format
-      schema:
-        enum:
-        - json
-        - csv
-        type: string
-        default: json
-    NextPageToken:
-      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
-      in: query
-      name: next_page_token
-      schema:
-        type: string
-    ConstituentsStartTime:
-      description: 'Start of the time interval, inclusive. \
-
-        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
-
-        Mutually exclusive with `at_time`.
-
-        '
-      name: start_time
-      in: query
-      schema:
-        type: string
-    Pretty:
-      description: Human-readable formatting of JSON responses.
-      in: query
-      name: pretty
-      schema:
-        type: boolean
-        default: false
-    ConstituentsMetricName:
-      description: Target metric name.
-      name: metric
-      in: query
-      required: true
-      schema:
-        type: string
-    PageSize:
-      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
-      in: query
-      name: page_size
-      schema:
-        default: 100
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 10000
     ConstituentId:
       description: 'Comma separated list of constituents. By default all constituents are returned.
 
@@ -189,88 +114,92 @@ components:
         items:
           type: string
       explode: false
-  responses:
-    Forbidden:
-      content:
-        application/json:
-          example:
-            error:
-              type: forbidden
-              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Requested resource is not available with supplied credentials.
-    MetricNotFound:
-      content:
-        application/json:
-          example:
-            error:
-              type: bad_parameter
-              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-      description: Metric not found.
-    AssetMetricsConstituentTimeframes:
-      description: List of timeframes.
-      content:
-        application/json:
-          example:
-            data:
-            - exchange: gemini
-              start_time: '2023-10-12T00:00:00.000000000Z'
-              end_time: null
-            - exchange: kraken
-              start_time: '2023-10-12T00:00:00.000000000Z'
-              end_time: null
-            - exchange: binance
-              start_time: '2023-04-01T00:00:00.000000000Z'
-              end_time: '2023-10-12T00:00:00.000000000Z'
-            - exchange: binance.us
-              start_time: '2023-04-01T00:00:00.000000000Z'
-              end_time: '2023-10-12T00:00:00.000000000Z'
-            - exchange: bitstamp
-              start_time: '2023-04-01T00:00:00.000000000Z'
-              end_time: '2023-10-12T00:00:00.000000000Z'
-            next_page_token: 0.MjAxNy0wNS0yMlQwMDowMDowMFo
-            next_page_url: https://api.coinmetrics.io/v4/constituent-timeframes/asset-metrics?metric=volume_trusted_spot_usd_1d&pretty=true&page_size=5&api_key=<your_key>
-          schema:
-            $ref: '#/components/schemas/ConstituentTimeframesAssetMetricsResponse'
-        text/csv:
-          example: 'exchange,start_time,end_time
+    NextPageToken:
+      description: Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.
+      in: query
+      name: next_page_token
+      schema:
+        type: string
+    PagingFrom:
+      description: Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: paging_from
+      schema:
+        default: end
+        enum:
+        - start
+        - end
+        type: string
+        format: PagingFrom
+    Pretty:
+      description: Human-readable formatting of JSON responses.
+      in: query
+      name: pretty
+      schema:
+        type: boolean
+        default: false
+    Format:
+      description: Format of the response.
+      in: query
+      name: format
+      schema:
+        enum:
+        - json
+        - csv
+        type: string
+        default: json
+    ConstituentsEndTime:
+      description: 'End of the time interval, inclusive. \
 
-            gemini,2023-10-12T00:00:00.000000000Z,null
+        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
 
-            kraken,2023-10-12T00:00:00.000000000Z,null
+        Mutually exclusive with `at_time`.
 
-            binance,2023-04-01T00:00:00.000000000Z,2023-10-12T00:00:00.000000000Z
+        '
+      name: end_time
+      in: query
+      schema:
+        type: string
+    PageSize:
+      description: Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.
+      in: query
+      name: page_size
+      schema:
+        default: 100
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 10000
+    ConstituentsMetricName:
+      description: Target metric name.
+      name: metric
+      in: query
+      required: true
+      schema:
+        type: string
+    ConstituentsStartTime:
+      description: 'Start of the time interval, inclusive. \
 
-            binance.us,2023-04-01T00:00:00.000000000Z,2023-10-12T00:00:00.000000000Z
+        Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \
 
-            bitstamp,2023-04-01T00:00:00.000000000Z,2023-10-12T00:00:00.000000000Z'
-          schema:
-            $ref: '#/components/schemas/ConstituentTimeframesAssetMetricsResponse'
-    UriTooLong:
-      description: Provided URI is too long. It must not be greater than 10000 symbols.
-    Unauthorized:
-      description: Requested resource requires authorization.
-      content:
-        application/json:
-          examples:
-            unauthorized:
-              summary: Unauthorized error response.
-              value:
-                error:
-                  type: unauthorized
-                  message: Requested resource requires authorization.
-            wrong_credentials:
-              summary: Wrong credentials error response.
-              value:
-                error:
-                  type: wrong_credentials
-                  message: Supplied credentials are not valid.
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+        Mutually exclusive with `at_time`.
+
+        '
+      name: start_time
+      in: query
+      schema:
+        type: string
   schemas:
+    Time:
+      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
+      type: string
+      format: date-time
+    NextPageUrl:
+      description: URL of the next page results for a given request.
+      type: string
+    NextPageToken:
+      description: Token of the next page results for a given request.
+      type: string
     ErrorObject:
       properties:
         type:
@@ -315,16 +244,87 @@ components:
       required:
       - error
       type: object
-    Time:
-      description: The time in ISO 8601 date-time format. Always with nanoseconds precision.
-      type: string
-      format: date-time
-    NextPageUrl:
-      description: URL of the next page results for a given request.
-      type: string
-    NextPageToken:
-      description: Token of the next page results for a given request.
-      type: string
+  responses:
+    MetricNotFound:
+      content:
+        application/json:
+          example:
+            error:
+              type: bad_parameter
+              message: Bad parameter 'metrics'. Value 'asdgwav' is not supported.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Metric not found.
+    Unauthorized:
+      description: Requested resource requires authorization.
+      content:
+        application/json:
+          examples:
+            unauthorized:
+              summary: Unauthorized error response.
+              value:
+                error:
+                  type: unauthorized
+                  message: Requested resource requires authorization.
+            wrong_credentials:
+              summary: Wrong credentials error response.
+              value:
+                error:
+                  type: wrong_credentials
+                  message: Supplied credentials are not valid.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UriTooLong:
+      description: Provided URI is too long. It must not be greater than 10000 symbols.
+    Forbidden:
+      content:
+        application/json:
+          example:
+            error:
+              type: forbidden
+              message: Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Requested resource is not available with supplied credentials.
+    AssetMetricsConstituentTimeframes:
+      description: List of timeframes.
+      content:
+        application/json:
+          example:
+            data:
+            - exchange: gemini
+              start_time: '2023-10-12T00:00:00.000000000Z'
+              end_time: null
+            - exchange: kraken
+              start_time: '2023-10-12T00:00:00.000000000Z'
+              end_time: null
+            - exchange: binance
+              start_time: '2023-04-01T00:00:00.000000000Z'
+              end_time: '2023-10-12T00:00:00.000000000Z'
+            - exchange: binance.us
+              start_time: '2023-04-01T00:00:00.000000000Z'
+              end_time: '2023-10-12T00:00:00.000000000Z'
+            - exchange: bitstamp
+              start_time: '2023-04-01T00:00:00.000000000Z'
+              end_time: '2023-10-12T00:00:00.000000000Z'
+            next_page_token: 0.MjAxNy0wNS0yMlQwMDowMDowMFo
+            next_page_url: https://api.coinmetrics.io/v4/constituent-timeframes/asset-metrics?metric=volume_trusted_spot_usd_1d&pretty=true&page_size=5&api_key=<your_key>
+          schema:
+            $ref: '#/components/schemas/ConstituentTimeframesAssetMetricsResponse'
+        text/csv:
+          example: 'exchange,start_time,end_time
+
+            gemini,2023-10-12T00:00:00.000000000Z,null
+
+            kraken,2023-10-12T00:00:00.000000000Z,null
+
+            binance,2023-04-01T00:00:00.000000000Z,2023-10-12T00:00:00.000000000Z
+
+            binance.us,2023-04-01T00:00:00.000000000Z,2023-10-12T00:00:00.000000000Z
+
+            bitstamp,2023-04-01T00:00:00.000000000Z,2023-10-12T00:00:00.000000000Z'
+          schema:
+            $ref: '#/components/schemas/ConstituentTimeframesAssetMetricsResponse'
   securitySchemes:
     api_key:
       description: Coin Metrics API key can be specified as `?api_key=` query parameter.

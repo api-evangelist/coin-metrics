@@ -613,6 +613,8 @@ apis:
   - type: Documentation
     url: https://coinmetrics.io/atlas/
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/coin-metrics/overview
 - type: ParentCompany
   url: https://apis.io/providers/talos/
   name: Talos

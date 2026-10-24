@@ -1,977 +1,1000 @@
 {
+  "info": {
+    "_postman_id": "68bd9007-012c-44fe-8fa9-bfd10c918f2a",
+    "name": "Coin Metrics API v4 Full blockchain entities v2 API",
+    "description": "Coin Metrics Homepage\nAPI Backward Compatibility Policy\nPython API Client\n\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.\n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:23:02.000Z",
+    "updatedAt": "2026-10-22T02:23:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-68bd9007-012c-44fe-8fa9-bfd10c918f2a"
+  },
   "item": [
     {
-      "id": "09c45681-9a5c-41a1-bc08-dc805917f3df",
-      "name": "Full blockchain entities v2",
-      "description": {
-        "content": "Endpoints for fetching full blockchain entities.",
-        "type": "text/plain"
-      },
+      "name": "blockchain-v2",
       "item": [
         {
-          "id": "ea527103-97ad-4c9b-b1b4-246b760d6bb0",
-          "name": "Full block",
-          "request": {
-            "name": "Full block",
-            "description": {
-              "content": "Returns a full blockchain block with all transactions and balance updates.<br/> Results are limited to the last 30 days for Community users.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "blockchain-v2",
-                ":asset",
-                "blocks",
-                ":block_hash"
-              ],
-              "host": [
-                "{{blockchain-v2-asset-blocks-block_hash-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "include_sub_accounts",
-                  "value": "false",
-                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
-                },
-                {
-                  "disabled": false,
-                  "key": "pretty",
-                  "value": "false",
-                  "description": "Human-readable formatting of JSON responses."
-                },
-                {
-                  "disabled": false,
-                  "key": "ignore_unsupported_errors",
-                  "value": "false",
-                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "asset",
-                  "description": "(Required) Asset name."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "block_hash",
-                  "description": "(Required) Block hash."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{asset}",
+          "item": [
             {
-              "id": "f46cf508-4e88-4796-86b5-67bf06a8cd78",
-              "name": "Blockchain full block.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "blocks",
-                    ":block_hash"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-blocks-block_hash-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "block_hash",
-                      "description": "(Required) Block hash."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "blocks",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{block_hash}",
+                  "item": [
+                    {
+                      "name": "transactions",
+                      "item": [
+                        {
+                          "name": "{txid}",
+                          "item": [
+                            {
+                              "name": "Full transaction for block",
+                              "id": "fcb009b9-122f-48dd-8ce6-9f669114e716",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "api_key",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "query",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "blockchain-v2",
+                                    ":asset",
+                                    "blocks",
+                                    ":block_hash",
+                                    "transactions",
+                                    ":txid"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                      "key": "include_sub_accounts",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Human-readable formatting of JSON responses.",
+                                      "key": "pretty",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                      "key": "ignore_unsupported_errors",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "878e5655-7bc9-4efd-84db-e1631b4bfac6",
+                                      "key": "asset",
+                                      "value": "<string>",
+                                      "description": "(Required) Asset name."
+                                    },
+                                    {
+                                      "id": "8fcfed48-1ce7-4d97-9ce2-64a6345b9f09",
+                                      "key": "block_hash",
+                                      "value": "<string>",
+                                      "description": "(Required) Block hash."
+                                    },
+                                    {
+                                      "id": "975483f9-cb39-4f30-8203-e9f7df11b27c",
+                                      "key": "txid",
+                                      "value": "<string>",
+                                      "description": "(Required) Transaction identifier (txid)."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a full blockchain transaction with all balance updates for a specific block.\nResults are limited to the last 30 days for Community users."
+                              },
+                              "response": [
+                                {
+                                  "id": "69601871-0e3a-4a32-bdcf-057431b2b609",
+                                  "name": "Blockchain full transaction.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "blockchain-v2",
+                                        ":asset",
+                                        "blocks",
+                                        ":block_hash",
+                                        "transactions",
+                                        ":txid"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                          "key": "include_sub_accounts",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Human-readable formatting of JSON responses.",
+                                          "key": "pretty",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                          "key": "ignore_unsupported_errors",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Added as a part of security scheme: apikey",
+                                          "key": "api_key",
+                                          "value": "<API Key>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "asset"
+                                        },
+                                        {
+                                          "key": "block_hash"
+                                        },
+                                        {
+                                          "key": "txid"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"amount\": \"<string>\",\n  \"block_hash\": \"<string>\",\n  \"consensus_time\": \"<dateTime>\",\n  \"height\": \"<int64>\",\n  \"n_balance_updates\": \"<int64>\",\n  \"tx_position\": \"<int64>\",\n  \"txid\": \"<string>\",\n  \"miner_time\": \"<dateTime>\",\n  \"min_chain_sequence_number\": \"<int64>\",\n  \"max_chain_sequence_number\": \"<int64>\",\n  \"stale\": \"<string>\",\n  \"version\": \"<string>\",\n  \"physical_size\": \"<string>\",\n  \"consensus_size\": \"<string>\",\n  \"fee\": \"<string>\",\n  \"balance_updates\": [\n    {\n      \"chain_sequence_number\": \"<int64>\",\n      \"account\": \"<string>\",\n      \"account_creation_height\": \"<int64>\",\n      \"change\": \"<string>\",\n      \"previous_balance\": \"<string>\",\n      \"new_balance\": \"<string>\",\n      \"transaction_sequence_number\": \"<int64>\",\n      \"n_debits\": \"<int64>\",\n      \"n_credits\": \"<int64>\",\n      \"rebasing_numerator\": \"<string>\",\n      \"rebasing_denominator\": \"<string>\",\n      \"rebasing_rounding_mode\": \"<string>\",\n      \"previous_debit_height\": \"<int64>\",\n      \"previous_credit_height\": \"<int64>\",\n      \"previous_chain_sequence_number\": \"<int64>\",\n      \"sub_account\": {\n        \"sub_account\": \"<string>\",\n        \"previous_balance\": \"<string>\",\n        \"new_balance\": \"<string>\",\n        \"n_debits\": \"<int64>\",\n        \"n_credits\": \"<int64>\",\n        \"previous_credit_height\": \"<int64>\",\n        \"previous_debit_height\": \"<int64>\",\n        \"previous_chain_sequence_number\": \"<int64>\",\n        \"total_received\": \"<string>\",\n        \"total_sent\": \"<string>\",\n        \"creation_height\": \"<int64>\"\n      },\n      \"stale\": \"<string>\",\n      \"denomination\": \"<string>\"\n    },\n    {\n      \"chain_sequence_number\": \"<int64>\",\n      \"account\": \"<string>\",\n      \"account_creation_height\": \"<int64>\",\n      \"change\": \"<string>\",\n      \"previous_balance\": \"<string>\",\n      \"new_balance\": \"<string>\",\n      \"transaction_sequence_number\": \"<int64>\",\n      \"n_debits\": \"<int64>\",\n      \"n_credits\": \"<int64>\",\n      \"rebasing_numerator\": \"<string>\",\n      \"rebasing_denominator\": \"<string>\",\n      \"rebasing_rounding_mode\": \"<string>\",\n      \"previous_debit_height\": \"<int64>\",\n      \"previous_credit_height\": \"<int64>\",\n      \"previous_chain_sequence_number\": \"<int64>\",\n      \"sub_account\": {\n        \"sub_account\": \"<string>\",\n        \"previous_balance\": \"<string>\",\n        \"new_balance\": \"<string>\",\n        \"n_debits\": \"<int64>\",\n        \"n_credits\": \"<int64>\",\n        \"previous_credit_height\": \"<int64>\",\n        \"previous_debit_height\": \"<int64>\",\n        \"previous_chain_sequence_number\": \"<int64>\",\n        \"total_received\": \"<string>\",\n        \"total_sent\": \"<string>\",\n        \"creation_height\": \"<int64>\"\n      },\n      \"stale\": \"<string>\",\n      \"denomination\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T02:23:03.000Z",
+                                  "updatedAt": "2026-10-22T02:23:03.000Z",
+                                  "uid": "35240-69601871-0e3a-4a32-bdcf-057431b2b609"
+                                },
+                                {
+                                  "id": "accf77c4-e038-40b6-8e75-1cc10606c2d4",
+                                  "name": "Requested resource requires authorization.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "blockchain-v2",
+                                        ":asset",
+                                        "blocks",
+                                        ":block_hash",
+                                        "transactions",
+                                        ":txid"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                          "key": "include_sub_accounts",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Human-readable formatting of JSON responses.",
+                                          "key": "pretty",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                          "key": "ignore_unsupported_errors",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Added as a part of security scheme: apikey",
+                                          "key": "api_key",
+                                          "value": "<API Key>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "asset"
+                                        },
+                                        {
+                                          "key": "block_hash"
+                                        },
+                                        {
+                                          "key": "txid"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T02:23:03.000Z",
+                                  "updatedAt": "2026-10-22T02:23:03.000Z",
+                                  "uid": "35240-accf77c4-e038-40b6-8e75-1cc10606c2d4"
+                                },
+                                {
+                                  "id": "6eb5e05d-bacc-4eee-b63d-adee8b1eb22a",
+                                  "name": "Requested resource is not available with supplied credentials.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "blockchain-v2",
+                                        ":asset",
+                                        "blocks",
+                                        ":block_hash",
+                                        "transactions",
+                                        ":txid"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                          "key": "include_sub_accounts",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Human-readable formatting of JSON responses.",
+                                          "key": "pretty",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                          "key": "ignore_unsupported_errors",
+                                          "value": "false"
+                                        },
+                                        {
+                                          "description": "Added as a part of security scheme: apikey",
+                                          "key": "api_key",
+                                          "value": "<API Key>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "asset"
+                                        },
+                                        {
+                                          "key": "block_hash"
+                                        },
+                                        {
+                                          "key": "txid"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T02:23:03.000Z",
+                                  "updatedAt": "2026-10-22T02:23:03.000Z",
+                                  "uid": "35240-6eb5e05d-bacc-4eee-b63d-adee8b1eb22a"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:23:03.000Z",
+                              "updatedAt": "2026-10-22T02:23:03.000Z",
+                              "uid": "35240-fcb009b9-122f-48dd-8ce6-9f669114e716"
+                            }
+                          ],
+                          "id": "a34b1dab-567d-420d-a75c-859204adc768",
+                          "createdAt": "2026-10-22T02:23:03.000Z",
+                          "updatedAt": "2026-10-22T02:23:03.000Z",
+                          "uid": "35240-a34b1dab-567d-420d-a75c-859204adc768"
+                        }
+                      ],
+                      "id": "4196c207-c658-4777-8a1b-cce4c943fb68",
+                      "createdAt": "2026-10-22T02:23:03.000Z",
+                      "updatedAt": "2026-10-22T02:23:03.000Z",
+                      "uid": "35240-4196c207-c658-4777-8a1b-cce4c943fb68"
+                    },
+                    {
+                      "name": "Full block",
+                      "id": "30778e14-b9c1-444d-b224-209ef29e6730",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "api_key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "query",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "blockchain-v2",
+                            ":asset",
+                            "blocks",
+                            ":block_hash"
+                          ],
+                          "query": [
+                            {
+                              "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                              "key": "include_sub_accounts",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Human-readable formatting of JSON responses.",
+                              "key": "pretty",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                              "key": "ignore_unsupported_errors",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "bc928487-954e-4d2b-9ded-b14a658408bd",
+                              "key": "asset",
+                              "value": "<string>",
+                              "description": "(Required) Asset name."
+                            },
+                            {
+                              "id": "376fa2e2-795d-4872-97f8-05e42f8eae06",
+                              "key": "block_hash",
+                              "value": "<string>",
+                              "description": "(Required) Block hash."
+                            }
+                          ]
+                        },
+                        "description": "Returns a full blockchain block with all transactions and balance updates.\nResults are limited to the last 30 days for Community users."
+                      },
+                      "response": [
+                        {
+                          "id": "a304747e-b991-4d83-a33c-43d50e8982e6",
+                          "name": "Blockchain full block.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blockchain-v2",
+                                ":asset",
+                                "blocks",
+                                ":block_hash"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                  "key": "include_sub_accounts",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Human-readable formatting of JSON responses.",
+                                  "key": "pretty",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                  "key": "ignore_unsupported_errors",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Added as a part of security scheme: apikey",
+                                  "key": "api_key",
+                                  "value": "<API Key>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "asset"
+                                },
+                                {
+                                  "key": "block_hash"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"block_hash\": \"<string>\",\n  \"height\": \"<int64>\",\n  \"consensus_time\": \"<dateTime>\",\n  \"miner_time\": \"<dateTime>\",\n  \"n_transactions\": \"<int64>\",\n  \"n_balance_updates\": \"<int64>\",\n  \"parent_block_hash\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"extra_data\": \"<string>\",\n  \"version\": \"<string>\",\n  \"difficulty\": \"<string>\",\n  \"physical_size\": \"<int64>\",\n  \"consensus_size\": \"<int64>\",\n  \"consensus_size_limit\": \"<int64>\",\n  \"stale\": \"<string>\",\n  \"transactions\": [\n    {\n      \"txid\": \"<string>\",\n      \"consensus_time\": \"<dateTime>\",\n      \"tx_position\": \"<int64>\",\n      \"n_balance_updates\": \"<int64>\",\n      \"amount\": \"<string>\",\n      \"miner_time\": \"<dateTime>\",\n      \"min_chain_sequence_number\": \"<int64>\",\n      \"max_chain_sequence_number\": \"<int64>\",\n      \"stale\": \"<string>\",\n      \"balance_updates\": [\n        {\n          \"chain_sequence_number\": \"<int64>\",\n          \"account\": \"<string>\",\n          \"account_creation_height\": \"<int64>\",\n          \"change\": \"<string>\",\n          \"previous_balance\": \"<string>\",\n          \"new_balance\": \"<string>\",\n          \"transaction_sequence_number\": \"<int64>\",\n          \"n_debits\": \"<int64>\",\n          \"n_credits\": \"<int64>\",\n          \"rebasing_numerator\": \"<string>\",\n          \"rebasing_denominator\": \"<string>\",\n          \"rebasing_rounding_mode\": \"<string>\",\n          \"previous_debit_height\": \"<int64>\",\n          \"previous_credit_height\": \"<int64>\",\n          \"previous_chain_sequence_number\": \"<int64>\",\n          \"sub_account\": {\n            \"sub_account\": \"<string>\",\n            \"previous_balance\": \"<string>\",\n            \"new_balance\": \"<string>\",\n            \"n_debits\": \"<int64>\",\n            \"n_credits\": \"<int64>\",\n            \"previous_credit_height\": \"<int64>\",\n            \"previous_debit_height\": \"<int64>\",\n            \"previous_chain_sequence_number\": \"<int64>\",\n            \"total_received\": \"<string>\",\n            \"total_sent\": \"<string>\",\n            \"creation_height\": \"<int64>\"\n          },\n          \"stale\": \"<string>\",\n          \"denomination\": \"<string>\"\n        },\n        {\n          \"chain_sequence_number\": \"<int64>\",\n          \"account\": \"<string>\",\n          \"account_creation_height\": \"<int64>\",\n          \"change\": \"<string>\",\n          \"previous_balance\": \"<string>\",\n          \"new_balance\": \"<string>\",\n          \"transaction_sequence_number\": \"<int64>\",\n          \"n_debits\": \"<int64>\",\n          \"n_credits\": \"<int64>\",\n          \"rebasing_numerator\": \"<string>\",\n          \"rebasing_denominator\": \"<string>\",\n          \"rebasing_rounding_mode\": \"<string>\",\n          \"previous_debit_height\": \"<int64>\",\n          \"previous_credit_height\": \"<int64>\",\n          \"previous_chain_sequence_number\": \"<int64>\",\n          \"sub_account\": {\n            \"sub_account\": \"<string>\",\n            \"previous_balance\": \"<string>\",\n            \"new_balance\": \"<string>\",\n            \"n_debits\": \"<int64>\",\n            \"n_credits\": \"<int64>\",\n            \"previous_credit_height\": \"<int64>\",\n            \"previous_debit_height\": \"<int64>\",\n            \"previous_chain_sequence_number\": \"<int64>\",\n            \"total_received\": \"<string>\",\n            \"total_sent\": \"<string>\",\n            \"creation_height\": \"<int64>\"\n          },\n          \"stale\": \"<string>\",\n          \"denomination\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"txid\": \"<string>\",\n      \"consensus_time\": \"<dateTime>\",\n      \"tx_position\": \"<int64>\",\n      \"n_balance_updates\": \"<int64>\",\n      \"amount\": \"<string>\",\n      \"miner_time\": \"<dateTime>\",\n      \"min_chain_sequence_number\": \"<int64>\",\n      \"max_chain_sequence_number\": \"<int64>\",\n      \"stale\": \"<string>\",\n      \"balance_updates\": [\n        {\n          \"chain_sequence_number\": \"<int64>\",\n          \"account\": \"<string>\",\n          \"account_creation_height\": \"<int64>\",\n          \"change\": \"<string>\",\n          \"previous_balance\": \"<string>\",\n          \"new_balance\": \"<string>\",\n          \"transaction_sequence_number\": \"<int64>\",\n          \"n_debits\": \"<int64>\",\n          \"n_credits\": \"<int64>\",\n          \"rebasing_numerator\": \"<string>\",\n          \"rebasing_denominator\": \"<string>\",\n          \"rebasing_rounding_mode\": \"<string>\",\n          \"previous_debit_height\": \"<int64>\",\n          \"previous_credit_height\": \"<int64>\",\n          \"previous_chain_sequence_number\": \"<int64>\",\n          \"sub_account\": {\n            \"sub_account\": \"<string>\",\n            \"previous_balance\": \"<string>\",\n            \"new_balance\": \"<string>\",\n            \"n_debits\": \"<int64>\",\n            \"n_credits\": \"<int64>\",\n            \"previous_credit_height\": \"<int64>\",\n            \"previous_debit_height\": \"<int64>\",\n            \"previous_chain_sequence_number\": \"<int64>\",\n            \"total_received\": \"<string>\",\n            \"total_sent\": \"<string>\",\n            \"creation_height\": \"<int64>\"\n          },\n          \"stale\": \"<string>\",\n          \"denomination\": \"<string>\"\n        },\n        {\n          \"chain_sequence_number\": \"<int64>\",\n          \"account\": \"<string>\",\n          \"account_creation_height\": \"<int64>\",\n          \"change\": \"<string>\",\n          \"previous_balance\": \"<string>\",\n          \"new_balance\": \"<string>\",\n          \"transaction_sequence_number\": \"<int64>\",\n          \"n_debits\": \"<int64>\",\n          \"n_credits\": \"<int64>\",\n          \"rebasing_numerator\": \"<string>\",\n          \"rebasing_denominator\": \"<string>\",\n          \"rebasing_rounding_mode\": \"<string>\",\n          \"previous_debit_height\": \"<int64>\",\n          \"previous_credit_height\": \"<int64>\",\n          \"previous_chain_sequence_number\": \"<int64>\",\n          \"sub_account\": {\n            \"sub_account\": \"<string>\",\n            \"previous_balance\": \"<string>\",\n            \"new_balance\": \"<string>\",\n            \"n_debits\": \"<int64>\",\n            \"n_credits\": \"<int64>\",\n            \"previous_credit_height\": \"<int64>\",\n            \"previous_debit_height\": \"<int64>\",\n            \"previous_chain_sequence_number\": \"<int64>\",\n            \"total_received\": \"<string>\",\n            \"total_sent\": \"<string>\",\n            \"creation_height\": \"<int64>\"\n          },\n          \"stale\": \"<string>\",\n          \"denomination\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"balance_updates\": [\n    {\n      \"chain_sequence_number\": \"<int64>\",\n      \"account\": \"<string>\",\n      \"account_creation_height\": \"<int64>\",\n      \"change\": \"<string>\",\n      \"previous_balance\": \"<string>\",\n      \"new_balance\": \"<string>\",\n      \"transaction_sequence_number\": \"<int64>\",\n      \"n_debits\": \"<int64>\",\n      \"n_credits\": \"<int64>\",\n      \"rebasing_numerator\": \"<string>\",\n      \"rebasing_denominator\": \"<string>\",\n      \"rebasing_rounding_mode\": \"<string>\",\n      \"previous_debit_height\": \"<int64>\",\n      \"previous_credit_height\": \"<int64>\",\n      \"previous_chain_sequence_number\": \"<int64>\",\n      \"sub_account\": {\n        \"sub_account\": \"<string>\",\n        \"previous_balance\": \"<string>\",\n        \"new_balance\": \"<string>\",\n        \"n_debits\": \"<int64>\",\n        \"n_credits\": \"<int64>\",\n        \"previous_credit_height\": \"<int64>\",\n        \"previous_debit_height\": \"<int64>\",\n        \"previous_chain_sequence_number\": \"<int64>\",\n        \"total_received\": \"<string>\",\n        \"total_sent\": \"<string>\",\n        \"creation_height\": \"<int64>\"\n      },\n      \"stale\": \"<string>\",\n      \"denomination\": \"<string>\"\n    },\n    {\n      \"chain_sequence_number\": \"<int64>\",\n      \"account\": \"<string>\",\n      \"account_creation_height\": \"<int64>\",\n      \"change\": \"<string>\",\n      \"previous_balance\": \"<string>\",\n      \"new_balance\": \"<string>\",\n      \"transaction_sequence_number\": \"<int64>\",\n      \"n_debits\": \"<int64>\",\n      \"n_credits\": \"<int64>\",\n      \"rebasing_numerator\": \"<string>\",\n      \"rebasing_denominator\": \"<string>\",\n      \"rebasing_rounding_mode\": \"<string>\",\n      \"previous_debit_height\": \"<int64>\",\n      \"previous_credit_height\": \"<int64>\",\n      \"previous_chain_sequence_number\": \"<int64>\",\n      \"sub_account\": {\n        \"sub_account\": \"<string>\",\n        \"previous_balance\": \"<string>\",\n        \"new_balance\": \"<string>\",\n        \"n_debits\": \"<int64>\",\n        \"n_credits\": \"<int64>\",\n        \"previous_credit_height\": \"<int64>\",\n        \"previous_debit_height\": \"<int64>\",\n        \"previous_chain_sequence_number\": \"<int64>\",\n        \"total_received\": \"<string>\",\n        \"total_sent\": \"<string>\",\n        \"creation_height\": \"<int64>\"\n      },\n      \"stale\": \"<string>\",\n      \"denomination\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:23:03.000Z",
+                          "updatedAt": "2026-10-22T02:23:03.000Z",
+                          "uid": "35240-a304747e-b991-4d83-a33c-43d50e8982e6"
+                        },
+                        {
+                          "id": "4894d580-a78d-4dfd-ba09-5504713c1d0b",
+                          "name": "Requested resource requires authorization.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blockchain-v2",
+                                ":asset",
+                                "blocks",
+                                ":block_hash"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                  "key": "include_sub_accounts",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Human-readable formatting of JSON responses.",
+                                  "key": "pretty",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                  "key": "ignore_unsupported_errors",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Added as a part of security scheme: apikey",
+                                  "key": "api_key",
+                                  "value": "<API Key>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "asset"
+                                },
+                                {
+                                  "key": "block_hash"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T02:23:03.000Z",
+                          "updatedAt": "2026-10-22T02:23:03.000Z",
+                          "uid": "35240-4894d580-a78d-4dfd-ba09-5504713c1d0b"
+                        },
+                        {
+                          "id": "2da188f7-6133-4d04-88b5-4992fd1e034c",
+                          "name": "Requested resource is not available with supplied credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blockchain-v2/:asset/blocks/:block_hash?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blockchain-v2",
+                                ":asset",
+                                "blocks",
+                                ":block_hash"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                  "key": "include_sub_accounts",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Human-readable formatting of JSON responses.",
+                                  "key": "pretty",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                  "key": "ignore_unsupported_errors",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Added as a part of security scheme: apikey",
+                                  "key": "api_key",
+                                  "value": "<API Key>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "asset"
+                                },
+                                {
+                                  "key": "block_hash"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T02:23:03.000Z",
+                          "updatedAt": "2026-10-22T02:23:03.000Z",
+                          "uid": "35240-2da188f7-6133-4d04-88b5-4992fd1e034c"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:23:03.000Z",
+                      "updatedAt": "2026-10-22T02:23:03.000Z",
+                      "uid": "35240-30778e14-b9c1-444d-b224-209ef29e6730"
+                    }
+                  ],
+                  "id": "8e97cb6e-5c0b-4f7a-bc08-3738b3964f7c",
+                  "createdAt": "2026-10-22T02:23:03.000Z",
+                  "updatedAt": "2026-10-22T02:23:03.000Z",
+                  "uid": "35240-8e97cb6e-5c0b-4f7a-bc08-3738b3964f7c"
                 }
               ],
-              "body": "{\n  \"block_hash\": \"0000000000000000000079fca9c54dd7532d139ed258f02e3d1368e7006157d9\",\n  \"height\": \"758506\",\n  \"consensus_time\": \"2022-10-13T18:27:09.000000000Z\",\n  \"miner_time\": \"2022-10-13T18:57:56.000000000Z\",\n  \"n_transactions\": \"469\",\n  \"n_balance_updates\": \"7425\",\n  \"transactions\": [\n    {\n      \"txid\": \"232687100669217c7335d2b2b6f5e7ae61cc6d4c79b8b1b1c7a1fa21938422b9\",\n      \"consensus_time\": \"2022-10-13T18:27:09.000000000Z\",\n      \"tx_position\": \"3257758463819776\",\n      \"n_balance_updates\": \"4\",\n      \"amount\": \"6.34186444\",\n      \"balance_updates\": [\n        {\n          \"chain_sequence_number\": \"3257758463819776\",\n          \"account\": \"FEES\",\n          \"account_creation_height\": \"0\",\n          \"change\": \"-0.09186444\",\n          \"rebasing_numerator\": \"1\",\n          \"rebasing_denominator\": \"1\",\n          \"rebasing_rounding_mode\": \"DOWN\",\n          \"previous_balance\": \"0\",\n          \"new_balance\": \"-0.09186444\",\n          \"transaction_sequence_number\": \"0\",\n          \"n_debits\": \"758507\",\n          \"n_credits\": \"771183299\",\n          \"previous_debit_height\": \"758505\",\n          \"previous_credit_height\": \"758505\",\n          \"previous_chain_sequence_number\": \"3257754168874991\"\n        },\n        {\n          \"chain_sequence_number\": \"3257758463819777\",\n          \"account\": \"ISSUANCE\",\n          \"account_creation_height\": \"0\",\n          \"change\": \"-6.25\",\n          \"rebasing_numerator\": \"1\",\n          \"rebasing_denominator\": \"1\",\n          \"rebasing_rounding_mode\": \"DOWN\",\n          \"previous_balance\": \"-19178133.54497096\",\n          \"new_balance\": \"-19178139.79497096\",\n          \"transaction_sequence_number\": \"0\",\n          \"n_debits\": \"758507\",\n          \"n_credits\": \"0\",\n          \"previous_debit_height\": \"758505\",\n          \"previous_chain_sequence_number\": \"3257754168852481\"\n        }\n      ],\n      \"min_chain_sequence_number\": \"3257758463819776\",\n      \"max_chain_sequence_number\": \"3257758463819779\"\n    }\n  ],\n  \"balance_updates\": [],\n  \"parent_block_hash\": \"000000000000000000079a2d36f1308ea00fd26fda92fe12c5dd4e1a5b0c15e7\",\n  \"difficulty\": \"35610794164371.65\",\n  \"physical_size\": \"1075674\",\n  \"consensus_size\": \"3993099\",\n  \"consensus_size_limit\": \"4000000\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "48f71190-d220-4f7a-b506-1c8aa469282b",
+              "createdAt": "2026-10-22T02:23:03.000Z",
+              "updatedAt": "2026-10-22T02:23:03.000Z",
+              "uid": "35240-48f71190-d220-4f7a-b506-1c8aa469282b"
             },
             {
-              "id": "da4374c5-028c-415d-a349-0d3c762c1581",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "blocks",
-                    ":block_hash"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-blocks-block_hash-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "block_hash",
-                      "description": "(Required) Block hash."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "transactions",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{txid}",
+                  "item": [
+                    {
+                      "name": "Full transaction",
+                      "id": "fbd1e618-9260-4d62-89ff-c9ef04d9258a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "api_key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "query",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/blockchain-v2/:asset/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "blockchain-v2",
+                            ":asset",
+                            "transactions",
+                            ":txid"
+                          ],
+                          "query": [
+                            {
+                              "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                              "key": "include_sub_accounts",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Human-readable formatting of JSON responses.",
+                              "key": "pretty",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                              "key": "ignore_unsupported_errors",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "5fd40b76-ecaf-46ce-a153-ad30eb836567",
+                              "key": "asset",
+                              "value": "<string>",
+                              "description": "(Required) Asset name."
+                            },
+                            {
+                              "id": "cc5004a6-5d41-40f9-b4d0-6520a2a494d3",
+                              "key": "txid",
+                              "value": "<string>",
+                              "description": "(Required) Transaction identifier (txid)."
+                            }
+                          ]
+                        },
+                        "description": "Returns a full blockchain transaction with all balance updates.\nResults are limited to the last 30 days for Community users."
+                      },
+                      "response": [
+                        {
+                          "id": "cb718a8a-38e1-44a7-8f57-791950f3e9a4",
+                          "name": "Blockchain full transaction.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blockchain-v2/:asset/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blockchain-v2",
+                                ":asset",
+                                "transactions",
+                                ":txid"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                  "key": "include_sub_accounts",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Human-readable formatting of JSON responses.",
+                                  "key": "pretty",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                  "key": "ignore_unsupported_errors",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Added as a part of security scheme: apikey",
+                                  "key": "api_key",
+                                  "value": "<API Key>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "asset"
+                                },
+                                {
+                                  "key": "txid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"amount\": \"<string>\",\n  \"block_hash\": \"<string>\",\n  \"consensus_time\": \"<dateTime>\",\n  \"height\": \"<int64>\",\n  \"n_balance_updates\": \"<int64>\",\n  \"tx_position\": \"<int64>\",\n  \"txid\": \"<string>\",\n  \"miner_time\": \"<dateTime>\",\n  \"min_chain_sequence_number\": \"<int64>\",\n  \"max_chain_sequence_number\": \"<int64>\",\n  \"stale\": \"<string>\",\n  \"version\": \"<string>\",\n  \"physical_size\": \"<string>\",\n  \"consensus_size\": \"<string>\",\n  \"fee\": \"<string>\",\n  \"balance_updates\": [\n    {\n      \"chain_sequence_number\": \"<int64>\",\n      \"account\": \"<string>\",\n      \"account_creation_height\": \"<int64>\",\n      \"change\": \"<string>\",\n      \"previous_balance\": \"<string>\",\n      \"new_balance\": \"<string>\",\n      \"transaction_sequence_number\": \"<int64>\",\n      \"n_debits\": \"<int64>\",\n      \"n_credits\": \"<int64>\",\n      \"rebasing_numerator\": \"<string>\",\n      \"rebasing_denominator\": \"<string>\",\n      \"rebasing_rounding_mode\": \"<string>\",\n      \"previous_debit_height\": \"<int64>\",\n      \"previous_credit_height\": \"<int64>\",\n      \"previous_chain_sequence_number\": \"<int64>\",\n      \"sub_account\": {\n        \"sub_account\": \"<string>\",\n        \"previous_balance\": \"<string>\",\n        \"new_balance\": \"<string>\",\n        \"n_debits\": \"<int64>\",\n        \"n_credits\": \"<int64>\",\n        \"previous_credit_height\": \"<int64>\",\n        \"previous_debit_height\": \"<int64>\",\n        \"previous_chain_sequence_number\": \"<int64>\",\n        \"total_received\": \"<string>\",\n        \"total_sent\": \"<string>\",\n        \"creation_height\": \"<int64>\"\n      },\n      \"stale\": \"<string>\",\n      \"denomination\": \"<string>\"\n    },\n    {\n      \"chain_sequence_number\": \"<int64>\",\n      \"account\": \"<string>\",\n      \"account_creation_height\": \"<int64>\",\n      \"change\": \"<string>\",\n      \"previous_balance\": \"<string>\",\n      \"new_balance\": \"<string>\",\n      \"transaction_sequence_number\": \"<int64>\",\n      \"n_debits\": \"<int64>\",\n      \"n_credits\": \"<int64>\",\n      \"rebasing_numerator\": \"<string>\",\n      \"rebasing_denominator\": \"<string>\",\n      \"rebasing_rounding_mode\": \"<string>\",\n      \"previous_debit_height\": \"<int64>\",\n      \"previous_credit_height\": \"<int64>\",\n      \"previous_chain_sequence_number\": \"<int64>\",\n      \"sub_account\": {\n        \"sub_account\": \"<string>\",\n        \"previous_balance\": \"<string>\",\n        \"new_balance\": \"<string>\",\n        \"n_debits\": \"<int64>\",\n        \"n_credits\": \"<int64>\",\n        \"previous_credit_height\": \"<int64>\",\n        \"previous_debit_height\": \"<int64>\",\n        \"previous_chain_sequence_number\": \"<int64>\",\n        \"total_received\": \"<string>\",\n        \"total_sent\": \"<string>\",\n        \"creation_height\": \"<int64>\"\n      },\n      \"stale\": \"<string>\",\n      \"denomination\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:23:03.000Z",
+                          "updatedAt": "2026-10-22T02:23:03.000Z",
+                          "uid": "35240-cb718a8a-38e1-44a7-8f57-791950f3e9a4"
+                        },
+                        {
+                          "id": "9286f841-96be-4730-be12-b433f80c0764",
+                          "name": "Requested resource requires authorization.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blockchain-v2/:asset/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blockchain-v2",
+                                ":asset",
+                                "transactions",
+                                ":txid"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                  "key": "include_sub_accounts",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Human-readable formatting of JSON responses.",
+                                  "key": "pretty",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                  "key": "ignore_unsupported_errors",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Added as a part of security scheme: apikey",
+                                  "key": "api_key",
+                                  "value": "<API Key>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "asset"
+                                },
+                                {
+                                  "key": "txid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T02:23:03.000Z",
+                          "updatedAt": "2026-10-22T02:23:03.000Z",
+                          "uid": "35240-9286f841-96be-4730-be12-b433f80c0764"
+                        },
+                        {
+                          "id": "734cfd01-752f-4447-8ee3-156a4fd6b6d2",
+                          "name": "Requested resource is not available with supplied credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blockchain-v2/:asset/transactions/:txid?include_sub_accounts=false&pretty=false&ignore_unsupported_errors=false&api_key=<API Key>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blockchain-v2",
+                                ":asset",
+                                "transactions",
+                                ":txid"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users.",
+                                  "key": "include_sub_accounts",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Human-readable formatting of JSON responses.",
+                                  "key": "pretty",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items.",
+                                  "key": "ignore_unsupported_errors",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Added as a part of security scheme: apikey",
+                                  "key": "api_key",
+                                  "value": "<API Key>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "asset"
+                                },
+                                {
+                                  "key": "txid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T02:23:03.000Z",
+                          "updatedAt": "2026-10-22T02:23:03.000Z",
+                          "uid": "35240-734cfd01-752f-4447-8ee3-156a4fd6b6d2"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:23:03.000Z",
+                      "updatedAt": "2026-10-22T02:23:03.000Z",
+                      "uid": "35240-fbd1e618-9260-4d62-89ff-c9ef04d9258a"
+                    }
+                  ],
+                  "id": "f151b937-07d1-457c-83d8-c53cce24ec9d",
+                  "createdAt": "2026-10-22T02:23:03.000Z",
+                  "updatedAt": "2026-10-22T02:23:03.000Z",
+                  "uid": "35240-f151b937-07d1-457c-83d8-c53cce24ec9d"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e2676f39-f53a-49b4-b942-8f722fadb0fc",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "blocks",
-                    ":block_hash"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-blocks-block_hash-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "block_hash",
-                      "description": "(Required) Block hash."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "04d367ec-797d-4c49-98c9-54f10bd4b641",
+              "createdAt": "2026-10-22T02:23:03.000Z",
+              "updatedAt": "2026-10-22T02:23:03.000Z",
+              "uid": "35240-04d367ec-797d-4c49-98c9-54f10bd4b641"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "64b2998b-d9d5-4f83-a881-004f0aab14c6",
-          "name": "Full transaction",
-          "request": {
-            "name": "Full transaction",
-            "description": {
-              "content": "Returns a full blockchain transaction with all balance updates.<br/> Results are limited to the last 30 days for Community users.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "blockchain-v2",
-                ":asset",
-                "transactions",
-                ":txid"
-              ],
-              "host": [
-                "{{blockchain-v2-asset-transactions-txid-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "include_sub_accounts",
-                  "value": "false",
-                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
-                },
-                {
-                  "disabled": false,
-                  "key": "pretty",
-                  "value": "false",
-                  "description": "Human-readable formatting of JSON responses."
-                },
-                {
-                  "disabled": false,
-                  "key": "ignore_unsupported_errors",
-                  "value": "false",
-                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "asset",
-                  "description": "(Required) Asset name."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "txid",
-                  "description": "(Required) Transaction identifier (txid)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "aea7faa5-6e04-4709-89b0-29c35f958e58",
-              "name": "Blockchain full transaction.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "transactions",
-                    ":txid"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-transactions-txid-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "txid",
-                      "description": "(Required) Transaction identifier (txid)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"txid\": \"16262dacdac04f41b50dd4174d3bd0d133916a325e5244b3febcb760a8d3975f\",\n  \"consensus_time\": \"2022-10-14T04:17:24.000000000Z\",\n  \"miner_time\": \"2022-10-14T04:17:24.000000000Z\",\n  \"tx_position\": \"10095861795127296\",\n  \"n_balance_updates\": \"4\",\n  \"amount\": \"12.5480776\",\n  \"block_hash\": \"b5f4f41003c656a8cf7deaa8555e3240bfd24244672397b3c544bd8bd9bed036\",\n  \"height\": \"2350626\",\n  \"min_chain_sequence_number\": \"10095861795127296\",\n  \"max_chain_sequence_number\": \"10095861795127299\",\n  \"balance_updates\": [\n    {\n      \"chain_sequence_number\": \"10095861795127296\",\n      \"account\": \"FEES\",\n      \"account_creation_height\": \"0\",\n      \"change\": \"-0.0480776\",\n      \"rebasing_numerator\": \"1\",\n      \"rebasing_denominator\": \"1\",\n      \"rebasing_rounding_mode\": \"DOWN\",\n      \"previous_balance\": \"0\",\n      \"new_balance\": \"-0.0480776\",\n      \"transaction_sequence_number\": \"0\",\n      \"n_debits\": \"2350627\",\n      \"n_credits\": \"128653555\",\n      \"previous_debit_height\": \"2350625\",\n      \"previous_credit_height\": \"2350625\",\n      \"previous_chain_sequence_number\": \"10095857500165790\"\n    },\n    {\n      \"chain_sequence_number\": \"10095861795127297\",\n      \"account\": \"ISSUANCE\",\n      \"account_creation_height\": \"0\",\n      \"change\": \"-12.5\",\n      \"rebasing_numerator\": \"1\",\n      \"rebasing_denominator\": \"1\",\n      \"rebasing_rounding_mode\": \"DOWN\",\n      \"previous_balance\": \"-71380870.73347135\",\n      \"new_balance\": \"-71380883.23347135\",\n      \"transaction_sequence_number\": \"0\",\n      \"n_debits\": \"2350627\",\n      \"n_credits\": \"0\",\n      \"previous_debit_height\": \"2350625\",\n      \"previous_chain_sequence_number\": \"10095857500160001\"\n    },\n    {\n      \"chain_sequence_number\": \"10095861795127299\",\n      \"account\": \"LaYPLuQEanVCYM9TztR9FuT3ZbTJM6wHEZ\",\n      \"account_creation_height\": \"1785846\",\n      \"change\": \"12.5480776\",\n      \"rebasing_numerator\": \"1\",\n      \"rebasing_denominator\": \"1\",\n      \"rebasing_rounding_mode\": \"DOWN\",\n      \"previous_balance\": \"588.96230971\",\n      \"new_balance\": \"601.51038731\",\n      \"transaction_sequence_number\": \"0\",\n      \"n_debits\": \"10123\",\n      \"n_credits\": \"10171\",\n      \"previous_debit_height\": \"2348134\",\n      \"previous_credit_height\": \"2350581\",\n      \"previous_chain_sequence_number\": \"10095668521598979\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0ea337c9-7825-45e3-b92e-5c9b28c2da42",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "transactions",
-                    ":txid"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-transactions-txid-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "txid",
-                      "description": "(Required) Transaction identifier (txid)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f0e8a559-432a-401a-bcf1-0ac4acd05a6d",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "transactions",
-                    ":txid"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-transactions-txid-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "txid",
-                      "description": "(Required) Transaction identifier (txid)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "45970df5-4fb0-450c-be2a-6f5f6c5d711a",
-          "name": "Full transaction for block",
-          "request": {
-            "name": "Full transaction for block",
-            "description": {
-              "content": "Returns a full blockchain transaction with all balance updates for a specific block.<br/> Results are limited to the last 30 days for Community users.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "blockchain-v2",
-                ":asset",
-                "blocks",
-                ":block_hash",
-                "transactions",
-                ":txid"
-              ],
-              "host": [
-                "{{blockchain-v2-asset-blocks-block_hash-transactions-txid-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "include_sub_accounts",
-                  "value": "false",
-                  "description": "Boolean indicating if the response should contain sub-accounts.<br/> This parameter is disabled for Community users."
-                },
-                {
-                  "disabled": false,
-                  "key": "pretty",
-                  "value": "false",
-                  "description": "Human-readable formatting of JSON responses."
-                },
-                {
-                  "disabled": false,
-                  "key": "ignore_unsupported_errors",
-                  "value": "false",
-                  "description": "Ignore \"unsupported\" errors for not currently supported by Coin Metrics items."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "asset",
-                  "description": "(Required) Asset name."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "block_hash",
-                  "description": "(Required) Block hash."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "txid",
-                  "description": "(Required) Transaction identifier (txid)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "f62073f6-d335-4cc9-b340-5246d89a0488",
-              "name": "Blockchain full transaction.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "blocks",
-                    ":block_hash",
-                    "transactions",
-                    ":txid"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-blocks-block_hash-transactions-txid-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "block_hash",
-                      "description": "(Required) Block hash."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "txid",
-                      "description": "(Required) Transaction identifier (txid)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"txid\": \"16262dacdac04f41b50dd4174d3bd0d133916a325e5244b3febcb760a8d3975f\",\n  \"consensus_time\": \"2022-10-14T04:17:24.000000000Z\",\n  \"miner_time\": \"2022-10-14T04:17:24.000000000Z\",\n  \"tx_position\": \"10095861795127296\",\n  \"n_balance_updates\": \"4\",\n  \"amount\": \"12.5480776\",\n  \"block_hash\": \"b5f4f41003c656a8cf7deaa8555e3240bfd24244672397b3c544bd8bd9bed036\",\n  \"height\": \"2350626\",\n  \"min_chain_sequence_number\": \"10095861795127296\",\n  \"max_chain_sequence_number\": \"10095861795127299\",\n  \"balance_updates\": [\n    {\n      \"chain_sequence_number\": \"10095861795127296\",\n      \"account\": \"FEES\",\n      \"account_creation_height\": \"0\",\n      \"change\": \"-0.0480776\",\n      \"rebasing_numerator\": \"1\",\n      \"rebasing_denominator\": \"1\",\n      \"rebasing_rounding_mode\": \"DOWN\",\n      \"previous_balance\": \"0\",\n      \"new_balance\": \"-0.0480776\",\n      \"transaction_sequence_number\": \"0\",\n      \"n_debits\": \"2350627\",\n      \"n_credits\": \"128653555\",\n      \"previous_debit_height\": \"2350625\",\n      \"previous_credit_height\": \"2350625\",\n      \"previous_chain_sequence_number\": \"10095857500165790\"\n    },\n    {\n      \"chain_sequence_number\": \"10095861795127297\",\n      \"account\": \"ISSUANCE\",\n      \"account_creation_height\": \"0\",\n      \"change\": \"-12.5\",\n      \"rebasing_numerator\": \"1\",\n      \"rebasing_denominator\": \"1\",\n      \"rebasing_rounding_mode\": \"DOWN\",\n      \"previous_balance\": \"-71380870.73347135\",\n      \"new_balance\": \"-71380883.23347135\",\n      \"transaction_sequence_number\": \"0\",\n      \"n_debits\": \"2350627\",\n      \"n_credits\": \"0\",\n      \"previous_debit_height\": \"2350625\",\n      \"previous_chain_sequence_number\": \"10095857500160001\"\n    },\n    {\n      \"chain_sequence_number\": \"10095861795127299\",\n      \"account\": \"LaYPLuQEanVCYM9TztR9FuT3ZbTJM6wHEZ\",\n      \"account_creation_height\": \"1785846\",\n      \"change\": \"12.5480776\",\n      \"rebasing_numerator\": \"1\",\n      \"rebasing_denominator\": \"1\",\n      \"rebasing_rounding_mode\": \"DOWN\",\n      \"previous_balance\": \"588.96230971\",\n      \"new_balance\": \"601.51038731\",\n      \"transaction_sequence_number\": \"0\",\n      \"n_debits\": \"10123\",\n      \"n_credits\": \"10171\",\n      \"previous_debit_height\": \"2348134\",\n      \"previous_credit_height\": \"2350581\",\n      \"previous_chain_sequence_number\": \"10095668521598979\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bf080f8d-ca6e-4451-af12-5f289f6ec89f",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "blocks",
-                    ":block_hash",
-                    "transactions",
-                    ":txid"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-blocks-block_hash-transactions-txid-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "block_hash",
-                      "description": "(Required) Block hash."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "txid",
-                      "description": "(Required) Transaction identifier (txid)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "632ce617-5cb8-4bfe-a94e-0946483fe9fe",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-v2",
-                    ":asset",
-                    "blocks",
-                    ":block_hash",
-                    "transactions",
-                    ":txid"
-                  ],
-                  "host": [
-                    "{{blockchain-v2-asset-blocks-block_hash-transactions-txid-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "include_sub_accounts",
-                      "value": "false"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "ignore_unsupported_errors",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "asset",
-                      "description": "(Required) Asset name."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "block_hash",
-                      "description": "(Required) Block hash."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "txid",
-                      "description": "(Required) Transaction identifier (txid)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "98520889-e66d-4107-9774-355731bf7139",
+          "createdAt": "2026-10-22T02:23:03.000Z",
+          "updatedAt": "2026-10-22T02:23:03.000Z",
+          "uid": "35240-98520889-e66d-4107-9774-355731bf7139"
         }
       ],
-      "event": []
+      "id": "277cf862-4a2f-4f3a-9256-4172ee5d86b3",
+      "createdAt": "2026-10-22T02:23:03.000Z",
+      "updatedAt": "2026-10-22T02:23:03.000Z",
+      "uid": "35240-277cf862-4a2f-4f3a-9256-4172ee5d86b3"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "baseUrl"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "blockchain-v2-asset-blocks-block_hash-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "blockchain-v2-asset-transactions-txid-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "blockchain-v2-asset-blocks-block_hash-transactions-txid-Url"
+      "key": "baseUrl",
+      "value": "https://api.coinmetrics.io/v4"
     }
-  ],
-  "info": {
-    "_postman_id": "08e357ec-c95e-4692-b27a-ba13d394215d",
-    "name": "Coin Metrics API v4 Blockchain Explorer Job Full blockchain entities v2 API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

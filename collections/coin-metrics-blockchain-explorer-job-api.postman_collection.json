@@ -1,1013 +1,1025 @@
 {
+  "info": {
+    "_postman_id": "26437521-fd9c-4773-9fb2-0206894af0bf",
+    "name": "Coin Metrics API v4 Blockchain Explorer Job API",
+    "description": "Coin Metrics Homepage\nAPI Backward Compatibility Policy\nPython API Client\n\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.\n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:22:15.000Z",
+    "updatedAt": "2026-10-22T02:22:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-26437521-fd9c-4773-9fb2-0206894af0bf"
+  },
   "item": [
     {
-      "id": "13f5f6de-997e-4d12-a4ca-5f3cae840adc",
-      "name": "Blockchain Explorer Job",
-      "description": {
-        "content": "Endpoints for creating async jobs for blockchain entities.",
-        "type": "text/plain"
-      },
+      "name": "blockchain-job",
       "item": [
         {
-          "id": "273b4412-120d-4122-b56e-26e795dcb29c",
-          "name": "Account balances",
-          "request": {
-            "name": "Account balances",
-            "description": {
-              "content": "Creates asynchronous job for retrieving account balances data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobAccountBalance](#schema/BlockchainJobAccountBalance) objects.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "blockchain-job",
-                "account-balances"
-              ],
-              "host": [
-                "{{blockchain-job-account-balances-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            },
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "accounts",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "accounts",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "at_time",
-                  "value": "<dateTime>"
-                },
-                {
-                  "disabled": false,
-                  "key": "at_slot",
-                  "value": "<long>"
-                },
-                {
-                  "disabled": false,
-                  "key": "at_height",
-                  "value": "<long>"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "account-balances",
+          "item": [
             {
-              "id": "61df438e-4ae8-477b-ad96-94285160e118",
-              "name": "Details of just created job.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-job",
-                    "account-balances"
-                  ],
-                  "host": [
-                    "{{blockchain-job-account-balances-Url}}"
-                  ],
-                  "query": [
+              "name": "Account balances",
+              "id": "fd89b96a-ba9a-43b3-888c-7be0cf3c92b8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
                     {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "key",
+                      "value": "api_key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "query",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "PUT",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "urlencoded",
                   "urlencoded": [
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
                       "key": "accounts",
                       "value": "<string>"
                     },
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
                       "key": "accounts",
                       "value": "<string>"
                     },
                     {
-                      "disabled": false,
+                      "description": "Indicates the point in time for which the set of account balances will be returned.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> UTC timezone by default. `Z` suffix is optional.<br/> Mutually exclusive with `at_height` and `at_slot`.<br/> Specifying either `at_time` or `at_height` / `at_slot` parameter is mandatory.<br/>",
                       "key": "at_time",
                       "value": "<dateTime>"
                     },
                     {
-                      "disabled": false,
+                      "description": "Indicates the slot for which the set of account balances will be returned.<br/> Mutually exclusive with `at_height` and `at_time`.<br/> Specifying either `at_slot` or `at_height` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
                       "key": "at_slot",
                       "value": "<long>"
                     },
                     {
-                      "disabled": false,
+                      "description": "Indicates the block height for which the set of account balances will be returned.<br/> Mutually exclusive with `at_slot` and `at_time`.<br/> Specifying either `at_height` or `at_slot` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
                       "key": "at_height",
                       "value": "<long>"
                     }
                   ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"job_id\": \"ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\",\n  \"job_url\": \"https://api.coinmetrics.io/v4/jobs?api_key=<your_key>&ids=ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5999380e-40cb-4a2b-bb49-3e2527aa0ca4",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/blockchain-job/account-balances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "blockchain-job",
                     "account-balances"
-                  ],
-                  "host": [
-                    "{{blockchain-job-account-balances-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "at_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "at_slot",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "at_height",
-                      "value": "<long>"
-                    }
                   ]
-                }
+                },
+                "description": "Creates asynchronous job for retrieving account balances data.\nUse the /jobs endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of BlockchainJobAccountBalance objects."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "3c1d8389-9646-4b6d-ba6b-7d5d66b55a70",
+                  "name": "Details of just created job.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Indicates the point in time for which the set of account balances will be returned.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> UTC timezone by default. `Z` suffix is optional.<br/> Mutually exclusive with `at_height` and `at_slot`.<br/> Specifying either `at_time` or `at_height` / `at_slot` parameter is mandatory.<br/>",
+                          "key": "at_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Indicates the slot for which the set of account balances will be returned.<br/> Mutually exclusive with `at_height` and `at_time`.<br/> Specifying either `at_slot` or `at_height` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
+                          "key": "at_slot",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Indicates the block height for which the set of account balances will be returned.<br/> Mutually exclusive with `at_slot` and `at_time`.<br/> Specifying either `at_height` or `at_slot` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
+                          "key": "at_height",
+                          "value": "<long>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/account-balances?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "account-balances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"job_id\": \"<string>\",\n  \"job_url\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-3c1d8389-9646-4b6d-ba6b-7d5d66b55a70"
+                },
+                {
+                  "id": "1588835b-bbdf-4d3b-9fa8-ba47b4321803",
+                  "name": "Requested resource requires authorization.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Indicates the point in time for which the set of account balances will be returned.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> UTC timezone by default. `Z` suffix is optional.<br/> Mutually exclusive with `at_height` and `at_slot`.<br/> Specifying either `at_time` or `at_height` / `at_slot` parameter is mandatory.<br/>",
+                          "key": "at_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Indicates the slot for which the set of account balances will be returned.<br/> Mutually exclusive with `at_height` and `at_time`.<br/> Specifying either `at_slot` or `at_height` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
+                          "key": "at_slot",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Indicates the block height for which the set of account balances will be returned.<br/> Mutually exclusive with `at_slot` and `at_time`.<br/> Specifying either `at_height` or `at_slot` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
+                          "key": "at_height",
+                          "value": "<long>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/account-balances?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "account-balances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-1588835b-bbdf-4d3b-9fa8-ba47b4321803"
+                },
+                {
+                  "id": "96b645f0-1368-41b1-9f95-6ecaad5b94fa",
+                  "name": "Requested resource is not available with supplied credentials.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Indicates the point in time for which the set of account balances will be returned.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> UTC timezone by default. `Z` suffix is optional.<br/> Mutually exclusive with `at_height` and `at_slot`.<br/> Specifying either `at_time` or `at_height` / `at_slot` parameter is mandatory.<br/>",
+                          "key": "at_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Indicates the slot for which the set of account balances will be returned.<br/> Mutually exclusive with `at_height` and `at_time`.<br/> Specifying either `at_slot` or `at_height` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
+                          "key": "at_slot",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Indicates the block height for which the set of account balances will be returned.<br/> Mutually exclusive with `at_slot` and `at_time`.<br/> Specifying either `at_height` or `at_slot` / `at_time` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br/>",
+                          "key": "at_height",
+                          "value": "<long>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/account-balances?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "account-balances"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-96b645f0-1368-41b1-9f95-6ecaad5b94fa"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a85a0454-d2bf-4768-a9cc-876208091e97",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-job",
-                    "account-balances"
-                  ],
-                  "host": [
-                    "{{blockchain-job-account-balances-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "at_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "at_slot",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "at_height",
-                      "value": "<long>"
-                    }
-                  ]
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:22:15.000Z",
+              "updatedAt": "2026-10-22T02:22:15.000Z",
+              "uid": "35240-fd89b96a-ba9a-43b3-888c-7be0cf3c92b8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "4d2252fe-8797-40e6-8b93-363a8e8ad49e",
+          "createdAt": "2026-10-22T02:22:15.000Z",
+          "updatedAt": "2026-10-22T02:22:15.000Z",
+          "uid": "35240-4d2252fe-8797-40e6-8b93-363a8e8ad49e"
         },
         {
-          "id": "fcacbe8b-1d1a-4390-8d2a-62d439a7d2dd",
-          "name": "Balance updates",
-          "request": {
-            "name": "Balance updates",
-            "description": {
-              "content": "Creates asynchronous job for retrieving balance updates data. Both `start_*` and `end_*` parameters must be specified (time or height).<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobBalanceUpdate](#schema/BlockchainJobBalanceUpdate) objects.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "blockchain-job",
-                "balance-updates"
-              ],
-              "host": [
-                "{{blockchain-job-balance-updates-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            },
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "accounts",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "accounts",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "start_time",
-                  "value": "<dateTime>"
-                },
-                {
-                  "disabled": false,
-                  "key": "end_time",
-                  "value": "<dateTime>"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_height",
-                  "value": "<long>"
-                },
-                {
-                  "disabled": false,
-                  "key": "end_height",
-                  "value": "<long>"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_slot",
-                  "value": "<long>"
-                },
-                {
-                  "disabled": false,
-                  "key": "end_slot",
-                  "value": "<long>"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "balance-updates",
+          "item": [
             {
-              "id": "8dd6c062-6fc0-4125-a259-86f49649f2e3",
-              "name": "Details of just created job.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-job",
-                    "balance-updates"
-                  ],
-                  "host": [
-                    "{{blockchain-job-balance-updates-Url}}"
-                  ],
-                  "query": [
+              "name": "Balance updates",
+              "id": "00706277-bb81-43c3-b698-8a975acde6f0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
                     {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "key",
+                      "value": "api_key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "query",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "PUT",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "urlencoded",
                   "urlencoded": [
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
                       "key": "accounts",
                       "value": "<string>"
                     },
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
                       "key": "accounts",
                       "value": "<string>"
                     },
                     {
-                      "disabled": false,
+                      "description": "Start of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `end_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
                       "key": "start_time",
                       "value": "<dateTime>"
                     },
                     {
-                      "disabled": false,
+                      "description": "End of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `start_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
                       "key": "end_time",
                       "value": "<dateTime>"
                     },
                     {
-                      "disabled": false,
+                      "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `end_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
                       "key": "start_height",
                       "value": "<long>"
                     },
                     {
-                      "disabled": false,
+                      "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `start_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
                       "key": "end_height",
                       "value": "<long>"
                     },
                     {
-                      "disabled": false,
+                      "description": "The start slot indicates the beginning slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `end_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
                       "key": "start_slot",
                       "value": "<long>"
                     },
                     {
-                      "disabled": false,
+                      "description": "The end slot indicates the ending slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `start_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
                       "key": "end_slot",
                       "value": "<long>"
                     }
                   ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"job_id\": \"ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\",\n  \"job_url\": \"https://api.coinmetrics.io/v4/jobs?api_key=<your_key>&ids=ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bbcbaa30-574f-4fec-97ad-06da1e7eafb5",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/blockchain-job/balance-updates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "blockchain-job",
                     "balance-updates"
-                  ],
-                  "host": [
-                    "{{blockchain-job-balance-updates-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "start_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "start_height",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "end_height",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "start_slot",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "end_slot",
-                      "value": "<long>"
-                    }
                   ]
-                }
+                },
+                "description": "Creates asynchronous job for retrieving balance updates data. Both `start_*` and `end_*` parameters must be specified (time or height).\nUse the /jobs endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of BlockchainJobBalanceUpdate objects."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "255d2de8-e41c-4578-a22a-19c5cdae85b3",
+                  "name": "Details of just created job.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Start of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `end_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `start_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `end_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "start_height",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `start_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "end_height",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The start slot indicates the beginning slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `end_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "start_slot",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The end slot indicates the ending slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `start_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "end_slot",
+                          "value": "<long>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/balance-updates?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "balance-updates"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"job_id\": \"<string>\",\n  \"job_url\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-255d2de8-e41c-4578-a22a-19c5cdae85b3"
+                },
+                {
+                  "id": "27a34d0b-7d3a-42d9-8adb-110b41cb9e07",
+                  "name": "Requested resource requires authorization.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Start of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `end_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `start_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `end_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "start_height",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `start_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "end_height",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The start slot indicates the beginning slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `end_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "start_slot",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The end slot indicates the ending slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `start_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "end_slot",
+                          "value": "<long>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/balance-updates?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "balance-updates"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-27a34d0b-7d3a-42d9-8adb-110b41cb9e07"
+                },
+                {
+                  "id": "9f0d17be-5714-4336-80c4-bf8b47685aa1",
+                  "name": "Requested resource is not available with supplied credentials.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Account ids. For ETH_CL, this can either be a validator public key or a validator index.",
+                          "key": "accounts",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Start of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `end_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End of the time interval.<br/> Multiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`.<br/> Inclusive by default. Mutually exclusive with `start_height`/`end_height` and `start_slot`/`end_slot`.<br/> When specified, `start_time` parameter is mandatory.<br/> UTC timezone by default. `Z` suffix is optional.",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "The start height indicates the beginning block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `end_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "start_height",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The end height indicates the ending block height for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_slot`/`end_slot`.<br/> When specified, `start_height` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "end_height",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The start slot indicates the beginning slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `end_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "start_slot",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The end slot indicates the ending slot for the set of data that are returned.<br/> Inclusive by default. Mutually exclusive with `start_time`/`end_time` and `start_height`/`end_height`.<br/> When specified, `start_slot` parameter is mandatory.<br/> Not compatible with requests containing more than one asset.<br />",
+                          "key": "end_slot",
+                          "value": "<long>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/balance-updates?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "balance-updates"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-9f0d17be-5714-4336-80c4-bf8b47685aa1"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2ba8a2c4-b690-4c02-ab1b-7547c33df6c1",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-job",
-                    "balance-updates"
-                  ],
-                  "host": [
-                    "{{blockchain-job-balance-updates-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "accounts",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "start_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "end_time",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "start_height",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "end_height",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "start_slot",
-                      "value": "<long>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "end_slot",
-                      "value": "<long>"
-                    }
-                  ]
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:22:15.000Z",
+              "updatedAt": "2026-10-22T02:22:15.000Z",
+              "uid": "35240-00706277-bb81-43c3-b698-8a975acde6f0"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "473443a9-e592-4f8a-bafc-9df8b2bdc1a5",
+          "createdAt": "2026-10-22T02:22:15.000Z",
+          "updatedAt": "2026-10-22T02:22:15.000Z",
+          "uid": "35240-473443a9-e592-4f8a-bafc-9df8b2bdc1a5"
         },
         {
-          "id": "4de56769-2208-4669-bef2-ffca34ab868c",
-          "name": "Transactions",
-          "request": {
-            "name": "Transactions",
-            "description": {
-              "content": "Creates asynchronous job for retrieving transactions data.<br/> Use the [/jobs](#operation/getJobById) endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of [BlockchainJobTransactionInfo](#schema/BlockchainJobTransactionInfo) objects.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "blockchain-job",
-                "transactions"
-              ],
-              "host": [
-                "{{blockchain-job-transactions-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            },
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "txids",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "txids",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "transactions",
+          "item": [
             {
-              "id": "9283a51a-ab69-4ed5-a755-a6c2bd56ed7d",
-              "name": "Details of just created job.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-job",
-                    "transactions"
-                  ],
-                  "host": [
-                    "{{blockchain-job-transactions-Url}}"
-                  ],
-                  "query": [
+              "name": "Transactions",
+              "id": "6cb31c36-4768-41f0-9748-2f42b3773524",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
                     {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "key",
+                      "value": "api_key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "query",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "PUT",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "urlencoded",
                   "urlencoded": [
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Transactions ids.",
                       "key": "txids",
                       "value": "<string>"
                     },
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Transactions ids.",
                       "key": "txids",
                       "value": "<string>"
                     }
                   ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"job_id\": \"ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\",\n  \"job_url\": \"https://api.coinmetrics.io/v4/jobs?api_key=<your_key>&ids=ZjRjZDE2N2EtYzljYy00MjQ5LTk4ZWYtOTlkZDljZTE1ZDU3OjgzNTZkODQyLTA5ODMtNGM2NC1hMGE5LWY5MzBhZTMxODFiZg\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ec4e6878-ee2f-44f3-aa22-83c085b31e62",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/blockchain-job/transactions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "blockchain-job",
                     "transactions"
-                  ],
-                  "host": [
-                    "{{blockchain-job-transactions-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "txids",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "txids",
-                      "value": "<string>"
-                    }
                   ]
-                }
+                },
+                "description": "Creates asynchronous job for retrieving transactions data.\nUse the /jobs endpoint to poll job's status. The result file when downloaded will contain a newline-delimited JSON stream of BlockchainJobTransactionInfo objects."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "33c56017-bd35-4bdd-9c3f-e057432a644f",
+                  "name": "Details of just created job.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Transactions ids.",
+                          "key": "txids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Transactions ids.",
+                          "key": "txids",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/transactions?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"job_id\": \"<string>\",\n  \"job_url\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-33c56017-bd35-4bdd-9c3f-e057432a644f"
+                },
+                {
+                  "id": "8bf460c5-4554-4556-97fa-891ed819c8ca",
+                  "name": "Requested resource requires authorization.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Transactions ids.",
+                          "key": "txids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Transactions ids.",
+                          "key": "txids",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/transactions?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-8bf460c5-4554-4556-97fa-891ed819c8ca"
+                },
+                {
+                  "id": "a5c19871-f444-497d-acae-fa24085c544a",
+                  "name": "Requested resource is not available with supplied credentials.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Transactions ids.",
+                          "key": "txids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Transactions ids.",
+                          "key": "txids",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blockchain-job/transactions?api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blockchain-job",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:15.000Z",
+                  "updatedAt": "2026-10-22T02:22:15.000Z",
+                  "uid": "35240-a5c19871-f444-497d-acae-fa24085c544a"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0b855a3a-eae3-424c-8a5f-476e5418838e",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "blockchain-job",
-                    "transactions"
-                  ],
-                  "host": [
-                    "{{blockchain-job-transactions-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "txids",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "txids",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:22:15.000Z",
+              "updatedAt": "2026-10-22T02:22:15.000Z",
+              "uid": "35240-6cb31c36-4768-41f0-9748-2f42b3773524"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "bb6be153-fd49-432a-8a92-635387540f17",
+          "createdAt": "2026-10-22T02:22:15.000Z",
+          "updatedAt": "2026-10-22T02:22:15.000Z",
+          "uid": "35240-bb6be153-fd49-432a-8a92-635387540f17"
         }
       ],
-      "event": []
+      "id": "022f97b5-6cb0-49d0-af36-ae8140fe10ea",
+      "createdAt": "2026-10-22T02:22:15.000Z",
+      "updatedAt": "2026-10-22T02:22:15.000Z",
+      "uid": "35240-022f97b5-6cb0-49d0-af36-ae8140fe10ea"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "baseUrl"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "blockchain-job-account-balances-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "blockchain-job-balance-updates-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "blockchain-job-transactions-Url"
+      "key": "baseUrl",
+      "value": "https://api.coinmetrics.io/v4"
     }
-  ],
-  "info": {
-    "_postman_id": "06e3ae5e-ea60-427b-99de-93a2c4adc6f7",
-    "name": "Coin Metrics API v4 Blockchain Explorer Job API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,523 +1,577 @@
 {
+  "info": {
+    "_postman_id": "1a5f9e7a-e663-4911-a139-1ce73650de6a",
+    "name": "Coin Metrics API v4 Constituent Timeframes API",
+    "description": "Coin Metrics Homepage\nAPI Backward Compatibility Policy\nPython API Client\n\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.\n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:22:56.000Z",
+    "updatedAt": "2026-10-22T02:22:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1a5f9e7a-e663-4911-a139-1ce73650de6a"
+  },
   "item": [
     {
-      "id": "5b8992a6-8855-48be-9f5c-75b1d1456872",
-      "name": "Constituent Timeframes",
-      "description": {
-        "content": "Endpoints for getting the timeframes of various constituents",
-        "type": "text/plain"
-      },
+      "name": "constituent-timeframes",
       "item": [
         {
-          "id": "93580d81-338a-4260-817c-dc34e56e1257",
-          "name": "Timeframes of asset metric constituents",
-          "request": {
-            "name": "Timeframes of asset metric constituents",
-            "description": {
-              "content": "Returns timeframes of asset metric constituents. \\\nResults are sorted by tuple (`start_time`, `constituent_name`), where constituent depends on a target metric. \nE.g., the `volume_trusted_spot_usd_1d` metric constituents are exchanges, \ni.e. the output will be sorted by (`start_time`, `exchange`).\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "constituent-timeframes",
-                "asset-metrics"
-              ],
-              "host": [
-                "{{constituent-timeframes-asset-metrics-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "metric",
-                  "value": "<string>",
-                  "description": "(Required) Target metric name."
-                },
-                {
-                  "disabled": false,
-                  "key": "constituents",
-                  "value": "<string>,<string>",
-                  "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "start_time",
-                  "value": "<string>",
-                  "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "end_time",
-                  "value": "<string>",
-                  "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "next_page_token",
-                  "value": "<string>",
-                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
-                },
-                {
-                  "disabled": false,
-                  "key": "page_size",
-                  "value": "100",
-                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
-                },
-                {
-                  "disabled": false,
-                  "key": "paging_from",
-                  "value": "end",
-                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "json",
-                  "description": "Format of the response."
-                },
-                {
-                  "disabled": false,
-                  "key": "pretty",
-                  "value": "false",
-                  "description": "Human-readable formatting of JSON responses."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "asset-metrics",
+          "item": [
             {
-              "id": "bb4a5baa-dd53-43e9-8419-dd10e3fec52d",
-              "name": "List of timeframes.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "constituent-timeframes",
-                    "asset-metrics"
-                  ],
-                  "host": [
-                    "{{constituent-timeframes-asset-metrics-Url}}"
-                  ],
-                  "query": [
+              "name": "Timeframes of asset metric constituents",
+              "id": "ec385ef1-8a8d-4497-8811-22b76e6d2624",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
                     {
-                      "key": "metric",
-                      "value": "<string>"
+                      "key": "key",
+                      "value": "api_key",
+                      "type": "string"
                     },
                     {
-                      "key": "constituents",
-                      "value": "<string>,<string>"
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
                     },
                     {
-                      "key": "start_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "end_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "end"
-                    },
-                    {
-                      "key": "format",
-                      "value": "json"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "in",
+                      "value": "query",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"exchange\": \"gemini\",\n      \"start_time\": \"2023-10-12T00:00:00.000000000Z\",\n      \"end_time\": null\n    },\n    {\n      \"exchange\": \"kraken\",\n      \"start_time\": \"2023-10-12T00:00:00.000000000Z\",\n      \"end_time\": null\n    },\n    {\n      \"exchange\": \"binance\",\n      \"start_time\": \"2023-04-01T00:00:00.000000000Z\",\n      \"end_time\": \"2023-10-12T00:00:00.000000000Z\"\n    },\n    {\n      \"exchange\": \"binance.us\",\n      \"start_time\": \"2023-04-01T00:00:00.000000000Z\",\n      \"end_time\": \"2023-10-12T00:00:00.000000000Z\"\n    },\n    {\n      \"exchange\": \"bitstamp\",\n      \"start_time\": \"2023-04-01T00:00:00.000000000Z\",\n      \"end_time\": \"2023-10-12T00:00:00.000000000Z\"\n    }\n  ],\n  \"next_page_token\": \"0.MjAxNy0wNS0yMlQwMDowMDowMFo\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/constituent-timeframes/asset-metrics?metric=volume_trusted_spot_usd_1d&pretty=true&page_size=5&api_key=<your_key>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "68e8cbe0-875a-4495-b466-9dbc0fb9e26d",
-              "name": "Metric not found.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/constituent-timeframes/asset-metrics?metric=<string>&constituents=<string>,<string>&start_time=<string>&end_time=<string>&next_page_token=<string>&page_size=100&paging_from=end&format=json&pretty=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "constituent-timeframes",
                     "asset-metrics"
                   ],
-                  "host": [
-                    "{{constituent-timeframes-asset-metrics-Url}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Target metric name.",
                       "key": "metric",
                       "value": "<string>"
                     },
                     {
+                      "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n",
                       "key": "constituents",
                       "value": "<string>,<string>"
                     },
                     {
+                      "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
                       "key": "start_time",
                       "value": "<string>"
                     },
                     {
+                      "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
                       "key": "end_time",
                       "value": "<string>"
                     },
                     {
+                      "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
                       "key": "next_page_token",
                       "value": "<string>"
                     },
                     {
+                      "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
                       "key": "page_size",
                       "value": "100"
                     },
                     {
+                      "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
                       "key": "paging_from",
                       "value": "end"
                     },
                     {
+                      "description": "Format of the response.",
                       "key": "format",
                       "value": "json"
                     },
                     {
+                      "description": "Human-readable formatting of JSON responses.",
                       "key": "pretty",
                       "value": "false"
-                    },
+                    }
+                  ]
+                },
+                "description": "Returns timeframes of asset metric constituents. \\\nResults are sorted by tuple (`start_time`, `constituent_name`), where constituent depends on a target metric.\nE.g., the `volume_trusted_spot_usd_1d` metric constituents are exchanges,\ni.e. the output will be sorted by (`start_time`, `exchange`)."
+              },
+              "response": [
+                {
+                  "id": "5a353171-9747-49c5-acc6-0fe69fbd4a8b",
+                  "name": "List of timeframes.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/constituent-timeframes/asset-metrics?metric=<string>&constituents=<string>,<string>&start_time=<string>&end_time=<string>&next_page_token=<string>&page_size=100&paging_from=end&format=json&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "constituent-timeframes",
+                        "asset-metrics"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Target metric name.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n",
+                          "key": "constituents",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "start_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "end_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "end"
+                        },
+                        {
+                          "description": "Format of the response.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\"\n    },\n    {\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"next_page_url\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:22:57.000Z",
+                  "updatedAt": "2026-10-22T02:22:57.000Z",
+                  "uid": "35240-5a353171-9747-49c5-acc6-0fe69fbd4a8b"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"bad_parameter\",\n    \"message\": \"Bad parameter 'metrics'. Value 'asdgwav' is not supported.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bc11fe89-cbb6-4942-bb02-d084ca5b9e92",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "constituent-timeframes",
-                    "asset-metrics"
-                  ],
-                  "host": [
-                    "{{constituent-timeframes-asset-metrics-Url}}"
-                  ],
-                  "query": [
+                  "id": "64a32508-1d34-4114-88e5-f36a04b53750",
+                  "name": "Metric not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/constituent-timeframes/asset-metrics?metric=<string>&constituents=<string>,<string>&start_time=<string>&end_time=<string>&next_page_token=<string>&page_size=100&paging_from=end&format=json&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "constituent-timeframes",
+                        "asset-metrics"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Target metric name.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n",
+                          "key": "constituents",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "start_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "end_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "end"
+                        },
+                        {
+                          "description": "Format of the response.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "metric",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "constituents",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "end_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "end"
-                    },
-                    {
-                      "key": "format",
-                      "value": "json"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:57.000Z",
+                  "updatedAt": "2026-10-22T02:22:57.000Z",
+                  "uid": "35240-64a32508-1d34-4114-88e5-f36a04b53750"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fead7e01-f97d-444b-8bc9-cece91c0bc98",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "constituent-timeframes",
-                    "asset-metrics"
-                  ],
-                  "host": [
-                    "{{constituent-timeframes-asset-metrics-Url}}"
-                  ],
-                  "query": [
+                  "id": "bf4a2093-d354-48b3-91d3-1cb7f221deae",
+                  "name": "Requested resource requires authorization.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/constituent-timeframes/asset-metrics?metric=<string>&constituents=<string>,<string>&start_time=<string>&end_time=<string>&next_page_token=<string>&page_size=100&paging_from=end&format=json&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "constituent-timeframes",
+                        "asset-metrics"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Target metric name.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n",
+                          "key": "constituents",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "start_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "end_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "end"
+                        },
+                        {
+                          "description": "Format of the response.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "metric",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "constituents",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "end_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "end"
-                    },
-                    {
-                      "key": "format",
-                      "value": "json"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:57.000Z",
+                  "updatedAt": "2026-10-22T02:22:57.000Z",
+                  "uid": "35240-bf4a2093-d354-48b3-91d3-1cb7f221deae"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested metric 'SplyBMXNtv' with frequency '1d' for asset 'btc' is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1f15a7ba-0b74-4388-be0b-0e1e24696235",
-              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "constituent-timeframes",
-                    "asset-metrics"
-                  ],
-                  "host": [
-                    "{{constituent-timeframes-asset-metrics-Url}}"
-                  ],
-                  "query": [
+                  "id": "73aebad2-af20-4c3f-b68e-b65e12c9bf05",
+                  "name": "Requested resource is not available with supplied credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/constituent-timeframes/asset-metrics?metric=<string>&constituents=<string>,<string>&start_time=<string>&end_time=<string>&next_page_token=<string>&page_size=100&paging_from=end&format=json&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "constituent-timeframes",
+                        "asset-metrics"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Target metric name.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n",
+                          "key": "constituents",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "start_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "end_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "end"
+                        },
+                        {
+                          "description": "Format of the response.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "metric",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "constituents",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "start_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "end_time",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "end"
-                    },
-                    {
-                      "key": "format",
-                      "value": "json"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:22:57.000Z",
+                  "updatedAt": "2026-10-22T02:22:57.000Z",
+                  "uid": "35240-73aebad2-af20-4c3f-b68e-b65e12c9bf05"
                 },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Request-URI Too Long",
-              "code": 414,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "f90a642f-e918-49b9-b88e-36cc5f53b3d7",
+                  "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/constituent-timeframes/asset-metrics?metric=<string>&constituents=<string>,<string>&start_time=<string>&end_time=<string>&next_page_token=<string>&page_size=100&paging_from=end&format=json&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "constituent-timeframes",
+                        "asset-metrics"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Target metric name.",
+                          "key": "metric",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated list of constituents. By default all constituents are returned.\nDifferent asset metrics may have different constituents.\nFor example, constituents for `volume_trusted_spot_usd_1d` are exchanges.\n",
+                          "key": "constituents",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Start of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "start_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "End of the time interval, inclusive. \\\nMultiple formats of ISO 8601 are supported: `2006-01-20T00:00:00Z`, `2006-01-20T00:00:00.000Z`, `2006-01-20T00:00:00.123456Z`, `2006-01-20T00:00:00.123456789Z`, `2006-01-20`, `20060120`. \\\nMutually exclusive with `at_time`.\n",
+                          "key": "end_time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "end"
+                        },
+                        {
+                          "description": "Format of the response.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Request-URI Too Long",
+                  "code": 414,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:22:57.000Z",
+                  "updatedAt": "2026-10-22T02:22:57.000Z",
+                  "uid": "35240-f90a642f-e918-49b9-b88e-36cc5f53b3d7"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T02:22:57.000Z",
+              "updatedAt": "2026-10-22T02:22:57.000Z",
+              "uid": "35240-ec385ef1-8a8d-4497-8811-22b76e6d2624"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "bb20abf4-9f0b-4a23-9563-c016aa090b42",
+          "createdAt": "2026-10-22T02:22:57.000Z",
+          "updatedAt": "2026-10-22T02:22:57.000Z",
+          "uid": "35240-bb20abf4-9f0b-4a23-9563-c016aa090b42"
         }
       ],
-      "event": []
+      "id": "06ee0800-19eb-4a9c-bf04-3804d6b2f9b4",
+      "createdAt": "2026-10-22T02:22:57.000Z",
+      "updatedAt": "2026-10-22T02:22:57.000Z",
+      "uid": "35240-06ee0800-19eb-4a9c-bf04-3804d6b2f9b4"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "baseUrl"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "constituent-timeframes-asset-metrics-Url"
+      "key": "baseUrl",
+      "value": "https://api.coinmetrics.io/v4"
     }
-  ],
-  "info": {
-    "_postman_id": "103a54c9-620a-49da-a2a0-b0aed2b4618b",
-    "name": "Coin Metrics API v4 Blockchain Explorer Job Constituent Timeframes API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

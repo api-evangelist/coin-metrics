@@ -1,816 +1,895 @@
 {
+  "info": {
+    "_postman_id": "a18da2ef-4688-40d8-b34d-6a99458c7661",
+    "name": "Coin Metrics API v4 Security Master API",
+    "description": "Coin Metrics Homepage\nAPI Backward Compatibility Policy\nPython API Client\n\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`.\n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:23:56.000Z",
+    "updatedAt": "2026-10-22T02:23:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a18da2ef-4688-40d8-b34d-6a99458c7661"
+  },
   "item": [
     {
-      "id": "198d69e0-e9c4-480c-a966-3e2de2b5e372",
-      "name": "Security Master",
-      "description": {
-        "content": "Security Master endpoints",
-        "type": "text/plain"
-      },
+      "name": "security-master",
       "item": [
         {
-          "id": "ad8445db-2cb1-461f-8c1c-d1074afa69db",
-          "name": "Security Master Assets",
-          "request": {
-            "name": "Security Master Assets",
-            "description": {
-              "content": "Returns all the assets and their metadata in security master.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "security-master",
-                "assets"
-              ],
-              "host": [
-                "{{security-master-assets-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "assets",
-                  "value": "<string>,<string>",
-                  "description": "Comma-separated list of assets to query. Mutually exclusive with `codes`."
-                },
-                {
-                  "disabled": false,
-                  "key": "codes",
-                  "value": "<string>,<string>",
-                  "description": "Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`."
-                },
-                {
-                  "disabled": false,
-                  "key": "page_size",
-                  "value": "100",
-                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
-                },
-                {
-                  "disabled": false,
-                  "key": "paging_from",
-                  "value": "start",
-                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
-                },
-                {
-                  "disabled": false,
-                  "key": "next_page_token",
-                  "value": "<string>",
-                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
-                },
-                {
-                  "disabled": false,
-                  "key": "pretty",
-                  "value": "false",
-                  "description": "Human-readable formatting of JSON responses."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "assets",
+          "item": [
             {
-              "id": "28c8b8d0-21d2-4c1a-8530-b05a061016b4",
-              "name": "List of assets and their metadata in security master",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "security-master",
-                    "assets"
-                  ],
-                  "host": [
-                    "{{security-master-assets-Url}}"
-                  ],
-                  "query": [
+              "name": "Security Master Assets",
+              "id": "5d77d6b1-4156-448e-a717-2133d9d5b82c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
                     {
-                      "key": "assets",
-                      "value": "<string>,<string>"
+                      "key": "key",
+                      "value": "api_key",
+                      "type": "string"
                     },
                     {
-                      "key": "codes",
-                      "value": "<string>,<string>"
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
                     },
                     {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "start"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "in",
+                      "value": "query",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"asset\": \"audio\",\n      \"code\": \"CB568F357F\",\n      \"decimals\": \"18\",\n      \"creation_date\": \"2020-10-22\",\n      \"type\": \"erc20\",\n      \"parent_asset\": \"eth\",\n      \"erc20_token_contract\": \"18aaa7115705e8be94bffebde57af9bfc265b998\"\n    },\n    {\n      \"asset\": \"badger\",\n      \"code\": \"C9E3139EE9\",\n      \"decimals\": \"18\",\n      \"creation_date\": \"2020-11-28\",\n      \"type\": \"erc20\",\n      \"parent_asset\": \"eth\",\n      \"erc20_token_contract\": \"3472a5a71965499acd81997a54bba8d852c6e53d\"\n    }\n  ],\n  \"next_page_token\": \"Mg\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/security-master/assets?assets=audio,badger,coti,crv,dydx&page_size=2&next_page_token=Mg&api_key=<your_key>\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ac89ab91-a3b3-48b9-baea-591b62f86ca3",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/security-master/assets?assets=<string>,<string>&codes=<string>,<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "security-master",
                     "assets"
                   ],
-                  "host": [
-                    "{{security-master-assets-Url}}"
-                  ],
                   "query": [
                     {
+                      "description": "Comma-separated list of assets to query. Mutually exclusive with `codes`.",
                       "key": "assets",
                       "value": "<string>,<string>"
                     },
                     {
+                      "description": "Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`.",
                       "key": "codes",
                       "value": "<string>,<string>"
                     },
                     {
+                      "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
                       "key": "page_size",
                       "value": "100"
                     },
                     {
+                      "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
                       "key": "paging_from",
                       "value": "start"
                     },
                     {
+                      "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
                       "key": "next_page_token",
                       "value": "<string>"
                     },
                     {
+                      "description": "Human-readable formatting of JSON responses.",
                       "key": "pretty",
                       "value": "false"
-                    },
+                    }
+                  ]
+                },
+                "description": "Returns all the assets and their metadata in security master."
+              },
+              "response": [
+                {
+                  "id": "fb899131-0a73-4960-bfe9-64fdaf09f3b9",
+                  "name": "List of assets and their metadata in security master",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/assets?assets=<string>,<string>&codes=<string>,<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of assets to query. Mutually exclusive with `codes`.",
+                          "key": "assets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`.",
+                          "key": "codes",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"asset\": \"<string>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"overview\": \"<string>\",\n      \"website\": \"<string>\",\n      \"whitepaper\": \"<string>\",\n      \"decimals\": \"<string>\",\n      \"creation_date\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parent_asset\": \"<string>\",\n      \"pricing_asset\": \"<string>\",\n      \"erc20_token_contract\": \"<string>\",\n      \"fiat\": \"<boolean>\"\n    },\n    {\n      \"asset\": \"<string>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"overview\": \"<string>\",\n      \"website\": \"<string>\",\n      \"whitepaper\": \"<string>\",\n      \"decimals\": \"<string>\",\n      \"creation_date\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parent_asset\": \"<string>\",\n      \"pricing_asset\": \"<string>\",\n      \"erc20_token_contract\": \"<string>\",\n      \"fiat\": \"<boolean>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"next_page_url\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-fb899131-0a73-4960-bfe9-64fdaf09f3b9"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9e9839bc-b0ef-4fb0-bf0a-d28c388f4f91",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "security-master",
-                    "assets"
-                  ],
-                  "host": [
-                    "{{security-master-assets-Url}}"
-                  ],
-                  "query": [
+                  "id": "43b56fae-56be-4230-b507-8585fb5bbe19",
+                  "name": "Requested resource requires authorization.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/assets?assets=<string>,<string>&codes=<string>,<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of assets to query. Mutually exclusive with `codes`.",
+                          "key": "assets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`.",
+                          "key": "codes",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "assets",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "codes",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "start"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-43b56fae-56be-4230-b507-8585fb5bbe19"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bc6a6687-003a-47a3-afa8-46e417af27f1",
-              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "security-master",
-                    "assets"
-                  ],
-                  "host": [
-                    "{{security-master-assets-Url}}"
-                  ],
-                  "query": [
+                  "id": "3cd0891b-9ff8-450e-a1b4-a4299bf72570",
+                  "name": "Requested resource is not available with supplied credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/assets?assets=<string>,<string>&codes=<string>,<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of assets to query. Mutually exclusive with `codes`.",
+                          "key": "assets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`.",
+                          "key": "codes",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "assets",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "codes",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "start"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-3cd0891b-9ff8-450e-a1b4-a4299bf72570"
                 },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Request-URI Too Long",
-              "code": 414,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "321be618-8767-47d1-9f2c-b5170d44fcf5",
+                  "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/assets?assets=<string>,<string>&codes=<string>,<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of assets to query. Mutually exclusive with `codes`.",
+                          "key": "assets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of ten-digit alphanumeric identifying codes. Mutually exclusive with `assets`.",
+                          "key": "codes",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Request-URI Too Long",
+                  "code": 414,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-321be618-8767-47d1-9f2c-b5170d44fcf5"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T02:23:57.000Z",
+              "updatedAt": "2026-10-22T02:23:57.000Z",
+              "uid": "35240-5d77d6b1-4156-448e-a717-2133d9d5b82c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c85d1ed3-644b-4bed-b807-6b76f98beed9",
+          "createdAt": "2026-10-22T02:23:57.000Z",
+          "updatedAt": "2026-10-22T02:23:57.000Z",
+          "uid": "35240-c85d1ed3-644b-4bed-b807-6b76f98beed9"
         },
         {
-          "id": "08cd7245-dcd7-48ae-a2f7-12a29a30060c",
-          "name": "Security Master Markets",
-          "request": {
-            "name": "Security Master Markets",
-            "description": {
-              "content": "Returns metadata on all the markets offered (spot, options, futures), sorted alphabetically by market.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "security-master",
-                "markets"
-              ],
-              "host": [
-                "{{security-master-markets-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "Type of markets."
-                },
-                {
-                  "disabled": false,
-                  "key": "markets",
-                  "value": "<string>,<string>",
-                  "description": "List of markets."
-                },
-                {
-                  "disabled": false,
-                  "key": "symbol",
-                  "value": "<string>",
-                  "description": "Symbol of derivative markets, full instrument name."
-                },
-                {
-                  "disabled": false,
-                  "key": "exchange",
-                  "value": "<string>",
-                  "description": "Unique name of an exchange."
-                },
-                {
-                  "disabled": false,
-                  "key": "base",
-                  "value": "<string>",
-                  "description": "Base asset of markets."
-                },
-                {
-                  "disabled": false,
-                  "key": "quote",
-                  "value": "<string>",
-                  "description": "Quote asset of markets."
-                },
-                {
-                  "disabled": false,
-                  "key": "page_size",
-                  "value": "100",
-                  "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
-                },
-                {
-                  "disabled": false,
-                  "key": "paging_from",
-                  "value": "start",
-                  "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`."
-                },
-                {
-                  "disabled": false,
-                  "key": "next_page_token",
-                  "value": "<string>",
-                  "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field."
-                },
-                {
-                  "disabled": false,
-                  "key": "pretty",
-                  "value": "false",
-                  "description": "Human-readable formatting of JSON responses."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "api_key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "query"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "markets",
+          "item": [
             {
-              "id": "2da8f808-21b8-4de7-9d64-07a2f23fe485",
-              "name": "List of security master entries.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "security-master",
-                    "markets"
-                  ],
-                  "host": [
-                    "{{security-master-markets-Url}}"
-                  ],
-                  "query": [
+              "name": "Security Master Markets",
+              "id": "6c5163ed-f7e6-42ad-9fed-4e40b7ef6b45",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
                     {
-                      "key": "type",
-                      "value": "<string>"
+                      "key": "key",
+                      "value": "api_key",
+                      "type": "string"
                     },
                     {
-                      "key": "markets",
-                      "value": "<string>,<string>"
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
                     },
                     {
-                      "key": "symbol",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "exchange",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "base",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "quote",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "start"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "in",
+                      "value": "query",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"market\": \"binance-1000FLOKIUSDT-future\",\n      \"exchange\": \"binance\",\n      \"type\": \"future\",\n      \"code\": \"C7101DFDBB\",\n      \"pair\": \"floki-usdt\",\n      \"base\": \"floki\",\n      \"quote\": \"usdt\",\n      \"symbol\": \"1000FLOKIUSDT\",\n      \"size_asset\": \"floki\",\n      \"margin_asset\": \"usdt\",\n      \"contract_size\": \"1000\",\n      \"tick_size\": \"0.00001\",\n      \"listing\": \"2023-05-06T00:00:00.000000000Z\",\n      \"order_amount_increment\": \"1\",\n      \"order_amount_min\": \"1\",\n      \"order_amount_max\": \"10000000\",\n      \"order_price_increment\": \"0.0000100\",\n      \"order_price_min\": \"0.0000100\",\n      \"order_price_max\": \"200\",\n      \"order_size_min\": \"5.0\",\n      \"price_open\": \"0.02221\",\n      \"price_close\": \"0.02229\",\n      \"price_high\": \"0.0229\",\n      \"price_low\": \"0.02209\",\n      \"vwap\": \"0.02241939522043145\",\n      \"volume\": \"469491373\",\n      \"candle_usd_volume\": \"10527753.918885918819449634\",\n      \"candle_trades_count\": \"58244\"\n    },\n    {\n      \"market\": \"binance-1000LUNCBUSD-future\",\n      \"exchange\": \"binance\",\n      \"type\": \"future\",\n      \"code\": \"C314D2136A\",\n      \"pair\": \"luna-busd\",\n      \"base\": \"luna\",\n      \"quote\": \"busd\",\n      \"symbol\": \"1000LUNCBUSD\",\n      \"size_asset\": \"luna\",\n      \"margin_asset\": \"busd\",\n      \"contract_size\": \"1000\",\n      \"tick_size\": \"0.00001\",\n      \"listing\": \"2022-05-30T07:00:00.000000000Z\",\n      \"order_amount_increment\": \"1\",\n      \"order_amount_min\": \"1\",\n      \"order_amount_max\": \"10000000\",\n      \"order_price_increment\": \"0.0000100\",\n      \"order_price_min\": \"0.0001000\",\n      \"order_price_max\": \"200\",\n      \"order_size_min\": \"5.0\",\n      \"price_open\": \"0.09374\",\n      \"price_close\": \"0.09329\",\n      \"price_high\": \"0.09499\",\n      \"price_low\": \"0.09151\",\n      \"vwap\": \"0.09285032139768002\",\n      \"volume\": \"121883176\",\n      \"candle_usd_volume\": \"11325203.70835771043391917\",\n      \"candle_trades_count\": \"49781\"\n    }\n  ],\n  \"next_page_token\": \"0.MTUwMjYyMzI\",\n  \"next_page_url\": \"https://api.coinmetrics.io/v4/security-master/markets?type=future&api_key=<your_key>&next_page_token=0.MTUwMjYyMzI\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4c3064a3-8c79-4802-869a-bb5840243987",
-              "name": "Requested resource requires authorization.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/security-master/markets?type=option&markets=<string>,<string>&symbol=<string>&exchange=<string>&base=<string>&quote=<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "security-master",
                     "markets"
                   ],
-                  "host": [
-                    "{{security-master-markets-Url}}"
-                  ],
                   "query": [
                     {
+                      "description": "Type of markets.",
                       "key": "type",
-                      "value": "<string>"
+                      "value": "option"
                     },
                     {
+                      "description": "List of markets.",
                       "key": "markets",
                       "value": "<string>,<string>"
                     },
                     {
+                      "description": "Symbol of derivative markets, full instrument name.",
                       "key": "symbol",
                       "value": "<string>"
                     },
                     {
+                      "description": "Unique name of an exchange.",
                       "key": "exchange",
                       "value": "<string>"
                     },
                     {
+                      "description": "Base asset of markets.",
                       "key": "base",
                       "value": "<string>"
                     },
                     {
+                      "description": "Quote asset of markets.",
                       "key": "quote",
                       "value": "<string>"
                     },
                     {
+                      "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
                       "key": "page_size",
                       "value": "100"
                     },
                     {
+                      "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
                       "key": "paging_from",
                       "value": "start"
                     },
                     {
+                      "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
                       "key": "next_page_token",
                       "value": "<string>"
                     },
                     {
+                      "description": "Human-readable formatting of JSON responses.",
                       "key": "pretty",
                       "value": "false"
-                    },
+                    }
+                  ]
+                },
+                "description": "Returns metadata on all the markets offered (spot, options, futures), sorted alphabetically by market."
+              },
+              "response": [
+                {
+                  "id": "b0b15f0a-1257-45a6-aad8-a4e05dbd8055",
+                  "name": "List of security master entries.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/markets?type=option&markets=<string>,<string>&symbol=<string>&exchange=<string>&base=<string>&quote=<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "markets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of markets.",
+                          "key": "type",
+                          "value": "option"
+                        },
+                        {
+                          "description": "List of markets.",
+                          "key": "markets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Symbol of derivative markets, full instrument name.",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique name of an exchange.",
+                          "key": "exchange",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Base asset of markets.",
+                          "key": "base",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Quote asset of markets.",
+                          "key": "quote",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"market\": \"<string>\",\n      \"type\": \"<string>\",\n      \"exchange\": \"<string>\",\n      \"code\": \"<string>\",\n      \"pair\": \"<string>\",\n      \"trades_min_time\": \"<string>\",\n      \"trades_max_time\": \"<string>\",\n      \"orderbooks_min_time\": \"<string>\",\n      \"orderbooks_max_time\": \"<string>\",\n      \"quotes_min_time\": \"<string>\",\n      \"quotes_max_time\": \"<string>\",\n      \"funding_rates_min_time\": \"<string>\",\n      \"funding_rates_max_time\": \"<string>\",\n      \"openinterest_min_time\": \"<string>\",\n      \"openinterest_max_time\": \"<string>\",\n      \"liquidations_min_time\": \"<string>\",\n      \"liquidations_max_time\": \"<string>\",\n      \"base\": \"<string>\",\n      \"quote\": \"<string>\",\n      \"symbol\": \"<string>\",\n      \"size_asset\": \"<string>\",\n      \"margin_asset\": \"<string>\",\n      \"strike\": \"<string>\",\n      \"option_contract_type\": \"<string>\",\n      \"is_european\": \"<boolean>\",\n      \"contract_size\": \"<string>\",\n      \"tick_size\": \"<string>\",\n      \"multiplier_size\": \"<string>\",\n      \"listing\": \"<dateTime>\",\n      \"expiration\": \"<dateTime>\",\n      \"settlement_price\": \"<string>\",\n      \"pool_config_id\": \"<string>\",\n      \"contract_address\": \"<string>\",\n      \"fee\": \"<string>\",\n      \"price_includes_fee\": \"<boolean>\",\n      \"variable_fee\": \"<boolean>\",\n      \"base_address\": \"<string>\",\n      \"quote_address\": \"<string>\",\n      \"status\": \"<string>\",\n      \"order_amount_increment\": \"<string>\",\n      \"order_amount_min\": \"<string>\",\n      \"order_amount_max\": \"<string>\",\n      \"order_price_increment\": \"<string>\",\n      \"order_price_min\": \"<string>\",\n      \"order_price_max\": \"<string>\",\n      \"order_size_min\": \"<string>\",\n      \"order_taker_fee\": \"<string>\",\n      \"order_maker_fee\": \"<string>\",\n      \"margin_trading_enabled\": \"<boolean>\",\n      \"experimental\": \"<boolean>\",\n      \"price_open\": \"<string>\",\n      \"price_close\": \"<string>\",\n      \"price_high\": \"<string>\",\n      \"price_low\": \"<string>\",\n      \"vwap\": \"<string>\",\n      \"volume\": \"<string>\",\n      \"candle_usd_volume\": \"<string>\",\n      \"candle_trades_count\": \"<int64>\",\n      \"base_native\": \"<string>\",\n      \"quote_native\": \"<string>\"\n    },\n    {\n      \"market\": \"<string>\",\n      \"type\": \"<string>\",\n      \"exchange\": \"<string>\",\n      \"code\": \"<string>\",\n      \"pair\": \"<string>\",\n      \"trades_min_time\": \"<string>\",\n      \"trades_max_time\": \"<string>\",\n      \"orderbooks_min_time\": \"<string>\",\n      \"orderbooks_max_time\": \"<string>\",\n      \"quotes_min_time\": \"<string>\",\n      \"quotes_max_time\": \"<string>\",\n      \"funding_rates_min_time\": \"<string>\",\n      \"funding_rates_max_time\": \"<string>\",\n      \"openinterest_min_time\": \"<string>\",\n      \"openinterest_max_time\": \"<string>\",\n      \"liquidations_min_time\": \"<string>\",\n      \"liquidations_max_time\": \"<string>\",\n      \"base\": \"<string>\",\n      \"quote\": \"<string>\",\n      \"symbol\": \"<string>\",\n      \"size_asset\": \"<string>\",\n      \"margin_asset\": \"<string>\",\n      \"strike\": \"<string>\",\n      \"option_contract_type\": \"<string>\",\n      \"is_european\": \"<boolean>\",\n      \"contract_size\": \"<string>\",\n      \"tick_size\": \"<string>\",\n      \"multiplier_size\": \"<string>\",\n      \"listing\": \"<dateTime>\",\n      \"expiration\": \"<dateTime>\",\n      \"settlement_price\": \"<string>\",\n      \"pool_config_id\": \"<string>\",\n      \"contract_address\": \"<string>\",\n      \"fee\": \"<string>\",\n      \"price_includes_fee\": \"<boolean>\",\n      \"variable_fee\": \"<boolean>\",\n      \"base_address\": \"<string>\",\n      \"quote_address\": \"<string>\",\n      \"status\": \"<string>\",\n      \"order_amount_increment\": \"<string>\",\n      \"order_amount_min\": \"<string>\",\n      \"order_amount_max\": \"<string>\",\n      \"order_price_increment\": \"<string>\",\n      \"order_price_min\": \"<string>\",\n      \"order_price_max\": \"<string>\",\n      \"order_size_min\": \"<string>\",\n      \"order_taker_fee\": \"<string>\",\n      \"order_maker_fee\": \"<string>\",\n      \"margin_trading_enabled\": \"<boolean>\",\n      \"experimental\": \"<boolean>\",\n      \"price_open\": \"<string>\",\n      \"price_close\": \"<string>\",\n      \"price_high\": \"<string>\",\n      \"price_low\": \"<string>\",\n      \"vwap\": \"<string>\",\n      \"volume\": \"<string>\",\n      \"candle_usd_volume\": \"<string>\",\n      \"candle_trades_count\": \"<int64>\",\n      \"base_native\": \"<string>\",\n      \"quote_native\": \"<string>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"next_page_url\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-b0b15f0a-1257-45a6-aad8-a4e05dbd8055"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Requested resource requires authorization.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bd48e11d-cb5b-4468-b7b9-6022d12b8c27",
-              "name": "Requested resource is not available with supplied credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "security-master",
-                    "markets"
-                  ],
-                  "host": [
-                    "{{security-master-markets-Url}}"
-                  ],
-                  "query": [
+                  "id": "b2d28eba-ac2b-4ae2-aec6-791c2e9bb1c5",
+                  "name": "Requested resource requires authorization.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/markets?type=option&markets=<string>,<string>&symbol=<string>&exchange=<string>&base=<string>&quote=<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "markets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of markets.",
+                          "key": "type",
+                          "value": "option"
+                        },
+                        {
+                          "description": "List of markets.",
+                          "key": "markets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Symbol of derivative markets, full instrument name.",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique name of an exchange.",
+                          "key": "exchange",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Base asset of markets.",
+                          "key": "base",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Quote asset of markets.",
+                          "key": "quote",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "markets",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "symbol",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "exchange",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "base",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "quote",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "start"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-b2d28eba-ac2b-4ae2-aec6-791c2e9bb1c5"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Requested resource is not available with supplied credentials.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e71f8e94-d4f3-4408-ada2-9f28ecc69634",
-              "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "security-master",
-                    "markets"
-                  ],
-                  "host": [
-                    "{{security-master-markets-Url}}"
-                  ],
-                  "query": [
+                  "id": "505369bd-b86d-402d-a9db-35268bbbadd8",
+                  "name": "Requested resource is not available with supplied credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/markets?type=option&markets=<string>,<string>&symbol=<string>&exchange=<string>&base=<string>&quote=<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "markets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of markets.",
+                          "key": "type",
+                          "value": "option"
+                        },
+                        {
+                          "description": "List of markets.",
+                          "key": "markets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Symbol of derivative markets, full instrument name.",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique name of an exchange.",
+                          "key": "exchange",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Base asset of markets.",
+                          "key": "base",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Quote asset of markets.",
+                          "key": "quote",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "markets",
-                      "value": "<string>,<string>"
-                    },
-                    {
-                      "key": "symbol",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "exchange",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "base",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "quote",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page_size",
-                      "value": "100"
-                    },
-                    {
-                      "key": "paging_from",
-                      "value": "start"
-                    },
-                    {
-                      "key": "next_page_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pretty",
-                      "value": "false"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-505369bd-b86d-402d-a9db-35268bbbadd8"
                 },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Request-URI Too Long",
-              "code": 414,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "17acaa29-c2e0-43bf-99dd-cf56664e8242",
+                  "name": "Provided URI is too long. It must not be greater than 10000 symbols.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/security-master/markets?type=option&markets=<string>,<string>&symbol=<string>&exchange=<string>&base=<string>&quote=<string>&page_size=100&paging_from=start&next_page_token=<string>&pretty=false&api_key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "security-master",
+                        "markets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of markets.",
+                          "key": "type",
+                          "value": "option"
+                        },
+                        {
+                          "description": "List of markets.",
+                          "key": "markets",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "Symbol of derivative markets, full instrument name.",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique name of an exchange.",
+                          "key": "exchange",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Base asset of markets.",
+                          "key": "base",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Quote asset of markets.",
+                          "key": "quote",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per single page of results.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Where does the first page start, at the start of the interval or at the end.<br/> The value of this parameter is ignored if the endpoint supports the `format` parameter and its value is set to `json_stream`.",
+                          "key": "paging_from",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Token for receiving the results from the next page of a query.<br/> Should not be used directly. To iterate through pages just use `next_page_url` response field.",
+                          "key": "next_page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Human-readable formatting of JSON responses.",
+                          "key": "pretty",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Added as a part of security scheme: apikey",
+                          "key": "api_key",
+                          "value": "<API Key>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Request-URI Too Long",
+                  "code": 414,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-17acaa29-c2e0-43bf-99dd-cf56664e8242"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T02:23:57.000Z",
+              "updatedAt": "2026-10-22T02:23:57.000Z",
+              "uid": "35240-6c5163ed-f7e6-42ad-9fed-4e40b7ef6b45"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8000c61c-65f0-4999-a4e6-67e4d373a1c9",
+          "createdAt": "2026-10-22T02:23:57.000Z",
+          "updatedAt": "2026-10-22T02:23:57.000Z",
+          "uid": "35240-8000c61c-65f0-4999-a4e6-67e4d373a1c9"
         }
       ],
-      "event": []
+      "id": "2ae86071-5973-4c24-a29e-3ac36120ae2c",
+      "createdAt": "2026-10-22T02:23:57.000Z",
+      "updatedAt": "2026-10-22T02:23:57.000Z",
+      "uid": "35240-2ae86071-5973-4c24-a29e-3ac36120ae2c"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "baseUrl"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "security-master-assets-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.coinmetrics.io/v4",
-      "key": "security-master-markets-Url"
+      "key": "baseUrl",
+      "value": "https://api.coinmetrics.io/v4"
     }
-  ],
-  "info": {
-    "_postman_id": "5e510ee5-194e-482b-9e45-08380d54fe39",
-    "name": "Coin Metrics API v4 Blockchain Explorer Job Security Master API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "[Coin Metrics Homepage](https://coinmetrics.io/)<br/> [API Backward Compatibility Policy](https://docs.coinmetrics.io/access-our-data/api#backward-compatibility)<br/> [Python API Client](https://coinmetrics.github.io/api-client-python/site/index.html)<br/><br/>\nHTTP API root endpoint URL is `https://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/> WebSocket API root endpoint is `wss://api.coinmetrics.io/v4`. Coin Metrics&apos; paid product.<br/><br/> The Community HTTP API root endpoint URL is `https://community-api.coinmetrics.io/v4`. API key is not required when accessing community endpoints. Available to the community under the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license.\n# Authentication\n<!-- ReDoc-Inject: <security-definitions> -->\n# Response headers\nNote that Coin Metrics API responses have a `CF-RAY` HTTP header e.g. `88a6ec1d2f930774-IAD` which can be used for diagnostic purposes. When raising Support requests, please ensure to provide the value of this header. \n\nContact Support:\n Name: Coin Metrics Support\n Email: support@coinmetrics.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

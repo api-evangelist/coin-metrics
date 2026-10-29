@@ -1,4 +1,4 @@
-# Coin Metrics (coin-metrics)
+# Coin Metrics
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,181 +64,202 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Coin Metrics is a Boston-based crypto financial intelligence provider founded in 2017, selling institutional-grade cryptoasset network (on-chain) data, exchange market data (trades, quotes, order books, candles, derivatives), CMBI indexes, reference rates, and reference/security-master data. Everything is delivered through a single documented API v4 - REST at api.coinmetrics.io/v4 and WebSocket streaming at wss://api.coinmetrics.io/v4 as paid, API-key products - plus a free, keyless Community API at community-api.coinmetrics.io/v4 under a CC BY-NC 4.0 license, with flat files, Python and R clients, and Google Sheets as additional delivery channels.
+Coin Metrics is a Boston-based crypto financial intelligence provider founded in 2017, selling institutional-grade cryptoasset network (on-chain) data, exchange market data (trades, quotes, order books, candles, derivatives), CMBI indexes, reference rates, and reference/security-master data. Everything is delivered through a single documented API v4 - REST at api.coinmetrics.io/v4 and WebSocket streaming at wss://api.coinmetrics.io/v4 as paid, API-key products - plus a free, keyless Community API at community-api.coinmetrics.io/v4 under a CC BY-NC 4.0 license, with flat files, Python and R clients, and Google Sheets as additional delivery channels. A complete OpenAPI 3.0.2 definition is published on the docs site. Coin Metrics is now part of Talos: coinmetrics.io 301-redirects to talos.com/our-solutions/data/overview, while docs.coinmetrics.io and the api/community-api hosts remain live under the Coin Metrics brand.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/coin-metrics/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/coin-metrics/refs/heads/main/apis.yml)
+**Areas:** Finance · Market Data · Cryptocurrency · Blockchain · On-Chain Data · Index · Reference Rates · Order Book · Real-Time
 
-## Tags
+## Coin Metrics on APIs.io
 
-- Financial
-- Market Data
-- Crypto
-- Blockchain
-- On-Chain Data
-- Indexes
-- Reference Rates
-- Order Book
-- Real-Time
+Everything profiled for Coin Metrics is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/coin-metrics/](https://apis.io/providers/coin-metrics/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (19)
 
-- **Created:** 2026-07-21
-- **Modified:** 2026-07-21
+- [Coin Metrics Blockchain Explorer Job API](https://apis.io/apis/coin-metrics/coin-metrics-blockchain-explorer-job-api/) — Endpoints for creating async jobs for blockchain entities.
+- [Coin Metrics Blockchain Metadata API](https://apis.io/apis/coin-metrics/coin-metrics-blockchain-metadata-api/) — Blockchain metadata endpoints
+- [Coin Metrics Catalog API](https://apis.io/apis/coin-metrics/coin-metrics-catalog-api/) — Catalog of available for your `api_key` data.<br/> Use the [Full catalog](#tag/Full-catalog) endpoints for the full list of supported by Coin Metrics data.…
+- [Coin Metrics Catalog v2 API](https://apis.io/apis/coin-metrics/coin-metrics-catalog-v2-api/) — Catalog of available for your `api_key` data.<br/> Use the [Full catalog V2](#tag/Full-catalog-v2) endpoints for the full list of supported by Coin Metrics…
+- [Coin Metrics Chain Monitor tools API](https://apis.io/apis/coin-metrics/coin-metrics-chain-monitor-tools-api/) — Endpoints for working with chain monitor data.
+- [Coin Metrics Constituent Snapshots API](https://apis.io/apis/coin-metrics/coin-metrics-constituent-snapshots-api/) — Endpoints for getting the snapshots of various constituents
+- [Coin Metrics Constituent Timeframes API](https://apis.io/apis/coin-metrics/coin-metrics-constituent-timeframes-api/) — Endpoints for getting the timeframes of various constituents
+- [Coin Metrics Full blockchain entities v2 API](https://apis.io/apis/coin-metrics/coin-metrics-full-blockchain-entities-v2-api/) — Endpoints for fetching full blockchain entities.
+- [Coin Metrics Full catalog API](https://apis.io/apis/coin-metrics/coin-metrics-full-catalog-api/) — The Full catalog returns the full range of data that is supported by Coin Metrics across all our products.<br/> If you are a client looking to understand…
+- [Coin Metrics Full catalog v2 API](https://apis.io/apis/coin-metrics/coin-metrics-full-catalog-v2-api/) — The Full catalog returns the full range of data that is supported by Coin Metrics across all our products.<br/> If you are a client looking to understand…
+- [Coin Metrics Jobs API](https://apis.io/apis/coin-metrics/coin-metrics-jobs-api/) — Jobs API endpoints
+- [Coin Metrics List of blockchain entities v2 API](https://apis.io/apis/coin-metrics/coin-metrics-list-of-blockchain-entities-v2-api/) — Endpoints for fetching lists of blockchain entities.
+- [Coin Metrics Profile API](https://apis.io/apis/coin-metrics/coin-metrics-profile-api/) — Profile endpoints
+- [Coin Metrics Reference Data API](https://apis.io/apis/coin-metrics/coin-metrics-reference-data-api/) — Metadata information of entities supported by Coin Metrics.
+- [Coin Metrics Security Master API](https://apis.io/apis/coin-metrics/coin-metrics-security-master-api/) — Security Master endpoints
+- [Coin Metrics Taxonomy API](https://apis.io/apis/coin-metrics/coin-metrics-taxonomy-api/) — Taxonomy endpoints
+- [Coin Metrics Taxonomy Metadata API](https://apis.io/apis/coin-metrics/coin-metrics-taxonomy-metadata-api/) — Taxonomy Metadata endpoints
+- [Coin Metrics Timeseries stream API](https://apis.io/apis/coin-metrics/coin-metrics-timeseries-stream-api/) — WebSocket endpoints for getting a real-time stream of metrics, market data, indexes and other time series data.
+- [Coin Metrics Time Series API](https://apis.io/apis/coin-metrics/coin-metrics-time-series-api/) — Endpoints for fetching metrics, market data, indexes and other time series data.
 
-## APIs
+### Published properties
 
-### Coin Metrics Market Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Timeseries endpoints for exchange market data - trades, quotes, order book snapshots and depth, candles, open interest, liquidations, funding rates, and contract prices - across spot and derivatives markets, served from the API v4 REST root with API-key authentication.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.coinmetrics.io/api/v4](https://docs.coinmetrics.io/api/v4)
-- **Base URL:** `https://api.coinmetrics.io/v4`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Coin Metrics Timeseries Stream API](https://apis.io/asyncapis/coin-metrics/coin-metrics-timeseries-stream-asyncapi/)
 
-- Market Data
-- Trades
-- Quotes
-- Order Book
-- Derivatives
+#### Event channels (11)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://coinmetrics.io/market-data-feed/)
-- [API Reference](https://docs.coinmetrics.io/api/v4)
-- [OpenAPI](openapi/coin-metrics-api-v4-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [/timeseries-stream/asset-metrics](https://apis.io/channels/coin-metrics/timeseries-stream-asset-metrics/)
+- [/timeseries-stream/asset-quotes](https://apis.io/channels/coin-metrics/timeseries-stream-asset-quotes/)
+- [/timeseries-stream/index-levels](https://apis.io/channels/coin-metrics/timeseries-stream-index-levels/)
+- [/timeseries-stream/market-candles](https://apis.io/channels/coin-metrics/timeseries-stream-market-candles/)
+- [/timeseries-stream/market-contract-prices](https://apis.io/channels/coin-metrics/timeseries-stream-market-contract-prices/)
+- [/timeseries-stream/market-liquidations](https://apis.io/channels/coin-metrics/timeseries-stream-market-liquidations/)
+- [/timeseries-stream/market-openinterest](https://apis.io/channels/coin-metrics/timeseries-stream-market-openinterest/)
+- [/timeseries-stream/market-orderbooks](https://apis.io/channels/coin-metrics/timeseries-stream-market-orderbooks/)
+- [/timeseries-stream/market-quotes](https://apis.io/channels/coin-metrics/timeseries-stream-market-quotes/)
+- [/timeseries-stream/market-trades](https://apis.io/channels/coin-metrics/timeseries-stream-market-trades/)
+- [/timeseries-stream/pair-quotes](https://apis.io/channels/coin-metrics/timeseries-stream-pair-quotes/)
 
-### Coin Metrics Network Data API
+#### MCP servers (1)
 
-Network Data Pro on-chain asset metrics - supply, addresses, fees, transactions, miner flows, exchange flows, and hundreds of other per-asset timeseries metrics - via the timeseries/asset-metrics family of API v4 endpoints.
+Model Context Protocol servers that expose the API to agents.
 
-- **Human URL:** [https://docs.coinmetrics.io/api/v4](https://docs.coinmetrics.io/api/v4)
-- **Base URL:** `https://api.coinmetrics.io/v4`
+- [coin-metrics](https://apis.io/servers/coin-metrics/coin-metrics/)
 
-#### Tags
+#### Agentic access (1)
 
-- On-Chain Data
-- Asset Metrics
-- Blockchain
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Properties
+- [Coin Metrics Agentic Access](https://apis.io/agentic-access/coin-metrics/coin-metrics-agentic-access/)
 
-- [Documentation](https://coinmetrics.io/network-data-pro/)
-- [API Reference](https://docs.coinmetrics.io/api/v4)
-- [OpenAPI](openapi/coin-metrics-api-v4-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+#### Collections (19)
 
-### Coin Metrics Index and Reference Rates API
+Postman and Open Collection request collections.
 
-CMBI index levels and candles, index constituent snapshots and timeframes, and CM Prices reference rates delivered as API v4 timeseries endpoints for benchmark and valuation use cases.
+- [Coin Metrics API v4 Blockchain Explorer Job API](https://apis.io/collections/coin-metrics/open-coin-metrics-blockchain-explorer-job-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Blockchain Metadata API](https://apis.io/collections/coin-metrics/open-coin-metrics-blockchain-metadata-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Catalog API](https://apis.io/collections/coin-metrics/open-coin-metrics-catalog-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Catalog v2 API](https://apis.io/collections/coin-metrics/open-coin-metrics-catalog-v2-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Chain Monitor tools API](https://apis.io/collections/coin-metrics/open-coin-metrics-chain-monitor-tools-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Constituent Snapshots API](https://apis.io/collections/coin-metrics/open-coin-metrics-constituent-snapshots-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Constituent Timeframes API](https://apis.io/collections/coin-metrics/open-coin-metrics-constituent-timeframes-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Full blockchain entities v2 API](https://apis.io/collections/coin-metrics/open-coin-metrics-full-blockchain-entities-v2-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Full catalog API](https://apis.io/collections/coin-metrics/open-coin-metrics-full-catalog-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Full catalog v2 API](https://apis.io/collections/coin-metrics/open-coin-metrics-full-catalog-v2-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Jobs API](https://apis.io/collections/coin-metrics/open-coin-metrics-jobs-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job List of blockchain entities v2 API](https://apis.io/collections/coin-metrics/open-coin-metrics-list-of-blockchain-entities-v2-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Profile API](https://apis.io/collections/coin-metrics/open-coin-metrics-profile-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Reference Data API](https://apis.io/collections/coin-metrics/open-coin-metrics-reference-data-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Security Master API](https://apis.io/collections/coin-metrics/open-coin-metrics-security-master-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Taxonomy API](https://apis.io/collections/coin-metrics/open-coin-metrics-taxonomy-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Taxonomy Metadata API](https://apis.io/collections/coin-metrics/open-coin-metrics-taxonomy-metadata-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Timeseries API](https://apis.io/collections/coin-metrics/open-coin-metrics-timeseries-api/)
+- [Coin Metrics API v4 Blockchain Explorer Job Timeseries stream API](https://apis.io/collections/coin-metrics/open-coin-metrics-timeseries-stream-api/)
 
-- **Human URL:** [https://docs.coinmetrics.io/api/v4](https://docs.coinmetrics.io/api/v4)
-- **Base URL:** `https://api.coinmetrics.io/v4`
+#### Overlays (19)
 
-#### Tags
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- Indexes
-- Reference Rates
-- Benchmarks
+- [Coin Metrics Blockchain Explorer Job Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-blockchain-explorer-job-api-overlay/)
+- [Coin Metrics Blockchain Metadata Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-blockchain-metadata-api-overlay/)
+- [Coin Metrics Catalog Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-catalog-api-overlay/)
+- [Coin Metrics Catalog V2 Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-catalog-v2-api-overlay/)
+- [Coin Metrics Chain Monitor Tools Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-chain-monitor-tools-api-overlay/)
+- [Coin Metrics Constituent Snapshots Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-constituent-snapshots-api-overlay/)
+- [Coin Metrics Constituent Timeframes Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-constituent-timeframes-api-overlay/)
+- [Coin Metrics Full Blockchain Entities V2 Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-full-blockchain-entities-v2-api-overlay/)
+- [Coin Metrics Full Catalog Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-full-catalog-api-overlay/)
+- [Coin Metrics Full Catalog V2 Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-full-catalog-v2-api-overlay/)
+- [Coin Metrics Jobs Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-jobs-api-overlay/)
+- [Coin Metrics List Of Blockchain Entities V2 Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-list-of-blockchain-entities-v2-api-overlay/)
+- [Coin Metrics Profile Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-profile-api-overlay/)
+- [Coin Metrics Reference Data Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-reference-data-api-overlay/)
+- [Coin Metrics Security Master Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-security-master-api-overlay/)
+- [Coin Metrics Taxonomy Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-taxonomy-api-overlay/)
+- [Coin Metrics Taxonomy Metadata Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-taxonomy-metadata-api-overlay/)
+- [Coin Metrics Timeseries Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-timeseries-api-overlay/)
+- [Coin Metrics Timeseries Stream Api Overlay](https://apis.io/overlays/coin-metrics/coin-metrics-timeseries-stream-api-overlay/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://coinmetrics.io/indexes/)
-- [Documentation](https://coinmetrics.io/reference-rates/)
-- [API Reference](https://docs.coinmetrics.io/api/v4)
-- [OpenAPI](openapi/coin-metrics-api-v4-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Coin Metrics Timeseries Stream WebSocket API
+- [Coin Metrics Authentication](https://apis.io/security/coin-metrics/coin-metrics-authentication/)
+- [Coin Metrics Domain Security](https://apis.io/security/coin-metrics/coin-metrics-domain-security/)
 
-Real-time WebSocket streaming under /timeseries-stream for asset metrics, market trades, quotes, order books, candles, open interest, liquidations, contract prices, pair and asset quotes, and index levels. Documented as a paid product in the same OpenAPI definition as the REST API.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.coinmetrics.io/api/v4](https://docs.coinmetrics.io/api/v4)
-- **Base URL:** `wss://api.coinmetrics.io/v4`
+Published request limits.
 
-#### Tags
+- [Coin Metrics Rate Limits](https://apis.io/rate-limits/coin-metrics/coin-metrics-rate-limits/)
 
-- WebSocket
-- Streaming
-- Real-Time
+## Where to find this API
 
-#### Properties
-
-- [Documentation](https://docs.coinmetrics.io/access-our-data/api)
-- [API Reference](https://docs.coinmetrics.io/api/v4)
-- [OpenAPI](openapi/coin-metrics-api-v4-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Coin Metrics Community API
-
-Free, keyless subset of API v4 at community-api.coinmetrics.io/v4 offering community network data and market data under a Creative Commons BY-NC 4.0 license. Confirmed live with HTTP 200 responses to catalog and timeseries requests without authentication.
-
-- **Human URL:** [https://docs.coinmetrics.io/api/v4](https://docs.coinmetrics.io/api/v4)
-- **Base URL:** `https://community-api.coinmetrics.io/v4`
-
-#### Tags
-
-- Community
-- Free Tier
-- Market Data
-- On-Chain Data
-
-#### Properties
-
-- [Documentation](https://coinmetrics.io/community-network-data/)
-- [API Reference](https://docs.coinmetrics.io/api/v4)
-- [OpenAPI](openapi/coin-metrics-api-v4-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Coin Metrics Atlas Blockchain Explorer API
-
-Atlas blockchain search - blockchain entities (accounts, transactions, blocks, balance updates), asynchronous blockchain explorer jobs and job results, and blockchain metadata endpoints within API v4.
-
-- **Human URL:** [https://docs.coinmetrics.io/api/v4](https://docs.coinmetrics.io/api/v4)
-- **Base URL:** `https://api.coinmetrics.io/v4`
-
-#### Tags
-
-- Blockchain Explorer
-- Transactions
-- Balances
-
-#### Properties
-
-- [Documentation](https://coinmetrics.io/atlas/)
-- [API Reference](https://docs.coinmetrics.io/api/v4)
-- [OpenAPI](openapi/coin-metrics-api-v4-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Coin Metrics Reference Data and Catalog API
-
-Reference data endpoints for assets, markets, exchanges, indexes, and metrics, catalog and catalog-v2 coverage discovery, security master, profiles, and the datonomy taxonomy - the metadata layer for the rest of API v4.
-
-- **Human URL:** [https://docs.coinmetrics.io/api/v4](https://docs.coinmetrics.io/api/v4)
-- **Base URL:** `https://api.coinmetrics.io/v4`
-
-#### Tags
-
-- Reference Data
-- Catalog
-- Security Master
-- Taxonomy
-
-#### Properties
-
-- [API Reference](https://docs.coinmetrics.io/api/v4)
-- [OpenAPI](openapi/coin-metrics-api-v4-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://coinmetrics.io/)
-- [Portal](https://docs.coinmetrics.io/)
 - [Documentation](https://docs.coinmetrics.io/access-our-data/api)
-- [GitHub Organization](https://github.com/coinmetrics)
-- [LinkedIn](https://www.linkedin.com/company/coinmetrics)
-- [Blog](https://coinmetrics.io/insights/)
+- [Getting started](https://docs.coinmetrics.io/getting-started)
+- [API reference](https://docs.coinmetrics.io/api/v4)
 - [Pricing](https://coinmetrics.io/pricing/)
-- [Terms of Service](https://coinmetrics.io/terms-of-service/)
-- [Privacy Policy](https://coinmetrics.io/privacy-policy/)
 - [Support](https://coinmetrics.io/contact/)
-- [Status Page](https://status.coinmetrics.io/)
+- [Blog](https://coinmetrics.io/insights/)
+- [Terms of service](https://coinmetrics.io/terms-of-service/)
+- [Privacy policy](https://coinmetrics.io/privacy-policy/)
+- [GitHub](https://github.com/coinmetrics)
+- [Status](https://status.coinmetrics.io/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 41.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 57.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 0.0 |
+
+**Agent readiness 27.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 15.7** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/coin-metrics/](https://apis.io/providers/coin-metrics/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Coin Metrics: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/coin-metrics/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
